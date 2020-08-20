@@ -22,30 +22,24 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.github.nakawai.newsreader.R;
+import com.github.nakawai.newsreader.databinding.ActivityDetailsBinding;
 import com.github.nakawai.newsreader.model.Model;
 import com.github.nakawai.newsreader.model.entity.NYTimesStory;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class DetailsActivity extends AppCompatActivity {
 
     private static final String KEY_STORY_ID = "key.storyId";
 
-    @BindView(R.id.details_text) TextView detailsView;
-    @BindView(R.id.read_text) TextView readView;
-    @BindView(R.id.date_text) TextView dateView;
-    @BindView(R.id.loader_view) ProgressBar loaderView;
 
     private Toolbar toolbar;
     private DetailsPresenter presenter;
+    private ActivityDetailsBinding binding;
 
     public static Intent getIntent(Context context, NYTimesStory story) {
         Intent intent = new Intent(context, DetailsActivity.class);
@@ -58,11 +52,11 @@ public class DetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         // Setup initial views
-        setContentView(R.layout.activity_details);
-        ButterKnife.bind(this);
+        binding = ActivityDetailsBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        loaderView.setVisibility(View.VISIBLE);
+        binding.loaderView.setVisibility(View.VISIBLE);
 
         // After setup, notify presenter
         String storyId = getIntent().getExtras().getString(KEY_STORY_ID);
@@ -83,16 +77,16 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     public void showLoader() {
-        loaderView.setAlpha(1.0f);
-        loaderView.setVisibility(View.VISIBLE);
+        binding.loaderView.setAlpha(1.0f);
+        binding.loaderView.setVisibility(View.VISIBLE);
     }
 
     public void hideLoader() {
-        if (loaderView.getVisibility() != View.GONE) {
-            loaderView.animate().alpha(0f).setListener(new AnimatorListenerAdapter() {
+        if (binding.loaderView.getVisibility() != View.GONE) {
+            binding.loaderView.animate().alpha(0f).setListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animation) {
-                    loaderView.setVisibility(View.GONE);
+                    binding.loaderView.setVisibility(View.GONE);
                 }
             });
         }
@@ -100,17 +94,17 @@ public class DetailsActivity extends AppCompatActivity {
 
     public void showStory(NYTimesStory story) {
         toolbar.setTitle(story.getTitle());
-        detailsView.setText(story.getStoryAbstract());
-        dateView.setText(story.getPublishedDate());
+        binding.detailsView.setText(story.getStoryAbstract());
+        binding.dateView.setText(story.getPublishedDate());
     }
 
     public void setRead(boolean read) {
         if (read) {
-            readView.setText(R.string.read);
-            readView.animate().alpha(1.0f);
+            binding.readView.setText(R.string.read);
+            binding.readView.animate().alpha(1.0f);
         } else {
-            readView.setText("");
-            readView.animate().alpha(0f);
+            binding.readView.setText("");
+            binding.readView.animate().alpha(0f);
         }
     }
 }

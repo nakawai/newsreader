@@ -23,54 +23,52 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.LayoutRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.github.nakawai.newsreader.R;
+import com.github.nakawai.newsreader.databinding.ActivityMainBinding;
+import com.github.nakawai.newsreader.databinding.ListItemBinding;
 import com.github.nakawai.newsreader.model.Model;
 import com.github.nakawai.newsreader.model.entity.NYTimesStory;
 
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import me.zhanghai.android.materialprogressbar.MaterialProgressBar;
 
 public class MainActivity extends AppCompatActivity {
 
-    @BindView(R.id.refresh_view) SwipeRefreshLayout refreshView;
-    @BindView(R.id.list_view) ListView listView;
-    @BindView(R.id.progressbar) MaterialProgressBar progressBar;
-    @BindView(R.id.spinner) Spinner spinner;
+//    @BindView(R.id.refresh_view) SwipeRefreshLayout refreshView;
+//    @BindView(R.id.list_view) ListView listView;
+//    @BindView(R.id.progressbar) MaterialProgressBar progressBar;
+//    @BindView(R.id.spinner) Spinner spinner;
 
     MainPresenter presenter = new MainPresenter(this, Model.getInstance());
     private ArrayAdapter<NYTimesStory> adapter;
+    private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         // Setup initial views
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+
+        setContentView(binding.getRoot());
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         //noinspection ConstantConditions
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         adapter = null;
-        listView.setOnItemClickListener((parent, view, position, id) -> presenter.listItemSelected(position));
-        listView.setEmptyView(getLayoutInflater().inflate(R.layout.common_emptylist, listView, false));
-
-        refreshView.setOnRefreshListener(() -> presenter.refreshList());
-        progressBar.setVisibility(View.INVISIBLE);
+        binding.listView.setOnItemClickListener((parent, view, position, id) -> presenter.listItemSelected(position));
+        binding.listView.setEmptyView(getLayoutInflater().inflate(R.layout.common_emptylist, binding.listView, false));
+        binding.refreshView.setOnRefreshListener(() -> presenter.refreshList());
+        binding.progressBar.setVisibility(View.INVISIBLE);
 
         // After setup, notify presenter
         presenter.onCreate();
@@ -82,8 +80,8 @@ public class MainActivity extends AppCompatActivity {
     public void configureToolbar(List<String> sections) {
         String[] sectionList = sections.toArray(new String[sections.size()]);
         final ArrayAdapter adapter = new ArrayAdapter<CharSequence>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, sectionList);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        binding.spinner.setAdapter(adapter);
+        binding.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 presenter.titleSpinnerSectionSelected((String) adapter.getItem(position));
@@ -109,13 +107,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void hideRefreshing() {
-        refreshView.setRefreshing(false);
+        binding.refreshView.setRefreshing(false);
     }
 
     public void showList(List<NYTimesStory> items) {
         if (adapter == null) {
             adapter = new NewsListAdapter(MainActivity.this, items);
-            listView.setAdapter(adapter);
+            binding.listView.setAdapter(adapter);
         } else {
             adapter.clear();
             adapter.addAll(items);
@@ -124,15 +122,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showNetworkLoading(Boolean networkInUse) {
-        progressBar.setVisibility(networkInUse ? View.VISIBLE : View.INVISIBLE);
+        binding.progressBar.setVisibility(networkInUse ? View.VISIBLE : View.INVISIBLE);
     }
 
     // ListView adapter class
     public static class NewsListAdapter extends ArrayAdapter<NYTimesStory> {
 
         private final LayoutInflater inflater;
-        @LayoutRes
-        private final int layoutResource;
         @ColorInt
         private final int readColor;
         @ColorInt
@@ -143,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
             setNotifyOnChange(false);
             addAll(initialData);
             inflater = LayoutInflater.from(context);
-            layoutResource = android.R.layout.simple_list_item_1;
+
             readColor = context.getResources().getColor(android.R.color.darker_gray);
             unreadColor = context.getResources().getColor(android.R.color.primary_text_light);
         }
@@ -152,21 +148,22 @@ public class MainActivity extends AppCompatActivity {
         public View getView(int position, View convertView, ViewGroup parent) {
             View view = convertView;
             if (view == null) {
-                view = inflater.inflate(layoutResource, parent, false);
-                ViewHolder holder = new ViewHolder(view);
+                ListItemBinding binding = ListItemBinding.inflate(inflater);
+                view = binding.getRoot();
+                ViewHolder holder = new ViewHolder(binding);
                 view.setTag(holder);
             }
             ViewHolder holder = (ViewHolder) view.getTag();
             NYTimesStory story = getItem(position);
-            holder.titleView.setText(story.getTitle());
-            holder.titleView.setTextColor(story.isRead() ? readColor : unreadColor);
+            holder.binding.text.setText(story.getTitle());
+            holder.binding.text.setTextColor(story.isRead() ? readColor : unreadColor);
             return view;
         }
 
         static class ViewHolder {
-            @BindView(android.R.id.text1) TextView titleView;
-            public ViewHolder(View view) {
-                ButterKnife.bind(this, view);
+            ListItemBinding binding;
+            public ViewHolder(ListItemBinding binding) {
+                this.binding = binding;
             }
         }
     }
