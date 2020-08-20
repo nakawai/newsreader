@@ -23,10 +23,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.TextView;
 
 import androidx.annotation.ColorInt;
-import androidx.annotation.LayoutRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -36,9 +34,9 @@ import com.github.nakawai.newsreader.databinding.ListItemBinding;
 import com.github.nakawai.newsreader.model.Model;
 import com.github.nakawai.newsreader.model.entity.NYTimesStory;
 
-import java.util.List;
+import org.jetbrains.annotations.NotNull;
 
-import me.zhanghai.android.materialprogressbar.MaterialProgressBar;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -130,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
         private final int unreadColor;
 
         public NewsListAdapter(Context context, List<NYTimesStory> initialData) {
-            super(context, android.R.layout.simple_list_item_1);
+            super(context, 0);
             setNotifyOnChange(false);
             addAll(initialData);
             inflater = LayoutInflater.from(context);
@@ -139,8 +137,9 @@ public class MainActivity extends AppCompatActivity {
             unreadColor = context.getResources().getColor(android.R.color.primary_text_light);
         }
 
+        @NotNull
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public View getView(int position, View convertView, @NotNull ViewGroup parent) {
             View view = convertView;
             if (view == null) {
                 ListItemBinding binding = ListItemBinding.inflate(inflater);
