@@ -53,7 +53,7 @@ class Repository @UiThread constructor() : Closeable {
      * @return `true` if the network is currently being used, `false` otherwise.
      */
     @UiThread
-    fun networkInUse(): Observable<Boolean?> {
+    fun networkInUse(): Observable<Boolean> {
         return networkLoading.hide()
     }
 
