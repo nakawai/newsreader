@@ -13,25 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.github.nakawai.newsreader.model.network
 
-package com.github.nakawai.newsreader.model.network;
+import com.fasterxml.jackson.annotation.JsonProperty
 
+class NYTimesResponse<T> {
+    @JsonProperty("status")
+    var status: String? = null
 
-import com.github.nakawai.newsreader.model.entity.NYTimesStory;
+    @JsonProperty("copyright")
+    var copyright: String? = null
 
-import java.util.List;
+    @JsonProperty("section")
+    var section: String? = null
 
-import io.reactivex.Observable;
-import retrofit2.http.GET;
-import retrofit2.http.Path;
-import retrofit2.http.Query;
+    @JsonProperty("last_updated")
+    var lastUpdated: String? = null
 
-/**
- * Retrofit interface for the New York Times WebService
- */
-public interface NYTimesService {
-    @GET("svc/topstories/v2/{section}.json")
-    Observable<NYTimesResponse<List<NYTimesStory>>> topStories(
-            @Path("section") String section,
-            @Query(value = "api-key", encoded = true) String apiKey);
+    @JsonProperty("num_results")
+    var numResults: Int? = null
+
+    @JsonProperty("results")
+    var results: T? = null
 }
