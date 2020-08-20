@@ -15,14 +15,12 @@
  */
 package com.github.nakawai.newsreader.ui.main
 
-import android.content.Intent
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.github.nakawai.newsreader.model.Model
 import com.github.nakawai.newsreader.model.entity.NYTimesStory
-import com.github.nakawai.newsreader.ui.details.DetailsActivity
 import io.reactivex.disposables.Disposable
 import io.realm.RealmResults
 import java.util.*
@@ -31,9 +29,7 @@ import java.util.*
  * Presenter class for controlling the Main Activity
  */
 class MainViewModel(
-    private val model: Model,
-    private var sections: Map<String, String> = model.sections
-
+    private val model: Model
 ) : ViewModel() {
     private val _sectionList = MutableLiveData<List<String>>()
     val sectionList: LiveData<List<String>> = _sectionList
@@ -51,7 +47,7 @@ class MainViewModel(
     private var listDataDisposable: Disposable? = null
     fun onCreate() {
         // Sort sections alphabetically, but always have Home at the top
-        val sectionList = ArrayList(sections.values)
+        val sectionList = ArrayList(model.sections.values)
         sectionList.sortWith(Comparator { lhs: String, rhs: String ->
             if (lhs == "Home") return@Comparator -1
             if (rhs == "Home") return@Comparator 1
@@ -81,8 +77,8 @@ class MainViewModel(
 
 
     fun titleSpinnerSectionSelected(sectionLabel: String) {
-        for (key in sections.keys) {
-            if (sections[key] == sectionLabel) {
+        for (key in model.sections.keys) {
+            if (model.sections[key] == sectionLabel) {
                 sectionSelected(key)
                 break
             }
@@ -91,14 +87,15 @@ class MainViewModel(
 
     private fun sectionSelected(sectionKey: String) {
         model.selectSection(sectionKey)
-        if (listDataDisposable != null) {
-            listDataDisposable!!.dispose()
-        }
+        listDataDisposable?.dispose()
+
         listDataDisposable = model.selectedNewsFeed
             .subscribe { stories: RealmResults<NYTimesStory> ->
                 _storiesData.value  = stories
             }
     }
+
+    @Suppress("UNCHECKED_CAST")
     class Factory(private val model: Model): ViewModelProvider.NewInstanceFactory() {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             return MainViewModel(model) as T

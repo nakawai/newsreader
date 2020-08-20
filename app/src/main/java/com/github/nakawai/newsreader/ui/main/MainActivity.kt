@@ -24,6 +24,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
+import androidx.activity.viewModels
 import androidx.annotation.ColorInt
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -37,9 +38,7 @@ import com.github.nakawai.newsreader.model.entity.NYTimesStory
 import com.github.nakawai.newsreader.ui.details.DetailsActivity
 
 class MainActivity : AppCompatActivity() {
-    private val viewModel: MainViewModel by lazy {
-        ViewModelProvider(this,MainViewModel.Factory(Model.instance!!)).get(MainViewModel::class.java)
-    }
+    private val viewModel: MainViewModel by viewModels { MainViewModel.Factory(Model.instance!!) }
     private lateinit var adapter: NewsListAdapter
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,7 +49,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
-        supportActionBar!!.setDisplayShowTitleEnabled(false)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
 
         adapter = NewsListAdapter(this@MainActivity, emptyList())
         binding.listView.adapter = adapter
@@ -59,8 +58,6 @@ class MainActivity : AppCompatActivity() {
                 val intent: Intent = DetailsActivity.getIntent(this, it)
                 startActivity(intent)
             }
-
-
         }
         binding.listView.emptyView =
             layoutInflater.inflate(R.layout.common_emptylist, binding.listView, false)
