@@ -13,15 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.github.nakawai.newsreader.model.network
 
-package com.github.nakawai.newsreader.ui;
+import com.github.nakawai.newsreader.model.entity.NYTimesStory
+import io.reactivex.Observable
+import retrofit2.http.GET
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 /**
- * Interface for all presenters. It should as a minimum be notified when important lifecycle events happen.
+ * Retrofit interface for the New York Times WebService
  */
-public interface Presenter {
-    void onCreate();
-    void onPause();
-    void onResume();
-    void onDestroy();
+interface NYTimesService {
+    @GET("svc/topstories/v2/{section}.json")
+    fun topStories(
+        @Path("section") section: String,
+        @Query(value = "api-key", encoded = true) apiKey: String
+    ): Observable<NYTimesResponse<List<NYTimesStory>>>
 }

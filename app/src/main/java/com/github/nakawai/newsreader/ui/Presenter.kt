@@ -13,28 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.github.nakawai.newsreader.ui
 
-package com.github.nakawai.newsreader.model.network;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-public class NYTimesResponse<T> {
-
-    @JsonProperty("status")
-    public String status;
-
-    @JsonProperty("copyright")
-    public String copyright;
-
-    @JsonProperty("section")
-    public String section;
-
-    @JsonProperty("last_updated")
-    public String lastUpdated;
-
-    @JsonProperty("num_results")
-    public Integer numResults;
-
-    @JsonProperty("results")
-    public T results;
+/**
+ * Interface for all presenters. It should as a minimum be notified when important lifecycle events happen.
+ */
+interface Presenter {
+    fun onCreate()
+    fun onPause()
+    fun onResume()
+    fun onDestroy()
 }
