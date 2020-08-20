@@ -42,11 +42,6 @@ import me.zhanghai.android.materialprogressbar.MaterialProgressBar;
 
 public class MainActivity extends AppCompatActivity {
 
-//    @BindView(R.id.refresh_view) SwipeRefreshLayout refreshView;
-//    @BindView(R.id.list_view) ListView listView;
-//    @BindView(R.id.progressbar) MaterialProgressBar progressBar;
-//    @BindView(R.id.spinner) Spinner spinner;
-
     MainPresenter presenter = new MainPresenter(this, Model.getInstance());
     private ArrayAdapter<NYTimesStory> adapter;
     private ActivityMainBinding binding;
