@@ -6,6 +6,8 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.github.nakawai.newsreader.R
 import com.github.nakawai.newsreader.databinding.ListItemBinding
 import com.github.nakawai.newsreader.model.entity.NYTimesStory
 
@@ -32,12 +34,27 @@ class NewsListAdapter(private val listener: OnItemClickListener) : ListAdapter<N
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         val story = getItem(position)
-        holder.binding.text.text = story?.title
+        holder.binding.text.text = story.title
+        holder.binding.subTitle.text = story.storyAbstract
 
         val context = holder.binding.root.context
         val readColor = ContextCompat.getColor(context, android.R.color.darker_gray)
         val unreadColor = ContextCompat.getColor(context, android.R.color.primary_text_light)
         holder.binding.text.setTextColor(if (story!!.isRead) readColor else unreadColor)
+
+        if (story.multimedia?.isNotEmpty() == true) {
+            Glide.with(holder.binding.root)
+                .load(story.multimedia?.get(0)!!.url)
+                .placeholder(R.drawable.placeholder)
+                .centerCrop()
+                .into(holder.binding.imageView)
+        } else {
+            Glide.with(holder.binding.root)
+                .load(R.drawable.placeholder)
+                .into(holder.binding.imageView)
+
+        }
+
     }
 }
 
