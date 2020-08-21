@@ -27,6 +27,7 @@ import androidx.lifecycle.Observer
 import com.github.nakawai.newsreader.R
 import com.github.nakawai.newsreader.databinding.ActivityDetailsBinding
 import com.github.nakawai.newsreader.model.Model
+import com.github.nakawai.newsreader.model.entity.Article
 import com.github.nakawai.newsreader.model.entity.NYTimesStory
 
 class DetailsActivity : AppCompatActivity() {
@@ -103,7 +104,7 @@ class DetailsActivity : AppCompatActivity() {
 
     companion object {
         private const val KEY_STORY_ID = "key.storyId"
-        fun getIntent(context: Context, story: NYTimesStory): Intent {
+        fun getIntent(context: Context, story: Article): Intent {
             val intent = Intent(context, DetailsActivity::class.java)
             intent.putExtra(KEY_STORY_ID, story.url)
             return intent

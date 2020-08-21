@@ -27,7 +27,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.github.nakawai.newsreader.databinding.ActivityMainBinding
 import com.github.nakawai.newsreader.model.Model
-import com.github.nakawai.newsreader.model.entity.NYTimesStory
+import com.github.nakawai.newsreader.model.entity.Article
 import com.github.nakawai.newsreader.ui.details.DetailsActivity
 
 class MainActivity : AppCompatActivity(), NewsListAdapter.OnItemClickListener {
@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity(), NewsListAdapter.OnItemClickListener {
 
     }
 
-    override fun onItemClick(story: NYTimesStory) {
+    override fun onItemClick(story: Article) {
         val intent: Intent = DetailsActivity.getIntent(this, story)
         startActivity(intent)
     }
@@ -91,7 +91,7 @@ class MainActivity : AppCompatActivity(), NewsListAdapter.OnItemClickListener {
             adapter.submitList(it)
         })
 
-        viewModel.isNetworkInUse.observe(this, Observer {
+        viewModel.isLoading.observe(this, Observer {
             binding.progressBar.visibility = if (it) View.VISIBLE else View.INVISIBLE
         })
 
@@ -99,16 +99,4 @@ class MainActivity : AppCompatActivity(), NewsListAdapter.OnItemClickListener {
             binding.refreshView.isRefreshing = it
         })
     }
-
-    override fun onResume() {
-        super.onResume()
-        viewModel.onResume()
-    }
-
-    override fun onPause() {
-        super.onPause()
-        viewModel.onPause()
-    }
-
-
 }

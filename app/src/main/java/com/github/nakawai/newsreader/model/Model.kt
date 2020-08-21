@@ -16,10 +16,10 @@
 package com.github.nakawai.newsreader.model
 
 import android.text.TextUtils
+import com.github.nakawai.newsreader.model.entity.Article
 import com.github.nakawai.newsreader.model.entity.NYTimesStory
 import io.reactivex.Flowable
 import io.reactivex.Observable
-import io.realm.RealmResults
 import java.util.*
 
 /**
@@ -72,14 +72,8 @@ class Model private constructor(private val repository: Repository) {
     /**
      * Returns the news feed for the currently selected category.
      */
-    val selectedNewsFeed: Flowable<RealmResults<NYTimesStory>>
-        get() = repository.loadNewsFeed(currentSectionKey, false)
-
-    /**
-     * Forces a reload of the news feed
-     */
-    fun reloadNewsFeed() {
-        repository.loadNewsFeed(currentSectionKey, true)
+    suspend fun loadNewsFeed(force: Boolean): List<Article> {
+        return repository.loadNewsFeed(currentSectionKey, force)
     }
 
     /**
@@ -117,7 +111,6 @@ class Model private constructor(private val repository: Repository) {
 
     fun selectSection(key: String) {
         currentSectionKey = key
-        repository.loadNewsFeed(currentSectionKey, false)
     }
 
     @Throws(Throwable::class)
