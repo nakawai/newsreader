@@ -21,7 +21,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.jackson.JacksonConverterFactory
 import timber.log.Timber
 import kotlin.coroutines.resume
@@ -37,7 +36,6 @@ class NYTimesRemoteDataSource {
 
     init {
         val retrofit = Retrofit.Builder()
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(JacksonConverterFactory.create())
             .baseUrl("https://api.nytimes.com/")
             .build()

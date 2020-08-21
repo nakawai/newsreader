@@ -22,9 +22,6 @@ import com.github.nakawai.newsreader.model.entity.Article
 import com.github.nakawai.newsreader.model.entity.Multimedia
 import com.github.nakawai.newsreader.model.entity.NYTimesStory
 import com.github.nakawai.newsreader.model.network.NYTimesRemoteDataSource
-import io.reactivex.Flowable
-import io.reactivex.Observable
-import io.reactivex.subjects.BehaviorSubject
 import io.realm.Realm
 import io.realm.Sort
 import kotlinx.coroutines.suspendCancellableCoroutine
@@ -50,20 +47,10 @@ class Repository @UiThread constructor() : Closeable {
     private val remote: NYTimesRemoteDataSource = NYTimesRemoteDataSource()
     private val apiKey: String = NewsReaderApplication.context.getString(R.string.nyc_top_stories_api_key)
     private val lastNetworkRequest: MutableMap<String, Long> = HashMap()
-    private val networkLoading = BehaviorSubject.createDefault(false)
 
     private val inputDateFormat = SimpleDateFormat("yyyy-MM-d'T'HH:mm:ssZZZZZ", Locale.US)
     private val outputDateFormat = SimpleDateFormat("MM-dd-yyyy", Locale.US)
 
-    /**
-     * Keeps track of the current network state.
-     *
-     * @return `true` if the network is currently being used, `false` otherwise.
-     */
-    @UiThread
-    fun networkInUse(): Observable<Boolean> {
-        return networkLoading.hide()
-    }
 
     /**
      * Loads the news feed as well as all future updates.
@@ -172,7 +159,7 @@ class Repository @UiThread constructor() : Closeable {
         realm.executeTransactionAsync({ realm ->
             val persistedStory =
                 realm.where(NYTimesStory::class.java)
-                    .equalTo(NYTimesStory.Companion.URL, storyId).findFirst()
+                    .equalTo(NYTimesStory.URL, storyId).findFirst()
             if (persistedStory != null) {
                 persistedStory.isRead = read
             } else {
@@ -184,13 +171,19 @@ class Repository @UiThread constructor() : Closeable {
     /**
      * Returns story details
      */
-    @UiThread
-    fun loadStory(storyId: String): Flowable<NYTimesStory?> {
-        return realm.where(NYTimesStory::class.java)
+    suspend fun loadStory(storyId: String): NYTimesStory? = suspendCoroutine { continuation ->
+        realm.where(NYTimesStory::class.java)
             .equalTo(NYTimesStory.URL, storyId)
             .findFirstAsync()
-            .asFlowable<NYTimesStory>()
-            .filter { story: NYTimesStory -> story.isLoaded }
+            .addChangeListener<NYTimesStory> { t ->
+                if (t.isValid && t.isLoaded) {
+                    continuation.resume(t)
+                } else {
+                    continuation.resume(null)
+                }
+            }
+
+
     }
 
     /**

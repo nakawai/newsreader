@@ -17,7 +17,6 @@ package com.github.nakawai.newsreader
 
 import android.app.Application
 import android.content.Context
-import io.reactivex.plugins.RxJavaPlugins
 import io.realm.Realm
 import io.realm.RealmConfiguration
 import timber.log.Timber
@@ -27,9 +26,7 @@ class NewsReaderApplication : Application() {
         super.onCreate()
         context = this
         Timber.plant(Timber.DebugTree())
-        RxJavaPlugins.setErrorHandler { throwable: Throwable ->
-            Timber.e(throwable.toString())
-        }
+
 
         // Configure default configuration for Realm
         Realm.init(this)

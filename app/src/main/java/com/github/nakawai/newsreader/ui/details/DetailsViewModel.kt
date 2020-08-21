@@ -15,16 +15,10 @@
  */
 package com.github.nakawai.newsreader.ui.details
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.*
 import com.github.nakawai.newsreader.model.Model
 import com.github.nakawai.newsreader.model.entity.NYTimesStory
-import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
-import java.util.concurrent.TimeUnit
+import kotlinx.coroutines.*
 
 /**
  * Presenter class for controlling the Main Activity
@@ -32,7 +26,7 @@ import java.util.concurrent.TimeUnit
 class DetailsViewModel(
     private val model: Model
 ) : ViewModel() {
-    private val compositeDisposable = CompositeDisposable()
+    private var job: Job? = null
 
     private lateinit var storyId: String
 
@@ -44,30 +38,26 @@ class DetailsViewModel(
 
     fun onCreate(storyId: String) {
         this.storyId = storyId
-        _isLoading.value = true
     }
 
     fun onResume() {
         // Show story details
-        val detailsDisposable = model.getStory(storyId)
-            .subscribe { story: NYTimesStory? ->
-                _isLoading.value = false
-                _story.value = story
-            }
-        compositeDisposable.add(detailsDisposable)
+        viewModelScope.launch {
+            _isLoading.value = true
+            _story.value = model.getStory(storyId)
+            _isLoading.value = false
+        }
 
         // Mark story as read if screen is visible for 2 seconds
-        val timerDisposable =
-            Observable.timer(2, TimeUnit.SECONDS)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {
-                    model.markAsRead(storyId, true)
-                }
-        compositeDisposable.add(timerDisposable)
+        job = GlobalScope.launch(Dispatchers.Main) {
+            delay(2000)
+            model.markAsRead(storyId, true)
+        }
+
     }
 
     fun onPause() {
-        compositeDisposable.clear()
+        job?.cancel()
     }
 
     @Suppress("UNCHECKED_CAST")

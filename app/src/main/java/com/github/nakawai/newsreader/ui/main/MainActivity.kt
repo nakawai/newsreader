@@ -49,7 +49,9 @@ class MainActivity : AppCompatActivity(), NewsListAdapter.OnItemClickListener {
 
         binding.listView.adapter = adapter
         binding.listView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
-        binding.refreshView.setOnRefreshListener { viewModel.refreshList() }
+        binding.refreshView.setOnRefreshListener {
+            viewModel.loadData(force = true)
+        }
         binding.progressBar.visibility = View.INVISIBLE
 
         observeViewModel()
@@ -67,11 +69,15 @@ class MainActivity : AppCompatActivity(), NewsListAdapter.OnItemClickListener {
     private fun observeViewModel() {
         viewModel.sectionList.observe(this, Observer { sections ->
             val sectionList = sections.toTypedArray()
-            val adapter: ArrayAdapter<*> = ArrayAdapter<CharSequence?>(this, android.R.layout.simple_spinner_dropdown_item, sectionList)
+            val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, sectionList)
             binding.spinner.adapter = adapter
             binding.spinner.onItemSelectedListener = object : OnItemSelectedListener {
                 override fun onItemSelected(parent: AdapterView<*>?, view: View, position: Int, id: Long) {
-                    viewModel.titleSpinnerSectionSelected((adapter.getItem(position) as String?)!!)
+                    val sectionLabel = adapter.getItem(position)
+                    sectionLabel?.let {
+                        viewModel.titleSpinnerSectionSelected(it)
+                    }
+
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>?) {

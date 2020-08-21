@@ -53,10 +53,11 @@ class MainViewModel(
     }
 
 
-    fun refreshList() {
+    fun loadData(force: Boolean) {
+        _isLoading.value = true
+        _isRefreshing.value = true
         viewModelScope.launch {
-            _isLoading.value = true
-            val result = model.loadNewsFeed(force = true)
+            val result = model.loadNewsFeed(force)
             _storiesData.value = result
         }
         _isLoading.value = false
@@ -75,10 +76,7 @@ class MainViewModel(
 
     private fun sectionSelected(sectionKey: String) {
         model.selectSection(sectionKey)
-        viewModelScope.launch {
-            val result = model.loadNewsFeed(force = false)
-            _storiesData.value = result
-        }
+        loadData(force = false)
     }
 
     @Suppress("UNCHECKED_CAST")

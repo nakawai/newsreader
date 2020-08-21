@@ -18,8 +18,6 @@ package com.github.nakawai.newsreader.model
 import android.text.TextUtils
 import com.github.nakawai.newsreader.model.entity.Article
 import com.github.nakawai.newsreader.model.entity.NYTimesStory
-import io.reactivex.Flowable
-import io.reactivex.Observable
 import java.util.*
 
 /**
@@ -77,12 +75,6 @@ class Model private constructor(private val repository: Repository) {
     }
 
     /**
-     * Returns the current state of network usage.
-     */
-    val isNetworkUsed: Observable<Boolean>
-        get() = repository.networkInUse().distinctUntilChanged()
-
-    /**
      * Marks a story as being read.
      */
     fun markAsRead(storyId: String, read: Boolean) {
@@ -92,13 +84,12 @@ class Model private constructor(private val repository: Repository) {
     /**
      * Returns the story with the given Id
      */
-    fun getStory(storyId: String): Flowable<NYTimesStory?> {
+    suspend fun getStory(storyId: String): NYTimesStory? {
         // Repository is only responsible for loading the data
         // Any validation is done by the model
         // See http://blog.danlew.net/2015/12/08/error-handling-in-rxjava/
         require(!TextUtils.isEmpty(storyId)) { "Invalid storyId: $storyId" }
         return repository.loadStory(storyId)
-            .filter { story: NYTimesStory? -> story!!.isValid }
     }
 
     /**
