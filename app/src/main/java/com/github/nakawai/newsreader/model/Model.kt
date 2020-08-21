@@ -85,7 +85,7 @@ class Model private constructor(private val repository: Repository) {
     /**
      * Returns the current state of network usage.
      */
-    val isNetworkUsed: Observable<Boolean?>
+    val isNetworkUsed: Observable<Boolean>
         get() = repository.networkInUse().distinctUntilChanged()
 
     /**

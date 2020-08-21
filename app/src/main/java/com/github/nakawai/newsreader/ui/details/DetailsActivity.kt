@@ -21,14 +21,16 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import com.github.nakawai.newsreader.R
 import com.github.nakawai.newsreader.databinding.ActivityDetailsBinding
 import com.github.nakawai.newsreader.model.Model
 import com.github.nakawai.newsreader.model.entity.NYTimesStory
 
 class DetailsActivity : AppCompatActivity() {
-    private lateinit var presenter: DetailsPresenter
+    private val viewModel: DetailsViewModel by viewModels { DetailsViewModel.Factory(Model.instance!!) }
     private lateinit var binding: ActivityDetailsBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,38 +41,48 @@ class DetailsActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
         binding.loaderView.visibility = View.VISIBLE
 
+        observeViewModel()
+
         // After setup, notify presenter
         val storyId = intent.extras?.getString(KEY_STORY_ID).orEmpty()
 
-        presenter = DetailsPresenter(this, Model.instance!!, storyId)
-        presenter.onCreate()
+        viewModel.onCreate(storyId)
+    }
+
+    private fun observeViewModel() {
+        viewModel.story.observe(this, Observer {
+            showStory(it)
+            setRead(it.isRead)
+        })
+
+        viewModel.isLoading.observe(this, Observer { isLoading ->
+            if(isLoading) {
+                binding.loaderView.alpha = 1.0f
+                binding.loaderView.visibility = View.VISIBLE
+            } else {
+                if (binding.loaderView.visibility != View.GONE) {
+                    binding.loaderView.animate().alpha(0f)
+                        .setListener(object : AnimatorListenerAdapter() {
+                            override fun onAnimationEnd(animation: Animator) {
+                                binding.loaderView.visibility = View.GONE
+                            }
+                        })
+                }
+            }
+
+        })
     }
 
     override fun onResume() {
         super.onResume()
-        presenter.onResume()
+        viewModel.onResume()
     }
 
     override fun onPause() {
         super.onPause()
-        presenter.onPause()
+        viewModel.onPause()
     }
 
-    fun showLoader() {
-        binding.loaderView.alpha = 1.0f
-        binding.loaderView.visibility = View.VISIBLE
-    }
-
-    fun hideLoader() {
-        if (binding.loaderView.visibility != View.GONE) {
-            binding.loaderView.animate().alpha(0f)
-                .setListener(object : AnimatorListenerAdapter() {
-                    override fun onAnimationEnd(animation: Animator) {
-                        binding.loaderView.visibility = View.GONE
-                    }
-                })
-        }
-    }
 
     fun showStory(story: NYTimesStory) {
         binding.toolbar.title = story.title

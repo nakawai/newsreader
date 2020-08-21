@@ -15,9 +15,12 @@
  */
 package com.github.nakawai.newsreader.ui.details
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.github.nakawai.newsreader.model.Model
 import com.github.nakawai.newsreader.model.entity.NYTimesStory
-import com.github.nakawai.newsreader.ui.Presenter
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -26,45 +29,53 @@ import java.util.concurrent.TimeUnit
 /**
  * Presenter class for controlling the Main Activity
  */
-class DetailsPresenter(
-    private val view: DetailsActivity,
-    private val model: Model,
-    private val storyId: String
-) : Presenter {
+class DetailsViewModel(
+    private val model: Model
+): ViewModel()  {
     private val compositeDisposable = CompositeDisposable()
 
-    override fun onCreate() {
-        view.showLoader()
+    private lateinit var storyId: String
+
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> = _isLoading
+
+    private val _story = MutableLiveData<NYTimesStory>()
+    val story : LiveData<NYTimesStory> = _story
+
+    fun onCreate(storyId: String) {
+        this.storyId = storyId
+        _isLoading.value = true
     }
 
-    override fun onResume() {
+    fun onResume() {
         // Show story details
         val detailsDisposable = model.getStory(storyId)
             .subscribe { story: NYTimesStory? ->
-                view.hideLoader()
-                story?.let {
-                    view.showStory(it)
-                    view.setRead(it.isRead)
-                }
+                _isLoading.value = false
+                _story.value = story
             }
         compositeDisposable.add(detailsDisposable)
 
         // Mark story as read if screen is visible for 2 seconds
-        val timberDisposable =
+        val timerDisposable =
             Observable.timer(2, TimeUnit.SECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
                     model.markAsRead(storyId, true)
                 }
-        compositeDisposable.add(timberDisposable)
+        compositeDisposable.add(timerDisposable)
     }
 
-    override fun onPause() {
+    fun onPause() {
         compositeDisposable.clear()
     }
 
-    override fun onDestroy() {
-        // Do nothing
+    @Suppress("UNCHECKED_CAST")
+    class Factory(private val model: Model): ViewModelProvider.NewInstanceFactory() {
+        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+            return DetailsViewModel(model) as T
+        }
+
     }
 
 }

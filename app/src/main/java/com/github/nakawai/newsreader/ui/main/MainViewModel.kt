@@ -15,11 +15,12 @@
  */
 package com.github.nakawai.newsreader.ui.main
 
-import android.content.Intent
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.github.nakawai.newsreader.model.Model
 import com.github.nakawai.newsreader.model.entity.NYTimesStory
-import com.github.nakawai.newsreader.ui.Presenter
-import com.github.nakawai.newsreader.ui.details.DetailsActivity
 import io.reactivex.disposables.Disposable
 import io.realm.RealmResults
 import java.util.*
@@ -27,56 +28,57 @@ import java.util.*
 /**
  * Presenter class for controlling the Main Activity
  */
-class MainPresenter(
-    private val view: MainActivity,
-    private val model: Model,
-    private var sections: Map<String, String> = model.sections
+class MainViewModel(
+    private val model: Model
+) : ViewModel() {
+    private val _sectionList = MutableLiveData<List<String>>()
+    val sectionList: LiveData<List<String>> = _sectionList
 
-) : Presenter {
-    private var storiesData: List<NYTimesStory>? = null
+    private val _storiesData = MutableLiveData<List<NYTimesStory>>()
+    val storiesData: LiveData<List<NYTimesStory>> = _storiesData
+
+    private val _isNetworkInUse = MutableLiveData<Boolean>()
+    val isNetworkInUse: LiveData<Boolean> = _isNetworkInUse
+
+    private val _isRefreshing = MutableLiveData<Boolean>()
+    val isRefreshing: LiveData<Boolean> = _isRefreshing
+
     private var loaderDisposable: Disposable? = null
     private var listDataDisposable: Disposable? = null
-    override fun onCreate() {
+    fun onCreate() {
         // Sort sections alphabetically, but always have Home at the top
-        val sectionList = ArrayList(sections.values)
+        val sectionList = ArrayList(model.sections.values)
         sectionList.sortWith(Comparator { lhs: String, rhs: String ->
             if (lhs == "Home") return@Comparator -1
             if (rhs == "Home") return@Comparator 1
             lhs.compareTo(rhs, ignoreCase = true)
         })
-        view.configureToolbar(sectionList)
+        _sectionList.value = sectionList
     }
 
-    override fun onResume() {
+    fun onResume() {
         loaderDisposable = model.isNetworkUsed
-            .subscribe { networkInUse: Boolean? ->
-                view.showNetworkLoading(networkInUse)
+            .subscribe { networkInUse: Boolean ->
+                _isNetworkInUse.value = networkInUse
             }
         sectionSelected(model.currentSectionKey)
     }
 
-    override fun onPause() {
+    fun onPause() {
         loaderDisposable!!.dispose()
         listDataDisposable!!.dispose()
     }
 
-    override fun onDestroy() {
-        // Do nothing
-    }
 
     fun refreshList() {
         model.reloadNewsFeed()
-        view.hideRefreshing()
+        _isRefreshing.value = false
     }
 
-    fun listItemSelected(position: Int) {
-        val intent: Intent = DetailsActivity.getIntent(view, storiesData!![position])
-        view.startActivity(intent)
-    }
 
     fun titleSpinnerSectionSelected(sectionLabel: String) {
-        for (key in sections.keys) {
-            if (sections[key] == sectionLabel) {
+        for (key in model.sections.keys) {
+            if (model.sections[key] == sectionLabel) {
                 sectionSelected(key)
                 break
             }
@@ -85,14 +87,19 @@ class MainPresenter(
 
     private fun sectionSelected(sectionKey: String) {
         model.selectSection(sectionKey)
-        if (listDataDisposable != null) {
-            listDataDisposable!!.dispose()
-        }
+        listDataDisposable?.dispose()
+
         listDataDisposable = model.selectedNewsFeed
             .subscribe { stories: RealmResults<NYTimesStory> ->
-                storiesData = stories
-                view.showList(stories)
+                _storiesData.value  = stories
             }
     }
 
+    @Suppress("UNCHECKED_CAST")
+    class Factory(private val model: Model): ViewModelProvider.NewInstanceFactory() {
+        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+            return MainViewModel(model) as T
+        }
+
+    }
 }
