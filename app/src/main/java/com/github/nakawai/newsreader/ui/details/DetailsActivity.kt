@@ -56,7 +56,7 @@ class DetailsActivity : AppCompatActivity() {
         })
 
         viewModel.isLoading.observe(this, Observer { isLoading ->
-            if(isLoading) {
+            if (isLoading) {
                 binding.loaderView.alpha = 1.0f
                 binding.loaderView.visibility = View.VISIBLE
             } else {

@@ -25,9 +25,6 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.github.nakawai.newsreader.R
 import com.github.nakawai.newsreader.databinding.ActivityMainBinding
 import com.github.nakawai.newsreader.model.Model
 import com.github.nakawai.newsreader.model.entity.NYTimesStory
@@ -84,7 +81,7 @@ class MainActivity : AppCompatActivity(), NewsListAdapter.OnItemClickListener {
         })
 
         viewModel.storiesData.observe(this, Observer {
-            if(it.isEmpty()) {
+            if (it.isEmpty()) {
                 binding.emptyView.visibility = View.VISIBLE
                 binding.listView.visibility = View.GONE
             } else {
@@ -112,8 +109,6 @@ class MainActivity : AppCompatActivity(), NewsListAdapter.OnItemClickListener {
         super.onPause()
         viewModel.onPause()
     }
-
-
 
 
 }
