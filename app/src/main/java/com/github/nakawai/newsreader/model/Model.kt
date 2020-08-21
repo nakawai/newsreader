@@ -17,7 +17,6 @@ package com.github.nakawai.newsreader.model
 
 import android.text.TextUtils
 import com.github.nakawai.newsreader.model.entity.Article
-import com.github.nakawai.newsreader.model.entity.NYTimesStory
 import java.util.*
 
 /**
@@ -84,7 +83,7 @@ class Model private constructor(private val repository: Repository) {
     /**
      * Returns the story with the given Id
      */
-    suspend fun getStory(storyId: String): NYTimesStory? {
+    suspend fun getStory(storyId: String): Article? {
         // Repository is only responsible for loading the data
         // Any validation is done by the model
         // See http://blog.danlew.net/2015/12/08/error-handling-in-rxjava/

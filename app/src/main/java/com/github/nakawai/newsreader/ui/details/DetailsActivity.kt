@@ -28,7 +28,6 @@ import com.github.nakawai.newsreader.R
 import com.github.nakawai.newsreader.databinding.ActivityDetailsBinding
 import com.github.nakawai.newsreader.model.Model
 import com.github.nakawai.newsreader.model.entity.Article
-import com.github.nakawai.newsreader.model.entity.NYTimesStory
 
 class DetailsActivity : AppCompatActivity() {
     private val viewModel: DetailsViewModel by viewModels { DetailsViewModel.Factory(Model.instance!!) }
@@ -53,7 +52,9 @@ class DetailsActivity : AppCompatActivity() {
 
     private fun observeViewModel() {
         viewModel.story.observe(this, Observer {
-            showStory(it)
+            binding.toolbar.title = it.title
+            binding.detailsView.text = it.storyAbstract
+            binding.dateView.text = it.publishedDate
             setRead(it.isRead)
         })
 
@@ -85,12 +86,6 @@ class DetailsActivity : AppCompatActivity() {
         viewModel.onPause()
     }
 
-
-    fun showStory(story: NYTimesStory) {
-        binding.toolbar.title = story.title
-        binding.detailsView.text = story.storyAbstract
-        binding.dateView.text = story.publishedDate
-    }
 
     fun setRead(read: Boolean) {
         if (read) {

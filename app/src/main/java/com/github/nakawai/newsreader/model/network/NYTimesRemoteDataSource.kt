@@ -15,7 +15,6 @@
  */
 package com.github.nakawai.newsreader.model.network
 
-import android.annotation.SuppressLint
 import com.github.nakawai.newsreader.model.entity.NYTimesStory
 import retrofit2.Call
 import retrofit2.Callback
@@ -33,7 +32,6 @@ import kotlin.coroutines.suspendCoroutine
 class NYTimesRemoteDataSource {
     private val nyTimesService: NYTimesService
 
-
     init {
         val retrofit = Retrofit.Builder()
             .addConverterFactory(JacksonConverterFactory.create())
@@ -42,31 +40,31 @@ class NYTimesRemoteDataSource {
         nyTimesService = retrofit.create(NYTimesService::class.java)
     }
 
-    suspend fun loadData(
-        sectionKey: String,
-        apiKey: String
-    ): List<NYTimesStory> {
-        return loadNextSection(sectionKey, apiKey)
+    suspend fun loadData(sectionKey: String): List<NYTimesStory> {
+        return suspendCoroutine { continuation ->
+
+            nyTimesService.topStories(sectionKey, API_KEY)
+                .enqueue(object : Callback<NYTimesResponse<List<NYTimesStory>>> {
+                    override fun onFailure(call: Call<NYTimesResponse<List<NYTimesStory>>>, t: Throwable) {
+                        Timber.d("Failure: Data not loaded: %s - %s", sectionKey, t.toString())
+                        continuation.resumeWithException(t)
+                    }
+
+                    override fun onResponse(
+                        call: Call<NYTimesResponse<List<NYTimesStory>>>,
+                        response: Response<NYTimesResponse<List<NYTimesStory>>>
+                    ) {
+                        Timber.d("Success - Data received: %s", sectionKey)
+                        continuation.resume(response.body()!!.results!!)
+                    }
+
+                })
+
+        }
     }
 
-    // Load all sections one by one.
-    @SuppressLint("CheckResult")
-    private suspend fun loadNextSection(sectionKey: String, apiKey: String): List<NYTimesStory> = suspendCoroutine { continuation ->
-
-        nyTimesService.topStories(sectionKey, apiKey)
-            .enqueue(object : Callback<NYTimesResponse<List<NYTimesStory>>> {
-                override fun onFailure(call: Call<NYTimesResponse<List<NYTimesStory>>>, t: Throwable) {
-                    Timber.d("Failure: Data not loaded: %s - %s", sectionKey, t.toString())
-                    continuation.resumeWithException(t)
-                }
-
-                override fun onResponse(call: Call<NYTimesResponse<List<NYTimesStory>>>, response: Response<NYTimesResponse<List<NYTimesStory>>>) {
-                    Timber.d("Success - Data received: %s", sectionKey)
-                    continuation.resume(response.body()!!.results!!)
-                }
-
-            })
-
+    companion object {
+        private const val API_KEY = "YUPmyj0Q09Fm2VlCHmD9FU7rpCcI5dUD"
     }
 
 

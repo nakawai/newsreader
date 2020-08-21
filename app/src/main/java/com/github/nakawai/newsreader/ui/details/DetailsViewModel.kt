@@ -17,7 +17,7 @@ package com.github.nakawai.newsreader.ui.details
 
 import androidx.lifecycle.*
 import com.github.nakawai.newsreader.model.Model
-import com.github.nakawai.newsreader.model.entity.NYTimesStory
+import com.github.nakawai.newsreader.model.entity.Article
 import kotlinx.coroutines.*
 
 /**
@@ -33,8 +33,8 @@ class DetailsViewModel(
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
-    private val _story = MutableLiveData<NYTimesStory>()
-    val story: LiveData<NYTimesStory> = _story
+    private val _story = MutableLiveData<Article>()
+    val story: LiveData<Article> = _story
 
     fun onCreate(storyId: String) {
         this.storyId = storyId

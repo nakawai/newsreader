@@ -23,7 +23,9 @@ data class Article(
 
     val url: String,
 
-    val multimedia: List<Multimedia>
+    val multimedia: List<Multimedia>,
+
+    var publishedDate: String? = null
 ) {
 
     var apiSection: String? = null
@@ -40,7 +42,6 @@ data class Article(
 
     var createdDate: String? = null
 
-    var publishedDate: String? = null
 
     var materialTypeFacet: String? = null
 

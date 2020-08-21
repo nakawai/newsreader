@@ -16,7 +16,6 @@
 package com.github.nakawai.newsreader
 
 import android.app.Application
-import android.content.Context
 import io.realm.Realm
 import io.realm.RealmConfiguration
 import timber.log.Timber
@@ -24,7 +23,6 @@ import timber.log.Timber
 class NewsReaderApplication : Application() {
     override fun onCreate() {
         super.onCreate()
-        context = this
         Timber.plant(Timber.DebugTree())
 
 
@@ -32,10 +30,5 @@ class NewsReaderApplication : Application() {
         Realm.init(this)
         val realmConfig = RealmConfiguration.Builder().build()
         Realm.setDefaultConfiguration(realmConfig)
-    }
-
-    companion object {
-        lateinit var context: Context
-            private set
     }
 }
