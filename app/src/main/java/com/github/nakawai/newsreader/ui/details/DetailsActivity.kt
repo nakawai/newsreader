@@ -30,7 +30,9 @@ import com.github.nakawai.newsreader.model.Model
 import com.github.nakawai.newsreader.model.entity.Article
 
 class DetailsActivity : AppCompatActivity() {
-    private val viewModel: DetailsViewModel by viewModels { DetailsViewModel.Factory(Model.instance!!) }
+    private val viewModel: DetailsViewModel by viewModels {
+        DetailsViewModel.Factory(Model.instance!!, intent.extras?.getString(KEY_STORY_ID).orEmpty())
+    }
     private lateinit var binding: ActivityDetailsBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,11 +45,6 @@ class DetailsActivity : AppCompatActivity() {
         binding.loaderView.visibility = View.VISIBLE
 
         observeViewModel()
-
-        // After setup, notify presenter
-        val storyId = intent.extras?.getString(KEY_STORY_ID).orEmpty()
-
-        viewModel.onCreate(storyId)
     }
 
     private fun observeViewModel() {

@@ -24,27 +24,23 @@ import kotlinx.coroutines.*
  * Presenter class for controlling the Main Activity
  */
 class DetailsViewModel(
-    private val model: Model
+    private val model: Model,
+    private val storyId: String
 ) : ViewModel() {
     private var job: Job? = null
-
-    private lateinit var storyId: String
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
-    private val _story = MutableLiveData<Article>()
+    private val _story = model.repository.observeArticle(storyId)
     val story: LiveData<Article> = _story
-
-    fun onCreate(storyId: String) {
-        this.storyId = storyId
-    }
 
     fun onResume() {
         // Show story details
         viewModelScope.launch {
             _isLoading.value = true
-            _story.value = model.getStory(storyId)
+            //_story.value = model.getStory(storyId)
+
             _isLoading.value = false
         }
 
@@ -61,9 +57,9 @@ class DetailsViewModel(
     }
 
     @Suppress("UNCHECKED_CAST")
-    class Factory(private val model: Model) : ViewModelProvider.NewInstanceFactory() {
+    class Factory(private val model: Model, private val storyId: String) : ViewModelProvider.NewInstanceFactory() {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            return DetailsViewModel(model) as T
+            return DetailsViewModel(model, storyId) as T
         }
 
     }

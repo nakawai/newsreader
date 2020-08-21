@@ -22,7 +22,7 @@ import java.util.*
 /**
  * Model class for handling the business rules of the app.
  */
-class Model private constructor(private val repository: Repository) {
+class Model private constructor(val repository: Repository) {
     companion object {
         /**
          * Map between section titles and their NYTimes API keys

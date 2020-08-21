@@ -16,6 +16,7 @@
 package com.github.nakawai.newsreader.model
 
 import androidx.annotation.UiThread
+import androidx.lifecycle.LiveData
 import com.github.nakawai.newsreader.model.db.NYTimesLocalDataSource
 import com.github.nakawai.newsreader.model.entity.Article
 import com.github.nakawai.newsreader.model.network.NYTimesRemoteDataSource
@@ -85,6 +86,10 @@ class Repository @UiThread constructor() : Closeable {
      */
     suspend fun loadStory(storyId: String): Article? {
         return local.loadStory(storyId)
+    }
+
+    fun observeArticle(storyId: String): LiveData<Article> {
+        return local.observeStory(storyId)
     }
 
     /**

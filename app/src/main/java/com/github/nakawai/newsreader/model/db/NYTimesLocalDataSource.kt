@@ -1,9 +1,13 @@
 package com.github.nakawai.newsreader.model.db
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.github.nakawai.newsreader.model.entity.Article
 import com.github.nakawai.newsreader.model.entity.Multimedia
 import com.github.nakawai.newsreader.model.entity.NYTimesStory
 import io.realm.Realm
+import io.realm.RealmChangeListener
+import io.realm.RealmResults
 import io.realm.Sort
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.suspendCancellableCoroutine
@@ -86,7 +90,9 @@ class NYTimesLocalDataSource {
             title = story.title.orEmpty(),
             url = story.url.orEmpty(),
             storyAbstract = story.storyAbstract.orEmpty(),
-            multimedia = mediaArray
+            multimedia = mediaArray,
+            publishedDate = story.publishedDate,
+            isRead = story.isRead
         )
     }
 
@@ -101,6 +107,30 @@ class NYTimesLocalDataSource {
         } else {
             null
         }
+
+    }
+
+    fun observeStory(storyId: String): LiveData<Article> {
+        val realm: Realm = Realm.getDefaultInstance()
+        val realmResults = realm.where(NYTimesStory::class.java)
+            .equalTo(NYTimesStory.URL, storyId)
+            .findAllAsync()
+
+        val liveData = MutableLiveData<Article>()
+
+        val listener = RealmChangeListener<RealmResults<NYTimesStory>> { results ->
+            val result = results[0]
+            val article = if (result != null && result.isValid && result.isLoaded) {
+                liveData.postValue(translate(result))
+            } else {
+                throw IllegalStateException("invalid story Id")
+            }
+        }
+
+        realmResults.addChangeListener(listener)
+
+        return liveData
+
 
     }
 

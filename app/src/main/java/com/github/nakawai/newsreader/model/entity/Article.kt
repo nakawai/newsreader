@@ -25,7 +25,9 @@ data class Article(
 
     val multimedia: List<Multimedia>,
 
-    var publishedDate: String? = null
+    val publishedDate: String?,
+
+    val isRead: Boolean
 ) {
 
     var apiSection: String? = null
@@ -48,6 +50,5 @@ data class Article(
     var kicker: String? = null
 
     var sortTimeStamp: Long = 0
-    var isRead = false
 
 }
