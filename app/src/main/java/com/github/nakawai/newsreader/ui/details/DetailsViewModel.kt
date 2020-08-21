@@ -31,7 +31,7 @@ import java.util.concurrent.TimeUnit
  */
 class DetailsViewModel(
     private val model: Model
-): ViewModel()  {
+) : ViewModel() {
     private val compositeDisposable = CompositeDisposable()
 
     private lateinit var storyId: String
@@ -40,7 +40,7 @@ class DetailsViewModel(
     val isLoading: LiveData<Boolean> = _isLoading
 
     private val _story = MutableLiveData<NYTimesStory>()
-    val story : LiveData<NYTimesStory> = _story
+    val story: LiveData<NYTimesStory> = _story
 
     fun onCreate(storyId: String) {
         this.storyId = storyId
@@ -71,7 +71,7 @@ class DetailsViewModel(
     }
 
     @Suppress("UNCHECKED_CAST")
-    class Factory(private val model: Model): ViewModelProvider.NewInstanceFactory() {
+    class Factory(private val model: Model) : ViewModelProvider.NewInstanceFactory() {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             return DetailsViewModel(model) as T
         }

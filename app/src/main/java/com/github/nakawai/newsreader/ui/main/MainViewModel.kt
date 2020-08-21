@@ -91,12 +91,12 @@ class MainViewModel(
 
         listDataDisposable = model.selectedNewsFeed
             .subscribe { stories: RealmResults<NYTimesStory> ->
-                _storiesData.value  = stories
+                _storiesData.value = stories
             }
     }
 
     @Suppress("UNCHECKED_CAST")
-    class Factory(private val model: Model): ViewModelProvider.NewInstanceFactory() {
+    class Factory(private val model: Model) : ViewModelProvider.NewInstanceFactory() {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             return MainViewModel(model) as T
         }

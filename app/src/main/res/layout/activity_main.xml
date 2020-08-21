@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -23,7 +22,7 @@
             <Spinner
                 android:id="@+id/spinner"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -36,7 +35,7 @@
             android:indeterminate="true"
             app:mpb_progressStyle="horizontal"
             app:mpb_showTrack="false"
-            app:mpb_useIntrinsicPadding="false"/>
+            app:mpb_useIntrinsicPadding="false" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -61,11 +60,13 @@
                 android:layout_height="match_parent" />
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/emptyView"
             tools:visibility="visible"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <TextView
                 android:text="@string/no_news"
                 android:gravity="center"
