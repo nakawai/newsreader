@@ -15,32 +15,29 @@
  */
 package com.github.nakawai.newsreader.ui.main
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import androidx.activity.viewModels
-import androidx.annotation.ColorInt
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.github.nakawai.newsreader.R
 import com.github.nakawai.newsreader.databinding.ActivityMainBinding
-import com.github.nakawai.newsreader.databinding.ListItemBinding
 import com.github.nakawai.newsreader.model.Model
 import com.github.nakawai.newsreader.model.entity.NYTimesStory
 import com.github.nakawai.newsreader.ui.details.DetailsActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), NewsListAdapter.OnItemClickListener {
     private val viewModel: MainViewModel by viewModels { MainViewModel.Factory(Model.instance!!) }
     private lateinit var adapter: NewsListAdapter
     private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -51,16 +48,10 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
-        adapter = NewsListAdapter(this@MainActivity, emptyList())
+        adapter = NewsListAdapter(this)
+
         binding.listView.adapter = adapter
-        binding.listView.setOnItemClickListener { _: AdapterView<*>?, _: View?, position: Int, _: Long ->
-            adapter.getItem(position)?.let {
-                val intent: Intent = DetailsActivity.getIntent(this, it)
-                startActivity(intent)
-            }
-        }
-        binding.listView.emptyView =
-            layoutInflater.inflate(R.layout.common_emptylist, binding.listView, false)
+        binding.listView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
         binding.refreshView.setOnRefreshListener { viewModel.refreshList() }
         binding.progressBar.visibility = View.INVISIBLE
 
@@ -71,15 +62,36 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    override fun onItemClick(story: NYTimesStory) {
+        val intent: Intent = DetailsActivity.getIntent(this, story)
+        startActivity(intent)
+    }
+
     private fun observeViewModel() {
-        viewModel.sectionList.observe(this, Observer {
-            configureToolbar(it)
+        viewModel.sectionList.observe(this, Observer { sections ->
+            val sectionList = sections.toTypedArray()
+            val adapter: ArrayAdapter<*> = ArrayAdapter<CharSequence?>(this, android.R.layout.simple_spinner_dropdown_item, sectionList)
+            binding.spinner.adapter = adapter
+            binding.spinner.onItemSelectedListener = object : OnItemSelectedListener {
+                override fun onItemSelected(parent: AdapterView<*>?, view: View, position: Int, id: Long) {
+                    viewModel.titleSpinnerSectionSelected((adapter.getItem(position) as String?)!!)
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                    // NOP
+                }
+            }
         })
 
         viewModel.storiesData.observe(this, Observer {
-            adapter.clear()
-            adapter.addAll(it)
-            adapter.notifyDataSetChanged()
+            if(it.isEmpty()) {
+                binding.emptyView.visibility = View.VISIBLE
+                binding.listView.visibility = View.GONE
+            } else {
+                binding.emptyView.visibility = View.GONE
+                binding.listView.visibility = View.VISIBLE
+            }
+            adapter.submitList(it)
         })
 
         viewModel.isNetworkInUse.observe(this, Observer {
@@ -89,24 +101,6 @@ class MainActivity : AppCompatActivity() {
         viewModel.isRefreshing.observe(this, Observer {
             binding.refreshView.isRefreshing = it
         })
-    }
-
-    /**
-     * Setup the toolbar spinner with the available sections
-     */
-    private fun configureToolbar(sections: List<String>) {
-        val sectionList = sections.toTypedArray()
-        val adapter: ArrayAdapter<*> = ArrayAdapter<CharSequence?>(this, android.R.layout.simple_spinner_dropdown_item, sectionList)
-        binding.spinner.adapter = adapter
-        binding.spinner.onItemSelectedListener = object : OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View, position: Int, id: Long) {
-                viewModel.titleSpinnerSectionSelected((adapter.getItem(position) as String?)!!)
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                // NOP
-            }
-        }
     }
 
     override fun onResume() {
@@ -120,42 +114,6 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    // ListView adapter class
-    class NewsListAdapter(context: Context, initialData: List<NYTimesStory>) : ArrayAdapter<NYTimesStory?>(context, 0) {
-        private val inflater: LayoutInflater
 
-        @ColorInt
-        private val readColor: Int
 
-        @ColorInt
-        private val unreadColor: Int
-        override fun getView(
-            position: Int,
-            convertView: View?,
-            parent: ViewGroup
-        ): View {
-            var view = convertView
-            if (view == null) {
-                val binding = ListItemBinding.inflate(inflater)
-                view = binding.root
-                val holder = ViewHolder(binding)
-                view.tag = holder
-            }
-            val holder = view.tag as ViewHolder
-            val story = getItem(position)
-            holder.binding.text.text = story?.title
-            holder.binding.text.setTextColor(if (story!!.isRead) readColor else unreadColor)
-            return view
-        }
-
-        internal class ViewHolder(var binding: ListItemBinding)
-
-        init {
-            setNotifyOnChange(false)
-            addAll(initialData)
-            inflater = LayoutInflater.from(context)
-            readColor = ContextCompat.getColor(context, android.R.color.darker_gray)
-            unreadColor = ContextCompat.getColor(context, android.R.color.primary_text_light)
-        }
-    }
 }
