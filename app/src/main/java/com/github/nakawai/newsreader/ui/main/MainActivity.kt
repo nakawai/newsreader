@@ -18,8 +18,6 @@ package com.github.nakawai.newsreader.ui.main
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.AdapterView
-import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -71,19 +69,23 @@ class MainActivity : AppCompatActivity(), NewsListAdapter.OnItemClickListener {
             val sectionList = sections.toTypedArray()
             val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, sectionList)
             binding.spinner.adapter = adapter
-            binding.spinner.onItemSelectedListener = object : OnItemSelectedListener {
-                override fun onItemSelected(parent: AdapterView<*>?, view: View, position: Int, id: Long) {
-                    val sectionLabel = adapter.getItem(position)
-                    sectionLabel?.let {
-                        viewModel.titleSpinnerSectionSelected(it)
-                    }
-
-                }
-
-                override fun onNothingSelected(parent: AdapterView<*>?) {
-                    // NOP
-                }
-            }
+//            binding.spinner.onItemSelectedListener = object : OnItemSelectedListener {
+//                override fun onItemSelected(parent: AdapterView<*>?, view: View, position: Int, id: Long) {
+//                    try {
+//                        val sectionLabel = adapter.getItem(position)
+//                        sectionLabel?.let {
+//                            viewModel.titleSpinnerSectionSelected(it)
+//                        }
+//                    } catch (e: Exception) {
+//                        Timber.e(e)
+//                    }
+//
+//                }
+//
+//                override fun onNothingSelected(parent: AdapterView<*>?) {
+//                    // NOP
+//                }
+//            }
         })
 
         viewModel.storiesData.observe(this, Observer {

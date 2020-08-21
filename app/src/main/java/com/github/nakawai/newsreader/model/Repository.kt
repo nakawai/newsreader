@@ -23,6 +23,8 @@ import com.github.nakawai.newsreader.model.entity.Multimedia
 import com.github.nakawai.newsreader.model.entity.NYTimesStory
 import com.github.nakawai.newsreader.model.network.NYTimesRemoteDataSource
 import io.realm.Realm
+import io.realm.RealmChangeListener
+import io.realm.RealmResults
 import io.realm.Sort
 import kotlinx.coroutines.suspendCancellableCoroutine
 import timber.log.Timber
@@ -33,7 +35,6 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
-import kotlin.coroutines.suspendCoroutine
 
 /**
  * Class for handling loading and saving data.
@@ -69,30 +70,34 @@ class Repository @UiThread constructor() : Closeable {
 
         // Return the data in Realm. The query result will be automatically updated when the network requests
         // save data in Realm
-        return suspendCoroutine { continuation ->
-            realm.where(NYTimesStory::class.java)
+        return suspendCancellableCoroutine { continuation ->
+            val result = realm.where(NYTimesStory::class.java)
                 .equalTo(NYTimesStory.API_SECTION, sectionKey)
                 .sort(NYTimesStory.PUBLISHED_DATE, Sort.DESCENDING)
                 .findAllAsync()
-                .addChangeListener { results ->
-                    val list = mutableListOf<Article>()
-                    results.forEach { story ->
+            val listener = RealmChangeListener<RealmResults<NYTimesStory>> { results ->
+                val list = mutableListOf<Article>()
+                results.forEach { story ->
 
-                        val mediaArray = mutableListOf<Multimedia>()
-                        story.multimedia?.forEach {
-                            mediaArray.add(Multimedia(it.url.orEmpty()))
-                        }
-                        list.add(
-                            Article(
-                                title = story.title.orEmpty(),
-                                url = story.url.orEmpty(),
-                                storyAbstract = story.storyAbstract.orEmpty(),
-                                multimedia = mediaArray
-                            )
-                        )
+                    val mediaArray = mutableListOf<Multimedia>()
+                    story.multimedia?.forEach {
+                        mediaArray.add(Multimedia(it.url.orEmpty()))
                     }
-                    continuation.resume(list)
+                    list.add(
+                        Article(
+                            title = story.title.orEmpty(),
+                            url = story.url.orEmpty(),
+                            storyAbstract = story.storyAbstract.orEmpty(),
+                            multimedia = mediaArray
+                        )
+                    )
                 }
+                continuation.resume(list)
+            }
+            result.addChangeListener(listener)
+            continuation.invokeOnCancellation {
+                result.removeChangeListener(listener)
+            }
         }
 
 
@@ -155,7 +160,7 @@ class Repository @UiThread constructor() : Closeable {
      * @param read `true` if the story has been read, `false` otherwise.
      */
     @UiThread
-    fun updateStoryReadState(storyId: String?, read: Boolean) {
+    fun updateStoryReadState(storyId: String, read: Boolean) {
         realm.executeTransactionAsync({ realm ->
             val persistedStory =
                 realm.where(NYTimesStory::class.java)
@@ -171,18 +176,23 @@ class Repository @UiThread constructor() : Closeable {
     /**
      * Returns story details
      */
-    suspend fun loadStory(storyId: String): NYTimesStory? = suspendCoroutine { continuation ->
-        realm.where(NYTimesStory::class.java)
+    suspend fun loadStory(storyId: String): NYTimesStory? = suspendCancellableCoroutine { continuation ->
+        val result = realm.where(NYTimesStory::class.java)
             .equalTo(NYTimesStory.URL, storyId)
             .findFirstAsync()
-            .addChangeListener<NYTimesStory> { t ->
-                if (t.isValid && t.isLoaded) {
-                    continuation.resume(t)
-                } else {
-                    continuation.resume(null)
-                }
-            }
 
+        val listener = RealmChangeListener<NYTimesStory> { t ->
+            if (t.isValid && t.isLoaded) {
+                continuation.resume(t)
+            } else {
+                continuation.resume(null)
+            }
+        }
+        result.addChangeListener(listener)
+
+        continuation.invokeOnCancellation {
+            result.removeChangeListener(listener)
+        }
 
     }
 
