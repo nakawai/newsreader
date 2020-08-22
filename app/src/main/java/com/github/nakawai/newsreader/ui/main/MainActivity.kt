@@ -18,6 +18,7 @@ package com.github.nakawai.newsreader.ui.main
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -26,7 +27,9 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import com.github.nakawai.newsreader.databinding.ActivityMainBinding
 import com.github.nakawai.newsreader.model.Model
 import com.github.nakawai.newsreader.model.entity.Article
+import com.github.nakawai.newsreader.model.entity.Section
 import com.github.nakawai.newsreader.ui.details.DetailsActivity
+import timber.log.Timber
 
 class MainActivity : AppCompatActivity(), NewsListAdapter.OnItemClickListener {
     private val viewModel: MainViewModel by viewModels { MainViewModel.Factory(Model.instance!!) }
@@ -47,16 +50,37 @@ class MainActivity : AppCompatActivity(), NewsListAdapter.OnItemClickListener {
 
         binding.listView.adapter = adapter
         binding.listView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
-        binding.refreshView.setOnRefreshListener {
-            viewModel.loadData(force = true)
-        }
+        binding.refreshView.setOnRefreshListener(this::onRefresh)
+        binding.emptyView.setOnRefreshListener(this::onRefresh)
+
         binding.progressBar.visibility = View.INVISIBLE
+
+        val sectionLabels = Section.values().map { s -> s.label }
+
+
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, sectionLabels)
+        binding.spinner.adapter = adapter
+        binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View, position: Int, id: Long) {
+                val section = Section.values()[position]
+                Timber.i("sectionKey:$section")
+                viewModel.sectionSelected(section)
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                // NOP
+            }
+        }
 
         observeViewModel()
 
         // After setup, notify presenter
-        viewModel.onCreate()
+        viewModel.sectionSelected(Section.HOME)
 
+    }
+
+    private fun onRefresh() {
+        viewModel.loadData(force = true)
     }
 
     override fun onItemClick(story: Article) {
@@ -65,42 +89,20 @@ class MainActivity : AppCompatActivity(), NewsListAdapter.OnItemClickListener {
     }
 
     private fun observeViewModel() {
-        viewModel.sectionList.observe(this, Observer { sections ->
-            val sectionList = sections.toTypedArray()
-            val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, sectionList)
-            binding.spinner.adapter = adapter
-//            binding.spinner.onItemSelectedListener = object : OnItemSelectedListener {
-//                override fun onItemSelected(parent: AdapterView<*>?, view: View, position: Int, id: Long) {
-//                    try {
-//                        val sectionLabel = adapter.getItem(position)
-//                        sectionLabel?.let {
-//                            viewModel.titleSpinnerSectionSelected(it)
-//                        }
-//                    } catch (e: Exception) {
-//                        Timber.e(e)
-//                    }
-//
-//                }
-//
-//                override fun onNothingSelected(parent: AdapterView<*>?) {
-//                    // NOP
-//                }
-//            }
-        })
-
         viewModel.storiesData.observe(this, Observer {
             if (it.isEmpty()) {
                 binding.emptyView.visibility = View.VISIBLE
-                binding.listView.visibility = View.GONE
+                binding.refreshView.visibility = View.GONE
             } else {
                 binding.emptyView.visibility = View.GONE
-                binding.listView.visibility = View.VISIBLE
+                binding.refreshView.visibility = View.VISIBLE
             }
             adapter.submitList(it)
         })
 
         viewModel.isLoading.observe(this, Observer {
             binding.progressBar.visibility = if (it) View.VISIBLE else View.INVISIBLE
+            binding.progress.visibility = if (it) View.VISIBLE else View.INVISIBLE
         })
 
         viewModel.isRefreshing.observe(this, Observer {
