@@ -30,7 +30,11 @@ class MainViewModel(
     private val _sectionList = MutableLiveData<List<String>>()
     val sectionList: LiveData<List<String>> = _sectionList
 
-    private val _storiesData = MutableLiveData<List<Article>>()
+    private val _storiesData = MediatorLiveData<List<Article>>().apply {
+        addSource(model.repository.observeArticles(model.currentSectionKey)) {
+            value = it
+        }
+    }
     val storiesData: LiveData<List<Article>> = _storiesData
 
     private val _isLoading = MutableLiveData<Boolean>()

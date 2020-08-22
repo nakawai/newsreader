@@ -81,11 +81,8 @@ class Repository @UiThread constructor() : Closeable {
         local.updateStoryReadState(storyId, read)
     }
 
-    /**
-     * Returns story details
-     */
-    suspend fun loadStory(storyId: String): Article? {
-        return local.loadStory(storyId)
+    fun observeArticles(sectionKey: String): LiveData<List<Article>> {
+        return local.observeArticles(sectionKey)
     }
 
     fun observeArticle(storyId: String): LiveData<Article> {

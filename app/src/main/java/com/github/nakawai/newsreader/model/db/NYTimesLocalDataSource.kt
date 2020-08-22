@@ -19,6 +19,7 @@ import java.util.*
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
+// TODO close Realm instance
 class NYTimesLocalDataSource {
 
     private val inputDateFormat = SimpleDateFormat("yyyy-MM-d'T'HH:mm:ssZZZZZ", Locale.US)
@@ -81,6 +82,30 @@ class NYTimesLocalDataSource {
         return@withContext list
     }
 
+    fun observeArticles(sectionKey: String): LiveData<List<Article>> {
+        val realm: Realm = Realm.getDefaultInstance()
+        val realmResults = realm.where(NYTimesStory::class.java)
+            .equalTo(NYTimesStory.API_SECTION, sectionKey)
+            .sort(NYTimesStory.PUBLISHED_DATE, Sort.DESCENDING)
+            .findAllAsync()
+
+
+        val liveData = MutableLiveData<List<Article>>()
+
+        val list = mutableListOf<Article>()
+        val listener = RealmChangeListener<RealmResults<NYTimesStory>> { results ->
+            results.forEach { realmStory ->
+                list.add(translate(realmStory))
+            }
+            liveData.postValue(list)
+        }
+
+        // TODO remove listener
+        realmResults.addChangeListener(listener)
+
+        return liveData
+    }
+
     private fun translate(story: NYTimesStory): Article {
         val mediaArray = mutableListOf<Multimedia>()
         story.multimedia?.forEach {
@@ -94,20 +119,6 @@ class NYTimesLocalDataSource {
             publishedDate = story.publishedDate,
             isRead = story.isRead
         )
-    }
-
-    suspend fun loadStory(storyId: String): Article? = withContext(Dispatchers.IO) {
-        val realm: Realm = Realm.getDefaultInstance()
-        val story = realm.where(NYTimesStory::class.java)
-            .equalTo(NYTimesStory.URL, storyId)
-            .findFirst()
-
-        return@withContext if (story != null && story.isValid && story.isLoaded) {
-            translate(story)
-        } else {
-            null
-        }
-
     }
 
     fun observeStory(storyId: String): LiveData<Article> {
@@ -127,12 +138,12 @@ class NYTimesLocalDataSource {
             }
         }
 
+        // TODO remove listener
         realmResults.addChangeListener(listener)
 
         return liveData
-
-
     }
+
 
     fun close() {
         val realm: Realm = Realm.getDefaultInstance()
@@ -153,4 +164,5 @@ class NYTimesLocalDataSource {
             }
         }) { throwable -> Timber.e(throwable, "Failed to save data.") }
     }
+
 }

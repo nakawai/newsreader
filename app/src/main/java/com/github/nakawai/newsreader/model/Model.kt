@@ -15,7 +15,6 @@
  */
 package com.github.nakawai.newsreader.model
 
-import android.text.TextUtils
 import com.github.nakawai.newsreader.model.entity.Article
 import java.util.*
 
@@ -78,17 +77,6 @@ class Model private constructor(val repository: Repository) {
      */
     fun markAsRead(storyId: String, read: Boolean) {
         repository.updateStoryReadState(storyId, read)
-    }
-
-    /**
-     * Returns the story with the given Id
-     */
-    suspend fun getStory(storyId: String): Article? {
-        // Repository is only responsible for loading the data
-        // Any validation is done by the model
-        // See http://blog.danlew.net/2015/12/08/error-handling-in-rxjava/
-        require(!TextUtils.isEmpty(storyId)) { "Invalid storyId: $storyId" }
-        return repository.loadStory(storyId)
     }
 
     /**
