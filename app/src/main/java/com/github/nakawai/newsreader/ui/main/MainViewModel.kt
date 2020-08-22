@@ -15,14 +15,10 @@
  */
 package com.github.nakawai.newsreader.ui.main
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.*
 import com.github.nakawai.newsreader.model.Model
-import com.github.nakawai.newsreader.model.entity.NYTimesStory
-import io.reactivex.disposables.Disposable
-import io.realm.RealmResults
+import com.github.nakawai.newsreader.model.entity.Article
+import kotlinx.coroutines.launch
 import java.util.*
 
 /**
@@ -34,17 +30,19 @@ class MainViewModel(
     private val _sectionList = MutableLiveData<List<String>>()
     val sectionList: LiveData<List<String>> = _sectionList
 
-    private val _storiesData = MutableLiveData<List<NYTimesStory>>()
-    val storiesData: LiveData<List<NYTimesStory>> = _storiesData
+    private val _storiesData = MediatorLiveData<List<Article>>().apply {
+        addSource(model.repository.observeArticles(model.currentSectionKey)) {
+            value = it
+        }
+    }
+    val storiesData: LiveData<List<Article>> = _storiesData
 
-    private val _isNetworkInUse = MutableLiveData<Boolean>()
-    val isNetworkInUse: LiveData<Boolean> = _isNetworkInUse
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> = _isLoading
 
     private val _isRefreshing = MutableLiveData<Boolean>()
     val isRefreshing: LiveData<Boolean> = _isRefreshing
 
-    private var loaderDisposable: Disposable? = null
-    private var listDataDisposable: Disposable? = null
     fun onCreate() {
         // Sort sections alphabetically, but always have Home at the top
         val sectionList = ArrayList(model.sections.values)
@@ -54,24 +52,19 @@ class MainViewModel(
             lhs.compareTo(rhs, ignoreCase = true)
         })
         _sectionList.value = sectionList
-    }
 
-    fun onResume() {
-        loaderDisposable = model.isNetworkUsed
-            .subscribe { networkInUse: Boolean ->
-                _isNetworkInUse.value = networkInUse
-            }
         sectionSelected(model.currentSectionKey)
     }
 
-    fun onPause() {
-        loaderDisposable!!.dispose()
-        listDataDisposable!!.dispose()
-    }
 
-
-    fun refreshList() {
-        model.reloadNewsFeed()
+    fun loadData(force: Boolean) {
+        _isLoading.value = true
+        _isRefreshing.value = true
+        viewModelScope.launch {
+            val result = model.loadNewsFeed(force)
+            _storiesData.value = result
+        }
+        _isLoading.value = false
         _isRefreshing.value = false
     }
 
@@ -87,12 +80,7 @@ class MainViewModel(
 
     private fun sectionSelected(sectionKey: String) {
         model.selectSection(sectionKey)
-        listDataDisposable?.dispose()
-
-        listDataDisposable = model.selectedNewsFeed
-            .subscribe { stories: RealmResults<NYTimesStory> ->
-                _storiesData.value = stories
-            }
+        loadData(force = false)
     }
 
     @Suppress("UNCHECKED_CAST")

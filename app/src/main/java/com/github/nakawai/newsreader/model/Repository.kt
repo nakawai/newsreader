@@ -16,17 +16,10 @@
 package com.github.nakawai.newsreader.model
 
 import androidx.annotation.UiThread
-import com.github.nakawai.newsreader.NewsReaderApplication
-import com.github.nakawai.newsreader.R
-import com.github.nakawai.newsreader.model.entity.NYTimesStory
-import com.github.nakawai.newsreader.model.network.NYTimesDataLoader
-import io.reactivex.Flowable
-import io.reactivex.Observable
-import io.reactivex.subjects.BehaviorSubject
-import io.realm.Realm
-import io.realm.RealmResults
-import io.realm.Sort
-import timber.log.Timber
+import androidx.lifecycle.LiveData
+import com.github.nakawai.newsreader.model.db.NYTimesLocalDataSource
+import com.github.nakawai.newsreader.model.entity.Article
+import com.github.nakawai.newsreader.model.network.NYTimesRemoteDataSource
 import java.io.Closeable
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -39,47 +32,32 @@ import java.util.concurrent.TimeUnit
  * @see [Repository pattern](http://martinfowler.com/eaaCatalog/repository.html)
  */
 class Repository @UiThread constructor() : Closeable {
-    private val realm: Realm
-    private val dataLoader: NYTimesDataLoader
-    private val apiKey: String
-    private val lastNetworkRequest: MutableMap<String, Long> =
-        HashMap()
-    private val networkLoading =
-        BehaviorSubject.createDefault(false)
+    private val remote = NYTimesRemoteDataSource()
+    private val local = NYTimesLocalDataSource()
+    private val lastNetworkRequest: MutableMap<String, Long> = HashMap()
 
-    /**
-     * Keeps track of the current network state.
-     *
-     * @return `true` if the network is currently being used, `false` otherwise.
-     */
-    @UiThread
-    fun networkInUse(): Observable<Boolean> {
-        return networkLoading.hide()
-    }
 
     /**
      * Loads the news feed as well as all future updates.
      */
-    @UiThread
-    fun loadNewsFeed(
+    suspend fun loadNewsFeed(
         sectionKey: String,
         forceReload: Boolean
-    ): Flowable<RealmResults<NYTimesStory>> {
+    ): List<Article> {
         // Start loading data from the network if needed
         // It will put all data into Realm
         if (forceReload || timeSinceLastNetworkRequest(sectionKey) > MINIMUM_NETWORK_WAIT_SEC) {
-            dataLoader.loadData(sectionKey, apiKey, realm, networkLoading)
+            val data = remote.loadData(sectionKey)
+
+            local.processAndAddData(sectionKey, data)
             lastNetworkRequest[sectionKey] = System.currentTimeMillis()
         }
 
-        // Return the data in Realm. The query result will be automatically updated when the network requests
-        // save data in Realm
-        return realm.where(NYTimesStory::class.java)
-            .equalTo(NYTimesStory.Companion.API_SECTION, sectionKey)
-            .sort(NYTimesStory.Companion.PUBLISHED_DATE, Sort.DESCENDING)
-            .findAllAsync()
-            .asFlowable()
+        return local.readData(sectionKey)
+
+
     }
+
 
     private fun timeSinceLastNetworkRequest(sectionKey: String): Long {
         val lastRequest = lastNetworkRequest[sectionKey]
@@ -99,30 +77,16 @@ class Repository @UiThread constructor() : Closeable {
      * @param storyId story to update
      * @param read `true` if the story has been read, `false` otherwise.
      */
-    @UiThread
-    fun updateStoryReadState(storyId: String?, read: Boolean) {
-        realm.executeTransactionAsync({ realm ->
-            val persistedStory =
-                realm.where(NYTimesStory::class.java)
-                    .equalTo(NYTimesStory.Companion.URL, storyId).findFirst()
-            if (persistedStory != null) {
-                persistedStory.isRead = read
-            } else {
-                Timber.e("Trying to update a story that no longer exists: %1\$s", storyId)
-            }
-        }) { throwable -> Timber.e(throwable, "Failed to save data.") }
+    fun updateStoryReadState(storyId: String, read: Boolean) {
+        local.updateStoryReadState(storyId, read)
     }
 
-    /**
-     * Returns story details
-     */
-    @UiThread
-    fun loadStory(storyId: String): Flowable<NYTimesStory?> {
-        return realm.where(NYTimesStory::class.java)
-            .equalTo(NYTimesStory.URL, storyId)
-            .findFirstAsync()
-            .asFlowable<NYTimesStory>()
-            .filter { story: NYTimesStory -> story.isLoaded }
+    fun observeArticles(sectionKey: String): LiveData<List<Article>> {
+        return local.observeArticles(sectionKey)
+    }
+
+    fun observeArticle(storyId: String): LiveData<Article> {
+        return local.observeStory(storyId)
     }
 
     /**
@@ -130,7 +94,7 @@ class Repository @UiThread constructor() : Closeable {
      */
     @UiThread
     override fun close() {
-        realm.close()
+        local.close()
     }
 
     companion object {
@@ -138,9 +102,4 @@ class Repository @UiThread constructor() : Closeable {
             120 // Minimum 2 minutes between each network request
     }
 
-    init {
-        realm = Realm.getDefaultInstance()
-        dataLoader = NYTimesDataLoader()
-        apiKey = NewsReaderApplication.context.getString(R.string.nyc_top_stories_api_key)
-    }
 }

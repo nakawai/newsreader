@@ -15,17 +15,13 @@
  */
 package com.github.nakawai.newsreader.model
 
-import android.text.TextUtils
-import com.github.nakawai.newsreader.model.entity.NYTimesStory
-import io.reactivex.Flowable
-import io.reactivex.Observable
-import io.realm.RealmResults
+import com.github.nakawai.newsreader.model.entity.Article
 import java.util.*
 
 /**
  * Model class for handling the business rules of the app.
  */
-class Model private constructor(private val repository: Repository) {
+class Model private constructor(val repository: Repository) {
     companion object {
         /**
          * Map between section titles and their NYTimes API keys
@@ -72,39 +68,15 @@ class Model private constructor(private val repository: Repository) {
     /**
      * Returns the news feed for the currently selected category.
      */
-    val selectedNewsFeed: Flowable<RealmResults<NYTimesStory>>
-        get() = repository.loadNewsFeed(currentSectionKey, false)
-
-    /**
-     * Forces a reload of the news feed
-     */
-    fun reloadNewsFeed() {
-        repository.loadNewsFeed(currentSectionKey, true)
+    suspend fun loadNewsFeed(force: Boolean): List<Article> {
+        return repository.loadNewsFeed(currentSectionKey, force)
     }
-
-    /**
-     * Returns the current state of network usage.
-     */
-    val isNetworkUsed: Observable<Boolean>
-        get() = repository.networkInUse().distinctUntilChanged()
 
     /**
      * Marks a story as being read.
      */
     fun markAsRead(storyId: String, read: Boolean) {
         repository.updateStoryReadState(storyId, read)
-    }
-
-    /**
-     * Returns the story with the given Id
-     */
-    fun getStory(storyId: String): Flowable<NYTimesStory?> {
-        // Repository is only responsible for loading the data
-        // Any validation is done by the model
-        // See http://blog.danlew.net/2015/12/08/error-handling-in-rxjava/
-        require(!TextUtils.isEmpty(storyId)) { "Invalid storyId: $storyId" }
-        return repository.loadStory(storyId)
-            .filter { story: NYTimesStory? -> story!!.isValid }
     }
 
     /**
@@ -117,7 +89,6 @@ class Model private constructor(private val repository: Repository) {
 
     fun selectSection(key: String) {
         currentSectionKey = key
-        repository.loadNewsFeed(currentSectionKey, false)
     }
 
     @Throws(Throwable::class)

@@ -13,22 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.nakawai.newsreader
+package com.github.nakawai.newsreader.model.entity
 
-import android.app.Application
-import io.realm.Realm
-import io.realm.RealmConfiguration
-import timber.log.Timber
-
-class NewsReaderApplication : Application() {
-    override fun onCreate() {
-        super.onCreate()
-        Timber.plant(Timber.DebugTree())
-
-
-        // Configure default configuration for Realm
-        Realm.init(this)
-        val realmConfig = RealmConfiguration.Builder().build()
-        Realm.setDefaultConfiguration(realmConfig)
-    }
-}
+data class Multimedia(
+    val url: String
+)

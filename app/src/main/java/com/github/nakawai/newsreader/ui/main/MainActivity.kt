@@ -18,8 +18,6 @@ package com.github.nakawai.newsreader.ui.main
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.AdapterView
-import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -27,7 +25,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.github.nakawai.newsreader.databinding.ActivityMainBinding
 import com.github.nakawai.newsreader.model.Model
-import com.github.nakawai.newsreader.model.entity.NYTimesStory
+import com.github.nakawai.newsreader.model.entity.Article
 import com.github.nakawai.newsreader.ui.details.DetailsActivity
 
 class MainActivity : AppCompatActivity(), NewsListAdapter.OnItemClickListener {
@@ -49,7 +47,9 @@ class MainActivity : AppCompatActivity(), NewsListAdapter.OnItemClickListener {
 
         binding.listView.adapter = adapter
         binding.listView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
-        binding.refreshView.setOnRefreshListener { viewModel.refreshList() }
+        binding.refreshView.setOnRefreshListener {
+            viewModel.loadData(force = true)
+        }
         binding.progressBar.visibility = View.INVISIBLE
 
         observeViewModel()
@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity(), NewsListAdapter.OnItemClickListener {
 
     }
 
-    override fun onItemClick(story: NYTimesStory) {
+    override fun onItemClick(story: Article) {
         val intent: Intent = DetailsActivity.getIntent(this, story)
         startActivity(intent)
     }
@@ -67,17 +67,25 @@ class MainActivity : AppCompatActivity(), NewsListAdapter.OnItemClickListener {
     private fun observeViewModel() {
         viewModel.sectionList.observe(this, Observer { sections ->
             val sectionList = sections.toTypedArray()
-            val adapter: ArrayAdapter<*> = ArrayAdapter<CharSequence?>(this, android.R.layout.simple_spinner_dropdown_item, sectionList)
+            val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, sectionList)
             binding.spinner.adapter = adapter
-            binding.spinner.onItemSelectedListener = object : OnItemSelectedListener {
-                override fun onItemSelected(parent: AdapterView<*>?, view: View, position: Int, id: Long) {
-                    viewModel.titleSpinnerSectionSelected((adapter.getItem(position) as String?)!!)
-                }
-
-                override fun onNothingSelected(parent: AdapterView<*>?) {
-                    // NOP
-                }
-            }
+//            binding.spinner.onItemSelectedListener = object : OnItemSelectedListener {
+//                override fun onItemSelected(parent: AdapterView<*>?, view: View, position: Int, id: Long) {
+//                    try {
+//                        val sectionLabel = adapter.getItem(position)
+//                        sectionLabel?.let {
+//                            viewModel.titleSpinnerSectionSelected(it)
+//                        }
+//                    } catch (e: Exception) {
+//                        Timber.e(e)
+//                    }
+//
+//                }
+//
+//                override fun onNothingSelected(parent: AdapterView<*>?) {
+//                    // NOP
+//                }
+//            }
         })
 
         viewModel.storiesData.observe(this, Observer {
@@ -91,7 +99,7 @@ class MainActivity : AppCompatActivity(), NewsListAdapter.OnItemClickListener {
             adapter.submitList(it)
         })
 
-        viewModel.isNetworkInUse.observe(this, Observer {
+        viewModel.isLoading.observe(this, Observer {
             binding.progressBar.visibility = if (it) View.VISIBLE else View.INVISIBLE
         })
 
@@ -99,16 +107,4 @@ class MainActivity : AppCompatActivity(), NewsListAdapter.OnItemClickListener {
             binding.refreshView.isRefreshing = it
         })
     }
-
-    override fun onResume() {
-        super.onResume()
-        viewModel.onResume()
-    }
-
-    override fun onPause() {
-        super.onPause()
-        viewModel.onPause()
-    }
-
-
 }

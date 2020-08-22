@@ -27,10 +27,12 @@ import androidx.lifecycle.Observer
 import com.github.nakawai.newsreader.R
 import com.github.nakawai.newsreader.databinding.ActivityDetailsBinding
 import com.github.nakawai.newsreader.model.Model
-import com.github.nakawai.newsreader.model.entity.NYTimesStory
+import com.github.nakawai.newsreader.model.entity.Article
 
 class DetailsActivity : AppCompatActivity() {
-    private val viewModel: DetailsViewModel by viewModels { DetailsViewModel.Factory(Model.instance!!) }
+    private val viewModel: DetailsViewModel by viewModels {
+        DetailsViewModel.Factory(Model.instance!!, intent.extras?.getString(KEY_STORY_ID).orEmpty())
+    }
     private lateinit var binding: ActivityDetailsBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,16 +45,13 @@ class DetailsActivity : AppCompatActivity() {
         binding.loaderView.visibility = View.VISIBLE
 
         observeViewModel()
-
-        // After setup, notify presenter
-        val storyId = intent.extras?.getString(KEY_STORY_ID).orEmpty()
-
-        viewModel.onCreate(storyId)
     }
 
     private fun observeViewModel() {
         viewModel.story.observe(this, Observer {
-            showStory(it)
+            binding.toolbar.title = it.title
+            binding.detailsView.text = it.storyAbstract
+            binding.dateView.text = it.publishedDate
             setRead(it.isRead)
         })
 
@@ -85,12 +84,6 @@ class DetailsActivity : AppCompatActivity() {
     }
 
 
-    fun showStory(story: NYTimesStory) {
-        binding.toolbar.title = story.title
-        binding.detailsView.text = story.storyAbstract
-        binding.dateView.text = story.publishedDate
-    }
-
     fun setRead(read: Boolean) {
         if (read) {
             binding.readView.setText(R.string.read)
@@ -103,7 +96,7 @@ class DetailsActivity : AppCompatActivity() {
 
     companion object {
         private const val KEY_STORY_ID = "key.storyId"
-        fun getIntent(context: Context, story: NYTimesStory): Intent {
+        fun getIntent(context: Context, story: Article): Intent {
             val intent = Intent(context, DetailsActivity::class.java)
             intent.putExtra(KEY_STORY_ID, story.url)
             return intent
