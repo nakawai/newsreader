@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.nakawai.newsreader.ui.main
+package com.github.nakawai.newsreader.ui.articles
 
 import androidx.lifecycle.*
 import com.github.nakawai.newsreader.model.Model
@@ -24,7 +24,7 @@ import kotlinx.coroutines.launch
 /**
  * Presenter class for controlling the Main Activity
  */
-class MainViewModel(
+class ArticlesViewModel(
     private val model: Model
 ) : ViewModel() {
 
@@ -63,7 +63,7 @@ class MainViewModel(
     @Suppress("UNCHECKED_CAST")
     class Factory(private val model: Model) : ViewModelProvider.NewInstanceFactory() {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            return MainViewModel(model) as T
+            return ArticlesViewModel(model) as T
         }
 
     }

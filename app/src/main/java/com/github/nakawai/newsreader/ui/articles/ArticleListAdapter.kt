@@ -1,4 +1,4 @@
-package com.github.nakawai.newsreader.ui.main
+package com.github.nakawai.newsreader.ui.articles
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -12,7 +12,7 @@ import com.github.nakawai.newsreader.databinding.ListItemBinding
 import com.github.nakawai.newsreader.model.entity.Article
 
 // ListView adapter class
-class NewsListAdapter(private val listener: OnItemClickListener) : ListAdapter<Article, NewsListAdapter.ViewHolder>(DIFF_CALLBACK) {
+class ArticleListAdapter(private val listener: OnItemClickListener) : ListAdapter<Article, ArticleListAdapter.ViewHolder>(DIFF_CALLBACK) {
 
     interface OnItemClickListener {
         fun onItemClick(story: Article)

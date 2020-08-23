@@ -13,13 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.nakawai.newsreader.ui.main
+package com.github.nakawai.newsreader.ui.articles
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -29,11 +28,10 @@ import com.github.nakawai.newsreader.model.Model
 import com.github.nakawai.newsreader.model.entity.Article
 import com.github.nakawai.newsreader.model.entity.Section
 import com.github.nakawai.newsreader.ui.details.DetailsActivity
-import timber.log.Timber
 
-class MainActivity : AppCompatActivity(), NewsListAdapter.OnItemClickListener {
-    private val viewModel: MainViewModel by viewModels { MainViewModel.Factory(Model.instance!!) }
-    private lateinit var adapter: NewsListAdapter
+class ArticlesActivity : AppCompatActivity(), ArticleListAdapter.OnItemClickListener {
+    private val viewModel: ArticlesViewModel by viewModels { ArticlesViewModel.Factory(Model.instance!!) }
+    private lateinit var adapter: ArticleListAdapter
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,7 +44,7 @@ class MainActivity : AppCompatActivity(), NewsListAdapter.OnItemClickListener {
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
-        adapter = NewsListAdapter(this)
+        adapter = ArticleListAdapter(this)
 
         binding.listView.adapter = adapter
         binding.listView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
@@ -55,28 +53,11 @@ class MainActivity : AppCompatActivity(), NewsListAdapter.OnItemClickListener {
 
         binding.progressBar.visibility = View.INVISIBLE
 
-        val sectionLabels = Section.values().map { s -> s.label }
-
-
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, sectionLabels)
-        binding.spinner.adapter = adapter
-        binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View, position: Int, id: Long) {
-                val section = Section.values()[position]
-                Timber.i("sectionKey:$section")
-                viewModel.sectionSelected(section)
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                // NOP
-            }
-        }
-
         observeViewModel()
 
         // After setup, notify presenter
-        viewModel.sectionSelected(Section.HOME)
-
+        val section = Section.valueOf(intent.extras!!.getString(EXTRA_SECTION)!!)
+        viewModel.sectionSelected(section)
     }
 
     private fun onRefresh() {
@@ -108,5 +89,16 @@ class MainActivity : AppCompatActivity(), NewsListAdapter.OnItemClickListener {
         viewModel.isRefreshing.observe(this, Observer {
             binding.refreshView.isRefreshing = it
         })
+    }
+
+    companion object {
+        const val EXTRA_SECTION = "EXTRA_SECTION"
+
+        fun start(activity: Activity, section: Section) {
+            activity.startActivity(
+                Intent(activity, ArticlesActivity::class.java)
+                    .putExtra(EXTRA_SECTION, section.toString())
+            )
+        }
     }
 }
