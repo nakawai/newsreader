@@ -42,38 +42,47 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="0dp"
         android:paddingTop="0dp"
+        android:paddingBottom="0dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:context=".ui.main.MainActivity">
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/refresh_view"
             android:layout_width="match_parent"
-            tools:visibility="gone"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            tools:visibility="visible">
+
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/list_view"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:visibility="gone" />
+
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/emptyView"
-            tools:visibility="visible"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            tools:visibility="gone">
+
 
             <TextView
-                android:text="@string/no_news"
-                android:gravity="center"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/no_news" />
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     </RelativeLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

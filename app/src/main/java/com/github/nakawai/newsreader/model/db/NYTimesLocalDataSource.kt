@@ -82,10 +82,9 @@ class NYTimesLocalDataSource {
         return@withContext list
     }
 
-    fun observeArticles(sectionKey: String): LiveData<List<Article>> {
+    fun observeArticles(): LiveData<List<Article>> {
         val realm: Realm = Realm.getDefaultInstance()
         val realmResults = realm.where(NYTimesStory::class.java)
-            .equalTo(NYTimesStory.API_SECTION, sectionKey)
             .sort(NYTimesStory.PUBLISHED_DATE, Sort.DESCENDING)
             .findAllAsync()
 
@@ -131,7 +130,7 @@ class NYTimesLocalDataSource {
 
         val listener = RealmChangeListener<RealmResults<NYTimesStory>> { results ->
             val result = results[0]
-            val article = if (result != null && result.isValid && result.isLoaded) {
+            if (result != null && result.isValid && result.isLoaded) {
                 liveData.postValue(translate(result))
             } else {
                 throw IllegalStateException("invalid story Id")
@@ -150,19 +149,22 @@ class NYTimesLocalDataSource {
         realm.close()
     }
 
-    fun updateStoryReadState(storyId: String, read: Boolean) {
+    fun updateStoryReadState(storyUrl: String, read: Boolean) {
 
-        val realm: Realm = Realm.getDefaultInstance()
-        realm.executeTransactionAsync({ realm ->
-            val persistedStory =
-                realm.where(NYTimesStory::class.java)
-                    .equalTo(NYTimesStory.URL, storyId).findFirst()
+        val instance: Realm = Realm.getDefaultInstance()
+        instance.executeTransactionAsync({ realm ->
+            val persistedStory = realm.where(NYTimesStory::class.java)
+                .equalTo(NYTimesStory.URL, storyUrl)
+                .findFirst()
+
             if (persistedStory != null) {
                 persistedStory.isRead = read
             } else {
-                Timber.e("Trying to update a story that no longer exists: %1\$s", storyId)
+                Timber.e("Trying to update a story that no longer exists: %1\$s", storyUrl)
             }
-        }) { throwable -> Timber.e(throwable, "Failed to save data.") }
+        }, { throwable ->
+            Timber.e(throwable, "Failed to save data.")
+        })
     }
 
 }

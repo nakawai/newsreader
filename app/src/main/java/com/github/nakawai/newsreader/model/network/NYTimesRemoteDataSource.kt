@@ -16,6 +16,7 @@
 package com.github.nakawai.newsreader.model.network
 
 import com.github.nakawai.newsreader.model.entity.NYTimesStory
+import com.github.nakawai.newsreader.model.entity.Section
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -40,13 +41,13 @@ class NYTimesRemoteDataSource {
         nyTimesService = retrofit.create(NYTimesService::class.java)
     }
 
-    suspend fun loadData(sectionKey: String): List<NYTimesStory> {
+    suspend fun loadData(section: Section): List<NYTimesStory> {
         return suspendCoroutine { continuation ->
 
-            nyTimesService.topStories(sectionKey, API_KEY)
+            nyTimesService.topStories(section.key, API_KEY)
                 .enqueue(object : Callback<NYTimesResponse<List<NYTimesStory>>> {
                     override fun onFailure(call: Call<NYTimesResponse<List<NYTimesStory>>>, t: Throwable) {
-                        Timber.d("Failure: Data not loaded: %s - %s", sectionKey, t.toString())
+                        Timber.d("Failure: Data not loaded: %s - %s", section.key, t.toString())
                         continuation.resumeWithException(t)
                     }
 
@@ -54,7 +55,7 @@ class NYTimesRemoteDataSource {
                         call: Call<NYTimesResponse<List<NYTimesStory>>>,
                         response: Response<NYTimesResponse<List<NYTimesStory>>>
                     ) {
-                        Timber.d("Success - Data received: %s", sectionKey)
+                        Timber.d("Success - Data received: %s", section.key)
                         continuation.resume(response.body()!!.results!!)
                     }
 

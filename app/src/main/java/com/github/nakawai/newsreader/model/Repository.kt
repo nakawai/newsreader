@@ -19,6 +19,7 @@ import androidx.annotation.UiThread
 import androidx.lifecycle.LiveData
 import com.github.nakawai.newsreader.model.db.NYTimesLocalDataSource
 import com.github.nakawai.newsreader.model.entity.Article
+import com.github.nakawai.newsreader.model.entity.Section
 import com.github.nakawai.newsreader.model.network.NYTimesRemoteDataSource
 import java.io.Closeable
 import java.util.*
@@ -34,33 +35,33 @@ import java.util.concurrent.TimeUnit
 class Repository @UiThread constructor() : Closeable {
     private val remote = NYTimesRemoteDataSource()
     private val local = NYTimesLocalDataSource()
-    private val lastNetworkRequest: MutableMap<String, Long> = HashMap()
+    private val lastNetworkRequest: MutableMap<Section, Long> = EnumMap(Section::class.java)
 
 
     /**
      * Loads the news feed as well as all future updates.
      */
     suspend fun loadNewsFeed(
-        sectionKey: String,
+        section: Section,
         forceReload: Boolean
     ): List<Article> {
         // Start loading data from the network if needed
         // It will put all data into Realm
-        if (forceReload || timeSinceLastNetworkRequest(sectionKey) > MINIMUM_NETWORK_WAIT_SEC) {
-            val data = remote.loadData(sectionKey)
+        if (forceReload || timeSinceLastNetworkRequest(section) > MINIMUM_NETWORK_WAIT_SEC) {
+            val data = remote.loadData(section)
 
-            local.processAndAddData(sectionKey, data)
-            lastNetworkRequest[sectionKey] = System.currentTimeMillis()
+            local.processAndAddData(section.key, data)
+            lastNetworkRequest[section] = System.currentTimeMillis()
         }
 
-        return local.readData(sectionKey)
+        return local.readData(section.key)
 
 
     }
 
 
-    private fun timeSinceLastNetworkRequest(sectionKey: String): Long {
-        val lastRequest = lastNetworkRequest[sectionKey]
+    private fun timeSinceLastNetworkRequest(section: Section): Long {
+        val lastRequest = lastNetworkRequest[section]
         return if (lastRequest != null) {
             TimeUnit.SECONDS.convert(
                 System.currentTimeMillis() - lastRequest,
@@ -81,8 +82,8 @@ class Repository @UiThread constructor() : Closeable {
         local.updateStoryReadState(storyId, read)
     }
 
-    fun observeArticles(sectionKey: String): LiveData<List<Article>> {
-        return local.observeArticles(sectionKey)
+    fun observeArticles(): LiveData<List<Article>> {
+        return local.observeArticles()
     }
 
     fun observeArticle(storyId: String): LiveData<Article> {
