@@ -19,5 +19,20 @@ enum class Section(val key: String, val label: String, val iconResId: Int) {
     DINING("dining", "Dining", R.drawable.ic_home_black_24dp),
     TRAVEL("travel", "Travel", R.drawable.ic_home_black_24dp),
     MAGAZINE("magazine", "Magazine", R.drawable.ic_home_black_24dp),
-    REAL_ESTATE("realestate", "Real Estate", R.drawable.ic_home_black_24dp)
+    REAL_ESTATE("realestate", "Real Estate", R.drawable.ic_home_black_24dp);
+
+    companion object {
+        fun valueOfApiSection(apiSection: String): Section {
+
+            values().forEach { section ->
+                if (section.key == apiSection) {
+                    return section
+                }
+            }
+
+            throw IllegalArgumentException("invalid key:$apiSection")
+        }
+    }
+
+
 }

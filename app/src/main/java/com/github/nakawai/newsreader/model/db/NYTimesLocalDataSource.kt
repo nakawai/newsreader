@@ -3,7 +3,6 @@ package com.github.nakawai.newsreader.model.db
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.github.nakawai.newsreader.model.entity.Article
-import com.github.nakawai.newsreader.model.entity.Multimedia
 import com.github.nakawai.newsreader.model.entity.NYTimesStory
 import io.realm.Realm
 import io.realm.RealmChangeListener
@@ -24,6 +23,11 @@ class NYTimesLocalDataSource {
 
     private val inputDateFormat = SimpleDateFormat("yyyy-MM-d'T'HH:mm:ssZZZZZ", Locale.US)
     private val outputDateFormat = SimpleDateFormat("MM-dd-yyyy", Locale.US)
+
+
+    init {
+
+    }
 
     // Converts data into a usable format and save it to Realm
     suspend fun processAndAddData(sectionKey: String, stories: List<NYTimesStory>) {
@@ -76,49 +80,26 @@ class NYTimesLocalDataSource {
 
         val list = mutableListOf<Article>()
         results.forEach { story ->
-            list.add(translate(story))
+            list.add(story.translate())
         }
 
         return@withContext list
     }
 
     fun observeArticles(): LiveData<List<Article>> {
-        val realm: Realm = Realm.getDefaultInstance()
-        val realmResults = realm.where(NYTimesStory::class.java)
-            .sort(NYTimesStory.PUBLISHED_DATE, Sort.DESCENDING)
-            .findAllAsync()
-
-
-        val liveData = MutableLiveData<List<Article>>()
-
-        val list = mutableListOf<Article>()
-        val listener = RealmChangeListener<RealmResults<NYTimesStory>> { results ->
-            results.forEach { realmStory ->
-                list.add(translate(realmStory))
+        return object : LiveRealmData<NYTimesStory, Article>() {
+            override fun runQuery(realm: Realm): RealmResults<NYTimesStory> {
+                return realm.where(NYTimesStory::class.java)
+                    .sort(NYTimesStory.PUBLISHED_DATE, Sort.DESCENDING)
+                    .findAllAsync()
             }
-            liveData.postValue(list)
+
+            override fun translate(original: NYTimesStory): Article {
+                return original.translate()
+            }
         }
-
-        // TODO remove listener
-        realmResults.addChangeListener(listener)
-
-        return liveData
     }
 
-    private fun translate(story: NYTimesStory): Article {
-        val mediaArray = mutableListOf<Multimedia>()
-        story.multimedia?.forEach {
-            mediaArray.add(Multimedia(it.url.orEmpty()))
-        }
-        return Article(
-            title = story.title.orEmpty(),
-            url = story.url.orEmpty(),
-            storyAbstract = story.storyAbstract.orEmpty(),
-            multimedia = mediaArray,
-            publishedDate = story.publishedDate,
-            isRead = story.isRead
-        )
-    }
 
     fun observeStory(storyId: String): LiveData<Article> {
         val realm: Realm = Realm.getDefaultInstance()
@@ -131,7 +112,7 @@ class NYTimesLocalDataSource {
         val listener = RealmChangeListener<RealmResults<NYTimesStory>> { results ->
             val result = results[0]
             if (result != null && result.isValid && result.isLoaded) {
-                liveData.postValue(translate(result))
+                liveData.postValue(result.translate())
             } else {
                 throw IllegalStateException("invalid story Id")
             }

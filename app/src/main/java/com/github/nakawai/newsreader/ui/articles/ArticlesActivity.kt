@@ -30,7 +30,7 @@ import com.github.nakawai.newsreader.model.entity.Section
 import com.github.nakawai.newsreader.ui.details.DetailsActivity
 
 class ArticlesActivity : AppCompatActivity(), ArticleListAdapter.OnItemClickListener {
-    private val viewModel: ArticlesViewModel by viewModels { ArticlesViewModel.Factory(Model.instance!!) }
+    private val viewModel: ArticlesViewModel by viewModels { ArticlesViewModel.Factory(Model.instance!!.repository) }
     private lateinit var adapter: ArticleListAdapter
     private lateinit var binding: ActivityArticlesBinding
 

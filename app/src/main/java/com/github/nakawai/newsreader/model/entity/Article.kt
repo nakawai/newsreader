@@ -27,28 +27,7 @@ data class Article(
 
     val publishedDate: String?,
 
-    val isRead: Boolean
-) {
+    val isRead: Boolean,
 
-    var apiSection: String? = null
-    var section: String? = null
-
-    var subsection: String? = null
-
-
-    var byline: String? = null
-
-    var itemType: String? = null
-
-    var updatedDate: String? = null
-
-    var createdDate: String? = null
-
-
-    var materialTypeFacet: String? = null
-
-    var kicker: String? = null
-
-    var sortTimeStamp: Long = 0
-
-}
+    var section: Section
+)

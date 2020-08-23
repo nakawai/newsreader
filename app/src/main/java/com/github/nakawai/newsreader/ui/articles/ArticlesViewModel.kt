@@ -16,7 +16,7 @@
 package com.github.nakawai.newsreader.ui.articles
 
 import androidx.lifecycle.*
-import com.github.nakawai.newsreader.model.Model
+import com.github.nakawai.newsreader.model.Repository
 import com.github.nakawai.newsreader.model.entity.Article
 import com.github.nakawai.newsreader.model.entity.Section
 import kotlinx.coroutines.delay
@@ -26,17 +26,17 @@ import kotlinx.coroutines.launch
  * Presenter class for controlling the Main Activity
  */
 class ArticlesViewModel(
-    private val model: Model
+    private val repository: Repository
 ) : ViewModel() {
 
     lateinit var currentSection: Section
 
-    private val _storiesData = MediatorLiveData<List<Article>>().apply {
-        addSource(model.repository.observeArticles()) { articles ->
-            value = articles.filter { it.apiSection == currentSection.key }
+    private val _articles = MediatorLiveData<List<Article>>().apply {
+        addSource(repository.observeArticles()) { articles ->
+            value = articles.filter { it.section == currentSection }
         }
     }
-    val storiesData: LiveData<List<Article>> = _storiesData
+    val storiesData: LiveData<List<Article>> = _articles
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
@@ -51,16 +51,17 @@ class ArticlesViewModel(
 
         viewModelScope.launch {
             delay(1000)
-            _storiesData.value = model.loadNewsFeed(currentSection, force)
+            val articles = repository.loadNewsFeed(currentSection, force)
+            _articles.value = articles
             _isLoading.value = false
         }
     }
 
 
     @Suppress("UNCHECKED_CAST")
-    class Factory(private val model: Model) : ViewModelProvider.NewInstanceFactory() {
+    class Factory(private val repository: Repository) : ViewModelProvider.NewInstanceFactory() {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            return ArticlesViewModel(model) as T
+            return ArticlesViewModel(repository) as T
         }
 
     }
