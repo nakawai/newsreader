@@ -23,7 +23,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
-import com.github.nakawai.newsreader.databinding.ActivityMainBinding
+import com.github.nakawai.newsreader.databinding.ActivityArticlesBinding
 import com.github.nakawai.newsreader.model.Model
 import com.github.nakawai.newsreader.model.entity.Article
 import com.github.nakawai.newsreader.model.entity.Section
@@ -32,13 +32,13 @@ import com.github.nakawai.newsreader.ui.details.DetailsActivity
 class ArticlesActivity : AppCompatActivity(), ArticleListAdapter.OnItemClickListener {
     private val viewModel: ArticlesViewModel by viewModels { ArticlesViewModel.Factory(Model.instance!!) }
     private lateinit var adapter: ArticleListAdapter
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityArticlesBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         // Setup initial views
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityArticlesBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)

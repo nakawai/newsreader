@@ -26,8 +26,6 @@ import com.github.nakawai.newsreader.model.entity.Section
  */
 class SectionsViewModel : ViewModel() {
 
-    var currentSection: Section = Section.HOME
-
     private val _sections = MutableLiveData<List<Section>>()
     val sections: LiveData<List<Section>> = _sections
 
