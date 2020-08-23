@@ -19,6 +19,7 @@ import androidx.lifecycle.*
 import com.github.nakawai.newsreader.model.Model
 import com.github.nakawai.newsreader.model.entity.Article
 import com.github.nakawai.newsreader.model.entity.Section
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 /**
@@ -28,7 +29,7 @@ class ArticlesViewModel(
     private val model: Model
 ) : ViewModel() {
 
-    var currentSection: Section = Section.HOME
+    lateinit var currentSection: Section
 
     private val _storiesData = MediatorLiveData<List<Article>>().apply {
         addSource(model.repository.observeArticles()) { articles ->
@@ -40,25 +41,21 @@ class ArticlesViewModel(
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
-    private val _isRefreshing = MutableLiveData<Boolean>()
-    val isRefreshing: LiveData<Boolean> = _isRefreshing
-
-    fun loadData(force: Boolean) {
-        _isLoading.value = true
-        _isRefreshing.value = true
-
-        viewModelScope.launch {
-            _storiesData.value = model.loadNewsFeed(currentSection, force)
-        }
-        _isLoading.value = false
-        _isRefreshing.value = false
-    }
-
-
-    fun sectionSelected(section: Section) {
+    fun start(section: Section) {
         currentSection = section
         loadData(force = false)
     }
+
+    fun loadData(force: Boolean) {
+        _isLoading.value = true
+
+        viewModelScope.launch {
+            delay(1000)
+            _storiesData.value = model.loadNewsFeed(currentSection, force)
+            _isLoading.value = false
+        }
+    }
+
 
     @Suppress("UNCHECKED_CAST")
     class Factory(private val model: Model) : ViewModelProvider.NewInstanceFactory() {

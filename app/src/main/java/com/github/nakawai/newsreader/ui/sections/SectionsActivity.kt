@@ -37,7 +37,6 @@ class SectionsActivity : AppCompatActivity(), SectionListAdapter.OnItemClickList
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
-        supportActionBar?.setDisplayShowTitleEnabled(false)
 
         adapter = SectionListAdapter(this)
 

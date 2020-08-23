@@ -34,6 +34,8 @@ class ArticlesActivity : AppCompatActivity(), ArticleListAdapter.OnItemClickList
     private lateinit var adapter: ArticleListAdapter
     private lateinit var binding: ActivityArticlesBinding
 
+    private var initialized = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -42,7 +44,8 @@ class ArticlesActivity : AppCompatActivity(), ArticleListAdapter.OnItemClickList
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
-        supportActionBar?.setDisplayShowTitleEnabled(false)
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         adapter = ArticleListAdapter(this)
 
@@ -51,13 +54,12 @@ class ArticlesActivity : AppCompatActivity(), ArticleListAdapter.OnItemClickList
         binding.refreshView.setOnRefreshListener(this::onRefresh)
         binding.emptyView.setOnRefreshListener(this::onRefresh)
 
-        binding.progressBar.visibility = View.INVISIBLE
-
         observeViewModel()
 
         // After setup, notify presenter
         val section = Section.valueOf(intent.extras!!.getString(EXTRA_SECTION)!!)
-        viewModel.sectionSelected(section)
+        supportActionBar?.title = section.label
+        viewModel.start(section)
     }
 
     private fun onRefresh() {
@@ -71,6 +73,11 @@ class ArticlesActivity : AppCompatActivity(), ArticleListAdapter.OnItemClickList
 
     private fun observeViewModel() {
         viewModel.storiesData.observe(this, Observer {
+            if (!initialized) {
+                initialized = true
+                return@Observer
+            }
+
             if (it.isEmpty()) {
                 binding.emptyView.visibility = View.VISIBLE
                 binding.refreshView.visibility = View.GONE
@@ -82,12 +89,8 @@ class ArticlesActivity : AppCompatActivity(), ArticleListAdapter.OnItemClickList
         })
 
         viewModel.isLoading.observe(this, Observer {
-            binding.progressBar.visibility = if (it) View.VISIBLE else View.INVISIBLE
-            binding.progress.visibility = if (it) View.VISIBLE else View.INVISIBLE
-        })
-
-        viewModel.isRefreshing.observe(this, Observer {
             binding.refreshView.isRefreshing = it
+            binding.emptyView.isRefreshing = it
         })
     }
 

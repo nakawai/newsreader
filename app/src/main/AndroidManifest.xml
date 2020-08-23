@@ -25,6 +25,7 @@
         </activity>
         <activity
             android:name=".ui.articles.ArticlesActivity"
+            android:parentActivityName=".ui.sections.SectionsActivity"
             android:launchMode="singleTop" />
         <activity
             android:name=".ui.details.DetailsActivity"
