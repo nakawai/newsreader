@@ -1,12 +1,15 @@
 package com.github.nakawai.newsreader.model.db
 
 import androidx.lifecycle.LiveData
-import io.realm.*
+import io.realm.Realm
+import io.realm.RealmChangeListener
+import io.realm.RealmModel
+import io.realm.RealmResults
 
 /**
  * https://gist.github.com/cmelchior/3fe791f84db37fd3bcb3749d4188168a
  */
-abstract class LiveRealmData<T : RealmModel, U : Any>(private val config: RealmConfiguration? = null) : LiveData<List<U>>() {
+abstract class LiveRealmData<T : RealmModel, U : Any> : LiveData<List<U>>() {
     private lateinit var results: RealmResults<T>
     private lateinit var realm: Realm
     private val listener = RealmChangeListener<RealmResults<T>> { results ->
@@ -14,11 +17,8 @@ abstract class LiveRealmData<T : RealmModel, U : Any>(private val config: RealmC
     }
 
     override fun onActive() {
-        realm = if (config == null) {
-            Realm.getDefaultInstance()
-        } else {
-            Realm.getInstance(config)
-        }
+        realm = Realm.getDefaultInstance()
+
         results = runQuery(realm)
         results.addChangeListener(listener)
 

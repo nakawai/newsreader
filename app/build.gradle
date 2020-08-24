@@ -59,9 +59,10 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.0.0'
 
 
-    // Retrofit, JSON
-    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
-    implementation 'com.squareup.retrofit2:converter-jackson:2.3.0'
+    // Network
+    def retrofit_version = "2.9.0"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-jackson:$retrofit_version"
 
     // UI
     implementation 'com.google.android.material:material:1.0.0'
@@ -71,6 +72,8 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
     // Debug
     implementation 'com.jakewharton.timber:timber:4.7.1'
+    implementation 'com.facebook.stetho:stetho:1.5.1'
+    implementation 'com.facebook.stetho:stetho-okhttp3:1.5.1'
 
     // Test
     testImplementation 'junit:junit:4.12'
