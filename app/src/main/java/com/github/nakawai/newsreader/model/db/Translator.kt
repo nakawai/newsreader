@@ -1,8 +1,10 @@
 package com.github.nakawai.newsreader.model.db
 
-import com.github.nakawai.newsreader.model.entity.*
-import com.github.nakawai.newsreader.model.network.NYTimesMultimediumResponseItem
-import com.github.nakawai.newsreader.model.network.NYTimesStoryResponseItem
+import com.github.nakawai.newsreader.model.entity.Article
+import com.github.nakawai.newsreader.model.entity.Multimedia
+import com.github.nakawai.newsreader.model.entity.Section
+import com.github.nakawai.newsreader.model.network.response.NYTimesMultimediaResponseItem
+import com.github.nakawai.newsreader.model.network.response.NYTimesStoryResponseItem
 import io.realm.RealmList
 import java.text.ParsePosition
 import java.text.SimpleDateFormat
@@ -15,7 +17,7 @@ class Translator {
 
         private val inputDateFormat = SimpleDateFormat("yyyy-MM-d'T'HH:mm:ssZZZZZ", Locale.US)
 
-        fun translate(story: NYTimesStory): Article {
+        fun translate(story: StoryRealmObject): Article {
             val mediaArray = mutableListOf<Multimedia>()
             story.multimedia?.forEach {
                 mediaArray.add(Multimedia(it.url.orEmpty()))
@@ -31,8 +33,8 @@ class Translator {
             )
         }
 
-        fun translate(item: NYTimesStoryResponseItem): NYTimesStory {
-            val story = NYTimesStory()
+        fun translate(item: NYTimesStoryResponseItem): StoryRealmObject {
+            val story = StoryRealmObject()
             story.section = item.section
             story.subsection = item.subsection
             story.title = item.title
@@ -49,9 +51,8 @@ class Translator {
 
             story.materialTypeFacet = item.materialTypeFacet
             story.kicker = item.kicker
-
-
-            story.multimedia = RealmList<NYTimesMultimedium>()
+            
+            story.multimedia = RealmList<MultimediaRealmObject>()
             item.multimedia?.forEach { multimedia ->
                 story.multimedia?.add(translate(multimedia))
             }
@@ -59,15 +60,23 @@ class Translator {
             return story
         }
 
-        private fun translate(responseItem: NYTimesMultimediumResponseItem): NYTimesMultimedium {
-            val multimedia = NYTimesMultimedium()
+        private fun translate(responseItem: NYTimesMultimediaResponseItem): MultimediaRealmObject {
+            val multimedia = MultimediaRealmObject()
+
             multimedia.url = responseItem.url
+            multimedia.format = responseItem.format
+            multimedia.height = responseItem.height
+            multimedia.width = responseItem.width
+            multimedia.type = responseItem.type
+            multimedia.subtype = responseItem.subtype
+            multimedia.caption = responseItem.caption
+            multimedia.copyright = responseItem.copyright
 
             return multimedia
         }
     }
 }
 
-fun NYTimesStory.translate(): Article {
+fun StoryRealmObject.translate(): Article {
     return Translator.translate(this)
 }

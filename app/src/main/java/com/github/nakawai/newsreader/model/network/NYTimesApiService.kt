@@ -1,5 +1,6 @@
 package com.github.nakawai.newsreader.model.network
 
+import com.github.nakawai.newsreader.model.network.response.NYTimesResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path

@@ -1,4 +1,4 @@
-package com.github.nakawai.newsreader.model.network
+package com.github.nakawai.newsreader.model.network.response
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -43,6 +43,6 @@ class NYTimesStoryResponseItem {
     var kicker: String? = null
 
     @JsonProperty("multimedia")
-    var multimedia: List<NYTimesMultimediumResponseItem>? = null
+    var multimedia: List<NYTimesMultimediaResponseItem>? = null
 
 }
