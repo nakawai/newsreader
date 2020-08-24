@@ -1,18 +1,3 @@
-/*
- * Copyright 2016 Realm Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package com.github.nakawai.newsreader.model.entity
 
 data class Article(
@@ -27,28 +12,7 @@ data class Article(
 
     val publishedDate: String?,
 
-    val isRead: Boolean
-) {
+    val isRead: Boolean,
 
-    var apiSection: String? = null
-    var section: String? = null
-
-    var subsection: String? = null
-
-
-    var byline: String? = null
-
-    var itemType: String? = null
-
-    var updatedDate: String? = null
-
-    var createdDate: String? = null
-
-
-    var materialTypeFacet: String? = null
-
-    var kicker: String? = null
-
-    var sortTimeStamp: Long = 0
-
-}
+    var section: Section
+)

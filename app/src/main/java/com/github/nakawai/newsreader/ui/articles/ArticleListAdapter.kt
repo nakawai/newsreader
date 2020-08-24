@@ -1,4 +1,4 @@
-package com.github.nakawai.newsreader.ui.main
+package com.github.nakawai.newsreader.ui.articles
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,20 +8,20 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.github.nakawai.newsreader.R
-import com.github.nakawai.newsreader.databinding.ListItemBinding
+import com.github.nakawai.newsreader.databinding.ListItemArticleBinding
 import com.github.nakawai.newsreader.model.entity.Article
 
 // ListView adapter class
-class NewsListAdapter(private val listener: OnItemClickListener) : ListAdapter<Article, NewsListAdapter.ViewHolder>(DIFF_CALLBACK) {
+class ArticleListAdapter(private val listener: OnItemClickListener) : ListAdapter<Article, ArticleListAdapter.ViewHolder>(DIFF_CALLBACK) {
 
     interface OnItemClickListener {
         fun onItemClick(story: Article)
     }
 
-    class ViewHolder(var binding: ListItemBinding) : RecyclerView.ViewHolder(binding.root)
+    class ViewHolder(var binding: ListItemArticleBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ListItemBinding.inflate(LayoutInflater.from(parent.context))
+        val binding = ListItemArticleBinding.inflate(LayoutInflater.from(parent.context))
 
         val viewHolder = ViewHolder(binding)
         binding.root.setOnClickListener {

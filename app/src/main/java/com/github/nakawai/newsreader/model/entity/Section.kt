@@ -1,21 +1,38 @@
 package com.github.nakawai.newsreader.model.entity
 
-enum class Section(val key: String, val label: String) {
-    HOME("home", "Home"),
-    WORLD("world", "World"),
-    NATIONAL("national", "National"),
-    POLITICS("politics", "Politics"),
-    NY_REGION("nyregion", "NY Region"),
-    BUSINESS("business", "Business"),
-    OPINION("opinion", "Opinion"),
-    TECHNOLOGY("technology", "Technology"),
-    SCIENCE("science", "Science"),
-    HEALTH("health", "Health"),
-    SPORTS("sports", "Sports"),
-    ARTS("arts", "Arts"),
-    FASHION("fashion", "Fashion"),
-    DINING("dining", "Dining"),
-    TRAVEL("travel", "Travel"),
-    MAGAZINE("magazine", "Magazine"),
-    REAL_ESTATE("realestate", "Real Estate")
+import com.github.nakawai.newsreader.R
+
+enum class Section(val key: String, val label: String, val iconResId: Int) {
+    HOME("home", "Home", R.drawable.ic_home_black_24dp),
+    WORLD("world", "World", R.drawable.ic_home_black_24dp),
+    NATIONAL("national", "National", R.drawable.ic_home_black_24dp),
+    POLITICS("politics", "Politics", R.drawable.ic_home_black_24dp),
+    NY_REGION("nyregion", "NY Region", R.drawable.ic_home_black_24dp),
+    BUSINESS("business", "Business", R.drawable.ic_home_black_24dp),
+    OPINION("opinion", "Opinion", R.drawable.ic_home_black_24dp),
+    TECHNOLOGY("technology", "Technology", R.drawable.ic_home_black_24dp),
+    SCIENCE("science", "Science", R.drawable.ic_home_black_24dp),
+    HEALTH("health", "Health", R.drawable.ic_home_black_24dp),
+    SPORTS("sports", "Sports", R.drawable.ic_home_black_24dp),
+    ARTS("arts", "Arts", R.drawable.ic_home_black_24dp),
+    FASHION("fashion", "Fashion", R.drawable.ic_home_black_24dp),
+    DINING("dining", "Dining", R.drawable.ic_home_black_24dp),
+    TRAVEL("travel", "Travel", R.drawable.ic_home_black_24dp),
+    MAGAZINE("magazine", "Magazine", R.drawable.ic_home_black_24dp),
+    REAL_ESTATE("realestate", "Real Estate", R.drawable.ic_home_black_24dp);
+
+    companion object {
+        fun valueOfApiSection(apiSection: String): Section {
+
+            values().forEach { section ->
+                if (section.key == apiSection) {
+                    return section
+                }
+            }
+
+            throw IllegalArgumentException("invalid key:$apiSection")
+        }
+    }
+
+
 }
