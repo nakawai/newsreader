@@ -50,7 +50,7 @@ class NYTimesLocalDataSource {
                     } else {
                         val story = Translator.translate(responseItem)
                         story.apiSection = sectionKey
-                        r.copyToRealm(story)
+                        r.copyToRealmOrUpdate(story)
                     }
                 }
                 continuation.resume(Unit)
