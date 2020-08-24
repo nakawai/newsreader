@@ -10,15 +10,17 @@ class NewsReaderApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
+        // Configure default configuration for Realm
+        Realm.init(this)
+        val realmConfig = RealmConfiguration.Builder()
+            .build()
+        Realm.setDefaultConfiguration(realmConfig)
+        
         // Stetho
         Stetho.initializeWithDefaults(this)
 
         // Timber
         Timber.plant(Timber.DebugTree())
 
-        // Configure default configuration for Realm
-        Realm.init(this)
-        val realmConfig = RealmConfiguration.Builder().build()
-        Realm.setDefaultConfiguration(realmConfig)
     }
 }
