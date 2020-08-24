@@ -3,7 +3,6 @@ package com.github.nakawai.newsreader.model.db
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.github.nakawai.newsreader.model.entity.Article
-import com.github.nakawai.newsreader.model.entity.NYTimesStory
 import com.github.nakawai.newsreader.model.entity.Section
 import com.github.nakawai.newsreader.model.network.NYTimesStoryResponseItem
 import io.realm.Realm

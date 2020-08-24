@@ -1,4 +1,4 @@
-package com.github.nakawai.newsreader.model.entity
+package com.github.nakawai.newsreader.model.db
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import io.realm.RealmObject
