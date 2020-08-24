@@ -2,7 +2,7 @@ package com.github.nakawai.newsreader.model.network
 
 import com.fasterxml.jackson.annotation.JsonProperty
 
-class NYTimesResponse<T> {
+class NYTimesResponse {
     @JsonProperty("status")
     var status: String? = null
 
@@ -19,5 +19,5 @@ class NYTimesResponse<T> {
     var numResults: Int? = null
 
     @JsonProperty("results")
-    var results: T? = null
+    var results: List<NYTimesStoryResponseItem>? = null
 }

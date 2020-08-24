@@ -8,10 +8,10 @@ import retrofit2.http.Query
 /**
  * Retrofit interface for the New York Times WebService
  */
-interface NYTimesService {
+interface NYTimesApiService {
     @GET("svc/topstories/v2/{section}.json")
     fun topStories(
         @Path("section") section: String,
         @Query(value = "api-key", encoded = true) apiKey: String
-    ): Call<NYTimesResponse<List<NYTimesStoryResponseItem>>>
+    ): Call<NYTimesResponse>
 }

@@ -15,33 +15,31 @@ import kotlin.coroutines.suspendCoroutine
  * Class that handles network requests for the New York Times API
  */
 class NYTimesRemoteDataSource {
-    private val nyTimesService: NYTimesService
+    private val nyTimesApiService: NYTimesApiService
 
     init {
         val retrofit = Retrofit.Builder()
             .addConverterFactory(JacksonConverterFactory.create())
             .baseUrl("https://api.nytimes.com/")
             .build()
-        nyTimesService = retrofit.create(NYTimesService::class.java)
+        nyTimesApiService = retrofit.create(NYTimesApiService::class.java)
     }
 
     suspend fun fetchData(section: Section): List<NYTimesStoryResponseItem> {
         return suspendCoroutine { continuation ->
 
-            nyTimesService.topStories(section.key, API_KEY)
-                .enqueue(object : Callback<NYTimesResponse<List<NYTimesStoryResponseItem>>> {
-                    override fun onFailure(call: Call<NYTimesResponse<List<NYTimesStoryResponseItem>>>, t: Throwable) {
+            nyTimesApiService.topStories(section.key, API_KEY)
+                .enqueue(object : Callback<NYTimesResponse> {
+                    override fun onResponse(call: Call<NYTimesResponse>, response: Response<NYTimesResponse>) {
+                        Timber.d("Success - Data received: %s", section.key)
+                        continuation.resume(response.body()!!.results!!)
+                    }
+
+                    override fun onFailure(call: Call<NYTimesResponse>, t: Throwable) {
                         Timber.d("Failure: Data not loaded: %s - %s", section.key, t.toString())
                         continuation.resumeWithException(t)
                     }
 
-                    override fun onResponse(
-                        call: Call<NYTimesResponse<List<NYTimesStoryResponseItem>>>,
-                        response: Response<NYTimesResponse<List<NYTimesStoryResponseItem>>>
-                    ) {
-                        Timber.d("Success - Data received: %s", section.key)
-                        continuation.resume(response.body()!!.results!!)
-                    }
 
                 })
 
