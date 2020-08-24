@@ -2,6 +2,8 @@ package com.github.nakawai.newsreader.model.network
 
 import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.github.nakawai.newsreader.model.entity.Section
+import com.github.nakawai.newsreader.model.network.response.NYTimesResponse
+import com.github.nakawai.newsreader.model.network.response.NYTimesStoryResponseItem
 import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Callback
@@ -29,7 +31,7 @@ class NYTimesRemoteDataSource {
             .baseUrl("https://api.nytimes.com/")
             .client(okHttpClient)
             .build()
-        
+
         nyTimesApiService = retrofit.create(NYTimesApiService::class.java)
     }
 

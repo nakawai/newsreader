@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.github.nakawai.newsreader.model.entity.Article
 import com.github.nakawai.newsreader.model.entity.Section
-import com.github.nakawai.newsreader.model.network.NYTimesStoryResponseItem
+import com.github.nakawai.newsreader.model.network.response.NYTimesStoryResponseItem
 import io.realm.Realm
 import io.realm.RealmChangeListener
 import io.realm.RealmResults
@@ -39,8 +39,8 @@ class NYTimesLocalDataSource {
                     // If it exists, we need to merge the local state with the remote, because the local state
                     // contains more info than is available on the server.
                     val persistedStory =
-                        r.where(NYTimesStory::class.java)
-                            .equalTo(NYTimesStory.URL, responseItem.url)
+                        r.where(StoryRealmObject::class.java)
+                            .equalTo(StoryRealmObject.URL, responseItem.url)
                             .findFirst()
 
                     if (persistedStory != null) {
@@ -67,9 +67,9 @@ class NYTimesLocalDataSource {
     suspend fun readData(sectionKey: String): List<Article> = withContext(Dispatchers.IO) {
 
         val realm: Realm = Realm.getDefaultInstance()
-        val results = realm.where(NYTimesStory::class.java)
-            .equalTo(NYTimesStory.API_SECTION, sectionKey)
-            .sort(NYTimesStory.PUBLISHED_DATE, Sort.DESCENDING)
+        val results = realm.where(StoryRealmObject::class.java)
+            .equalTo(StoryRealmObject.API_SECTION, sectionKey)
+            .sort(StoryRealmObject.PUBLISHED_DATE, Sort.DESCENDING)
             .findAll()
 
         val list = mutableListOf<Article>()
@@ -81,15 +81,15 @@ class NYTimesLocalDataSource {
     }
 
     fun observeArticles(section: Section): LiveData<List<Article>> {
-        return object : LiveRealmData<NYTimesStory, Article>() {
-            override fun runQuery(realm: Realm): RealmResults<NYTimesStory> {
-                return realm.where(NYTimesStory::class.java)
-                    .sort(NYTimesStory.PUBLISHED_DATE, Sort.DESCENDING)
-                    .equalTo(NYTimesStory.API_SECTION, section.key)
+        return object : LiveRealmData<StoryRealmObject, Article>() {
+            override fun runQuery(realm: Realm): RealmResults<StoryRealmObject> {
+                return realm.where(StoryRealmObject::class.java)
+                    .sort(StoryRealmObject.PUBLISHED_DATE, Sort.DESCENDING)
+                    .equalTo(StoryRealmObject.API_SECTION, section.key)
                     .findAllAsync()
             }
 
-            override fun translate(original: NYTimesStory): Article {
+            override fun translate(original: StoryRealmObject): Article {
                 return original.translate()
             }
         }
@@ -98,13 +98,13 @@ class NYTimesLocalDataSource {
 
     fun observeStory(storyId: String): LiveData<Article> {
         val realm: Realm = Realm.getDefaultInstance()
-        val realmResults = realm.where(NYTimesStory::class.java)
-            .equalTo(NYTimesStory.URL, storyId)
+        val realmResults = realm.where(StoryRealmObject::class.java)
+            .equalTo(StoryRealmObject.URL, storyId)
             .findAllAsync()
 
         val liveData = MutableLiveData<Article>()
 
-        val listener = RealmChangeListener<RealmResults<NYTimesStory>> { results ->
+        val listener = RealmChangeListener<RealmResults<StoryRealmObject>> { results ->
             val result = results[0]
             if (result != null && result.isValid && result.isLoaded) {
                 liveData.postValue(result.translate())
@@ -129,8 +129,8 @@ class NYTimesLocalDataSource {
 
         val instance: Realm = Realm.getDefaultInstance()
         instance.executeTransactionAsync({ realm ->
-            val persistedStory = realm.where(NYTimesStory::class.java)
-                .equalTo(NYTimesStory.URL, storyUrl)
+            val persistedStory = realm.where(StoryRealmObject::class.java)
+                .equalTo(StoryRealmObject.URL, storyUrl)
                 .findFirst()
 
             if (persistedStory != null) {

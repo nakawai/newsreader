@@ -5,7 +5,7 @@ import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
 import java.util.*
 
-open class NYTimesStory : RealmObject() {
+open class StoryRealmObject : RealmObject() {
     @PrimaryKey
     var url: String? = null
 
@@ -33,7 +33,7 @@ open class NYTimesStory : RealmObject() {
 
     var kicker: String? = null
 
-    var multimedia: RealmList<NYTimesMultimedium>? = null
+    var multimedia: RealmList<MultimediaRealmObject>? = null
 
     var sortTimeStamp: Long = 0
 

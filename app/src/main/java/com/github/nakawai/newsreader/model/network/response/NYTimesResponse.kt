@@ -1,4 +1,4 @@
-package com.github.nakawai.newsreader.model.network
+package com.github.nakawai.newsreader.model.network.response
 
 import com.fasterxml.jackson.annotation.JsonProperty
 

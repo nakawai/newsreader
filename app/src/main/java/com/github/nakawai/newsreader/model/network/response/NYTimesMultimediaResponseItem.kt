@@ -1,8 +1,8 @@
-package com.github.nakawai.newsreader.model.network
+package com.github.nakawai.newsreader.model.network.response
 
 import com.fasterxml.jackson.annotation.JsonProperty
 
-class NYTimesMultimediumResponseItem {
+class NYTimesMultimediaResponseItem {
     @JsonProperty("url")
     var url: String? = null
 
