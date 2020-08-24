@@ -1,11 +1,8 @@
-package com.github.nakawai.newsreader.model.entity
+package com.github.nakawai.newsreader.model.network
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import io.realm.RealmObject
-import io.realm.annotations.PrimaryKey
 
-open class NYTimesMultimedium : RealmObject() {
-    @PrimaryKey
+class NYTimesMultimediumResponseItem {
     @JsonProperty("url")
     var url: String? = null
 

@@ -13,8 +13,12 @@ import com.github.nakawai.newsreader.R
 import com.github.nakawai.newsreader.databinding.ActivityDetailsBinding
 import com.github.nakawai.newsreader.model.Model
 import com.github.nakawai.newsreader.model.entity.Article
+import java.text.SimpleDateFormat
+import java.util.*
 
 class DetailsActivity : AppCompatActivity() {
+    private val outputDateFormat = SimpleDateFormat("MM-dd-yyyy", Locale.US)
+
     private val viewModel: DetailsViewModel by viewModels {
         DetailsViewModel.Factory(Model.instance!!, intent.extras?.getString(KEY_STORY_ID).orEmpty())
     }
@@ -33,11 +37,11 @@ class DetailsActivity : AppCompatActivity() {
     }
 
     private fun observeViewModel() {
-        viewModel.story.observe(this, Observer {
-            binding.toolbar.title = it.title
-            binding.detailsView.text = it.storyAbstract
-            binding.dateView.text = it.publishedDate
-            setRead(it.isRead)
+        viewModel.story.observe(this, Observer { article ->
+            binding.toolbar.title = article.title
+            binding.detailsView.text = article.storyAbstract
+            binding.dateView.text = article.publishedDate?.let { outputDateFormat.format(it) }
+            setRead(article.isRead)
         })
 
         viewModel.isLoading.observe(this, Observer { isLoading ->
