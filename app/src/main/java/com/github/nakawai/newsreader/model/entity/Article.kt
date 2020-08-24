@@ -1,5 +1,7 @@
 package com.github.nakawai.newsreader.model.entity
 
+import java.util.*
+
 data class Article(
 
     val title: String,
@@ -10,7 +12,7 @@ data class Article(
 
     val multimedia: List<Multimedia>,
 
-    val publishedDate: String?,
+    val publishedDate: Date?,
 
     val isRead: Boolean,
 

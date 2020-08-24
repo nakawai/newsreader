@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.github.nakawai.newsreader.model.entity.Article
 import com.github.nakawai.newsreader.model.entity.NYTimesStory
 import com.github.nakawai.newsreader.model.entity.Section
+import com.github.nakawai.newsreader.model.network.NYTimesStoryResponseItem
 import io.realm.Realm
 import io.realm.RealmChangeListener
 import io.realm.RealmResults
@@ -13,7 +14,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.withContext
 import timber.log.Timber
-import java.text.ParsePosition
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.coroutines.resume
@@ -26,34 +26,32 @@ class NYTimesLocalDataSource {
     private val outputDateFormat = SimpleDateFormat("MM-dd-yyyy", Locale.US)
 
     // Converts data into a usable format and save it to Realm
-    suspend fun saveData(sectionKey: String, stories: List<NYTimesStory>) {
-        if (stories.isEmpty()) return
+    suspend fun saveData(sectionKey: String, responseItems: List<NYTimesStoryResponseItem>) {
+        if (responseItems.isEmpty()) return
 
         suspendCancellableCoroutine<Unit> { continuation ->
 
             val realm: Realm = Realm.getDefaultInstance()
             realm.executeTransactionAsync({ r: Realm ->
-                for (story in stories) {
-                    val parsedPublishedDate = inputDateFormat.parse(story.publishedDate, ParsePosition(0))
-                    story.sortTimeStamp = parsedPublishedDate.time
-                    story.publishedDate = outputDateFormat.format(parsedPublishedDate)
+                for (responseItem in responseItems) {
 
-                    // Find existing story in Realm (if any)
+
+                    // Find existing responseItem in Realm (if any)
                     // If it exists, we need to merge the local state with the remote, because the local state
                     // contains more info than is available on the server.
                     val persistedStory =
                         r.where(NYTimesStory::class.java)
-                            .equalTo(NYTimesStory.URL, story.url)
+                            .equalTo(NYTimesStory.URL, responseItem.url)
                             .findFirst()
-                    if (persistedStory != null) {
-                        // Only local state is the `read` boolean.
-                        story.isRead = persistedStory.isRead
-                    }
 
-                    // Only create or update the local story if needed
-                    if (persistedStory == null || persistedStory.updatedDate != story.updatedDate) {
+                    if (persistedStory != null) {
+                        if (persistedStory.updatedDate != responseItem.updatedDate) {
+                            // TODO Update content
+                        }
+                    } else {
+                        val story = Translator.translate(responseItem)
                         story.apiSection = sectionKey
-                        r.copyToRealmOrUpdate(story)
+                        r.copyToRealm(story)
                     }
                 }
                 continuation.resume(Unit)
