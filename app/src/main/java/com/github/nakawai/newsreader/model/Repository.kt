@@ -1,18 +1,3 @@
-/*
- * Copyright 2016 Realm Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package com.github.nakawai.newsreader.model
 
 import androidx.annotation.UiThread
@@ -35,38 +20,28 @@ import java.util.concurrent.TimeUnit
 class Repository @UiThread constructor() : Closeable {
     private val remote = NYTimesRemoteDataSource()
     private val local = NYTimesLocalDataSource()
-    private val lastNetworkRequest: MutableMap<Section, Long> = EnumMap(Section::class.java)
-
+    private val lastNetworkRequestTimeMillis: MutableMap<Section, Long> = EnumMap(Section::class.java)
 
     /**
      * Loads the news feed as well as all future updates.
      */
-    suspend fun loadNewsFeed(
-        section: Section,
-        forceReload: Boolean
-    ): List<Article> {
+    suspend fun loadNewsFeed(section: Section, forceReload: Boolean): List<Article> {
         // Start loading data from the network if needed
         // It will put all data into Realm
         if (forceReload || timeSinceLastNetworkRequest(section) > MINIMUM_NETWORK_WAIT_SEC) {
-            val data = remote.loadData(section)
+            val response = remote.fetchData(section)
 
-            local.processAndAddData(section.key, data)
-            lastNetworkRequest[section] = System.currentTimeMillis()
+            local.saveData(section.key, response)
+            lastNetworkRequestTimeMillis[section] = System.currentTimeMillis()
         }
 
         return local.readData(section.key)
-
-
     }
 
-
     private fun timeSinceLastNetworkRequest(section: Section): Long {
-        val lastRequest = lastNetworkRequest[section]
-        return if (lastRequest != null) {
-            TimeUnit.SECONDS.convert(
-                System.currentTimeMillis() - lastRequest,
-                TimeUnit.MILLISECONDS
-            )
+        val lastRequestTimeMillis = lastNetworkRequestTimeMillis[section]
+        return if (lastRequestTimeMillis != null) {
+            TimeUnit.SECONDS.convert(System.currentTimeMillis() - lastRequestTimeMillis, TimeUnit.MILLISECONDS)
         } else {
             Long.MAX_VALUE
         }
@@ -82,8 +57,8 @@ class Repository @UiThread constructor() : Closeable {
         local.updateStoryReadState(storyId, read)
     }
 
-    fun observeArticles(): LiveData<List<Article>> {
-        return local.observeArticles()
+    fun observeArticlesBySection(section: Section): LiveData<List<Article>> {
+        return local.observeArticles(section)
     }
 
     fun observeArticle(storyId: String): LiveData<Article> {
