@@ -23,7 +23,7 @@ class ArticleListAdapter(private val listener: OnItemClickListener) : ListAdapte
     class ViewHolder(var binding: ListItemArticleBinding, val progressDrawable: CircularProgressDrawable) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ListItemArticleBinding.inflate(LayoutInflater.from(parent.context))
+        val binding = ListItemArticleBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
         val progressDrawable = CircularProgressDrawable(binding.root.context)
         progressDrawable.setStyle(CircularProgressDrawable.DEFAULT)

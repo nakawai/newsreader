@@ -18,7 +18,7 @@ class SectionListAdapter(private val listener: OnItemClickListener) : ListAdapte
     class ViewHolder(var binding: ListItemSectionBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ListItemSectionBinding.inflate(LayoutInflater.from(parent.context))
+        val binding = ListItemSectionBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
         val viewHolder = ViewHolder(binding)
         binding.root.setOnClickListener {
