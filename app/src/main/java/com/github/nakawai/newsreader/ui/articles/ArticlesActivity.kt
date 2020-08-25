@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.github.nakawai.newsreader.databinding.ActivityArticlesBinding
-import com.github.nakawai.newsreader.model.Model
+import com.github.nakawai.newsreader.model.NewsReaderAppService
 import com.github.nakawai.newsreader.model.entity.Article
 import com.github.nakawai.newsreader.model.entity.Section
 import com.github.nakawai.newsreader.ui.details.DetailsActivity
@@ -17,7 +17,8 @@ import com.github.nakawai.newsreader.ui.details.DetailsActivity
 class ArticlesActivity : AppCompatActivity(), ArticleListAdapter.OnItemClickListener {
     private lateinit var section: Section
     private val viewModel: ArticlesViewModel by viewModels {
-        ArticlesViewModel.Factory(Model.instance!!.repository, section)
+        // TODO use DI Container
+        ArticlesViewModel.Factory(NewsReaderAppService.instance!!, section)
     }
     private lateinit var adapter: ArticleListAdapter
     private lateinit var binding: ActivityArticlesBinding
