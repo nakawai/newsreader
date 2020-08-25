@@ -6,6 +6,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.github.nakawai.newsreader.R
 import com.github.nakawai.newsreader.databinding.ListItemArticleBinding
@@ -14,20 +15,26 @@ import com.github.nakawai.newsreader.model.entity.Article
 // ListView adapter class
 class ArticleListAdapter(private val listener: OnItemClickListener) : ListAdapter<Article, ArticleListAdapter.ViewHolder>(DIFF_CALLBACK) {
 
+
     interface OnItemClickListener {
         fun onItemClick(story: Article)
     }
 
-    class ViewHolder(var binding: ListItemArticleBinding) : RecyclerView.ViewHolder(binding.root)
+    class ViewHolder(var binding: ListItemArticleBinding, val progressDrawable: CircularProgressDrawable) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ListItemArticleBinding.inflate(LayoutInflater.from(parent.context))
 
-        val viewHolder = ViewHolder(binding)
+        val progressDrawable = CircularProgressDrawable(binding.root.context)
+        progressDrawable.setStyle(CircularProgressDrawable.DEFAULT)
+        progressDrawable.start()
+        val viewHolder = ViewHolder(binding, progressDrawable)
         binding.root.setOnClickListener {
             val item = getItem(viewHolder.adapterPosition)
             listener.onItemClick(item)
         }
+
+
         return viewHolder
     }
 
@@ -43,9 +50,11 @@ class ArticleListAdapter(private val listener: OnItemClickListener) : ListAdapte
         holder.binding.text.setTextColor(if (story!!.isRead) readColor else unreadColor)
 
         if (story.multimedia.isNotEmpty()) {
+
             Glide.with(holder.binding.root)
                 .load(story.multimedia[0].url)
-                .placeholder(R.drawable.placeholder)
+                .placeholder(holder.progressDrawable)
+                .error(R.drawable.placeholder)
                 .centerCrop()
                 .into(holder.binding.imageView)
         } else {
