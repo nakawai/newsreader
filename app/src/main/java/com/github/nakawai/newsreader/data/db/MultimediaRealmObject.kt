@@ -1,4 +1,4 @@
-package com.github.nakawai.newsreader.model.db
+package com.github.nakawai.newsreader.data.db
 
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey

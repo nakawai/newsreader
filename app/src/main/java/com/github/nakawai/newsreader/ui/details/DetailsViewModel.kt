@@ -1,40 +1,35 @@
 package com.github.nakawai.newsreader.ui.details
 
-import androidx.lifecycle.*
-import com.github.nakawai.newsreader.model.Model
-import com.github.nakawai.newsreader.model.entity.Article
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import com.github.nakawai.newsreader.domain.NewsReaderAppService
+import com.github.nakawai.newsreader.domain.entity.Story
+import com.github.nakawai.newsreader.domain.entity.StoryUrl
 import kotlinx.coroutines.*
 
 /**
  * Presenter class for controlling the Main Activity
  */
 class DetailsViewModel(
-    private val model: Model,
-    private val storyId: String
+    private val appService: NewsReaderAppService,
+    private val storyUrl: StoryUrl
 ) : ViewModel() {
     private var job: Job? = null
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
-    private val _story = model.repository.observeArticle(storyId)
-    val story: LiveData<Article> = _story
+    private val _story = appService.observeArticle(storyUrl)
+    val story: LiveData<Story> = _story
 
     fun onResume() {
-        // Show story details
-        viewModelScope.launch {
-            _isLoading.value = true
-            //_story.value = model.getStory(storyId)
-
-            _isLoading.value = false
-        }
-
         // Mark story as read if screen is visible for 2 seconds
         job = GlobalScope.launch(Dispatchers.Main) {
             delay(2000)
-            model.markAsRead(storyId, true)
+            appService.markAsRead(storyUrl)
         }
-
     }
 
     fun onPause() {
@@ -42,9 +37,9 @@ class DetailsViewModel(
     }
 
     @Suppress("UNCHECKED_CAST")
-    class Factory(private val model: Model, private val storyId: String) : ViewModelProvider.NewInstanceFactory() {
+    class Factory(private val model: NewsReaderAppService, private val storyUrl: StoryUrl) : ViewModelProvider.NewInstanceFactory() {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            return DetailsViewModel(model, storyId) as T
+            return DetailsViewModel(model, storyUrl) as T
         }
 
     }

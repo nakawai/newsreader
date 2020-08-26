@@ -11,8 +11,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.github.nakawai.newsreader.R
 import com.github.nakawai.newsreader.databinding.ActivityDetailsBinding
-import com.github.nakawai.newsreader.model.Model
-import com.github.nakawai.newsreader.model.entity.Article
+import com.github.nakawai.newsreader.domain.NewsReaderAppService
+import com.github.nakawai.newsreader.domain.entity.Story
+import com.github.nakawai.newsreader.domain.entity.StoryUrl
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -20,7 +21,7 @@ class DetailsActivity : AppCompatActivity() {
     private val outputDateFormat = SimpleDateFormat("MM-dd-yyyy", Locale.US)
 
     private val viewModel: DetailsViewModel by viewModels {
-        DetailsViewModel.Factory(Model.instance!!, intent.extras?.getString(KEY_STORY_ID).orEmpty())
+        DetailsViewModel.Factory(NewsReaderAppService.instance!!, intent.extras?.get(KEY_STORY_URL) as StoryUrl)
     }
     private lateinit var binding: ActivityDetailsBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,9 +40,16 @@ class DetailsActivity : AppCompatActivity() {
     private fun observeViewModel() {
         viewModel.story.observe(this, Observer { article ->
             binding.toolbar.title = article.title
-            binding.detailsView.text = article.storyAbstract
+            binding.detailsView.text = article.abstract
             binding.dateView.text = article.publishedDate?.let { outputDateFormat.format(it) }
-            setRead(article.isRead)
+
+            if (article.isRead) {
+                binding.readView.setText(R.string.read)
+                binding.readView.animate().alpha(1.0f)
+            } else {
+                binding.readView.text = ""
+                binding.readView.animate().alpha(0f)
+            }
         })
 
         viewModel.isLoading.observe(this, Observer { isLoading ->
@@ -73,21 +81,11 @@ class DetailsActivity : AppCompatActivity() {
     }
 
 
-    fun setRead(read: Boolean) {
-        if (read) {
-            binding.readView.setText(R.string.read)
-            binding.readView.animate().alpha(1.0f)
-        } else {
-            binding.readView.text = ""
-            binding.readView.animate().alpha(0f)
-        }
-    }
-
     companion object {
-        private const val KEY_STORY_ID = "key.storyId"
-        fun getIntent(context: Context, story: Article): Intent {
+        private const val KEY_STORY_URL = "KEY_STORY_URL"
+        fun getIntent(context: Context, story: Story): Intent {
             val intent = Intent(context, DetailsActivity::class.java)
-            intent.putExtra(KEY_STORY_ID, story.url)
+            intent.putExtra(KEY_STORY_URL, story.url)
             return intent
         }
     }

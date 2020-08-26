@@ -1,4 +1,4 @@
-package com.github.nakawai.newsreader.model.entity
+package com.github.nakawai.newsreader.domain.entity
 
 // TODO Add fields
 data class Multimedia(

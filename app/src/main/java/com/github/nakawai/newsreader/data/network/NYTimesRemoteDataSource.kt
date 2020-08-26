@@ -1,9 +1,10 @@
-package com.github.nakawai.newsreader.model.network
+package com.github.nakawai.newsreader.data.network
 
 import com.facebook.stetho.okhttp3.StethoInterceptor
-import com.github.nakawai.newsreader.model.entity.Section
-import com.github.nakawai.newsreader.model.network.response.NYTimesResponse
-import com.github.nakawai.newsreader.model.network.response.NYTimesStoryResponseItem
+import com.github.nakawai.newsreader.data.network.response.StoryResponseItem
+import com.github.nakawai.newsreader.data.network.response.TopStoriesResponse
+import com.github.nakawai.newsreader.data.toData
+import com.github.nakawai.newsreader.domain.entity.Section
 import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Callback
@@ -35,18 +36,18 @@ class NYTimesRemoteDataSource {
         nyTimesApiService = retrofit.create(NYTimesApiService::class.java)
     }
 
-    suspend fun fetchData(section: Section): List<NYTimesStoryResponseItem> {
+    suspend fun fetchData(section: Section): List<StoryResponseItem> {
         return suspendCoroutine { continuation ->
-
-            nyTimesApiService.topStories(section.key, API_KEY)
-                .enqueue(object : Callback<NYTimesResponse> {
-                    override fun onResponse(call: Call<NYTimesResponse>, response: Response<NYTimesResponse>) {
-                        Timber.d("Success - Data received: %s", section.key)
+            val sectionKey = section.toData().value
+            nyTimesApiService.topStories(sectionKey, API_KEY)
+                .enqueue(object : Callback<TopStoriesResponse> {
+                    override fun onResponse(call: Call<TopStoriesResponse>, response: Response<TopStoriesResponse>) {
+                        Timber.d("Success - Data received: %s", sectionKey)
                         continuation.resume(response.body()!!.results!!)
                     }
 
-                    override fun onFailure(call: Call<NYTimesResponse>, t: Throwable) {
-                        Timber.d("Failure: Data not loaded: %s - %s", section.key, t.toString())
+                    override fun onFailure(call: Call<TopStoriesResponse>, t: Throwable) {
+                        Timber.d("Failure: Data not loaded: %s - %s", sectionKey, t.toString())
                         continuation.resumeWithException(t)
                     }
 

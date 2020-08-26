@@ -9,15 +9,17 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.github.nakawai.newsreader.databinding.ActivityArticlesBinding
-import com.github.nakawai.newsreader.model.Model
-import com.github.nakawai.newsreader.model.entity.Article
-import com.github.nakawai.newsreader.model.entity.Section
+import com.github.nakawai.newsreader.domain.NewsReaderAppService
+import com.github.nakawai.newsreader.domain.entity.Section
+import com.github.nakawai.newsreader.domain.entity.Story
 import com.github.nakawai.newsreader.ui.details.DetailsActivity
+import com.github.nakawai.newsreader.ui.translate
 
 class ArticlesActivity : AppCompatActivity(), ArticleListAdapter.OnItemClickListener {
     private lateinit var section: Section
     private val viewModel: ArticlesViewModel by viewModels {
-        ArticlesViewModel.Factory(Model.instance!!.repository, section)
+        // TODO use DI Container
+        ArticlesViewModel.Factory(NewsReaderAppService.instance!!, section)
     }
     private lateinit var adapter: ArticleListAdapter
     private lateinit var binding: ActivityArticlesBinding
@@ -44,7 +46,7 @@ class ArticlesActivity : AppCompatActivity(), ArticleListAdapter.OnItemClickList
 
         // After setup, notify presenter
         section = Section.valueOf(intent.extras!!.getString(EXTRA_SECTION)!!)
-        supportActionBar?.title = section.label
+        supportActionBar?.title = section.translate().label
 
         observeViewModel()
 
@@ -56,7 +58,7 @@ class ArticlesActivity : AppCompatActivity(), ArticleListAdapter.OnItemClickList
         viewModel.loadData(force = true)
     }
 
-    override fun onItemClick(story: Article) {
+    override fun onItemClick(story: Story) {
         val intent: Intent = DetailsActivity.getIntent(this, story)
         startActivity(intent)
     }
