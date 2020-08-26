@@ -10,7 +10,7 @@ import com.github.nakawai.newsreader.domain.entity.StoryUrl
  * Application Service
  */
 class NewsReaderAppService(private val repository: Repository) {
-    
+
     fun observeArticle(storyUrl: StoryUrl): LiveData<Story> {
         return repository.observeArticle(storyUrl)
     }
@@ -31,6 +31,10 @@ class NewsReaderAppService(private val repository: Repository) {
      */
     fun markAsRead(storyUrl: StoryUrl) {
         repository.updateStoryReadState(storyUrl, read = true)
+    }
+
+    fun loadSections(): List<Section> {
+        return Section.values().toList()
     }
 
 }

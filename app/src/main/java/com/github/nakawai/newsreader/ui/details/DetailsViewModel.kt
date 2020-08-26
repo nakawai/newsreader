@@ -1,6 +1,9 @@
 package com.github.nakawai.newsreader.ui.details
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.github.nakawai.newsreader.domain.NewsReaderAppService
 import com.github.nakawai.newsreader.domain.entity.Story
 import com.github.nakawai.newsreader.domain.entity.StoryUrl
@@ -39,14 +42,6 @@ class DetailsViewModel(
 
     fun onPause() {
         job?.cancel()
-    }
-
-    @Suppress("UNCHECKED_CAST")
-    class Factory(private val model: NewsReaderAppService) : ViewModelProvider.NewInstanceFactory() {
-        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            return DetailsViewModel(model) as T
-        }
-
     }
 
 }

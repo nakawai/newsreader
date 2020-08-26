@@ -1,16 +1,16 @@
 package com.github.nakawai.newsreader.ui.sections
 
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.github.nakawai.newsreader.databinding.ActivitySectionsBinding
 import com.github.nakawai.newsreader.domain.entity.Section
 import com.github.nakawai.newsreader.ui.articles.ArticlesActivity
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class SectionsActivity : AppCompatActivity(), SectionListAdapter.OnItemClickListener {
-    private val viewModel: SectionsViewModel by viewModels { SectionsViewModel.Factory() }
+    private val viewModel: SectionsViewModel by viewModel()
     private lateinit var adapter: SectionListAdapter
     private lateinit var binding: ActivitySectionsBinding
 
