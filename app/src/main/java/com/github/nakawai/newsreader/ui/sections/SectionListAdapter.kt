@@ -6,9 +6,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.github.nakawai.newsreader.databinding.ListItemSectionBinding
-import com.github.nakawai.newsreader.model.entity.Section
+import com.github.nakawai.newsreader.domain.entity.Section
+import com.github.nakawai.newsreader.ui.translate
 
-// ListView adapter class
 class SectionListAdapter(private val listener: OnItemClickListener) : ListAdapter<Section, SectionListAdapter.ViewHolder>(DIFF_CALLBACK) {
 
     interface OnItemClickListener {
@@ -30,7 +30,7 @@ class SectionListAdapter(private val listener: OnItemClickListener) : ListAdapte
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        val section = getItem(position)
+        val section = getItem(position).translate()
         holder.binding.imageView.setImageResource(section.iconResId)
         holder.binding.text.text = section.label
 
@@ -39,7 +39,7 @@ class SectionListAdapter(private val listener: OnItemClickListener) : ListAdapte
 
 private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Section>() {
     override fun areItemsTheSame(oldItem: Section, newItem: Section): Boolean {
-        return oldItem.key == newItem.key
+        return oldItem == newItem
     }
 
     override fun areContentsTheSame(oldItem: Section, newItem: Section): Boolean {

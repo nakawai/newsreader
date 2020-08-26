@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.github.nakawai.newsreader.model.entity.Section
+import com.github.nakawai.newsreader.domain.entity.Section
 
 /**
  * Presenter class for controlling the Main Activity

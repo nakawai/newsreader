@@ -1,4 +1,4 @@
-package com.github.nakawai.newsreader.model.db
+package com.github.nakawai.newsreader.data.db
 
 import io.realm.RealmList
 import io.realm.RealmObject
@@ -17,7 +17,7 @@ open class StoryRealmObject : RealmObject() {
 
     var title: String? = null
 
-    var storyAbstract: String? = null
+    var abstract: String? = null
 
     var byline: String? = null
 

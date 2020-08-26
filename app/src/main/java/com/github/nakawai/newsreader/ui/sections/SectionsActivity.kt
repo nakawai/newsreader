@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.github.nakawai.newsreader.databinding.ActivitySectionsBinding
-import com.github.nakawai.newsreader.model.entity.Section
+import com.github.nakawai.newsreader.domain.entity.Section
 import com.github.nakawai.newsreader.ui.articles.ArticlesActivity
 
 class SectionsActivity : AppCompatActivity(), SectionListAdapter.OnItemClickListener {

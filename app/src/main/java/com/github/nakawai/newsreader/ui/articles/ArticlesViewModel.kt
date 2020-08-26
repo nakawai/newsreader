@@ -1,9 +1,9 @@
 package com.github.nakawai.newsreader.ui.articles
 
 import androidx.lifecycle.*
-import com.github.nakawai.newsreader.model.NewsReaderAppService
-import com.github.nakawai.newsreader.model.entity.Article
-import com.github.nakawai.newsreader.model.entity.Section
+import com.github.nakawai.newsreader.domain.NewsReaderAppService
+import com.github.nakawai.newsreader.domain.entity.Section
+import com.github.nakawai.newsreader.domain.entity.Story
 import kotlinx.coroutines.launch
 
 /**
@@ -13,12 +13,12 @@ class ArticlesViewModel(
     private val appService: NewsReaderAppService,
     private val section: Section
 ) : ViewModel() {
-    private val _articles = MediatorLiveData<List<Article>>().apply {
+    private val _articles = MediatorLiveData<List<Story>>().apply {
         addSource(appService.observeArticlesBySection(section)) { articles ->
             value = articles
         }
     }
-    val storiesData: LiveData<List<Article>> = _articles
+    val storiesData: LiveData<List<Story>> = _articles
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading

@@ -1,6 +1,6 @@
-package com.github.nakawai.newsreader.model.network
+package com.github.nakawai.newsreader.data.network
 
-import com.github.nakawai.newsreader.model.network.response.NYTimesResponse
+import com.github.nakawai.newsreader.data.network.response.TopStoriesResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -14,5 +14,5 @@ interface NYTimesApiService {
     fun topStories(
         @Path("section") section: String,
         @Query(value = "api-key", encoded = true) apiKey: String
-    ): Call<NYTimesResponse>
+    ): Call<TopStoriesResponse>
 }

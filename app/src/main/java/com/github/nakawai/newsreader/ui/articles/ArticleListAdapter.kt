@@ -10,14 +10,14 @@ import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.github.nakawai.newsreader.R
 import com.github.nakawai.newsreader.databinding.ListItemArticleBinding
-import com.github.nakawai.newsreader.model.entity.Article
+import com.github.nakawai.newsreader.domain.entity.Story
 
 // ListView adapter class
-class ArticleListAdapter(private val listener: OnItemClickListener) : ListAdapter<Article, ArticleListAdapter.ViewHolder>(DIFF_CALLBACK) {
+class ArticleListAdapter(private val listener: OnItemClickListener) : ListAdapter<Story, ArticleListAdapter.ViewHolder>(DIFF_CALLBACK) {
 
 
     interface OnItemClickListener {
-        fun onItemClick(story: Article)
+        fun onItemClick(story: Story)
     }
 
     class ViewHolder(var binding: ListItemArticleBinding, val progressDrawable: CircularProgressDrawable) : RecyclerView.ViewHolder(binding.root)
@@ -42,7 +42,7 @@ class ArticleListAdapter(private val listener: OnItemClickListener) : ListAdapte
 
         val story = getItem(position)
         holder.binding.text.text = story.title
-        holder.binding.subTitle.text = story.storyAbstract
+        holder.binding.subTitle.text = story.abstract
 
         val context = holder.binding.root.context
         val readColor = ContextCompat.getColor(context, android.R.color.darker_gray)
@@ -67,12 +67,12 @@ class ArticleListAdapter(private val listener: OnItemClickListener) : ListAdapte
     }
 }
 
-private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Article>() {
-    override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
+private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Story>() {
+    override fun areItemsTheSame(oldItem: Story, newItem: Story): Boolean {
         return oldItem.url == newItem.url
     }
 
-    override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean {
+    override fun areContentsTheSame(oldItem: Story, newItem: Story): Boolean {
         return oldItem == newItem
     }
 

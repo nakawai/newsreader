@@ -1,4 +1,4 @@
-package com.github.nakawai.newsreader.model.db
+package com.github.nakawai.newsreader.data.db
 
 import androidx.lifecycle.LiveData
 import io.realm.Realm
@@ -32,5 +32,5 @@ abstract class LiveRealmData<T : RealmModel, U : Any> : LiveData<List<U>>() {
 
     abstract fun runQuery(realm: Realm): RealmResults<T>
 
-    abstract fun translate(original: T): U
+    abstract fun translate(realmObject: T): U
 }
