@@ -3,16 +3,18 @@ package com.github.nakawai.newsreader.data
 import androidx.lifecycle.LiveData
 import com.github.nakawai.newsreader.data.db.NYTimesLocalDataSource
 import com.github.nakawai.newsreader.data.network.NYTimesRemoteDataSource
-import com.github.nakawai.newsreader.domain.entity.Section
-import com.github.nakawai.newsreader.domain.entity.Story
-import com.github.nakawai.newsreader.domain.entity.StoryUrl
+import com.github.nakawai.newsreader.domain.story.Section
+import com.github.nakawai.newsreader.domain.story.Story
+import com.github.nakawai.newsreader.domain.story.StoryUrl
 import java.util.*
 import java.util.concurrent.TimeUnit
 
 class Repository {
     private val remote = NYTimesRemoteDataSource()
     private val local = NYTimesLocalDataSource()
-    private val lastNetworkRequestTimeMillis: MutableMap<Section, Long> = EnumMap(Section::class.java)
+    private val lastNetworkRequestTimeMillis: MutableMap<Section, Long> = EnumMap(
+        Section::class.java
+    )
 
     /**
      * Loads the news feed as well as all future updates.

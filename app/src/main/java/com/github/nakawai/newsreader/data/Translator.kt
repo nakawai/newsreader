@@ -4,10 +4,10 @@ import com.github.nakawai.newsreader.data.db.MultimediaRealmObject
 import com.github.nakawai.newsreader.data.db.StoryRealmObject
 import com.github.nakawai.newsreader.data.network.response.MultimediaResponseItem
 import com.github.nakawai.newsreader.data.network.response.StoryResponseItem
-import com.github.nakawai.newsreader.domain.entity.Multimedia
-import com.github.nakawai.newsreader.domain.entity.Section
-import com.github.nakawai.newsreader.domain.entity.Story
-import com.github.nakawai.newsreader.domain.entity.StoryUrl
+import com.github.nakawai.newsreader.domain.story.Multimedia
+import com.github.nakawai.newsreader.domain.story.Section
+import com.github.nakawai.newsreader.domain.story.Story
+import com.github.nakawai.newsreader.domain.story.StoryUrl
 import io.realm.RealmList
 
 class Translator {

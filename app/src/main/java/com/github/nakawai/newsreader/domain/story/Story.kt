@@ -1,4 +1,4 @@
-package com.github.nakawai.newsreader.domain.entity
+package com.github.nakawai.newsreader.domain.story
 
 import java.util.*
 

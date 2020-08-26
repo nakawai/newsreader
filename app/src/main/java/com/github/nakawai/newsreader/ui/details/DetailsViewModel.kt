@@ -4,16 +4,16 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.github.nakawai.newsreader.domain.NewsReaderAppService
-import com.github.nakawai.newsreader.domain.entity.Story
-import com.github.nakawai.newsreader.domain.entity.StoryUrl
+import com.github.nakawai.newsreader.domain.StoryAppService
+import com.github.nakawai.newsreader.domain.story.Story
+import com.github.nakawai.newsreader.domain.story.StoryUrl
 import kotlinx.coroutines.*
 
 /**
  * Presenter class for controlling the Main Activity
  */
 class DetailsViewModel(
-    private val appService: NewsReaderAppService
+    private val appService: StoryAppService
 ) : ViewModel() {
     private lateinit var storyUrl: StoryUrl
     private var job: Job? = null

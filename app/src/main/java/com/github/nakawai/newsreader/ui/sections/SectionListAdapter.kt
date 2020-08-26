@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.github.nakawai.newsreader.databinding.ListItemSectionBinding
-import com.github.nakawai.newsreader.domain.entity.Section
+import com.github.nakawai.newsreader.domain.story.Section
 import com.github.nakawai.newsreader.ui.translate
 
 class SectionListAdapter(private val listener: OnItemClickListener) : ListAdapter<Section, SectionListAdapter.ViewHolder>(DIFF_CALLBACK) {

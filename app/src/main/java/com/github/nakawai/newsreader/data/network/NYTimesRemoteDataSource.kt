@@ -4,7 +4,7 @@ import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.github.nakawai.newsreader.data.network.response.StoryResponseItem
 import com.github.nakawai.newsreader.data.network.response.TopStoriesResponse
 import com.github.nakawai.newsreader.data.toData
-import com.github.nakawai.newsreader.domain.entity.Section
+import com.github.nakawai.newsreader.domain.story.Section
 import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Callback
