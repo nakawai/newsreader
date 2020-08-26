@@ -42,7 +42,7 @@ class ArticleListAdapter(private val listener: OnItemClickListener) : ListAdapte
 
         val story = getItem(position)
         holder.binding.text.text = story.title
-        holder.binding.subTitle.text = story.abstract
+        holder.binding.subTitle.text = story.storyAbstract
 
         val context = holder.binding.root.context
         val readColor = ContextCompat.getColor(context, android.R.color.darker_gray)

@@ -17,7 +17,7 @@ open class StoryRealmObject : RealmObject() {
 
     var title: String? = null
 
-    var abstract: String? = null
+    var storyAbstract: String? = null
 
     var byline: String? = null
 

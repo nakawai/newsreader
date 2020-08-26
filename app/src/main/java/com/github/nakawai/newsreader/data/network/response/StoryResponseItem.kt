@@ -18,7 +18,7 @@ class StoryResponseItem {
     var title: String? = null
 
     @JsonProperty("abstract")
-    var abstract: String? = null
+    var storyAbstract: String? = null
 
     @JsonProperty("url")
     var url: String? = null

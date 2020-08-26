@@ -9,22 +9,8 @@ import com.github.nakawai.newsreader.domain.entity.StoryUrl
 /**
  * Application Service
  */
-class NewsReaderAppService private constructor(private val repository: Repository) {
-    companion object {
-
-        // TODO This could be replaced by Dependency Injection for easier testing
-        var instance: NewsReaderAppService? = null
-            get() {
-                if (field == null) {
-                    val repository = Repository()
-                    field = NewsReaderAppService(repository)
-                }
-                return field
-            }
-            private set
-
-    }
-
+class NewsReaderAppService(private val repository: Repository) {
+    
     fun observeArticle(storyUrl: StoryUrl): LiveData<Story> {
         return repository.observeArticle(storyUrl)
     }

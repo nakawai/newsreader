@@ -1,28 +1,22 @@
 package com.github.nakawai.newsreader.ui.details
 
-import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.github.nakawai.newsreader.R
 import com.github.nakawai.newsreader.databinding.ActivityDetailsBinding
-import com.github.nakawai.newsreader.domain.NewsReaderAppService
 import com.github.nakawai.newsreader.domain.entity.Story
-import com.github.nakawai.newsreader.domain.entity.StoryUrl
+import org.koin.android.viewmodel.ext.android.viewModel
 import java.text.SimpleDateFormat
 import java.util.*
 
 class DetailsActivity : AppCompatActivity() {
     private val outputDateFormat = SimpleDateFormat("MM-dd-yyyy", Locale.US)
 
-    private val viewModel: DetailsViewModel by viewModels {
-        DetailsViewModel.Factory(NewsReaderAppService.instance!!, intent.extras?.get(KEY_STORY_URL) as StoryUrl)
-    }
+    private val viewModel: DetailsViewModel by viewModel()
     private lateinit var binding: ActivityDetailsBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,15 +26,16 @@ class DetailsActivity : AppCompatActivity() {
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        binding.loaderView.visibility = View.VISIBLE
 
         observeViewModel()
+
+        viewModel.start(intent.getParcelableExtra(KEY_STORY_URL)!!)
     }
 
     private fun observeViewModel() {
         viewModel.story.observe(this, Observer { article ->
             binding.toolbar.title = article.title
-            binding.detailsView.text = article.abstract
+            binding.detailsView.text = article.storyAbstract
             binding.dateView.text = article.publishedDate?.let { outputDateFormat.format(it) }
 
             if (article.isRead) {
@@ -53,20 +48,7 @@ class DetailsActivity : AppCompatActivity() {
         })
 
         viewModel.isLoading.observe(this, Observer { isLoading ->
-            if (isLoading) {
-                binding.loaderView.alpha = 1.0f
-                binding.loaderView.visibility = View.VISIBLE
-            } else {
-                if (binding.loaderView.visibility != View.GONE) {
-                    binding.loaderView.animate().alpha(0f)
-                        .setListener(object : AnimatorListenerAdapter() {
-                            override fun onAnimationEnd(animation: Animator) {
-                                binding.loaderView.visibility = View.GONE
-                            }
-                        })
-                }
-            }
-
+            binding.loaderView.visibility = if (isLoading) View.VISIBLE else View.GONE
         })
     }
 
