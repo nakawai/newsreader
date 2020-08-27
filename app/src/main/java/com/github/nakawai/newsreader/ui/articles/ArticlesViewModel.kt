@@ -36,11 +36,4 @@ class ArticlesViewModel(
         }
     }
 
-
-    @Suppress("UNCHECKED_CAST")
-    class Factory(private val appService: StoryAppService) : ViewModelProvider.NewInstanceFactory() {
-        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            return ArticlesViewModel(appService) as T
-        }
-    }
 }

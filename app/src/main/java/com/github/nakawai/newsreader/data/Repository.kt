@@ -55,8 +55,8 @@ class Repository {
         return local.observeArticles(section)
     }
 
-    fun observeArticle(storyId: StoryUrl): LiveData<Story> {
-        return local.observeStory(storyId)
+    fun observeArticle(storyUrl: StoryUrl): LiveData<Story> {
+        return local.observeStory(storyUrl)
     }
 
     companion object {
