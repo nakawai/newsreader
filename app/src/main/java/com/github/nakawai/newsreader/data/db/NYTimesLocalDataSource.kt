@@ -1,7 +1,6 @@
 package com.github.nakawai.newsreader.data.db
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.github.nakawai.newsreader.data.Translator
 import com.github.nakawai.newsreader.data.network.response.StoryResponseItem
 import com.github.nakawai.newsreader.data.toData
@@ -13,15 +12,15 @@ import io.realm.Realm
 import io.realm.RealmChangeListener
 import io.realm.RealmResults
 import io.realm.Sort
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.suspendCancellableCoroutine
-import kotlinx.coroutines.withContext
 import timber.log.Timber
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
+import kotlin.coroutines.suspendCoroutine
 
 // TODO close Realm instance
 class NYTimesLocalDataSource {
+    private val realm = Realm.getDefaultInstance()
 
     // Converts data into a usable format and save it to Realm
     suspend fun saveData(section: Section, responseItems: List<StoryResponseItem>) {
@@ -29,7 +28,6 @@ class NYTimesLocalDataSource {
 
         suspendCancellableCoroutine<Unit> { continuation ->
 
-            val realm: Realm = Realm.getDefaultInstance()
             realm.executeTransactionAsync({ r: Realm ->
                 for (responseItem in responseItems) {
                     // Find existing responseItem in Realm (if any)
@@ -61,24 +59,29 @@ class NYTimesLocalDataSource {
 
     // Return the data in Realm. The query result will be automatically updated when the network requests
     // save data in Realm
-    suspend fun readData(section: Section): List<Story> = withContext(Dispatchers.IO) {
-
-        val realm: Realm = Realm.getDefaultInstance()
+    suspend fun readData(section: Section): List<Story> = suspendCoroutine { continuation ->
         val results = realm.where(StoryRealmObject::class.java)
             .equalTo(StoryRealmObject.API_SECTION, section.toData().value)
             .sort(StoryRealmObject.PUBLISHED_DATE, Sort.DESCENDING)
-            .findAll()
+            .findAllAsync()
 
-        val list = mutableListOf<Story>()
-        results.forEach { story ->
-            list.add(story.translate())
+        val listener = RealmChangeListener<RealmResults<StoryRealmObject>> {
+            val list = mutableListOf<Story>()
+            results.forEach { story ->
+                list.add(story.translate())
+            }
+
+            results.removeAllChangeListeners()
+            continuation.resume(list)
         }
 
-        return@withContext list
+        results.addChangeListener(listener)
+
+
     }
 
     fun observeArticles(section: Section): LiveData<List<Story>> {
-        return object : LiveRealmData<StoryRealmObject, Story>() {
+        return object : LiveRealmListData<StoryRealmObject, Story>(realm) {
             override fun runQuery(realm: Realm): RealmResults<StoryRealmObject> {
                 return realm.where(StoryRealmObject::class.java)
                     .sort(StoryRealmObject.PUBLISHED_DATE, Sort.DESCENDING)
@@ -94,38 +97,26 @@ class NYTimesLocalDataSource {
 
 
     fun observeStory(storyUrl: StoryUrl): LiveData<Story> {
-        val realm: Realm = Realm.getDefaultInstance()
-        val realmResults = realm.where(StoryRealmObject::class.java)
-            .equalTo(StoryRealmObject.URL, storyUrl.value)
-            .findAllAsync()
 
-        val liveData = MutableLiveData<Story>()
+        return object : LiveRealmData<StoryRealmObject, Story>(realm) {
+            override fun runQuery(realm: Realm): RealmResults<StoryRealmObject> {
 
-        val listener = RealmChangeListener<RealmResults<StoryRealmObject>> { results ->
-            val result = results[0]
-            if (result != null && result.isValid && result.isLoaded) {
-                liveData.postValue(result.translate())
-            } else {
-                throw IllegalStateException("invalid story Id")
+                return realm.where(StoryRealmObject::class.java)
+                    .equalTo(StoryRealmObject.URL, storyUrl.value)
+                    .findAllAsync()
             }
+
+            override fun translate(realmObject: StoryRealmObject): Story {
+                return realmObject.translate()
+            }
+
         }
 
-        // TODO remove listener
-        realmResults.addChangeListener(listener)
-
-        return liveData
-    }
-
-
-    fun close() {
-        val realm: Realm = Realm.getDefaultInstance()
-        realm.close()
     }
 
     fun updateStoryReadState(storyUrl: StoryUrl, read: Boolean) {
 
-        val instance: Realm = Realm.getDefaultInstance()
-        instance.executeTransactionAsync({ realm ->
+        realm.executeTransactionAsync({ realm ->
             val persistedStory = realm.where(StoryRealmObject::class.java)
                 .equalTo(StoryRealmObject.URL, storyUrl.value)
                 .findFirst()
@@ -135,9 +126,15 @@ class NYTimesLocalDataSource {
             } else {
                 Timber.e("Trying to update a story that no longer exists: %1\$s", storyUrl)
             }
+
+            //realm.close()
         }, { throwable ->
             Timber.e(throwable, "Failed to save data.")
         })
+    }
+
+    fun close() {
+        realm.close()
     }
 
 }
