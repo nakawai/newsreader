@@ -4,23 +4,18 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.github.nakawai.newsreader.databinding.ActivityArticlesBinding
-import com.github.nakawai.newsreader.domain.NewsReaderAppService
-import com.github.nakawai.newsreader.domain.entity.Section
-import com.github.nakawai.newsreader.domain.entity.Story
+import com.github.nakawai.newsreader.domain.story.Section
+import com.github.nakawai.newsreader.domain.story.Story
 import com.github.nakawai.newsreader.ui.details.DetailsActivity
 import com.github.nakawai.newsreader.ui.translate
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class ArticlesActivity : AppCompatActivity(), ArticleListAdapter.OnItemClickListener {
-    private lateinit var section: Section
-    private val viewModel: ArticlesViewModel by viewModels {
-        // TODO use DI Container
-        ArticlesViewModel.Factory(NewsReaderAppService.instance!!, section)
-    }
+    private val viewModel: ArticlesViewModel by viewModel()
     private lateinit var adapter: ArticleListAdapter
     private lateinit var binding: ActivityArticlesBinding
 
@@ -45,11 +40,12 @@ class ArticlesActivity : AppCompatActivity(), ArticleListAdapter.OnItemClickList
         binding.emptyView.setOnRefreshListener(this::onRefresh)
 
         // After setup, notify presenter
-        section = Section.valueOf(intent.extras!!.getString(EXTRA_SECTION)!!)
+        val section = Section.valueOf(intent.extras!!.getString(EXTRA_SECTION)!!)
         supportActionBar?.title = section.translate().label
 
         observeViewModel()
 
+        viewModel.start(section)
         viewModel.loadData(force = false)
 
     }

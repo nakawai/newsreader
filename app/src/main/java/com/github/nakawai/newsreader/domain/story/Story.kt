@@ -1,4 +1,4 @@
-package com.github.nakawai.newsreader.domain.entity
+package com.github.nakawai.newsreader.domain.story
 
 import java.util.*
 
@@ -6,7 +6,7 @@ data class Story(
 
     val title: String,
 
-    val abstract: String,
+    val storyAbstract: String,
 
     val url: StoryUrl,
 

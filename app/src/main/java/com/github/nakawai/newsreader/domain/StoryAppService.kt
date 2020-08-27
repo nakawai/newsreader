@@ -2,28 +2,14 @@ package com.github.nakawai.newsreader.domain
 
 import androidx.lifecycle.LiveData
 import com.github.nakawai.newsreader.data.Repository
-import com.github.nakawai.newsreader.domain.entity.Section
-import com.github.nakawai.newsreader.domain.entity.Story
-import com.github.nakawai.newsreader.domain.entity.StoryUrl
+import com.github.nakawai.newsreader.domain.story.Section
+import com.github.nakawai.newsreader.domain.story.Story
+import com.github.nakawai.newsreader.domain.story.StoryUrl
 
 /**
  * Application Service
  */
-class NewsReaderAppService private constructor(private val repository: Repository) {
-    companion object {
-
-        // TODO This could be replaced by Dependency Injection for easier testing
-        var instance: NewsReaderAppService? = null
-            get() {
-                if (field == null) {
-                    val repository = Repository()
-                    field = NewsReaderAppService(repository)
-                }
-                return field
-            }
-            private set
-
-    }
+class StoryAppService(private val repository: Repository) {
 
     fun observeArticle(storyUrl: StoryUrl): LiveData<Story> {
         return repository.observeArticle(storyUrl)
@@ -45,6 +31,10 @@ class NewsReaderAppService private constructor(private val repository: Repositor
      */
     fun markAsRead(storyUrl: StoryUrl) {
         repository.updateStoryReadState(storyUrl, read = true)
+    }
+
+    fun loadSections(): List<Section> {
+        return Section.values().toList()
     }
 
 }

@@ -4,10 +4,10 @@ import com.github.nakawai.newsreader.data.db.MultimediaRealmObject
 import com.github.nakawai.newsreader.data.db.StoryRealmObject
 import com.github.nakawai.newsreader.data.network.response.MultimediaResponseItem
 import com.github.nakawai.newsreader.data.network.response.StoryResponseItem
-import com.github.nakawai.newsreader.domain.entity.Multimedia
-import com.github.nakawai.newsreader.domain.entity.Section
-import com.github.nakawai.newsreader.domain.entity.Story
-import com.github.nakawai.newsreader.domain.entity.StoryUrl
+import com.github.nakawai.newsreader.domain.story.Multimedia
+import com.github.nakawai.newsreader.domain.story.Section
+import com.github.nakawai.newsreader.domain.story.Story
+import com.github.nakawai.newsreader.domain.story.StoryUrl
 import io.realm.RealmList
 
 class Translator {
@@ -20,7 +20,7 @@ class Translator {
             return Story(
                 title = realmObject.title.orEmpty(),
                 url = StoryUrl(realmObject.url.orEmpty()),
-                abstract = realmObject.abstract.orEmpty(),
+                storyAbstract = realmObject.storyAbstract.orEmpty(),
                 multimedia = realmObject.multimedia?.map { Multimedia(it.url.orEmpty()) } ?: emptyList(),
                 publishedDate = realmObject.publishedDate,
                 isRead = realmObject.isRead,
@@ -34,7 +34,7 @@ class Translator {
             realmObject.section = response.section
             realmObject.subsection = response.subsection
             realmObject.title = response.title
-            realmObject.abstract = response.abstract
+            realmObject.storyAbstract = response.storyAbstract
             realmObject.url = response.url
             realmObject.byline = response.byline
             realmObject.itemType = response.itemType

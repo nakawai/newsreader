@@ -6,9 +6,9 @@ import com.github.nakawai.newsreader.data.Translator
 import com.github.nakawai.newsreader.data.network.response.StoryResponseItem
 import com.github.nakawai.newsreader.data.toData
 import com.github.nakawai.newsreader.data.translate
-import com.github.nakawai.newsreader.domain.entity.Section
-import com.github.nakawai.newsreader.domain.entity.Story
-import com.github.nakawai.newsreader.domain.entity.StoryUrl
+import com.github.nakawai.newsreader.domain.story.Section
+import com.github.nakawai.newsreader.domain.story.Story
+import com.github.nakawai.newsreader.domain.story.StoryUrl
 import io.realm.Realm
 import io.realm.RealmChangeListener
 import io.realm.RealmResults
