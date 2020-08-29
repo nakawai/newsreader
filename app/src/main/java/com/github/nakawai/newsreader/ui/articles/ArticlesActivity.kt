@@ -7,9 +7,11 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
+import com.github.nakawai.newsreader.R
 import com.github.nakawai.newsreader.databinding.ActivityArticlesBinding
 import com.github.nakawai.newsreader.domain.story.Section
 import com.github.nakawai.newsreader.domain.story.Story
+import com.github.nakawai.newsreader.ui.ErrorDialogFragment
 import com.github.nakawai.newsreader.ui.details.DetailsActivity
 import com.github.nakawai.newsreader.ui.translate
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -79,6 +81,11 @@ class ArticlesActivity : AppCompatActivity(), ArticleListAdapter.OnItemClickList
         viewModel.isLoading.observe(this, Observer {
             binding.refreshView.isRefreshing = it
             binding.emptyView.isRefreshing = it
+        })
+
+        viewModel.error.observe(this, Observer {
+            ErrorDialogFragment.newInstance(getString(R.string.dialog_error_title), it.message.orEmpty())
+                .show(supportFragmentManager, ErrorDialogFragment.TAG)
         })
     }
 

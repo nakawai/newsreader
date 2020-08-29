@@ -18,6 +18,10 @@ class ArticlesViewModel(
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
+
+    private val _error = MutableLiveData<Throwable>()
+    val error: LiveData<Throwable> = _error
+
     private lateinit var section: Section
 
     fun start(section: Section) {
@@ -31,7 +35,14 @@ class ArticlesViewModel(
         _isLoading.value = true
 
         viewModelScope.launch {
-            _articles.value = appService.loadNewsFeed(section, force)
+            runCatching {
+                appService.loadNewsFeed(section, force)
+            }.onSuccess {
+                _articles.value = it
+            }.onFailure {
+                _error.value = it
+            }
+
             _isLoading.value = false
         }
     }

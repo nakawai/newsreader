@@ -1,20 +1,16 @@
 package com.github.nakawai.newsreader.data.network
 
+
 import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.github.nakawai.newsreader.data.network.response.StoryResponseItem
-import com.github.nakawai.newsreader.data.network.response.TopStoriesResponse
 import com.github.nakawai.newsreader.data.toData
 import com.github.nakawai.newsreader.domain.story.Section
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.jackson.JacksonConverterFactory
 import timber.log.Timber
-import kotlin.coroutines.resume
-import kotlin.coroutines.resumeWithException
-import kotlin.coroutines.suspendCoroutine
 
 /**
  * Class that handles network requests for the New York Times API
@@ -36,24 +32,16 @@ class NYTimesRemoteDataSource {
         nyTimesApiService = retrofit.create(NYTimesApiService::class.java)
     }
 
-    suspend fun fetchData(section: Section): List<StoryResponseItem> {
-        return suspendCoroutine { continuation ->
-            val sectionKey = section.toData().value
-            nyTimesApiService.topStories(sectionKey, API_KEY)
-                .enqueue(object : Callback<TopStoriesResponse> {
-                    override fun onResponse(call: Call<TopStoriesResponse>, response: Response<TopStoriesResponse>) {
-                        Timber.d("Success - Data received: %s", sectionKey)
-                        continuation.resume(response.body()!!.results!!)
-                    }
+    suspend fun fetchData(section: Section): List<StoryResponseItem> = withContext(Dispatchers.IO) {
+        val sectionKey = section.toData().value
+        val response = nyTimesApiService.topStories(sectionKey, API_KEY)
 
-                    override fun onFailure(call: Call<TopStoriesResponse>, t: Throwable) {
-                        Timber.d("Failure: Data not loaded: %s - %s", sectionKey, t.toString())
-                        continuation.resumeWithException(t)
-                    }
-
-
-                })
-
+        if (response.isSuccessful) {
+            Timber.d("Success - Data received: %s", sectionKey)
+            return@withContext response.body()!!.results!!
+        } else {
+            Timber.d("Failure: Data not loaded: %s", sectionKey)
+            throw RuntimeException()
         }
     }
 
