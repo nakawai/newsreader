@@ -9,9 +9,7 @@ import com.github.nakawai.newsreader.domain.story.StoryUrl
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-class Repository {
-    private val remote = NYTimesRemoteDataSource()
-    private val local = NYTimesLocalDataSource()
+class Repository(private val local: NYTimesLocalDataSource, private val remote: NYTimesRemoteDataSource) {
     private val lastNetworkRequestTimeMillis: MutableMap<Section, Long> = EnumMap(
         Section::class.java
     )
