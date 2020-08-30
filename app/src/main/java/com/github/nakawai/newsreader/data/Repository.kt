@@ -57,6 +57,10 @@ class Repository(private val local: NYTimesLocalDataSource, private val remote: 
         return local.observeStory(storyUrl)
     }
 
+    fun loadSections(): List<Section> {
+        return Section.values().toList()
+    }
+
     companion object {
         private const val MINIMUM_NETWORK_WAIT_SEC: Long = 120 // Minimum 2 minutes between each network request
     }

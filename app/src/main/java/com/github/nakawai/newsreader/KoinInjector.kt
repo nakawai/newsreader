@@ -3,7 +3,6 @@ package com.github.nakawai.newsreader
 import com.github.nakawai.newsreader.data.Repository
 import com.github.nakawai.newsreader.data.db.NYTimesLocalDataSourceImpl
 import com.github.nakawai.newsreader.data.network.NYTimesRemoteDataSourceImpl
-import com.github.nakawai.newsreader.domain.StoryAppService
 import com.github.nakawai.newsreader.ui.articles.ArticlesViewModel
 import com.github.nakawai.newsreader.ui.details.DetailsViewModel
 import com.github.nakawai.newsreader.ui.sections.SectionsViewModel
@@ -14,7 +13,6 @@ val appModule = module {
     single { NYTimesRemoteDataSourceImpl() }
     single { NYTimesLocalDataSourceImpl() }
     single { Repository(get(), get()) }
-    single { StoryAppService(get()) }
     viewModel { SectionsViewModel(get()) }
     viewModel { ArticlesViewModel(get()) }
     viewModel { DetailsViewModel(get()) }

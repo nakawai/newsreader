@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.github.nakawai.newsreader.domain.StoryAppService
+import com.github.nakawai.newsreader.data.Repository
 import com.github.nakawai.newsreader.domain.story.Story
 import com.github.nakawai.newsreader.domain.story.StoryUrl
 import kotlinx.coroutines.*
@@ -13,7 +13,7 @@ import kotlinx.coroutines.*
  * Presenter class for controlling the Main Activity
  */
 class DetailsViewModel(
-    private val appService: StoryAppService
+    private val repository: Repository
 ) : ViewModel() {
     private lateinit var storyUrl: StoryUrl
     private var job: Job? = null
@@ -26,7 +26,7 @@ class DetailsViewModel(
 
     fun start(storyUrl: StoryUrl) {
         this.storyUrl = storyUrl
-        _story.addSource(appService.observeArticle(storyUrl)) {
+        _story.addSource(repository.observeArticle(storyUrl)) {
             _story.value = it
             _isLoading.value = false
         }
@@ -36,7 +36,7 @@ class DetailsViewModel(
         // Mark story as read if screen is visible for 2 seconds
         job = GlobalScope.launch(Dispatchers.Main) {
             delay(2000)
-            appService.markAsRead(storyUrl)
+            repository.updateStoryReadState(storyUrl, read = true)
         }
     }
 

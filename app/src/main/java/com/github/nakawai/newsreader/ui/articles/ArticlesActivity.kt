@@ -62,7 +62,7 @@ class ArticlesActivity : AppCompatActivity(), ArticleListAdapter.OnItemClickList
     }
 
     private fun observeViewModel() {
-        viewModel.storiesData.observe(this, Observer {
+        viewModel.stories.observe(this, Observer {
             if (!initialized) {
                 initialized = true
                 return@Observer
