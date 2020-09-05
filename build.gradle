@@ -4,7 +4,7 @@ buildscript {
     ext.kotlin_version = '1.4.0'
     ext.koin_version = '2.1.6'
     repositories {
-        google()
+        google() // Google's Maven repository
         jcenter()
         maven {
             url 'http://oss.jfrog.org/artifactory/oss-snapshot-local'
@@ -20,6 +20,7 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "io.realm:realm-gradle-plugin:7.0.2"
         classpath "org.koin:koin-gradle-plugin:2.1.6"
+        classpath 'com.google.gms:google-services:4.3.3' // Firebase
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -33,11 +34,6 @@ allprojects {
         maven {
             url 'http://oss.jfrog.org/artifactory/oss-snapshot-local'
         }
-
-        // TODO Stetho-realm
-//        maven {
-//            url 'https://github.com/WickeDev/stetho-realm/raw/master/maven-repo'
-//        }
 
     }
 }
