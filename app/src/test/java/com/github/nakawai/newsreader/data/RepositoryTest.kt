@@ -35,7 +35,7 @@ class RepositoryTest {
             val repo = RepositoryImpl(mockk(), mockk())
 
             // Act
-            repo.loadNewsFeed(Section.HOME, forceReload = false)
+            //repo.loadNewsFeed(Section.HOME, forceReload = false)
 
             //val actual = repo.timeSinceLastNetworkRequest(Section.HOME)
 
