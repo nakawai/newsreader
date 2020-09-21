@@ -34,7 +34,8 @@ android {
 
         }
         release {
-            storeFile file('../storeFiles/release.keystore')
+            def HOME = System.getenv()["HOME"]
+            storeFile file("${HOME}/storeFiles/release.keystore")
             storePassword System.getenv("NEWS_READER_STORE_PASSWORD")
             keyAlias 'newsreader'
             keyPassword System.getenv("NEWS_READER_KEY_PASSWORD")
