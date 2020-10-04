@@ -1,7 +1,7 @@
 package com.github.nakawai.newsreader.data.db
 
 import androidx.lifecycle.LiveData
-import com.github.nakawai.newsreader.data.Translator
+import com.github.nakawai.newsreader.data.DataTranslator
 import com.github.nakawai.newsreader.data.network.response.StoryResponseItem
 import com.github.nakawai.newsreader.data.toData
 import com.github.nakawai.newsreader.data.translate
@@ -44,7 +44,7 @@ class NYTimesLocalDataSourceImpl : NYTimesLocalDataSource {
                             // TODO Update content
                         }
                     } else {
-                        val story = Translator.translate(responseItem)
+                        val story = DataTranslator.translate(responseItem)
                         story.apiSection = section.toData().value
                         r.copyToRealmOrUpdate(story)
                     }
