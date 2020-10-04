@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
         <activity
-            android:name=".ui.sections.SectionsActivity"
+            android:name=".presentation.sections.SectionsActivity"
             android:label="@string/app_name"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar">
@@ -24,12 +24,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.articles.ArticlesActivity"
-            android:parentActivityName=".ui.sections.SectionsActivity"
+            android:name=".presentation.articles.ArticlesActivity"
+            android:parentActivityName=".presentation.sections.SectionsActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name=".ui.details.DetailsActivity"
-            android:parentActivityName=".ui.articles.ArticlesActivity" />
+            android:name=".presentation.details.DetailsActivity"
+            android:parentActivityName=".presentation.articles.ArticlesActivity" />
     </application>
 
 </manifest>

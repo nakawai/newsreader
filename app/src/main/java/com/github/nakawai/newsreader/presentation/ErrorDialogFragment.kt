@@ -1,4 +1,4 @@
-package com.github.nakawai.newsreader.ui
+package com.github.nakawai.newsreader.presentation
 
 import android.app.Dialog
 import android.os.Bundle

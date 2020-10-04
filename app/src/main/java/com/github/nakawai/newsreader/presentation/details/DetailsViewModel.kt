@@ -1,4 +1,4 @@
-package com.github.nakawai.newsreader.ui.details
+package com.github.nakawai.newsreader.presentation.details
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

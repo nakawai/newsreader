@@ -6,9 +6,9 @@ import com.github.nakawai.newsreader.data.db.NYTimesLocalDataSource
 import com.github.nakawai.newsreader.data.db.NYTimesLocalDataSourceImpl
 import com.github.nakawai.newsreader.data.network.NYTimesRemoteDataSource
 import com.github.nakawai.newsreader.data.network.NYTimesRemoteDataSourceImpl
-import com.github.nakawai.newsreader.ui.articles.ArticlesViewModel
-import com.github.nakawai.newsreader.ui.details.DetailsViewModel
-import com.github.nakawai.newsreader.ui.sections.SectionsViewModel
+import com.github.nakawai.newsreader.presentation.articles.ArticlesViewModel
+import com.github.nakawai.newsreader.presentation.details.DetailsViewModel
+import com.github.nakawai.newsreader.presentation.sections.SectionsViewModel
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 

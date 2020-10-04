@@ -1,4 +1,4 @@
-package com.github.nakawai.newsreader.ui.sections
+package com.github.nakawai.newsreader.presentation.sections
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -6,9 +6,6 @@ import androidx.lifecycle.ViewModel
 import com.github.nakawai.newsreader.data.Repository
 import com.github.nakawai.newsreader.domain.story.Section
 
-/**
- * Presenter class for controlling the Main Activity
- */
 class SectionsViewModel(private val repository: Repository) : ViewModel() {
 
     private val _sections = MutableLiveData<List<Section>>()

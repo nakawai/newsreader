@@ -1,4 +1,4 @@
-package com.github.nakawai.newsreader.ui.details
+package com.github.nakawai.newsreader.presentation.details
 
 import android.content.Context
 import android.content.Intent

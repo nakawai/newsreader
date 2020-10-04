@@ -1,4 +1,4 @@
-package com.github.nakawai.newsreader.ui.articles
+package com.github.nakawai.newsreader.presentation.articles
 
 import androidx.lifecycle.*
 import com.github.nakawai.newsreader.data.Repository
