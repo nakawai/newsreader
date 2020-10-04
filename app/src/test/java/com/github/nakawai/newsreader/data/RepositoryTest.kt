@@ -1,6 +1,5 @@
 package com.github.nakawai.newsreader.data
 
-import com.github.nakawai.newsreader.domain.story.Section
 import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
