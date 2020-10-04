@@ -1,4 +1,4 @@
-package com.github.nakawai.newsreader.domain.story
+package com.github.nakawai.newsreader.domain.entities
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

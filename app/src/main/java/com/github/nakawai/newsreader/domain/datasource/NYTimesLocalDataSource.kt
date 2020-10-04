@@ -1,10 +1,10 @@
-package com.github.nakawai.newsreader.data.db
+package com.github.nakawai.newsreader.domain.datasource
 
 import androidx.lifecycle.LiveData
 import com.github.nakawai.newsreader.data.network.response.StoryResponseItem
-import com.github.nakawai.newsreader.domain.story.Section
-import com.github.nakawai.newsreader.domain.story.Story
-import com.github.nakawai.newsreader.domain.story.StoryUrl
+import com.github.nakawai.newsreader.domain.entities.Section
+import com.github.nakawai.newsreader.domain.entities.Story
+import com.github.nakawai.newsreader.domain.entities.StoryUrl
 
 interface NYTimesLocalDataSource {
     suspend fun saveData(section: Section, responseItems: List<StoryResponseItem>)

@@ -4,7 +4,8 @@ package com.github.nakawai.newsreader.data.network
 import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.github.nakawai.newsreader.data.network.response.StoryResponseItem
 import com.github.nakawai.newsreader.data.toData
-import com.github.nakawai.newsreader.domain.story.Section
+import com.github.nakawai.newsreader.domain.datasource.NYTimesRemoteDataSource
+import com.github.nakawai.newsreader.domain.entities.Section
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient

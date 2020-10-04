@@ -1,4 +1,4 @@
-package com.github.nakawai.newsreader.ui.articles
+package com.github.nakawai.newsreader.presentation.articles
 
 import android.app.Activity
 import android.content.Intent
@@ -9,11 +9,11 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.github.nakawai.newsreader.R
 import com.github.nakawai.newsreader.databinding.ActivityArticlesBinding
-import com.github.nakawai.newsreader.domain.story.Section
-import com.github.nakawai.newsreader.domain.story.Story
-import com.github.nakawai.newsreader.ui.ErrorDialogFragment
-import com.github.nakawai.newsreader.ui.details.DetailsActivity
-import com.github.nakawai.newsreader.ui.translate
+import com.github.nakawai.newsreader.domain.entities.Section
+import com.github.nakawai.newsreader.domain.entities.Story
+import com.github.nakawai.newsreader.presentation.ErrorDialogFragment
+import com.github.nakawai.newsreader.presentation.details.DetailsActivity
+import com.github.nakawai.newsreader.presentation.translate
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class ArticlesActivity : AppCompatActivity(), ArticleListAdapter.OnItemClickListener {

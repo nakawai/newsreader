@@ -1,19 +1,19 @@
-package com.github.nakawai.newsreader.ui.details
+package com.github.nakawai.newsreader.presentation.details
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
-import com.github.nakawai.newsreader.data.Repository
-import com.github.nakawai.newsreader.domain.story.Story
-import com.github.nakawai.newsreader.domain.story.StoryUrl
+import com.github.nakawai.newsreader.domain.model.NYTimesModel
+import com.github.nakawai.newsreader.domain.entities.Story
+import com.github.nakawai.newsreader.domain.entities.StoryUrl
 import kotlinx.coroutines.*
 
 /**
  * Presenter class for controlling the Main Activity
  */
 class DetailsViewModel(
-    private val repository: Repository
+    private val model: NYTimesModel
 ) : ViewModel() {
     private var storyUrl = MutableLiveData<StoryUrl>()
 
@@ -23,7 +23,7 @@ class DetailsViewModel(
     val isLoading: LiveData<Boolean> = _isLoading
 
     private val _story = Transformations.switchMap(storyUrl) {
-        repository.observeArticle(storyUrl = it)
+        model.observeArticle(storyUrl = it)
     }
     val story: LiveData<Story> = _story
 
@@ -36,7 +36,7 @@ class DetailsViewModel(
         job = GlobalScope.launch(Dispatchers.Main) {
             delay(2000)
             storyUrl.value?.let {
-                repository.updateStoryReadState(it, read = true)
+                model.updateStoryReadState(it, read = true)
             }
 
         }

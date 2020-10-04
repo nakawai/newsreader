@@ -1,4 +1,4 @@
-package com.github.nakawai.newsreader.ui.details
+package com.github.nakawai.newsreader.presentation.details
 
 import android.content.Context
 import android.content.Intent
@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.github.nakawai.newsreader.R
 import com.github.nakawai.newsreader.databinding.ActivityDetailsBinding
-import com.github.nakawai.newsreader.domain.story.Story
+import com.github.nakawai.newsreader.domain.entities.Story
 import org.koin.android.viewmodel.ext.android.viewModel
 import java.text.SimpleDateFormat
 import java.util.*

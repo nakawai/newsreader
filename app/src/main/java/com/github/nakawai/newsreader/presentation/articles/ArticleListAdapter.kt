@@ -1,4 +1,4 @@
-package com.github.nakawai.newsreader.ui.articles
+package com.github.nakawai.newsreader.presentation.articles
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -10,7 +10,7 @@ import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.github.nakawai.newsreader.R
 import com.github.nakawai.newsreader.databinding.ListItemArticleBinding
-import com.github.nakawai.newsreader.domain.story.Story
+import com.github.nakawai.newsreader.domain.entities.Story
 
 // ListView adapter class
 class ArticleListAdapter(private val listener: OnItemClickListener) : ListAdapter<Story, ArticleListAdapter.ViewHolder>(DIFF_CALLBACK) {

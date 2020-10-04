@@ -1,16 +1,16 @@
-package com.github.nakawai.newsreader.ui.articles
+package com.github.nakawai.newsreader.presentation.articles
 
 import androidx.lifecycle.*
-import com.github.nakawai.newsreader.data.Repository
-import com.github.nakawai.newsreader.domain.story.Section
-import com.github.nakawai.newsreader.domain.story.Story
+import com.github.nakawai.newsreader.domain.model.NYTimesModel
+import com.github.nakawai.newsreader.domain.entities.Section
+import com.github.nakawai.newsreader.domain.entities.Story
 import kotlinx.coroutines.launch
 
 /**
  * Presenter class for controlling the Main Activity
  */
 class ArticlesViewModel(
-    private val repository: Repository
+    private val model: NYTimesModel
 ) : ViewModel() {
     private val _stories = MediatorLiveData<List<Story>>()
     val stories: LiveData<List<Story>> = _stories
@@ -26,7 +26,7 @@ class ArticlesViewModel(
 
     fun start(section: Section) {
         this.section = section
-        _stories.addSource(repository.observeArticlesBySection(section)) {
+        _stories.addSource(model.observeArticlesBySection(section)) {
             _stories.value = it
         }
     }
@@ -36,7 +36,7 @@ class ArticlesViewModel(
 
         viewModelScope.launch {
             runCatching {
-                repository.loadNewsFeed(section, force)
+                model.loadNewsFeed(section, force)
             }.onSuccess {
                 _stories.value = it
             }.onFailure {

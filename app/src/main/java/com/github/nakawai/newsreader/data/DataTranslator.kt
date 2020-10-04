@@ -4,13 +4,13 @@ import com.github.nakawai.newsreader.data.db.MultimediaRealmObject
 import com.github.nakawai.newsreader.data.db.StoryRealmObject
 import com.github.nakawai.newsreader.data.network.response.MultimediaResponseItem
 import com.github.nakawai.newsreader.data.network.response.StoryResponseItem
-import com.github.nakawai.newsreader.domain.story.Multimedia
-import com.github.nakawai.newsreader.domain.story.Section
-import com.github.nakawai.newsreader.domain.story.Story
-import com.github.nakawai.newsreader.domain.story.StoryUrl
+import com.github.nakawai.newsreader.domain.entities.Multimedia
+import com.github.nakawai.newsreader.domain.entities.Section
+import com.github.nakawai.newsreader.domain.entities.Story
+import com.github.nakawai.newsreader.domain.entities.StoryUrl
 import io.realm.RealmList
 
-class Translator {
+class DataTranslator {
 
 
     companion object {
@@ -113,9 +113,9 @@ class Translator {
 data class SectionData(val value: String)
 
 fun StoryRealmObject.translate(): Story {
-    return Translator.translate(this)
+    return DataTranslator.translate(this)
 }
 
 fun Section.toData(): SectionData {
-    return Translator.translate(this)
+    return DataTranslator.translate(this)
 }

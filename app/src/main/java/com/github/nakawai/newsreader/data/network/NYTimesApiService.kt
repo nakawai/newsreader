@@ -9,6 +9,8 @@ import retrofit2.http.Query
 
 /**
  * Retrofit interface for the New York Times WebService
+ *
+ * @see <a href="https://developer.nytimes.com/apis">APIs | Dev Portal</a>
  */
 interface NYTimesApiService {
     @GET("svc/topstories/v2/{section}.json")

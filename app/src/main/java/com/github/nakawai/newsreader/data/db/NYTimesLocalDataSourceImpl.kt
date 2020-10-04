@@ -1,13 +1,14 @@
 package com.github.nakawai.newsreader.data.db
 
 import androidx.lifecycle.LiveData
-import com.github.nakawai.newsreader.data.Translator
+import com.github.nakawai.newsreader.data.DataTranslator
 import com.github.nakawai.newsreader.data.network.response.StoryResponseItem
 import com.github.nakawai.newsreader.data.toData
 import com.github.nakawai.newsreader.data.translate
-import com.github.nakawai.newsreader.domain.story.Section
-import com.github.nakawai.newsreader.domain.story.Story
-import com.github.nakawai.newsreader.domain.story.StoryUrl
+import com.github.nakawai.newsreader.domain.entities.Section
+import com.github.nakawai.newsreader.domain.entities.Story
+import com.github.nakawai.newsreader.domain.entities.StoryUrl
+import com.github.nakawai.newsreader.domain.datasource.NYTimesLocalDataSource
 import io.realm.Realm
 import io.realm.RealmChangeListener
 import io.realm.RealmResults
@@ -43,7 +44,7 @@ class NYTimesLocalDataSourceImpl : NYTimesLocalDataSource {
                             // TODO Update content
                         }
                     } else {
-                        val story = Translator.translate(responseItem)
+                        val story = DataTranslator.translate(responseItem)
                         story.apiSection = section.toData().value
                         r.copyToRealmOrUpdate(story)
                     }
