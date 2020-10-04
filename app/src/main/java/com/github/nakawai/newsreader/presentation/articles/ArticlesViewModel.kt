@@ -2,8 +2,8 @@ package com.github.nakawai.newsreader.presentation.articles
 
 import androidx.lifecycle.*
 import com.github.nakawai.newsreader.data.Repository
-import com.github.nakawai.newsreader.domain.story.Section
-import com.github.nakawai.newsreader.domain.story.Story
+import com.github.nakawai.newsreader.domain.entities.Section
+import com.github.nakawai.newsreader.domain.entities.Story
 import kotlinx.coroutines.launch
 
 /**

@@ -5,9 +5,10 @@ import com.github.nakawai.newsreader.data.Translator
 import com.github.nakawai.newsreader.data.network.response.StoryResponseItem
 import com.github.nakawai.newsreader.data.toData
 import com.github.nakawai.newsreader.data.translate
-import com.github.nakawai.newsreader.domain.story.Section
-import com.github.nakawai.newsreader.domain.story.Story
-import com.github.nakawai.newsreader.domain.story.StoryUrl
+import com.github.nakawai.newsreader.domain.entities.Section
+import com.github.nakawai.newsreader.domain.entities.Story
+import com.github.nakawai.newsreader.domain.entities.StoryUrl
+import com.github.nakawai.newsreader.domain.datasource.NYTimesLocalDataSource
 import io.realm.Realm
 import io.realm.RealmChangeListener
 import io.realm.RealmResults

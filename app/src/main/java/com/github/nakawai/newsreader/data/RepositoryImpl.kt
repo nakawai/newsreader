@@ -1,11 +1,11 @@
 package com.github.nakawai.newsreader.data
 
 import androidx.lifecycle.LiveData
-import com.github.nakawai.newsreader.data.db.NYTimesLocalDataSource
-import com.github.nakawai.newsreader.data.network.NYTimesRemoteDataSource
-import com.github.nakawai.newsreader.domain.story.Section
-import com.github.nakawai.newsreader.domain.story.Story
-import com.github.nakawai.newsreader.domain.story.StoryUrl
+import com.github.nakawai.newsreader.domain.datasource.NYTimesLocalDataSource
+import com.github.nakawai.newsreader.domain.datasource.NYTimesRemoteDataSource
+import com.github.nakawai.newsreader.domain.entities.Section
+import com.github.nakawai.newsreader.domain.entities.Story
+import com.github.nakawai.newsreader.domain.entities.StoryUrl
 import java.util.*
 import java.util.concurrent.TimeUnit
 

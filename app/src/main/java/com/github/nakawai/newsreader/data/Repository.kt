@@ -1,9 +1,9 @@
 package com.github.nakawai.newsreader.data
 
 import androidx.lifecycle.LiveData
-import com.github.nakawai.newsreader.domain.story.Section
-import com.github.nakawai.newsreader.domain.story.Story
-import com.github.nakawai.newsreader.domain.story.StoryUrl
+import com.github.nakawai.newsreader.domain.entities.Section
+import com.github.nakawai.newsreader.domain.entities.Story
+import com.github.nakawai.newsreader.domain.entities.StoryUrl
 
 interface Repository {
     suspend fun loadNewsFeed(section: Section, forceReload: Boolean): List<Story>

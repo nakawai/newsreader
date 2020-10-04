@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.github.nakawai.newsreader.data.Repository
-import com.github.nakawai.newsreader.domain.story.Story
-import com.github.nakawai.newsreader.domain.story.StoryUrl
+import com.github.nakawai.newsreader.domain.entities.Story
+import com.github.nakawai.newsreader.domain.entities.StoryUrl
 import kotlinx.coroutines.*
 
 /**

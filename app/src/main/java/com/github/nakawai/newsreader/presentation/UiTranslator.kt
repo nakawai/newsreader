@@ -1,7 +1,7 @@
 package com.github.nakawai.newsreader.presentation
 
 import com.github.nakawai.newsreader.R
-import com.github.nakawai.newsreader.domain.story.Section
+import com.github.nakawai.newsreader.domain.entities.Section
 
 class UiTranslator {
     companion object {

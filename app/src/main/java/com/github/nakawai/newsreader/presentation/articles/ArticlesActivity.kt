@@ -9,8 +9,8 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.github.nakawai.newsreader.R
 import com.github.nakawai.newsreader.databinding.ActivityArticlesBinding
-import com.github.nakawai.newsreader.domain.story.Section
-import com.github.nakawai.newsreader.domain.story.Story
+import com.github.nakawai.newsreader.domain.entities.Section
+import com.github.nakawai.newsreader.domain.entities.Story
 import com.github.nakawai.newsreader.presentation.ErrorDialogFragment
 import com.github.nakawai.newsreader.presentation.details.DetailsActivity
 import com.github.nakawai.newsreader.presentation.translate

@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.github.nakawai.newsreader.data.Repository
-import com.github.nakawai.newsreader.domain.story.Section
+import com.github.nakawai.newsreader.domain.entities.Section
 
 class SectionsViewModel(private val repository: Repository) : ViewModel() {
 

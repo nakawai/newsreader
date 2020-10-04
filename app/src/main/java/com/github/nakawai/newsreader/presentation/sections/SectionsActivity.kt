@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.github.nakawai.newsreader.databinding.ActivitySectionsBinding
-import com.github.nakawai.newsreader.domain.story.Section
+import com.github.nakawai.newsreader.domain.entities.Section
 import com.github.nakawai.newsreader.presentation.articles.ArticlesActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 
