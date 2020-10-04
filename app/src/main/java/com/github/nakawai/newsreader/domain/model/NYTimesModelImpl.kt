@@ -1,6 +1,7 @@
 package com.github.nakawai.newsreader.domain.model
 
 import androidx.lifecycle.LiveData
+import com.github.nakawai.newsreader.domain.datasource.AppLocalDataSource
 import com.github.nakawai.newsreader.domain.datasource.NYTimesLocalDataSource
 import com.github.nakawai.newsreader.domain.datasource.NYTimesRemoteDataSource
 import com.github.nakawai.newsreader.domain.entities.Section
@@ -9,10 +10,8 @@ import com.github.nakawai.newsreader.domain.entities.StoryUrl
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-class NYTimesModelImpl(private val local: NYTimesLocalDataSource, private val remote: NYTimesRemoteDataSource) : NYTimesModel {
-    private val lastNetworkRequestTimeMillis: MutableMap<Section, Long> = EnumMap(
-        Section::class.java
-    )
+class NYTimesModelImpl(private val local: NYTimesLocalDataSource, private val remote: NYTimesRemoteDataSource, private val appLocal: AppLocalDataSource) : NYTimesModel {
+
 
     /**
      * Loads the news feed as well as all future updates.
@@ -20,24 +19,17 @@ class NYTimesModelImpl(private val local: NYTimesLocalDataSource, private val re
     override suspend fun loadNewsFeed(section: Section, forceReload: Boolean): List<Story> {
         // Start loading data from the network if needed
         // It will put all data into Realm
-        if (forceReload || timeSinceLastNetworkRequest(section) > MINIMUM_NETWORK_WAIT_SEC) {
+        if (forceReload || appLocal.canCallApi(section)) {
             val response = remote.fetchData(section)
 
             local.saveData(section, response)
-            lastNetworkRequestTimeMillis[section] = System.currentTimeMillis()
+            appLocal.saveLastNetworkRequestTime(section)
         }
 
         return local.readData(section)
     }
 
-    private fun timeSinceLastNetworkRequest(section: Section): Long {
-        val lastRequestTimeMillis = lastNetworkRequestTimeMillis[section]
-        return if (lastRequestTimeMillis != null) {
-            TimeUnit.SECONDS.convert(System.currentTimeMillis() - lastRequestTimeMillis, TimeUnit.MILLISECONDS)
-        } else {
-            Long.MAX_VALUE
-        }
-    }
+
 
     /**
      * Updates a story.
@@ -61,8 +53,6 @@ class NYTimesModelImpl(private val local: NYTimesLocalDataSource, private val re
         return Section.values().toList()
     }
 
-    companion object {
-        private const val MINIMUM_NETWORK_WAIT_SEC: Long = 120 // Minimum 2 minutes between each network request
-    }
+
 
 }

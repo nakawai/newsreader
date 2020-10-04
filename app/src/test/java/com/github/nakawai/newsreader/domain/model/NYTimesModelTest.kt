@@ -1,6 +1,12 @@
 package com.github.nakawai.newsreader.domain.model
 
-import io.mockk.mockk
+import com.github.nakawai.newsreader.domain.datasource.AppLocalDataSource
+import com.github.nakawai.newsreader.domain.datasource.NYTimesLocalDataSource
+import com.github.nakawai.newsreader.domain.datasource.NYTimesRemoteDataSource
+import com.github.nakawai.newsreader.domain.entities.Section
+import io.mockk.*
+import io.mockk.impl.annotations.MockK
+import io.mockk.verify
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.newSingleThreadContext
@@ -19,9 +25,22 @@ class NYTimesModelTest {
 
     private val mainThreadSurrogate = newSingleThreadContext("UI Thread")
 
+    @MockK
+    private lateinit var local: NYTimesLocalDataSource
+
+    @MockK
+    private lateinit var remote: NYTimesRemoteDataSource
+
+    @MockK
+    private lateinit var appLocal: AppLocalDataSource
+
     @Before
     fun setUp() {
         Dispatchers.setMain(mainThreadSurrogate)
+
+        MockKAnnotations.init(this)
+
+        coEvery { local.readData(any())} returns emptyList()
     }
 
     @After
@@ -34,14 +53,18 @@ class NYTimesModelTest {
     fun testLoadNewsFeed() {
         runBlocking {
             // Arrange
-            val repo = NYTimesModelImpl(mockk(), mockk())
+            val model = NYTimesModelImpl(local, remote, appLocal)
+            every { appLocal.canCallApi(any()) } returns false
 
             // Act
-            //repo.loadNewsFeed(Section.HOME, forceReload = false)
+            model.loadNewsFeed(Section.HOME, forceReload = false)
 
-            //val actual = repo.timeSinceLastNetworkRequest(Section.HOME)
+            // Assert
+            coVerify(exactly = 0) { remote.fetchData(any()) }
+            coVerify(exactly = 1) { local.readData(Section.HOME) }
 
-            //assertThat(actual).isEqualTo()
+            confirmVerified(local, remote)
+
         }
 
     }
