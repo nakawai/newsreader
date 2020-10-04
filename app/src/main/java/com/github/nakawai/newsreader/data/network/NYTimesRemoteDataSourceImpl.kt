@@ -2,12 +2,12 @@ package com.github.nakawai.newsreader.data.network
 
 
 import com.facebook.stetho.okhttp3.StethoInterceptor
-import com.fasterxml.jackson.databind.ObjectMapper
 import com.github.nakawai.newsreader.data.network.response.StoryResponseItem
-import com.github.nakawai.newsreader.data.network.response.TopStoriesResponse
 import com.github.nakawai.newsreader.data.toData
 import com.github.nakawai.newsreader.domain.datasource.NYTimesRemoteDataSource
 import com.github.nakawai.newsreader.domain.entities.Section
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
@@ -26,8 +26,12 @@ class NYTimesRemoteDataSourceImpl : NYTimesRemoteDataSource {
             .addNetworkInterceptor(StethoInterceptor())
             .build()
 
+        val moshi = Moshi.Builder()
+            .add(KotlinJsonAdapterFactory())
+            .build()
+
         val retrofit = Retrofit.Builder()
-            .addConverterFactory(MoshiConverterFactory.create())
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
             .baseUrl("https://api.nytimes.com/")
             .client(okHttpClient)
             .build()
@@ -40,16 +44,12 @@ class NYTimesRemoteDataSourceImpl : NYTimesRemoteDataSource {
         val response = nyTimesApiService.topStories(sectionKey, API_KEY)
 
         if (response.isSuccessful) {
-            Timber.i("Success - Data received. section:${sectionKey} body:${response.body().string()}")
+            Timber.i("Success - Data received. section:${sectionKey} body:${response.body()}")
             return@withContext response.body()!!.results!!
         } else {
             Timber.i("Failure: Data not loaded: section:${sectionKey}")
             throw RuntimeException()
         }
-    }
-
-    private fun TopStoriesResponse?.string(): String {
-        return ObjectMapper().writeValueAsString(this)
     }
 
     companion object {
