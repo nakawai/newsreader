@@ -2,7 +2,9 @@ package com.github.nakawai.newsreader.data.network
 
 
 import com.facebook.stetho.okhttp3.StethoInterceptor
+import com.fasterxml.jackson.databind.ObjectMapper
 import com.github.nakawai.newsreader.data.network.response.StoryResponseItem
+import com.github.nakawai.newsreader.data.network.response.TopStoriesResponse
 import com.github.nakawai.newsreader.data.toData
 import com.github.nakawai.newsreader.domain.datasource.NYTimesRemoteDataSource
 import com.github.nakawai.newsreader.domain.entities.Section
@@ -38,12 +40,16 @@ class NYTimesRemoteDataSourceImpl : NYTimesRemoteDataSource {
         val response = nyTimesApiService.topStories(sectionKey, API_KEY)
 
         if (response.isSuccessful) {
-            Timber.i("Success - Data received. section:${sectionKey} body:${response.raw()}")
+            Timber.i("Success - Data received. section:${sectionKey} body:${response.body().string()}")
             return@withContext response.body()!!.results!!
         } else {
             Timber.i("Failure: Data not loaded: section:${sectionKey}")
             throw RuntimeException()
         }
+    }
+
+    private fun TopStoriesResponse?.string(): String {
+        return ObjectMapper().writeValueAsString(this)
     }
 
     companion object {
