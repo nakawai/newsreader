@@ -1,6 +1,5 @@
-package com.github.nakawai.newsreader.data
+package com.github.nakawai.newsreader.domain.model
 
-import com.github.nakawai.newsreader.domain.model.NYTimesModelImpl
 import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -12,6 +11,9 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Test
 
+/**
+ * @see <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-test/">kotlinx-coroutines-test</a>
+ */
 @ExperimentalCoroutinesApi
 class NYTimesModelTest {
 
