@@ -1,4 +1,4 @@
-package com.github.nakawai.newsreader.data
+package com.github.nakawai.newsreader.domain.model
 
 import androidx.lifecycle.LiveData
 import com.github.nakawai.newsreader.domain.datasource.NYTimesLocalDataSource
@@ -9,7 +9,7 @@ import com.github.nakawai.newsreader.domain.entities.StoryUrl
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-class RepositoryImpl(private val local: NYTimesLocalDataSource, private val remote: NYTimesRemoteDataSource) : Repository {
+class NYTimesModelImpl(private val local: NYTimesLocalDataSource, private val remote: NYTimesRemoteDataSource) : NYTimesModel {
     private val lastNetworkRequestTimeMillis: MutableMap<Section, Long> = EnumMap(
         Section::class.java
     )

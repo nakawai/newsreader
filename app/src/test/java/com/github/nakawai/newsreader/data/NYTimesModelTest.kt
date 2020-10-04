@@ -1,5 +1,6 @@
 package com.github.nakawai.newsreader.data
 
+import com.github.nakawai.newsreader.domain.model.NYTimesModelImpl
 import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -12,7 +13,7 @@ import org.junit.Before
 import org.junit.Test
 
 @ExperimentalCoroutinesApi
-class RepositoryTest {
+class NYTimesModelTest {
 
     private val mainThreadSurrogate = newSingleThreadContext("UI Thread")
 
@@ -31,7 +32,7 @@ class RepositoryTest {
     fun testLoadNewsFeed() {
         runBlocking {
             // Arrange
-            val repo = RepositoryImpl(mockk(), mockk())
+            val repo = NYTimesModelImpl(mockk(), mockk())
 
             // Act
             //repo.loadNewsFeed(Section.HOME, forceReload = false)

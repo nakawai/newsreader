@@ -1,7 +1,7 @@
 package com.github.nakawai.newsreader
 
-import com.github.nakawai.newsreader.data.Repository
-import com.github.nakawai.newsreader.data.RepositoryImpl
+import com.github.nakawai.newsreader.domain.model.NYTimesModel
+import com.github.nakawai.newsreader.domain.model.NYTimesModelImpl
 import com.github.nakawai.newsreader.domain.datasource.NYTimesLocalDataSource
 import com.github.nakawai.newsreader.data.db.NYTimesLocalDataSourceImpl
 import com.github.nakawai.newsreader.domain.datasource.NYTimesRemoteDataSource
@@ -15,7 +15,7 @@ import org.koin.dsl.module
 val appModule = module {
     single<NYTimesRemoteDataSource> { NYTimesRemoteDataSourceImpl() }
     single<NYTimesLocalDataSource> { NYTimesLocalDataSourceImpl() }
-    single<Repository> { RepositoryImpl(get(), get()) }
+    single<NYTimesModel> { NYTimesModelImpl(get(), get()) }
     viewModel { SectionsViewModel(get()) }
     viewModel { ArticlesViewModel(get()) }
     viewModel { DetailsViewModel(get()) }
