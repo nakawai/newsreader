@@ -7,8 +7,6 @@ import com.github.nakawai.newsreader.domain.datasource.NYTimesRemoteDataSource
 import com.github.nakawai.newsreader.domain.entities.Section
 import com.github.nakawai.newsreader.domain.entities.Story
 import com.github.nakawai.newsreader.domain.entities.StoryUrl
-import java.util.*
-import java.util.concurrent.TimeUnit
 
 class NYTimesModelImpl(private val local: NYTimesLocalDataSource, private val remote: NYTimesRemoteDataSource, private val appLocal: AppLocalDataSource) : NYTimesModel {
 
@@ -20,7 +18,7 @@ class NYTimesModelImpl(private val local: NYTimesLocalDataSource, private val re
         // Start loading data from the network if needed
         // It will put all data into Realm
         if (forceReload || appLocal.canCallApi(section)) {
-            val response = remote.fetchData(section)
+            val response = remote.fetchTopStories(section)
 
             local.saveData(section, response)
             appLocal.saveLastNetworkRequestTime(section)

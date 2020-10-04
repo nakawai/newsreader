@@ -6,7 +6,6 @@ import com.github.nakawai.newsreader.domain.datasource.NYTimesRemoteDataSource
 import com.github.nakawai.newsreader.domain.entities.Section
 import io.mockk.*
 import io.mockk.impl.annotations.MockK
-import io.mockk.verify
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.newSingleThreadContext
@@ -60,7 +59,7 @@ class NYTimesModelTest {
             model.loadNewsFeed(Section.HOME, forceReload = false)
 
             // Assert
-            coVerify(exactly = 0) { remote.fetchData(any()) }
+            coVerify(exactly = 0) { remote.fetchTopStories(any()) }
             coVerify(exactly = 1) { local.readData(Section.HOME) }
 
             confirmVerified(local, remote)

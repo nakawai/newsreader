@@ -33,15 +33,15 @@ class NYTimesRemoteDataSourceImpl : NYTimesRemoteDataSource {
         nyTimesApiService = retrofit.create(NYTimesApiService::class.java)
     }
 
-    override suspend fun fetchData(section: Section): List<StoryResponseItem> = withContext(Dispatchers.IO) {
+    override suspend fun fetchTopStories(section: Section): List<StoryResponseItem> = withContext(Dispatchers.IO) {
         val sectionKey = section.toData().value
         val response = nyTimesApiService.topStories(sectionKey, API_KEY)
 
         if (response.isSuccessful) {
-            Timber.d("Success - Data received: %s", sectionKey)
+            Timber.i("Success - Data received. section:${sectionKey} body:${response.raw()}")
             return@withContext response.body()!!.results!!
         } else {
-            Timber.d("Failure: Data not loaded: %s", sectionKey)
+            Timber.i("Failure: Data not loaded: section:${sectionKey}")
             throw RuntimeException()
         }
     }
