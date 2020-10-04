@@ -1,0 +1,2975 @@
+{
+    "status": "OK",
+    "copyright": "Copyright (c) 2020 The New York Times Company. All Rights Reserved.",
+    "section": "World News",
+    "last_updated": "2020-10-03T12:30:38-04:00",
+    "num_results": 37,
+    "results": [
+        {
+            "section": "world",
+            "subsection": "europe",
+            "title": "Germany’s Far Right Reunified, Too, Making It Much Stronger",
+            "abstract": "Thirty years after Germany came back together, the former East has become the stronghold of a once-marginalized movement that now sits in Parliament.",
+            "url": "https://www.nytimes.com/2020/10/03/world/europe/germany-reunification-far-right.html",
+            "uri": "nyt://article/a0cd7d62-2e95-5a0c-a19a-33f3c1c75496",
+            "byline": "By Katrin Bennhold",
+            "item_type": "Article",
+            "updated_date": "2020-10-03T17:09:29-04:00",
+            "created_date": "2020-10-03T00:10:10-04:00",
+            "published_date": "2020-10-03T00:10:10-04:00",
+            "material_type_facet": "",
+            "kicker": "",
+            "des_facet": [
+                "Neo Nazi Groups",
+                "Right-Wing Extremism and Alt-Right",
+                "World Cup 2006 (Soccer)"
+            ],
+            "org_facet": [
+                "Alternative for Germany",
+                "Buchenwald Concentration Camp"
+            ],
+            "per_facet": [
+                "Merkel, Angela",
+                "Hitler, Adolf",
+                "Hocke, Bjorn (1972- )"
+            ],
+            "geo_facet": [
+                "Berlin (Germany)",
+                "Germany",
+                "East Germany",
+                "USSR (Former Soviet Union)"
+            ],
+            "multimedia": [
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/03/world/03reunification-farright4/merlin_172580730_47b5e877-068c-40fc-b5a5-d489ab11c7d8-superJumbo.jpg",
+                    "format": "superJumbo",
+                    "height": 1365,
+                    "width": 2048,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "A demonstration in Berlin in May, organized by members of the AfD, to protest the government’s coronavirus policies.",
+                    "copyright": "Emile Ducke for The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/03/world/03reunification-farright4/03reunification-farright4-thumbStandard-v2.jpg",
+                    "format": "Standard Thumbnail",
+                    "height": 75,
+                    "width": 75,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "A demonstration in Berlin in May, organized by members of the AfD, to protest the government’s coronavirus policies.",
+                    "copyright": "Emile Ducke for The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/03/world/03reunification-farright4/03reunification-farright4-thumbLarge-v2.jpg",
+                    "format": "thumbLarge",
+                    "height": 150,
+                    "width": 150,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "A demonstration in Berlin in May, organized by members of the AfD, to protest the government’s coronavirus policies.",
+                    "copyright": "Emile Ducke for The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/03/world/03reunification-farright4/merlin_172580730_47b5e877-068c-40fc-b5a5-d489ab11c7d8-mediumThreeByTwo210.jpg",
+                    "format": "mediumThreeByTwo210",
+                    "height": 140,
+                    "width": 210,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "A demonstration in Berlin in May, organized by members of the AfD, to protest the government’s coronavirus policies.",
+                    "copyright": "Emile Ducke for The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/03/world/03reunification-farright4/merlin_172580730_47b5e877-068c-40fc-b5a5-d489ab11c7d8-articleInline.jpg",
+                    "format": "Normal",
+                    "height": 127,
+                    "width": 190,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "A demonstration in Berlin in May, organized by members of the AfD, to protest the government’s coronavirus policies.",
+                    "copyright": "Emile Ducke for The New York Times"
+                }
+            ],
+            "short_url": "https://nyti.ms/2GoDnEy"
+        },
+        {
+            "section": "world",
+            "subsection": "europe",
+            "title": "Contact Tracing, Key to Reining In the Virus, Falls Flat in the West",
+            "abstract": "Tracing is seen as a vital tool to avoid lockdowns and open economies, but that requires a robust system, widespread rapid testing and public trust. All are lacking in the West.",
+            "url": "https://www.nytimes.com/2020/10/03/world/europe/covid-contract-tracing.html",
+            "uri": "nyt://article/25d76c46-152d-58c4-99ea-1d23f6558a44",
+            "byline": "By Benjamin Mueller",
+            "item_type": "Article",
+            "updated_date": "2020-10-04T03:57:48-04:00",
+            "created_date": "2020-10-03T09:45:04-04:00",
+            "published_date": "2020-10-03T09:45:04-04:00",
+            "material_type_facet": "",
+            "kicker": "",
+            "des_facet": [
+                "Coronavirus (2019-nCoV)",
+                "Contact Tracing (Public Health)",
+                "Tests (Medical)",
+                "Disease Rates"
+            ],
+            "org_facet": [],
+            "per_facet": [],
+            "geo_facet": [
+                "England",
+                "Germany",
+                "Great Britain"
+            ],
+            "multimedia": [
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/04/world/04virus-contact-tracing/merlin_175271253_6ed4f5e5-b0af-43f5-a68d-4b4e043376e9-superJumbo.jpg",
+                    "format": "superJumbo",
+                    "height": 1367,
+                    "width": 2048,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "In Paris in August. Tracing operations in Europe have left the public in the dark about their exposure to the coronavirus.",
+                    "copyright": "Dmitry Kostyukov for The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/04/world/04virus-contact-tracing/03virus-contact-tracing01sub-thumbStandard.jpg",
+                    "format": "Standard Thumbnail",
+                    "height": 75,
+                    "width": 75,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "In Paris in August. Tracing operations in Europe have left the public in the dark about their exposure to the coronavirus.",
+                    "copyright": "Dmitry Kostyukov for The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/04/world/04virus-contact-tracing/03virus-contact-tracing01sub-thumbLarge.jpg",
+                    "format": "thumbLarge",
+                    "height": 150,
+                    "width": 150,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "In Paris in August. Tracing operations in Europe have left the public in the dark about their exposure to the coronavirus.",
+                    "copyright": "Dmitry Kostyukov for The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/04/world/04virus-contact-tracing/03virus-contact-tracing01sub-mediumThreeByTwo210.jpg",
+                    "format": "mediumThreeByTwo210",
+                    "height": 140,
+                    "width": 210,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "In Paris in August. Tracing operations in Europe have left the public in the dark about their exposure to the coronavirus.",
+                    "copyright": "Dmitry Kostyukov for The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/04/world/04virus-contact-tracing/merlin_175271253_6ed4f5e5-b0af-43f5-a68d-4b4e043376e9-articleInline.jpg",
+                    "format": "Normal",
+                    "height": 127,
+                    "width": 190,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "In Paris in August. Tracing operations in Europe have left the public in the dark about their exposure to the coronavirus.",
+                    "copyright": "Dmitry Kostyukov for The New York Times"
+                }
+            ],
+            "short_url": "https://nyti.ms/3ismE0n"
+        },
+        {
+            "section": "world",
+            "subsection": "europe",
+            "title": "Britain and E.U. Enter Make-or-Break Phase for Brexit Deal by Year’s End",
+            "abstract": "Prime Minister Boris Johnson and the president of the European Commission agreed that the two sides shared enough common ground to aim for a final settlement.",
+            "url": "https://www.nytimes.com/2020/10/03/world/europe/brexit-deal-talks.html",
+            "uri": "nyt://article/0da6bc11-67ee-5f5d-904d-47517671c20b",
+            "byline": "By Mark Landler and Stephen Castle",
+            "item_type": "Article",
+            "updated_date": "2020-10-04T06:08:15-04:00",
+            "created_date": "2020-10-03T11:06:16-04:00",
+            "published_date": "2020-10-03T11:06:16-04:00",
+            "material_type_facet": "",
+            "kicker": "",
+            "des_facet": [
+                "Great Britain Withdrawal from EU (Brexit)",
+                "Politics and Government",
+                "International Trade and World Market"
+            ],
+            "org_facet": [
+                "European Union"
+            ],
+            "per_facet": [],
+            "geo_facet": [
+                "Great Britain",
+                "Europe"
+            ],
+            "multimedia": [
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/04/world/04brexit/03BREXIT01-superJumbo.jpg",
+                    "format": "superJumbo",
+                    "height": 1366,
+                    "width": 2048,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "Prime Minister Boris Johnson of Britain. With time running out, the British have been aiming to take their Brexit case higher up the political food chain.",
+                    "copyright": "Leon Neal/Getty Images"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/04/world/04brexit/03BREXIT01-thumbStandard.jpg",
+                    "format": "Standard Thumbnail",
+                    "height": 75,
+                    "width": 75,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "Prime Minister Boris Johnson of Britain. With time running out, the British have been aiming to take their Brexit case higher up the political food chain.",
+                    "copyright": "Leon Neal/Getty Images"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/04/world/04brexit/03BREXIT01-thumbLarge.jpg",
+                    "format": "thumbLarge",
+                    "height": 150,
+                    "width": 150,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "Prime Minister Boris Johnson of Britain. With time running out, the British have been aiming to take their Brexit case higher up the political food chain.",
+                    "copyright": "Leon Neal/Getty Images"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/04/world/04brexit/03BREXIT01-mediumThreeByTwo210.jpg",
+                    "format": "mediumThreeByTwo210",
+                    "height": 140,
+                    "width": 210,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "Prime Minister Boris Johnson of Britain. With time running out, the British have been aiming to take their Brexit case higher up the political food chain.",
+                    "copyright": "Leon Neal/Getty Images"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/04/world/04brexit/03BREXIT01-articleInline.jpg",
+                    "format": "Normal",
+                    "height": 127,
+                    "width": 190,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "Prime Minister Boris Johnson of Britain. With time running out, the British have been aiming to take their Brexit case higher up the political food chain.",
+                    "copyright": "Leon Neal/Getty Images"
+                }
+            ],
+            "short_url": "https://nyti.ms/33r23oM"
+        },
+        {
+            "section": "world",
+            "subsection": "europe",
+            "title": "Battling Wildfire and Pandemic, Ukraine Faces a New Foe: Landmines",
+            "abstract": "The blaze is setting off mines and other ordnance littering the war zone in eastern Ukraine, hampering already dangerous firefighting and evacuation efforts.",
+            "url": "https://www.nytimes.com/2020/10/03/world/europe/ukraine-wildfires-landmines.html",
+            "uri": "nyt://article/98b23bc2-fb03-5741-bb56-785491af60f9",
+            "byline": "By Maria Varenikova",
+            "item_type": "Article",
+            "updated_date": "2020-10-04T00:36:15-04:00",
+            "created_date": "2020-10-03T11:14:05-04:00",
+            "published_date": "2020-10-03T11:14:05-04:00",
+            "material_type_facet": "",
+            "kicker": "",
+            "des_facet": [
+                "Wildfires",
+                "Explosions (Accidental)"
+            ],
+            "org_facet": [],
+            "per_facet": [],
+            "geo_facet": [
+                "Ukraine"
+            ],
+            "multimedia": [
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/03/world/03ukraine01/merlin_177901698_fc4f9240-43d1-4de9-9f9a-9b49eacffa38-superJumbo.jpg",
+                    "format": "superJumbo",
+                    "height": 1224,
+                    "width": 1842,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "A firefighter near the town of Stanytsia Luhanska, Ukraine.",
+                    "copyright": "Ukrainian Joint Forces Operation, via Shutterstock"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/03/world/03ukraine01/03ukraine01-thumbStandard.jpg",
+                    "format": "Standard Thumbnail",
+                    "height": 75,
+                    "width": 75,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "A firefighter near the town of Stanytsia Luhanska, Ukraine.",
+                    "copyright": "Ukrainian Joint Forces Operation, via Shutterstock"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/03/world/03ukraine01/03ukraine01-thumbLarge.jpg",
+                    "format": "thumbLarge",
+                    "height": 150,
+                    "width": 150,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "A firefighter near the town of Stanytsia Luhanska, Ukraine.",
+                    "copyright": "Ukrainian Joint Forces Operation, via Shutterstock"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/03/world/03ukraine01/03ukraine01-mediumThreeByTwo210.jpg",
+                    "format": "mediumThreeByTwo210",
+                    "height": 140,
+                    "width": 210,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "A firefighter near the town of Stanytsia Luhanska, Ukraine.",
+                    "copyright": "Ukrainian Joint Forces Operation, via Shutterstock"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/03/world/03ukraine01/merlin_177901698_fc4f9240-43d1-4de9-9f9a-9b49eacffa38-articleInline.jpg",
+                    "format": "Normal",
+                    "height": 126,
+                    "width": 190,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "A firefighter near the town of Stanytsia Luhanska, Ukraine.",
+                    "copyright": "Ukrainian Joint Forces Operation, via Shutterstock"
+                }
+            ],
+            "short_url": "https://nyti.ms/2SmqYUj"
+        },
+        {
+            "section": "world",
+            "subsection": "asia",
+            "title": "India’s Covid-19 Death Toll Passes 100,000",
+            "abstract": "Only the United States and Brazil have reported more deaths from the coronavirus. Despite its climbing numbers, India plans to lift more restrictions.",
+            "url": "https://www.nytimes.com/2020/10/03/world/asia/india-coronavirus-deaths.html",
+            "uri": "nyt://article/27f9fc41-0418-5072-86c0-7950a85bf3e6",
+            "byline": "By Sameer Yasir",
+            "item_type": "Article",
+            "updated_date": "2020-10-03T11:30:07-04:00",
+            "created_date": "2020-10-03T03:52:14-04:00",
+            "published_date": "2020-10-03T03:52:14-04:00",
+            "material_type_facet": "",
+            "kicker": "",
+            "des_facet": [
+                "Coronavirus (2019-nCoV)",
+                "Coronavirus Reopenings",
+                "Deaths (Fatalities)",
+                "Disease Rates"
+            ],
+            "org_facet": [],
+            "per_facet": [],
+            "geo_facet": [
+                "India"
+            ],
+            "multimedia": [
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/03/world/03virus-india/merlin_177728127_3428b016-4cbf-4fa7-b262-fbb769fd9429-superJumbo.jpg",
+                    "format": "superJumbo",
+                    "height": 1296,
+                    "width": 2048,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "A cremation ceremony Monday in Gauhati, India, for a person who died from Covid-19. Family members wore protective gear. ",
+                    "copyright": "Anupam Nath/Associated Press"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/03/world/03virus-india/03virus-india-thumbStandard.jpg",
+                    "format": "Standard Thumbnail",
+                    "height": 75,
+                    "width": 75,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "A cremation ceremony Monday in Gauhati, India, for a person who died from Covid-19. Family members wore protective gear. ",
+                    "copyright": "Anupam Nath/Associated Press"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/03/world/03virus-india/03virus-india-thumbLarge.jpg",
+                    "format": "thumbLarge",
+                    "height": 150,
+                    "width": 150,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "A cremation ceremony Monday in Gauhati, India, for a person who died from Covid-19. Family members wore protective gear. ",
+                    "copyright": "Anupam Nath/Associated Press"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/03/world/03virus-india/03virus-india-mediumThreeByTwo210.jpg",
+                    "format": "mediumThreeByTwo210",
+                    "height": 140,
+                    "width": 210,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "A cremation ceremony Monday in Gauhati, India, for a person who died from Covid-19. Family members wore protective gear. ",
+                    "copyright": "Anupam Nath/Associated Press"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/03/world/03virus-india/merlin_177728127_3428b016-4cbf-4fa7-b262-fbb769fd9429-articleInline.jpg",
+                    "format": "Normal",
+                    "height": 120,
+                    "width": 190,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "A cremation ceremony Monday in Gauhati, India, for a person who died from Covid-19. Family members wore protective gear. ",
+                    "copyright": "Anupam Nath/Associated Press"
+                }
+            ],
+            "short_url": "https://nyti.ms/3irskrd"
+        },
+        {
+            "section": "world",
+            "subsection": "europe",
+            "title": "Floodgates in Venice Work in First Major Test",
+            "abstract": "The fiercely contested floodgate system was used to stop a high tide from flooding Venice’s fragile streets. The system held, but will it work as the climate worsens?",
+            "url": "https://www.nytimes.com/2020/10/03/world/europe/venice-floodgates-flooding.html",
+            "uri": "nyt://article/1b0340e8-360a-57b3-9420-daa9850ab3c6",
+            "byline": "By Elisabetta Povoledo",
+            "item_type": "Article",
+            "updated_date": "2020-10-04T00:36:37-04:00",
+            "created_date": "2020-10-03T12:06:22-04:00",
+            "published_date": "2020-10-03T12:06:22-04:00",
+            "material_type_facet": "",
+            "kicker": "",
+            "des_facet": [
+                "Floods",
+                "Global Warming"
+            ],
+            "org_facet": [],
+            "per_facet": [
+                "Brugnaro, Luigi (1961- )"
+            ],
+            "geo_facet": [],
+            "multimedia": [
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/04/world/04Venice/merlin_177983583_22e1eeb5-7aed-47da-b0c7-bbfc1e9891fd-superJumbo.jpg",
+                    "format": "superJumbo",
+                    "height": 1365,
+                    "width": 2048,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "On St. Mark's Square in Venice today.",
+                    "copyright": "Claudio Furlan/LaPresse, via Associated Press"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/04/world/04Venice/03Venice01-thumbStandard.jpg",
+                    "format": "Standard Thumbnail",
+                    "height": 75,
+                    "width": 75,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "On St. Mark's Square in Venice today.",
+                    "copyright": "Claudio Furlan/LaPresse, via Associated Press"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/04/world/04Venice/03Venice01-thumbLarge.jpg",
+                    "format": "thumbLarge",
+                    "height": 150,
+                    "width": 150,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "On St. Mark's Square in Venice today.",
+                    "copyright": "Claudio Furlan/LaPresse, via Associated Press"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/04/world/04Venice/merlin_177983583_22e1eeb5-7aed-47da-b0c7-bbfc1e9891fd-mediumThreeByTwo210.jpg",
+                    "format": "mediumThreeByTwo210",
+                    "height": 140,
+                    "width": 210,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "On St. Mark's Square in Venice today.",
+                    "copyright": "Claudio Furlan/LaPresse, via Associated Press"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/04/world/04Venice/merlin_177983583_22e1eeb5-7aed-47da-b0c7-bbfc1e9891fd-articleInline.jpg",
+                    "format": "Normal",
+                    "height": 127,
+                    "width": 190,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "On St. Mark's Square in Venice today.",
+                    "copyright": "Claudio Furlan/LaPresse, via Associated Press"
+                }
+            ],
+            "short_url": "https://nyti.ms/34j5NrO"
+        },
+        {
+            "section": "world",
+            "subsection": "middleeast",
+            "title": "In Nagorno-Karabakh, New Risks in an Old Ethnic Conflict",
+            "abstract": "Fighting in and around the breakaway enclave shows signs that a local ethnic dispute is spiraling into a regional conflict.",
+            "url": "https://www.nytimes.com/2020/10/03/world/middleeast/nagorno-karabakh-conflict-explained.html",
+            "uri": "nyt://article/a8b68be4-84c3-58f7-a569-76a9dafffd75",
+            "byline": "By Andrew E. Kramer",
+            "item_type": "Article",
+            "updated_date": "2020-10-03T12:06:09-04:00",
+            "created_date": "2020-10-03T12:06:09-04:00",
+            "published_date": "2020-10-03T12:06:09-04:00",
+            "material_type_facet": "",
+            "kicker": "",
+            "des_facet": [
+                "Defense and Military Forces"
+            ],
+            "org_facet": [],
+            "per_facet": [],
+            "geo_facet": [
+                "Armenia",
+                "Azerbaijan",
+                "Caucasus (Russia)",
+                "Nagorno-Karabakh"
+            ],
+            "multimedia": [
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/02/world/02karabakh-explainer01/merlin_177918639_0710f034-e378-484a-aa2d-2d925815d589-superJumbo.jpg",
+                    "format": "superJumbo",
+                    "height": 1365,
+                    "width": 2048,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "The funeral of a serviceman who was killed in the breakaway region of Nagorno-Karabakh, in the city of Barda, Azerbaijan, on Thursday.",
+                    "copyright": "Aziz Karimov/Reuters"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/02/world/02karabakh-explainer01/02karabakh-explainer01-thumbStandard.jpg",
+                    "format": "Standard Thumbnail",
+                    "height": 75,
+                    "width": 75,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "The funeral of a serviceman who was killed in the breakaway region of Nagorno-Karabakh, in the city of Barda, Azerbaijan, on Thursday.",
+                    "copyright": "Aziz Karimov/Reuters"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/02/world/02karabakh-explainer01/02karabakh-explainer01-thumbLarge.jpg",
+                    "format": "thumbLarge",
+                    "height": 150,
+                    "width": 150,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "The funeral of a serviceman who was killed in the breakaway region of Nagorno-Karabakh, in the city of Barda, Azerbaijan, on Thursday.",
+                    "copyright": "Aziz Karimov/Reuters"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/02/world/02karabakh-explainer01/merlin_177918639_0710f034-e378-484a-aa2d-2d925815d589-mediumThreeByTwo210.jpg",
+                    "format": "mediumThreeByTwo210",
+                    "height": 140,
+                    "width": 210,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "The funeral of a serviceman who was killed in the breakaway region of Nagorno-Karabakh, in the city of Barda, Azerbaijan, on Thursday.",
+                    "copyright": "Aziz Karimov/Reuters"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/02/world/02karabakh-explainer01/merlin_177918639_0710f034-e378-484a-aa2d-2d925815d589-articleInline.jpg",
+                    "format": "Normal",
+                    "height": 127,
+                    "width": 190,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "The funeral of a serviceman who was killed in the breakaway region of Nagorno-Karabakh, in the city of Barda, Azerbaijan, on Thursday.",
+                    "copyright": "Aziz Karimov/Reuters"
+                }
+            ],
+            "short_url": "https://nyti.ms/3ndJcVX"
+        },
+        {
+            "section": "world",
+            "subsection": "middleeast",
+            "title": "The 22-Year-Old Force Behind Egypt’s Growing #MeToo Movement",
+            "abstract": "In a moment of rage, Nadeen Ashraf created an Instagram page naming a man accused of being a sexual harasser. Within a week, it had 70,000 followers.",
+            "url": "https://www.nytimes.com/2020/10/02/world/middleeast/egypt-metoo-sexual-harassment-ashraf.html",
+            "uri": "nyt://article/1fc09f91-18da-5d02-b30a-e47dc894c0db",
+            "byline": "By Declan Walsh",
+            "item_type": "Article",
+            "updated_date": "2020-10-03T12:21:22-04:00",
+            "created_date": "2020-10-02T06:41:34-04:00",
+            "published_date": "2020-10-02T06:41:34-04:00",
+            "material_type_facet": "",
+            "kicker": "The Saturday Profile",
+            "des_facet": [
+                "Sexual Harassment",
+                "Sex Crimes",
+                "#MeToo Movement",
+                "Social Media",
+                "Women and Girls"
+            ],
+            "org_facet": [
+                "Instagram Inc"
+            ],
+            "per_facet": [
+                "Ashraf, Nadeen"
+            ],
+            "geo_facet": [
+                "Egypt"
+            ],
+            "multimedia": [
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/03/world/02egypt-profile/merlin_177898350_5f41e80f-052d-4299-b92c-1eb5aebecbf9-superJumbo.jpg",
+                    "format": "superJumbo",
+                    "height": 1365,
+                    "width": 2048,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "Nadeen Ashraf, founder of the @assaultpolice Instagram page, at her home in Cairo this month.",
+                    "copyright": "Sima Diab for The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/03/world/02egypt-profile/02egypt-profile-thumbStandard.jpg",
+                    "format": "Standard Thumbnail",
+                    "height": 75,
+                    "width": 75,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "Nadeen Ashraf, founder of the @assaultpolice Instagram page, at her home in Cairo this month.",
+                    "copyright": "Sima Diab for The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/03/world/02egypt-profile/02egypt-profile-thumbLarge.jpg",
+                    "format": "thumbLarge",
+                    "height": 150,
+                    "width": 150,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "Nadeen Ashraf, founder of the @assaultpolice Instagram page, at her home in Cairo this month.",
+                    "copyright": "Sima Diab for The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/03/world/02egypt-profile/02egypt-profile-mediumThreeByTwo210.jpg",
+                    "format": "mediumThreeByTwo210",
+                    "height": 140,
+                    "width": 210,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "Nadeen Ashraf, founder of the @assaultpolice Instagram page, at her home in Cairo this month.",
+                    "copyright": "Sima Diab for The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/03/world/02egypt-profile/merlin_177898350_5f41e80f-052d-4299-b92c-1eb5aebecbf9-articleInline.jpg",
+                    "format": "Normal",
+                    "height": 127,
+                    "width": 190,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "Nadeen Ashraf, founder of the @assaultpolice Instagram page, at her home in Cairo this month.",
+                    "copyright": "Sima Diab for The New York Times"
+                }
+            ],
+            "short_url": "https://nyti.ms/3cSIZmv"
+        },
+        {
+            "section": "world",
+            "subsection": "europe",
+            "title": "After 30 Years, East and West Germans Wonder: How United Are We?",
+            "abstract": "With Germany now an established, reunified democracy, it is taking stock of what is working and what still needs work, especially as the economy continues to lag in the former East.",
+            "url": "https://www.nytimes.com/2020/10/03/world/europe/east-west-germany-30-anniversary.html",
+            "uri": "nyt://article/f8cff4a3-ceb5-56ac-9b63-1fb9d222d039",
+            "byline": "By Melissa Eddy",
+            "item_type": "Article",
+            "updated_date": "2020-10-03T17:09:29-04:00",
+            "created_date": "2020-10-03T00:10:09-04:00",
+            "published_date": "2020-10-03T00:10:09-04:00",
+            "material_type_facet": "",
+            "kicker": "",
+            "des_facet": [
+                "Berlin Wall",
+                "Politics and Government",
+                "Women and Girls",
+                "Labor and Jobs"
+            ],
+            "org_facet": [
+                "Alternative for Germany",
+                "University College London"
+            ],
+            "per_facet": [
+                "Merkel, Angela"
+            ],
+            "geo_facet": [
+                "Germany",
+                "East Germany"
+            ],
+            "multimedia": [
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/03/world/03germany-reunification-top/merlin_177724863_bc27e315-1114-4141-94d6-d43f888756d7-superJumbo.jpg",
+                    "format": "superJumbo",
+                    "height": 1367,
+                    "width": 2048,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "A watchtower and parts of the old border wall remain in Mödlareuth, a German village situated partly in Bavaria and partly in Thuringia.",
+                    "copyright": "Laetitia Vancon for The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/03/world/03germany-reunification-top/03germany-reunification-top-thumbStandard.jpg",
+                    "format": "Standard Thumbnail",
+                    "height": 75,
+                    "width": 75,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "A watchtower and parts of the old border wall remain in Mödlareuth, a German village situated partly in Bavaria and partly in Thuringia.",
+                    "copyright": "Laetitia Vancon for The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/03/world/03germany-reunification-top/03germany-reunification-top-thumbLarge.jpg",
+                    "format": "thumbLarge",
+                    "height": 150,
+                    "width": 150,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "A watchtower and parts of the old border wall remain in Mödlareuth, a German village situated partly in Bavaria and partly in Thuringia.",
+                    "copyright": "Laetitia Vancon for The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/03/world/03germany-reunification-top/03germany-reunification-top-mediumThreeByTwo210.jpg",
+                    "format": "mediumThreeByTwo210",
+                    "height": 140,
+                    "width": 210,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "A watchtower and parts of the old border wall remain in Mödlareuth, a German village situated partly in Bavaria and partly in Thuringia.",
+                    "copyright": "Laetitia Vancon for The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/03/world/03germany-reunification-top/merlin_177724863_bc27e315-1114-4141-94d6-d43f888756d7-articleInline.jpg",
+                    "format": "Normal",
+                    "height": 127,
+                    "width": 190,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "A watchtower and parts of the old border wall remain in Mödlareuth, a German village situated partly in Bavaria and partly in Thuringia.",
+                    "copyright": "Laetitia Vancon for The New York Times"
+                }
+            ],
+            "short_url": "https://nyti.ms/34mUkY2"
+        },
+        {
+            "section": "world",
+            "subsection": "",
+            "title": "Trump Tests Positive for Coronavirus, and the World Shudders",
+            "abstract": "The news of an American president contracting a potentially lethal virus carried global repercussions beyond that of any other world leader.",
+            "url": "https://www.nytimes.com/2020/10/02/world/reactions-trump-positive-covid-test.html",
+            "uri": "nyt://article/77e6fde7-0c67-5081-a43e-1045c034fb63",
+            "byline": "By Mark Landler",
+            "item_type": "Article",
+            "updated_date": "2020-10-02T23:06:55-04:00",
+            "created_date": "2020-10-02T02:51:10-04:00",
+            "published_date": "2020-10-02T02:51:10-04:00",
+            "material_type_facet": "",
+            "kicker": "",
+            "des_facet": [
+                "Coronavirus (2019-nCoV)",
+                "United States Politics and Government",
+                "Trump Coronavirus Positive Result"
+            ],
+            "org_facet": [],
+            "per_facet": [
+                "Trump, Donald J",
+                "Trump, Melania"
+            ],
+            "geo_facet": [],
+            "multimedia": [
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/02/world/02virus-trump-global-1/merlin_177923181_b97a38a5-82db-499f-aca5-7f1bf09bc2a1-superJumbo.jpg",
+                    "format": "superJumbo",
+                    "height": 1365,
+                    "width": 2048,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "At 74, President Trump is older than other world leaders who have contracted the coronavirus.",
+                    "copyright": "Erin Schaff/The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/02/world/02virus-trump-global-1/02virus-trumo-global-1-thumbStandard.jpg",
+                    "format": "Standard Thumbnail",
+                    "height": 75,
+                    "width": 75,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "At 74, President Trump is older than other world leaders who have contracted the coronavirus.",
+                    "copyright": "Erin Schaff/The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/02/world/02virus-trump-global-1/02virus-trumo-global-1-thumbLarge.jpg",
+                    "format": "thumbLarge",
+                    "height": 150,
+                    "width": 150,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "At 74, President Trump is older than other world leaders who have contracted the coronavirus.",
+                    "copyright": "Erin Schaff/The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/02/world/02virus-trump-global-1/merlin_177923181_b97a38a5-82db-499f-aca5-7f1bf09bc2a1-mediumThreeByTwo210.jpg",
+                    "format": "mediumThreeByTwo210",
+                    "height": 140,
+                    "width": 210,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "At 74, President Trump is older than other world leaders who have contracted the coronavirus.",
+                    "copyright": "Erin Schaff/The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/02/world/02virus-trump-global-1/merlin_177923181_b97a38a5-82db-499f-aca5-7f1bf09bc2a1-articleInline.jpg",
+                    "format": "Normal",
+                    "height": 127,
+                    "width": 190,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "At 74, President Trump is older than other world leaders who have contracted the coronavirus.",
+                    "copyright": "Erin Schaff/The New York Times"
+                }
+            ],
+            "short_url": "https://nyti.ms/3irzpbk"
+        },
+        {
+            "section": "world",
+            "subsection": "europe",
+            "title": "World Reacts to Trump’s Diagnosis With Shock, Unease and Some Derision",
+            "abstract": "Beyond the barbs are worries about the U.S. election, and the broader state of the nation: ‘We really need the United States to be in good shape at the moment.’",
+            "url": "https://www.nytimes.com/2020/10/02/world/europe/global-voices-trump-coronavirus-positive.html",
+            "uri": "nyt://article/b70fec3c-654a-5202-8bd6-f7084ecf4b44",
+            "byline": "By Megan Specia",
+            "item_type": "Article",
+            "updated_date": "2020-10-02T16:24:40-04:00",
+            "created_date": "2020-10-02T11:50:05-04:00",
+            "published_date": "2020-10-02T11:50:05-04:00",
+            "material_type_facet": "",
+            "kicker": "",
+            "des_facet": [
+                "Masks",
+                "Presidential Election of 2020",
+                "Politics and Government",
+                "United States Politics and Government",
+                "Coronavirus (2019-nCoV)"
+            ],
+            "org_facet": [],
+            "per_facet": [
+                "Trump, Donald J"
+            ],
+            "geo_facet": [
+                "Europe",
+                "Nairobi (Kenya)",
+                "Great Britain",
+                "Germany",
+                "France"
+            ],
+            "multimedia": [
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/02/world/02trump-global-voices01/merlin_177550704_c93cc46a-069e-4f82-920d-b4e19bc5e9b9-superJumbo.jpg",
+                    "format": "superJumbo",
+                    "height": 1366,
+                    "width": 2048,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "President Trump in Jacksonville, Fla., last week.",
+                    "copyright": "Anna Moneymaker for The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/02/world/02trump-global-voices01/02trump-global-voices01-thumbStandard.jpg",
+                    "format": "Standard Thumbnail",
+                    "height": 75,
+                    "width": 75,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "President Trump in Jacksonville, Fla., last week.",
+                    "copyright": "Anna Moneymaker for The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/02/world/02trump-global-voices01/02trump-global-voices01-thumbLarge.jpg",
+                    "format": "thumbLarge",
+                    "height": 150,
+                    "width": 150,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "President Trump in Jacksonville, Fla., last week.",
+                    "copyright": "Anna Moneymaker for The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/02/world/02trump-global-voices01/merlin_177550704_c93cc46a-069e-4f82-920d-b4e19bc5e9b9-mediumThreeByTwo210.jpg",
+                    "format": "mediumThreeByTwo210",
+                    "height": 140,
+                    "width": 210,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "President Trump in Jacksonville, Fla., last week.",
+                    "copyright": "Anna Moneymaker for The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/02/world/02trump-global-voices01/merlin_177550704_c93cc46a-069e-4f82-920d-b4e19bc5e9b9-articleInline.jpg",
+                    "format": "Normal",
+                    "height": 127,
+                    "width": 190,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "President Trump in Jacksonville, Fla., last week.",
+                    "copyright": "Anna Moneymaker for The New York Times"
+                }
+            ],
+            "short_url": "https://nyti.ms/2GwGMAU"
+        },
+        {
+            "section": "world",
+            "subsection": "europe",
+            "title": "30 Years After Reunification, Old German-German Border Is a Green Oasis",
+            "abstract": "Crossing the militarized border that split Germany into east and west once meant risking death. Now? It’s a literal walk in the park.",
+            "url": "https://www.nytimes.com/2020/10/02/world/europe/germany-reunification-berlin-wall.html",
+            "uri": "nyt://article/f046aa06-02b0-5d94-8c19-31c765c91f3a",
+            "byline": "By Christopher F. Schuetze",
+            "item_type": "Article",
+            "updated_date": "2020-10-03T13:47:26-04:00",
+            "created_date": "2020-10-02T00:10:09-04:00",
+            "published_date": "2020-10-02T00:10:09-04:00",
+            "material_type_facet": "",
+            "kicker": "Germany Dispatch",
+            "des_facet": [
+                "Wildlife Sanctuaries and Nature Reserves",
+                "Land Use Policies",
+                "Berlin Wall",
+                "Cold War Era",
+                "Birdwatching"
+            ],
+            "org_facet": [],
+            "per_facet": [],
+            "geo_facet": [
+                "Germany",
+                "East Germany"
+            ],
+            "multimedia": [
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/01/world/00germany-border/00germany-border-superJumbo.jpg",
+                    "format": "superJumbo",
+                    "height": 1367,
+                    "width": 2048,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "An old watchtower, part of the old border between East and West Germany, is preserved in the village of Mödlareuth.",
+                    "copyright": "Laetitia Vancon for The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/01/world/00germany-border/00germany-border-thumbStandard.jpg",
+                    "format": "Standard Thumbnail",
+                    "height": 75,
+                    "width": 75,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "An old watchtower, part of the old border between East and West Germany, is preserved in the village of Mödlareuth.",
+                    "copyright": "Laetitia Vancon for The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/01/world/00germany-border/00germany-border-thumbLarge.jpg",
+                    "format": "thumbLarge",
+                    "height": 150,
+                    "width": 150,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "An old watchtower, part of the old border between East and West Germany, is preserved in the village of Mödlareuth.",
+                    "copyright": "Laetitia Vancon for The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/01/world/00germany-border/00germany-border-mediumThreeByTwo210.jpg",
+                    "format": "mediumThreeByTwo210",
+                    "height": 140,
+                    "width": 210,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "An old watchtower, part of the old border between East and West Germany, is preserved in the village of Mödlareuth.",
+                    "copyright": "Laetitia Vancon for The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/01/world/00germany-border/00germany-border-articleInline.jpg",
+                    "format": "Normal",
+                    "height": 127,
+                    "width": 190,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "An old watchtower, part of the old border between East and West Germany, is preserved in the village of Mödlareuth.",
+                    "copyright": "Laetitia Vancon for The New York Times"
+                }
+            ],
+            "short_url": "https://nyti.ms/3nirzEP"
+        },
+        {
+            "section": "world",
+            "subsection": "europe",
+            "title": "Russian Journalist Sets Herself on Fire and Dies, Blaming Government",
+            "abstract": "The self-immolation by the journalist, Irina Slavina, 47, a longtime Kremlin critic, came a day after the authorities in her hometown of Nizhny Novgorod had searched her apartment.",
+            "url": "https://www.nytimes.com/2020/10/02/world/europe/russian-journalist-immolation-death.html",
+            "uri": "nyt://article/426e7c2f-23c7-5898-b158-7de674dceb47",
+            "byline": "By Ivan Nechepurenko",
+            "item_type": "Article",
+            "updated_date": "2020-10-03T13:18:35-04:00",
+            "created_date": "2020-10-02T18:03:16-04:00",
+            "published_date": "2020-10-02T18:03:16-04:00",
+            "material_type_facet": "",
+            "kicker": "",
+            "des_facet": [
+                "Immolation",
+                "Freedom of the Press",
+                "Politics and Government",
+                "News and News Media",
+                "Search and Seizure"
+            ],
+            "org_facet": [
+                "Federal Security Service",
+                "Open Russia"
+            ],
+            "per_facet": [
+                "Slavina, Irina"
+            ],
+            "geo_facet": [
+                "Russia"
+            ],
+            "multimedia": [
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/02/world/02russia/02russia-superJumbo.jpg",
+                    "format": "superJumbo",
+                    "height": 2048,
+                    "width": 1366,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "Irina Slavina",
+                    "copyright": "Associated Press"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/02/world/02russia/02russia-thumbStandard.jpg",
+                    "format": "Standard Thumbnail",
+                    "height": 75,
+                    "width": 75,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "Irina Slavina",
+                    "copyright": "Associated Press"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/02/world/02russia/02russia-thumbLarge.jpg",
+                    "format": "thumbLarge",
+                    "height": 150,
+                    "width": 150,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "Irina Slavina",
+                    "copyright": "Associated Press"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/02/world/02russia/02russia-mediumThreeByTwo210.jpg",
+                    "format": "mediumThreeByTwo210",
+                    "height": 140,
+                    "width": 210,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "Irina Slavina",
+                    "copyright": "Associated Press"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/02/world/02russia/02russia-articleInline.jpg",
+                    "format": "Normal",
+                    "height": 285,
+                    "width": 190,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "Irina Slavina",
+                    "copyright": "Associated Press"
+                }
+            ],
+            "short_url": "https://nyti.ms/2GjJ4Uo"
+        },
+        {
+            "section": "world",
+            "subsection": "europe",
+            "title": "Macron Vows Crackdown on ‘Islamist Separatism’ in France",
+            "abstract": "President Emmanuel Macron’s speech addressed a deep-rooted problem in French society: its enduring difficulty to integrate significant parts of its large, nonwhite, Muslim population of immigrants and their descendants.",
+            "url": "https://www.nytimes.com/2020/10/02/world/europe/macron-radical-islam-france.html",
+            "uri": "nyt://article/2b8742f5-6bdb-54ce-87b1-a1c3d3dc2af1",
+            "byline": "By Norimitsu Onishi and Aurelien Breeden",
+            "item_type": "Article",
+            "updated_date": "2020-10-03T13:08:45-04:00",
+            "created_date": "2020-10-02T12:28:37-04:00",
+            "published_date": "2020-10-02T12:28:37-04:00",
+            "material_type_facet": "",
+            "kicker": "",
+            "des_facet": [
+                "Politics and Government",
+                "Muslims and Islam",
+                "Fringe Groups and Movements",
+                "Private and Sectarian Schools",
+                "Mosques",
+                "Terrorism",
+                "Religion-State Relations",
+                "Immigration and Emigration",
+                "Right-Wing Extremism and Alt-Right"
+            ],
+            "org_facet": [],
+            "per_facet": [
+                "Macron, Emmanuel (1977- )"
+            ],
+            "geo_facet": [
+                "France"
+            ],
+            "multimedia": [
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/02/world/02france-islam01/merlin_177939411_675f54d3-8dc5-4dc9-b058-92dacf74f35b-superJumbo.jpg",
+                    "format": "superJumbo",
+                    "height": 1366,
+                    "width": 2048,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "“We built our own separatism ourselves,” President Emmanuel Macron of France said on Friday.",
+                    "copyright": "Pool photo by Ludovic Marin"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/02/world/02france-islam01/02france-islam01-thumbStandard.jpg",
+                    "format": "Standard Thumbnail",
+                    "height": 75,
+                    "width": 75,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "“We built our own separatism ourselves,” President Emmanuel Macron of France said on Friday.",
+                    "copyright": "Pool photo by Ludovic Marin"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/02/world/02france-islam01/02france-islam01-thumbLarge.jpg",
+                    "format": "thumbLarge",
+                    "height": 150,
+                    "width": 150,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "“We built our own separatism ourselves,” President Emmanuel Macron of France said on Friday.",
+                    "copyright": "Pool photo by Ludovic Marin"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/02/world/02france-islam01/merlin_177939411_675f54d3-8dc5-4dc9-b058-92dacf74f35b-mediumThreeByTwo210.jpg",
+                    "format": "mediumThreeByTwo210",
+                    "height": 140,
+                    "width": 210,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "“We built our own separatism ourselves,” President Emmanuel Macron of France said on Friday.",
+                    "copyright": "Pool photo by Ludovic Marin"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/02/world/02france-islam01/merlin_177939411_675f54d3-8dc5-4dc9-b058-92dacf74f35b-articleInline.jpg",
+                    "format": "Normal",
+                    "height": 127,
+                    "width": 190,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "“We built our own separatism ourselves,” President Emmanuel Macron of France said on Friday.",
+                    "copyright": "Pool photo by Ludovic Marin"
+                }
+            ],
+            "short_url": "https://nyti.ms/3jucNIA"
+        },
+        {
+            "section": "world",
+            "subsection": "africa",
+            "title": "Hopes Fade for New Political Course in Algeria a Year After Popular Uprising",
+            "abstract": "“We are moving backward fast,” said a leading figure in last year’s protests that ousted the country’s authoritarian ruler.",
+            "url": "https://www.nytimes.com/2020/10/04/world/africa/algeria-protests-politics.html",
+            "uri": "nyt://article/2ed25a31-527a-59f3-bf87-6b9efd5335c0",
+            "byline": "By Adam Nossiter",
+            "item_type": "Article",
+            "updated_date": "2020-10-04T06:08:15-04:00",
+            "created_date": "2020-10-04T05:00:11-04:00",
+            "published_date": "2020-10-04T05:00:11-04:00",
+            "material_type_facet": "",
+            "kicker": "",
+            "des_facet": [
+                "Demonstrations, Protests and Riots",
+                "Politics and Government",
+                "Defense and Military Forces"
+            ],
+            "org_facet": [],
+            "per_facet": [
+                "Bouteflika, Abdelaziz",
+                "Tebboune, Abdelmadjid"
+            ],
+            "geo_facet": [
+                "Algeria"
+            ],
+            "multimedia": [
+                {
+                    "url": "https://static01.nyt.com/images/2020/09/23/world/XXALGERIA01/merlin_153099495_78764bd3-ef3e-4b16-a88c-a41474e5f3ab-superJumbo.jpg",
+                    "format": "superJumbo",
+                    "height": 1367,
+                    "width": 2048,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "A popular revolt brought tens of thousands into the streets of Algiers last year.",
+                    "copyright": "Ryad Kramdi/Agence France-Presse — Getty Images"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/09/23/world/XXALGERIA01/XXALGERIA01-thumbStandard.jpg",
+                    "format": "Standard Thumbnail",
+                    "height": 75,
+                    "width": 75,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "A popular revolt brought tens of thousands into the streets of Algiers last year.",
+                    "copyright": "Ryad Kramdi/Agence France-Presse — Getty Images"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/09/23/world/XXALGERIA01/XXALGERIA01-thumbLarge.jpg",
+                    "format": "thumbLarge",
+                    "height": 150,
+                    "width": 150,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "A popular revolt brought tens of thousands into the streets of Algiers last year.",
+                    "copyright": "Ryad Kramdi/Agence France-Presse — Getty Images"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/09/23/world/XXALGERIA01/XXALGERIA01-mediumThreeByTwo210.jpg",
+                    "format": "mediumThreeByTwo210",
+                    "height": 140,
+                    "width": 210,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "A popular revolt brought tens of thousands into the streets of Algiers last year.",
+                    "copyright": "Ryad Kramdi/Agence France-Presse — Getty Images"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/09/23/world/XXALGERIA01/merlin_153099495_78764bd3-ef3e-4b16-a88c-a41474e5f3ab-articleInline.jpg",
+                    "format": "Normal",
+                    "height": 127,
+                    "width": 190,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "A popular revolt brought tens of thousands into the streets of Algiers last year.",
+                    "copyright": "Ryad Kramdi/Agence France-Presse — Getty Images"
+                }
+            ],
+            "short_url": "https://nyti.ms/3cYl0SW"
+        },
+        {
+            "section": "world",
+            "subsection": "europe",
+            "title": "A Black Belgian Student Saw a White Fraternity as His Ticket. It Was His Death.",
+            "abstract": "Sanda Dia’s death after an initiation ritual was regarded as a tragic accident. Newly released videos and photos have made it a symbol of growing intolerance.",
+            "url": "https://www.nytimes.com/2020/10/04/world/europe/belgium-racism-sanda-dia.html",
+            "uri": "nyt://article/3bbfb3e9-88d2-51c5-8294-63a7931fc6e9",
+            "byline": "By Matt Apuzzo and Steven Erlanger",
+            "item_type": "Article",
+            "updated_date": "2020-10-04T06:09:55-04:00",
+            "created_date": "2020-10-04T03:00:14-04:00",
+            "published_date": "2020-10-04T03:00:14-04:00",
+            "material_type_facet": "",
+            "kicker": "",
+            "des_facet": [
+                "Black People",
+                "Fraternities and Sororities",
+                "Race and Ethnicity",
+                "Discrimination",
+                "Hazing",
+                "Right-Wing Extremism and Alt-Right"
+            ],
+            "org_facet": [
+                "Catholic University of Leuven (Belgium)",
+                "Reuzegom"
+            ],
+            "per_facet": [
+                "Sanda Dia"
+            ],
+            "geo_facet": [
+                "Flanders (Belgium)"
+            ],
+            "multimedia": [
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/04/world/04hazingdeath-p1/00hazingdeath-sanda-superJumbo.jpg",
+                    "format": "superJumbo",
+                    "height": 1365,
+                    "width": 2048,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "Sanda Dia in a family photo. Joining the almost all-white club, he told his brother, meant that \u0026ldquo;when you leave school they will trust you a lot faster.\u0026rdquo;",
+                    "copyright": ""
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/04/world/04hazingdeath-p1/00hazingdeath-sanda-thumbStandard.jpg",
+                    "format": "Standard Thumbnail",
+                    "height": 75,
+                    "width": 75,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "Sanda Dia in a family photo. Joining the almost all-white club, he told his brother, meant that \u0026ldquo;when you leave school they will trust you a lot faster.\u0026rdquo;",
+                    "copyright": ""
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/04/world/04hazingdeath-p1/00hazingdeath-sanda-thumbLarge.jpg",
+                    "format": "thumbLarge",
+                    "height": 150,
+                    "width": 150,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "Sanda Dia in a family photo. Joining the almost all-white club, he told his brother, meant that \u0026ldquo;when you leave school they will trust you a lot faster.\u0026rdquo;",
+                    "copyright": ""
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/04/world/04hazingdeath-p1/00hazingdeath-sanda-mediumThreeByTwo210.jpg",
+                    "format": "mediumThreeByTwo210",
+                    "height": 140,
+                    "width": 210,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "Sanda Dia in a family photo. Joining the almost all-white club, he told his brother, meant that \u0026ldquo;when you leave school they will trust you a lot faster.\u0026rdquo;",
+                    "copyright": ""
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/04/world/04hazingdeath-p1/00hazingdeath-sanda-articleInline.jpg",
+                    "format": "Normal",
+                    "height": 127,
+                    "width": 190,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "Sanda Dia in a family photo. Joining the almost all-white club, he told his brother, meant that \u0026ldquo;when you leave school they will trust you a lot faster.\u0026rdquo;",
+                    "copyright": ""
+                }
+            ],
+            "short_url": "https://nyti.ms/34l0isp"
+        },
+        {
+            "section": "style",
+            "subsection": "",
+            "title": "Black Germans Say It’s Time to Look Inward",
+            "abstract": "The Black Lives Matter movement saw shows of solidarity around the world this summer. In Germany, some feel there is a reluctance to acknowledge more local problems.",
+            "url": "https://www.nytimes.com/2020/10/04/style/black-germans-say-its-time-to-look-inward.html",
+            "uri": "nyt://article/e248d34e-82c6-5867-a048-53e5d24037ed",
+            "byline": "By Valeriya Safronova",
+            "item_type": "Article",
+            "updated_date": "2020-10-04T03:00:10-04:00",
+            "created_date": "2020-10-04T03:00:10-04:00",
+            "published_date": "2020-10-04T03:00:10-04:00",
+            "material_type_facet": "",
+            "kicker": "",
+            "des_facet": [
+                "Black Lives Matter Movement"
+            ],
+            "org_facet": [],
+            "per_facet": [],
+            "geo_facet": [
+                "Germany"
+            ],
+            "multimedia": [
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/04/fashion/02BLM-GERMANY1/merlin_177782115_8407b5df-8c03-4240-97ee-9621183a094e-superJumbo.jpg",
+                    "format": "superJumbo",
+                    "height": 1365,
+                    "width": 2048,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "At least 15,000 people gathered to protest racism in Berlin on June 6. But people who work on anti-racism initiatives said the crowds seemed more eager to show solidarity with the United States than to self-reflect.",
+                    "copyright": "Mustafah Abdulaziz/National Geographic Society\u0026rsquo;s Emergency Fund for Journalists"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/04/fashion/02BLM-GERMANY1/02BLM-GERMANY1-thumbStandard-v2.jpg",
+                    "format": "Standard Thumbnail",
+                    "height": 75,
+                    "width": 75,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "At least 15,000 people gathered to protest racism in Berlin on June 6. But people who work on anti-racism initiatives said the crowds seemed more eager to show solidarity with the United States than to self-reflect.",
+                    "copyright": "Mustafah Abdulaziz/National Geographic Society\u0026rsquo;s Emergency Fund for Journalists"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/04/fashion/02BLM-GERMANY1/02BLM-GERMANY1-thumbLarge-v2.jpg",
+                    "format": "thumbLarge",
+                    "height": 150,
+                    "width": 150,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "At least 15,000 people gathered to protest racism in Berlin on June 6. But people who work on anti-racism initiatives said the crowds seemed more eager to show solidarity with the United States than to self-reflect.",
+                    "copyright": "Mustafah Abdulaziz/National Geographic Society\u0026rsquo;s Emergency Fund for Journalists"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/04/fashion/02BLM-GERMANY1/merlin_177782115_8407b5df-8c03-4240-97ee-9621183a094e-mediumThreeByTwo210.jpg",
+                    "format": "mediumThreeByTwo210",
+                    "height": 140,
+                    "width": 210,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "At least 15,000 people gathered to protest racism in Berlin on June 6. But people who work on anti-racism initiatives said the crowds seemed more eager to show solidarity with the United States than to self-reflect.",
+                    "copyright": "Mustafah Abdulaziz/National Geographic Society\u0026rsquo;s Emergency Fund for Journalists"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/04/fashion/02BLM-GERMANY1/merlin_177782115_8407b5df-8c03-4240-97ee-9621183a094e-articleInline.jpg",
+                    "format": "Normal",
+                    "height": 127,
+                    "width": 190,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "At least 15,000 people gathered to protest racism in Berlin on June 6. But people who work on anti-racism initiatives said the crowds seemed more eager to show solidarity with the United States than to self-reflect.",
+                    "copyright": "Mustafah Abdulaziz/National Geographic Society\u0026rsquo;s Emergency Fund for Journalists"
+                }
+            ],
+            "short_url": "https://nyti.ms/3lavxNz"
+        },
+        {
+            "section": "at-home",
+            "subsection": "",
+            "title": "The Best Live Animal Feeds From Around the World",
+            "abstract": "Research shows that watching footage of them can make you happier, so here’s a list of round-the-clock camera footage that will bring koalas, penguins and puppies straight to your screen.",
+            "url": "https://www.nytimes.com/2020/10/03/at-home/best-animal-feeds.html",
+            "uri": "nyt://article/7decf6b4-c439-550c-8b10-111f5766f9e6",
+            "byline": "By Sara Aridi",
+            "item_type": "Article",
+            "updated_date": "2020-10-03T23:43:07-04:00",
+            "created_date": "2020-10-03T23:43:07-04:00",
+            "published_date": "2020-10-03T23:43:07-04:00",
+            "material_type_facet": "",
+            "kicker": "",
+            "des_facet": [
+                "Animals",
+                "Zoos",
+                "Video Recordings, Downloads and Streaming",
+                "Wildlife Sanctuaries and Nature Reserves",
+                "Computers and the Internet",
+                "Elephants",
+                "Dogs",
+                "Bears",
+                "Fish and Other Marine Life",
+                "Monkeys and Apes",
+                "Aquariums",
+                "National Parks, Monuments and Seashores",
+                "Parks and Other Recreation Areas",
+                "Quarantine (Life and Culture)"
+            ],
+            "org_facet": [
+                "San Diego Zoo",
+                "Smithsonian National Zoological Park"
+            ],
+            "per_facet": [],
+            "geo_facet": [],
+            "multimedia": [
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/04/multimedia/04-ah-animal-cam2/04-ah-animal-cam2-superJumbo.jpg",
+                    "format": "superJumbo",
+                    "height": 1592,
+                    "width": 1101,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "",
+                    "copyright": "Luci Guti\u0026eacute;rrez"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/04/multimedia/04-ah-animal-cam2/04-ah-animal-cam2-thumbStandard.jpg",
+                    "format": "Standard Thumbnail",
+                    "height": 75,
+                    "width": 75,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "",
+                    "copyright": "Luci Guti\u0026eacute;rrez"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/04/multimedia/04-ah-animal-cam2/04-ah-animal-cam2-thumbLarge.jpg",
+                    "format": "thumbLarge",
+                    "height": 150,
+                    "width": 150,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "",
+                    "copyright": "Luci Guti\u0026eacute;rrez"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/04/multimedia/04-ah-animal-cam2/04-ah-animal-cam2-mediumThreeByTwo210.jpg",
+                    "format": "mediumThreeByTwo210",
+                    "height": 140,
+                    "width": 210,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "",
+                    "copyright": "Luci Guti\u0026eacute;rrez"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/04/multimedia/04-ah-animal-cam2/04-ah-animal-cam2-articleInline.jpg",
+                    "format": "Normal",
+                    "height": 275,
+                    "width": 190,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "",
+                    "copyright": "Luci Guti\u0026eacute;rrez"
+                }
+            ],
+            "short_url": "https://nyti.ms/3cTj3ao"
+        },
+        {
+            "section": "world",
+            "subsection": "asia",
+            "title": "Despite Crises, India Fixes Its Gaze on a Bollywood Tragedy",
+            "abstract": "Covid-19 is rippling through the country. The economy is reeling. But for many Indians, an actor’s death and the investigation that followed are a bigger story.",
+            "url": "https://www.nytimes.com/2020/10/03/world/asia/india-bollywood-sushant-singh-rajput.html",
+            "uri": "nyt://article/e1e8693a-cbb6-53a1-8add-9a8d723afd56",
+            "byline": "By Shalini Venugopal Bhagat",
+            "item_type": "Article",
+            "updated_date": "2020-10-04T06:08:15-04:00",
+            "created_date": "2020-10-03T19:00:09-04:00",
+            "published_date": "2020-10-03T19:00:09-04:00",
+            "material_type_facet": "",
+            "kicker": "",
+            "des_facet": [
+                "Actors and Actresses",
+                "Movies",
+                "Mental Health and Disorders",
+                "Suicides and Suicide Attempts"
+            ],
+            "org_facet": [],
+            "per_facet": [
+                "Rajput, Sushant Singh",
+                "Chakraborty, Rhea"
+            ],
+            "geo_facet": [
+                "India"
+            ],
+            "multimedia": [
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/04/world/04india-bollywood-print1/merlin_175426845_a436e7f0-c7c3-45ce-a3cc-5e6633fa5cd9-superJumbo.jpg",
+                    "format": "superJumbo",
+                    "height": 1365,
+                    "width": 2048,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "The actress Rhea Chakraborty, center, in Mumbai last month after being questioned by the authorities. Her boyfriend, the Bollywood star Sushant Singh Rajput, killed himself in June.",
+                    "copyright": "Sujit Jaiswal/Agence France-Presse \u0026mdash; Getty Images"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/04/world/04india-bollywood-print1/00india-bollywood-1-thumbStandard.jpg",
+                    "format": "Standard Thumbnail",
+                    "height": 75,
+                    "width": 75,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "The actress Rhea Chakraborty, center, in Mumbai last month after being questioned by the authorities. Her boyfriend, the Bollywood star Sushant Singh Rajput, killed himself in June.",
+                    "copyright": "Sujit Jaiswal/Agence France-Presse \u0026mdash; Getty Images"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/04/world/04india-bollywood-print1/00india-bollywood-1-thumbLarge.jpg",
+                    "format": "thumbLarge",
+                    "height": 150,
+                    "width": 150,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "The actress Rhea Chakraborty, center, in Mumbai last month after being questioned by the authorities. Her boyfriend, the Bollywood star Sushant Singh Rajput, killed himself in June.",
+                    "copyright": "Sujit Jaiswal/Agence France-Presse \u0026mdash; Getty Images"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/04/world/04india-bollywood-print1/merlin_175426845_a436e7f0-c7c3-45ce-a3cc-5e6633fa5cd9-mediumThreeByTwo210.jpg",
+                    "format": "mediumThreeByTwo210",
+                    "height": 140,
+                    "width": 210,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "The actress Rhea Chakraborty, center, in Mumbai last month after being questioned by the authorities. Her boyfriend, the Bollywood star Sushant Singh Rajput, killed himself in June.",
+                    "copyright": "Sujit Jaiswal/Agence France-Presse \u0026mdash; Getty Images"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/04/world/04india-bollywood-print1/merlin_175426845_a436e7f0-c7c3-45ce-a3cc-5e6633fa5cd9-articleInline.jpg",
+                    "format": "Normal",
+                    "height": 127,
+                    "width": 190,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "The actress Rhea Chakraborty, center, in Mumbai last month after being questioned by the authorities. Her boyfriend, the Bollywood star Sushant Singh Rajput, killed himself in June.",
+                    "copyright": "Sujit Jaiswal/Agence France-Presse \u0026mdash; Getty Images"
+                }
+            ],
+            "short_url": "https://nyti.ms/34jO6IE"
+        },
+        {
+            "section": "world",
+            "subsection": "",
+            "title": "Data shows fewer Afghan women than men get Covid-19. That’s bad news.",
+            "abstract": "",
+            "url": "https://www.nytimes.com/2020/10/03/world/afghan-women-men.html",
+            "uri": "nyt://article/78af19b8-cf28-52c2-b0c8-7db92543d1b0",
+            "byline": "By Alisha Haridasani Gupta and Fatima Faizi",
+            "item_type": "Article",
+            "updated_date": "2020-10-04T04:49:29-04:00",
+            "created_date": "2020-10-03T17:46:08-04:00",
+            "published_date": "2020-10-03T17:46:08-04:00",
+            "material_type_facet": "",
+            "kicker": "",
+            "des_facet": [
+                "internal-essential"
+            ],
+            "org_facet": [],
+            "per_facet": [],
+            "geo_facet": [],
+            "multimedia": [
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/01/world/01virus-briefing-afghan/merlin_176527311_1fbcded1-9204-41d3-aa8a-3f950e3a06de-superJumbo.jpg",
+                    "format": "superJumbo",
+                    "height": 1366,
+                    "width": 2048,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "A wholesale market in Kabul last month. In Afghanistan, men account for 70 percent of Covid-19 cases and 74 percent of deaths.",
+                    "copyright": "Jim Huylebroek for The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/01/world/01virus-briefing-afghan/merlin_176527311_1fbcded1-9204-41d3-aa8a-3f950e3a06de-thumbStandard.jpg",
+                    "format": "Standard Thumbnail",
+                    "height": 75,
+                    "width": 75,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "A wholesale market in Kabul last month. In Afghanistan, men account for 70 percent of Covid-19 cases and 74 percent of deaths.",
+                    "copyright": "Jim Huylebroek for The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/01/world/01virus-briefing-afghan/merlin_176527311_1fbcded1-9204-41d3-aa8a-3f950e3a06de-thumbLarge.jpg",
+                    "format": "thumbLarge",
+                    "height": 150,
+                    "width": 150,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "A wholesale market in Kabul last month. In Afghanistan, men account for 70 percent of Covid-19 cases and 74 percent of deaths.",
+                    "copyright": "Jim Huylebroek for The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/01/world/01virus-briefing-afghan/merlin_176527311_1fbcded1-9204-41d3-aa8a-3f950e3a06de-mediumThreeByTwo210.jpg",
+                    "format": "mediumThreeByTwo210",
+                    "height": 140,
+                    "width": 210,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "A wholesale market in Kabul last month. In Afghanistan, men account for 70 percent of Covid-19 cases and 74 percent of deaths.",
+                    "copyright": "Jim Huylebroek for The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/01/world/01virus-briefing-afghan/merlin_176527311_1fbcded1-9204-41d3-aa8a-3f950e3a06de-articleInline.jpg",
+                    "format": "Normal",
+                    "height": 127,
+                    "width": 190,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "A wholesale market in Kabul last month. In Afghanistan, men account for 70 percent of Covid-19 cases and 74 percent of deaths.",
+                    "copyright": "Jim Huylebroek for The New York Times"
+                }
+            ],
+            "short_url": "https://nyti.ms/36tNbb3"
+        },
+        {
+            "section": "world",
+            "subsection": "americas",
+            "title": "Anger in Chile After Boy Is Shown Falling From Bridge During Police Clashes",
+            "abstract": "Video of the teenager’s fall into a shallow river went viral in Chile, which was convulsed by unrest a year ago.",
+            "url": "https://www.nytimes.com/2020/10/03/world/americas/chile-protests.html",
+            "uri": "nyt://article/03334dea-6d13-5bba-9af7-463f73479ef4",
+            "byline": "By Reuters",
+            "item_type": "Article",
+            "updated_date": "2020-10-04T00:36:45-04:00",
+            "created_date": "2020-10-03T15:36:48-04:00",
+            "published_date": "2020-10-03T15:36:48-04:00",
+            "material_type_facet": "",
+            "kicker": "",
+            "des_facet": [
+                "Demonstrations, Protests and Riots",
+                "Police Brutality, Misconduct and Shootings"
+            ],
+            "org_facet": [],
+            "per_facet": [],
+            "geo_facet": [
+                "Santiago (Chile)",
+                "Chile"
+            ],
+            "multimedia": [
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/03/world/03chile/merlin_177998469_a09fe6c8-34c6-4e71-b76b-74e666fd3d75-superJumbo.jpg",
+                    "format": "superJumbo",
+                    "height": 1391,
+                    "width": 2048,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "People coming to the aid of a young demonstrator who fell from a bridge during clashes with police on Friday in Santiago, Chile.",
+                    "copyright": "Aliosha Marquez Alvear/Associated Press"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/03/world/03chile/03chile-thumbStandard.jpg",
+                    "format": "Standard Thumbnail",
+                    "height": 75,
+                    "width": 75,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "People coming to the aid of a young demonstrator who fell from a bridge during clashes with police on Friday in Santiago, Chile.",
+                    "copyright": "Aliosha Marquez Alvear/Associated Press"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/03/world/03chile/03chile-thumbLarge.jpg",
+                    "format": "thumbLarge",
+                    "height": 150,
+                    "width": 150,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "People coming to the aid of a young demonstrator who fell from a bridge during clashes with police on Friday in Santiago, Chile.",
+                    "copyright": "Aliosha Marquez Alvear/Associated Press"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/03/world/03chile/03chile-mediumThreeByTwo210.jpg",
+                    "format": "mediumThreeByTwo210",
+                    "height": 140,
+                    "width": 210,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "People coming to the aid of a young demonstrator who fell from a bridge during clashes with police on Friday in Santiago, Chile.",
+                    "copyright": "Aliosha Marquez Alvear/Associated Press"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/03/world/03chile/merlin_177998469_a09fe6c8-34c6-4e71-b76b-74e666fd3d75-articleInline.jpg",
+                    "format": "Normal",
+                    "height": 129,
+                    "width": 190,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "People coming to the aid of a young demonstrator who fell from a bridge during clashes with police on Friday in Santiago, Chile.",
+                    "copyright": "Aliosha Marquez Alvear/Associated Press"
+                }
+            ],
+            "short_url": "https://nyti.ms/33q9uwo"
+        },
+        {
+            "section": "world",
+            "subsection": "",
+            "title": "Chris Christie, who helped Trump prepare for the debate, has the virus.",
+            "abstract": "",
+            "url": "https://www.nytimes.com/2020/10/03/world/chris-christie-who-helped-trump-prepare-for-the-debate-has-the-virus.html",
+            "uri": "nyt://article/412315a6-5eb3-5da2-b0b8-61d51ed6a329",
+            "byline": "By Maria Cramer",
+            "item_type": "Article",
+            "updated_date": "2020-10-04T02:56:23-04:00",
+            "created_date": "2020-10-03T12:08:01-04:00",
+            "published_date": "2020-10-03T12:08:01-04:00",
+            "material_type_facet": "",
+            "kicker": "",
+            "des_facet": [
+                "internal-essential"
+            ],
+            "org_facet": [],
+            "per_facet": [],
+            "geo_facet": [],
+            "multimedia": [
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/03/business/03virus-briefing-christie/merlin_177705312_40e8d729-6c6d-47d3-99e0-9d800d9a6d73-superJumbo.jpg",
+                    "format": "superJumbo",
+                    "height": 1365,
+                    "width": 2048,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "Chris Christie, the former governor of New Jersey, at the White House last week.",
+                    "copyright": "Al Drago for The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/03/business/03virus-briefing-christie/merlin_177705312_40e8d729-6c6d-47d3-99e0-9d800d9a6d73-thumbStandard.jpg",
+                    "format": "Standard Thumbnail",
+                    "height": 75,
+                    "width": 75,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "Chris Christie, the former governor of New Jersey, at the White House last week.",
+                    "copyright": "Al Drago for The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/03/business/03virus-briefing-christie/merlin_177705312_40e8d729-6c6d-47d3-99e0-9d800d9a6d73-thumbLarge.jpg",
+                    "format": "thumbLarge",
+                    "height": 150,
+                    "width": 150,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "Chris Christie, the former governor of New Jersey, at the White House last week.",
+                    "copyright": "Al Drago for The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/03/business/03virus-briefing-christie/merlin_177705312_40e8d729-6c6d-47d3-99e0-9d800d9a6d73-mediumThreeByTwo210.jpg",
+                    "format": "mediumThreeByTwo210",
+                    "height": 140,
+                    "width": 210,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "Chris Christie, the former governor of New Jersey, at the White House last week.",
+                    "copyright": "Al Drago for The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/03/business/03virus-briefing-christie/merlin_177705312_40e8d729-6c6d-47d3-99e0-9d800d9a6d73-articleInline.jpg",
+                    "format": "Normal",
+                    "height": 127,
+                    "width": 190,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "Chris Christie, the former governor of New Jersey, at the White House last week.",
+                    "copyright": "Al Drago for The New York Times"
+                }
+            ],
+            "short_url": "https://nyti.ms/3lbRNH6"
+        },
+        {
+            "section": "world",
+            "subsection": "europe",
+            "title": "Arctic Expedition’s Dress Code Raises Concerns About Sexism in Science",
+            "abstract": "The scientific institute leading the trip denied that its policy had been applied to a specific sex, saying, “Women and men participate in our polar expeditions as equals.”",
+            "url": "https://www.nytimes.com/2020/10/03/world/europe/arctic-mosaic-dress-code.html",
+            "uri": "nyt://article/2312c53e-2559-5536-b023-e45c8cfa9005",
+            "byline": "By Derrick Bryson Taylor",
+            "item_type": "Article",
+            "updated_date": "2020-10-03T11:36:52-04:00",
+            "created_date": "2020-10-03T10:43:01-04:00",
+            "published_date": "2020-10-03T10:43:01-04:00",
+            "material_type_facet": "",
+            "kicker": "",
+            "des_facet": [
+                "Sexual Harassment",
+                "Discrimination",
+                "Women and Girls",
+                "Ships and Shipping",
+                "Workplace Environment"
+            ],
+            "org_facet": [
+                "Wegener, Alfred, Institute for Polar and Marine Research"
+            ],
+            "per_facet": [
+                "Harvey, Chelsea  (Journalist)"
+            ],
+            "geo_facet": [
+                "Arctic Regions",
+                "Germany"
+            ],
+            "multimedia": [
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/01/multimedia/00xp-arctic-image1/00xp-arctic-image1-superJumbo-v2.jpg",
+                    "format": "superJumbo",
+                    "height": 1200,
+                    "width": 1800,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "The Polarstern, on an expedition in the Arctic, was briefly accompanied by the Akademik Fedorov, a research vessel whose officials drew backlash for a dress code policy.",
+                    "copyright": "Esther Horvath, Alfred Wegener Institut/EPA, via Shutterstock"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/01/multimedia/00xp-arctic-image1/00xp-arctic-image1-thumbStandard-v2.jpg",
+                    "format": "Standard Thumbnail",
+                    "height": 75,
+                    "width": 75,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "The Polarstern, on an expedition in the Arctic, was briefly accompanied by the Akademik Fedorov, a research vessel whose officials drew backlash for a dress code policy.",
+                    "copyright": "Esther Horvath, Alfred Wegener Institut/EPA, via Shutterstock"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/01/multimedia/00xp-arctic-image1/00xp-arctic-image1-thumbLarge-v2.jpg",
+                    "format": "thumbLarge",
+                    "height": 150,
+                    "width": 150,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "The Polarstern, on an expedition in the Arctic, was briefly accompanied by the Akademik Fedorov, a research vessel whose officials drew backlash for a dress code policy.",
+                    "copyright": "Esther Horvath, Alfred Wegener Institut/EPA, via Shutterstock"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/01/multimedia/00xp-arctic-image1/00xp-arctic-image1-mediumThreeByTwo210-v2.jpg",
+                    "format": "mediumThreeByTwo210",
+                    "height": 140,
+                    "width": 210,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "The Polarstern, on an expedition in the Arctic, was briefly accompanied by the Akademik Fedorov, a research vessel whose officials drew backlash for a dress code policy.",
+                    "copyright": "Esther Horvath, Alfred Wegener Institut/EPA, via Shutterstock"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/01/multimedia/00xp-arctic-image1/00xp-arctic-image1-articleInline-v2.jpg",
+                    "format": "Normal",
+                    "height": 127,
+                    "width": 190,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "The Polarstern, on an expedition in the Arctic, was briefly accompanied by the Akademik Fedorov, a research vessel whose officials drew backlash for a dress code policy.",
+                    "copyright": "Esther Horvath, Alfred Wegener Institut/EPA, via Shutterstock"
+                }
+            ],
+            "short_url": "https://nyti.ms/3cUgHrK"
+        },
+        {
+            "section": "world",
+            "subsection": "",
+            "title": "The U.S. and Europe lag on implementing an essential weapon against the virus: contact tracing.",
+            "abstract": "",
+            "url": "https://www.nytimes.com/2020/10/03/world/the-us-and-europe-lag-on-implementing-an-essential-weapon-against-the-virus-contact-tracing.html",
+            "uri": "nyt://article/ca55b172-3209-5f41-9216-b5e63b68b6c9",
+            "byline": "By Benjamin Mueller",
+            "item_type": "Article",
+            "updated_date": "2020-10-04T03:02:45-04:00",
+            "created_date": "2020-10-03T10:37:45-04:00",
+            "published_date": "2020-10-03T10:37:45-04:00",
+            "material_type_facet": "",
+            "kicker": "",
+            "des_facet": [
+                "internal-essential"
+            ],
+            "org_facet": [],
+            "per_facet": [],
+            "geo_facet": [],
+            "multimedia": [
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/03/business/03virus-briefing-tracing/merlin_177597903_daa5ae10-26f3-4843-bfd2-8ecf7c0dce07-superJumbo.jpg",
+                    "format": "superJumbo",
+                    "height": 1366,
+                    "width": 2048,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "Police officers checking vehicles last week in a part of Madrid that is under lockdown.",
+                    "copyright": "Gianfranco Tripodo for The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/03/business/03virus-briefing-tracing/merlin_177597903_daa5ae10-26f3-4843-bfd2-8ecf7c0dce07-thumbStandard.jpg",
+                    "format": "Standard Thumbnail",
+                    "height": 75,
+                    "width": 75,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "Police officers checking vehicles last week in a part of Madrid that is under lockdown.",
+                    "copyright": "Gianfranco Tripodo for The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/03/business/03virus-briefing-tracing/merlin_177597903_daa5ae10-26f3-4843-bfd2-8ecf7c0dce07-thumbLarge.jpg",
+                    "format": "thumbLarge",
+                    "height": 150,
+                    "width": 150,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "Police officers checking vehicles last week in a part of Madrid that is under lockdown.",
+                    "copyright": "Gianfranco Tripodo for The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/03/business/03virus-briefing-tracing/merlin_177597903_daa5ae10-26f3-4843-bfd2-8ecf7c0dce07-mediumThreeByTwo210.jpg",
+                    "format": "mediumThreeByTwo210",
+                    "height": 140,
+                    "width": 210,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "Police officers checking vehicles last week in a part of Madrid that is under lockdown.",
+                    "copyright": "Gianfranco Tripodo for The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/03/business/03virus-briefing-tracing/merlin_177597903_daa5ae10-26f3-4843-bfd2-8ecf7c0dce07-articleInline.jpg",
+                    "format": "Normal",
+                    "height": 127,
+                    "width": 190,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "Police officers checking vehicles last week in a part of Madrid that is under lockdown.",
+                    "copyright": "Gianfranco Tripodo for The New York Times"
+                }
+            ],
+            "short_url": "https://nyti.ms/3juEQaU"
+        },
+        {
+            "section": "world",
+            "subsection": "europe",
+            "title": "Belgium Arrests 3 Men Suspected of Involvement in Rwandan Genocide",
+            "abstract": "The men, whose identities were not made public, are charged with serious abuse of human rights.",
+            "url": "https://www.nytimes.com/2020/10/03/world/europe/rwanda-genocide-arrests-belgium.html",
+            "uri": "nyt://article/8ab065f0-acc7-519f-924d-6d9a81cf1fd6",
+            "byline": "By Elian Peltier and Abdi Latif Dahir",
+            "item_type": "Article",
+            "updated_date": "2020-10-04T00:36:05-04:00",
+            "created_date": "2020-10-03T10:05:26-04:00",
+            "published_date": "2020-10-03T10:05:26-04:00",
+            "material_type_facet": "",
+            "kicker": "",
+            "des_facet": [
+                "War Crimes, Genocide and Crimes Against Humanity",
+                "Tutsi Tribe",
+                "Hutu Tribe"
+            ],
+            "org_facet": [],
+            "per_facet": [],
+            "geo_facet": [
+                "Rwanda",
+                "Belgium"
+            ],
+            "multimedia": [
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/03/world/03belgium-rwanda01/merlin_153143661_5d941aa7-7c61-48b1-b633-51f36b61a700-superJumbo.jpg",
+                    "format": "superJumbo",
+                    "height": 1365,
+                    "width": 2048,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "Photographs of victims at the Kigali Genocide Memorial Center in Rwanda.",
+                    "copyright": "Dai Kurokawa/EPA, via Shutterstock"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/03/world/03belgium-rwanda01/03belgium-rwanda01-thumbStandard.jpg",
+                    "format": "Standard Thumbnail",
+                    "height": 75,
+                    "width": 75,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "Photographs of victims at the Kigali Genocide Memorial Center in Rwanda.",
+                    "copyright": "Dai Kurokawa/EPA, via Shutterstock"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/03/world/03belgium-rwanda01/03belgium-rwanda01-thumbLarge.jpg",
+                    "format": "thumbLarge",
+                    "height": 150,
+                    "width": 150,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "Photographs of victims at the Kigali Genocide Memorial Center in Rwanda.",
+                    "copyright": "Dai Kurokawa/EPA, via Shutterstock"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/03/world/03belgium-rwanda01/merlin_153143661_5d941aa7-7c61-48b1-b633-51f36b61a700-mediumThreeByTwo210.jpg",
+                    "format": "mediumThreeByTwo210",
+                    "height": 140,
+                    "width": 210,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "Photographs of victims at the Kigali Genocide Memorial Center in Rwanda.",
+                    "copyright": "Dai Kurokawa/EPA, via Shutterstock"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/03/world/03belgium-rwanda01/merlin_153143661_5d941aa7-7c61-48b1-b633-51f36b61a700-articleInline.jpg",
+                    "format": "Normal",
+                    "height": 127,
+                    "width": 190,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "Photographs of victims at the Kigali Genocide Memorial Center in Rwanda.",
+                    "copyright": "Dai Kurokawa/EPA, via Shutterstock"
+                }
+            ],
+            "short_url": "https://nyti.ms/2SpDUsh"
+        },
+        {
+            "section": "world",
+            "subsection": "asia",
+            "title": "In Wake of Recent India-China Conflict, U.S. Sees Opportunity",
+            "abstract": "India’s border dispute with China has accelerated its relations with the United States. Others worry that warming ties ignore India’s persecution of Muslims.",
+            "url": "https://www.nytimes.com/2020/10/03/world/asia/india-china-trump.html",
+            "uri": "nyt://article/4809aa02-a0f0-59dd-83bc-7238b5dd68cf",
+            "byline": "By Pranshu Verma",
+            "item_type": "Article",
+            "updated_date": "2020-10-04T00:34:57-04:00",
+            "created_date": "2020-10-03T10:05:06-04:00",
+            "published_date": "2020-10-03T10:05:06-04:00",
+            "material_type_facet": "",
+            "kicker": "",
+            "des_facet": [
+                "United States International Relations",
+                "United States Defense and Military Forces",
+                "Human Rights and Human Rights Violations"
+            ],
+            "org_facet": [
+                "United States Navy"
+            ],
+            "per_facet": [
+                "Abe, Shinzo",
+                "Jaishankar, Subrahmanyam",
+                "Modi, Narendra",
+                "Trump, Donald J"
+            ],
+            "geo_facet": [
+                "China",
+                "India"
+            ],
+            "multimedia": [
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/04/us/politics/04dc-diplo-india/merlin_177060153_3e089e1f-5b58-4781-bf8d-2267de61917e-superJumbo.jpg",
+                    "format": "superJumbo",
+                    "height": 1339,
+                    "width": 2048,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "Indian soldiers arriving last month in the Ladakh region, near the border with China. In June, Indian and Chinese troops brawled along a land border, killing 20 Indian soldiers.",
+                    "copyright": "Danish Siddiqui/Reuters"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/04/us/politics/04dc-diplo-india/merlin_177060153_3e089e1f-5b58-4781-bf8d-2267de61917e-thumbStandard.jpg",
+                    "format": "Standard Thumbnail",
+                    "height": 75,
+                    "width": 75,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "Indian soldiers arriving last month in the Ladakh region, near the border with China. In June, Indian and Chinese troops brawled along a land border, killing 20 Indian soldiers.",
+                    "copyright": "Danish Siddiqui/Reuters"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/04/us/politics/04dc-diplo-india/merlin_177060153_3e089e1f-5b58-4781-bf8d-2267de61917e-thumbLarge.jpg",
+                    "format": "thumbLarge",
+                    "height": 150,
+                    "width": 150,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "Indian soldiers arriving last month in the Ladakh region, near the border with China. In June, Indian and Chinese troops brawled along a land border, killing 20 Indian soldiers.",
+                    "copyright": "Danish Siddiqui/Reuters"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/04/us/politics/04dc-diplo-india/merlin_177060153_3e089e1f-5b58-4781-bf8d-2267de61917e-mediumThreeByTwo210.jpg",
+                    "format": "mediumThreeByTwo210",
+                    "height": 140,
+                    "width": 210,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "Indian soldiers arriving last month in the Ladakh region, near the border with China. In June, Indian and Chinese troops brawled along a land border, killing 20 Indian soldiers.",
+                    "copyright": "Danish Siddiqui/Reuters"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/04/us/politics/04dc-diplo-india/merlin_177060153_3e089e1f-5b58-4781-bf8d-2267de61917e-articleInline.jpg",
+                    "format": "Normal",
+                    "height": 124,
+                    "width": 190,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "Indian soldiers arriving last month in the Ladakh region, near the border with China. In June, Indian and Chinese troops brawled along a land border, killing 20 Indian soldiers.",
+                    "copyright": "Danish Siddiqui/Reuters"
+                }
+            ],
+            "short_url": "https://nyti.ms/3iss5fx"
+        },
+        {
+            "section": "world",
+            "subsection": "",
+            "title": "Trump says he feels better, but his chief of staff says he is ‘still not on a clear path to a full recovery.’",
+            "abstract": "",
+            "url": "https://www.nytimes.com/2020/10/03/world/trump-says-he-feels-better-but-his-chief-of-staff-says-he-is-still-not-on-a-clear-path-to-a-full-recovery.html",
+            "uri": "nyt://article/b041e840-4d8b-51da-b946-a4f1fa96d654",
+            "byline": "By Maggie Haberman and Peter Baker",
+            "item_type": "Article",
+            "updated_date": "2020-10-03T22:45:50-04:00",
+            "created_date": "2020-10-03T03:24:55-04:00",
+            "published_date": "2020-10-03T03:24:55-04:00",
+            "material_type_facet": "",
+            "kicker": "",
+            "des_facet": [
+                "internal-essential",
+                "Coronavirus (2019-nCoV)"
+            ],
+            "org_facet": [],
+            "per_facet": [],
+            "geo_facet": [],
+            "multimedia": [
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/03/us/politics/03virus-trumptweet/03virus-trumptweet-superJumbo.png",
+                    "format": "superJumbo",
+                    "height": 398,
+                    "width": 716,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "President recorded a video and posted it on Twitter on Saturday.",
+                    "copyright": ""
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/03/us/politics/03virus-trumptweet/03virus-trumptweet-thumbStandard.png",
+                    "format": "Standard Thumbnail",
+                    "height": 75,
+                    "width": 75,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "President recorded a video and posted it on Twitter on Saturday.",
+                    "copyright": ""
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/03/us/politics/03virus-trumptweet/03virus-trumptweet-thumbLarge.png",
+                    "format": "thumbLarge",
+                    "height": 150,
+                    "width": 150,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "President recorded a video and posted it on Twitter on Saturday.",
+                    "copyright": ""
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/03/us/politics/03virus-trumptweet/03virus-trumptweet-mediumThreeByTwo210.png",
+                    "format": "mediumThreeByTwo210",
+                    "height": 140,
+                    "width": 210,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "President recorded a video and posted it on Twitter on Saturday.",
+                    "copyright": ""
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/03/us/politics/03virus-trumptweet/03virus-trumptweet-articleInline.png",
+                    "format": "Normal",
+                    "height": 106,
+                    "width": 190,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "President recorded a video and posted it on Twitter on Saturday.",
+                    "copyright": ""
+                }
+            ],
+            "short_url": "https://nyti.ms/3nf9x6e"
+        },
+        {
+            "section": "us",
+            "subsection": "",
+            "title": "Coronavirus Briefing: What Happened Today",
+            "abstract": "After testing positive for the coronavirus, President Trump received an experimental treatment and was flown to Walter Reed hospital.",
+            "url": "https://www.nytimes.com/2020/10/02/us/coronavirus-today.html",
+            "uri": "nyt://article/e0ccbc22-ead3-5fb2-951d-763195b61b4b",
+            "byline": "By Jonathan Wolfe",
+            "item_type": "Article",
+            "updated_date": "2020-10-02T18:53:57-04:00",
+            "created_date": "2020-10-02T18:53:57-04:00",
+            "published_date": "2020-10-02T18:53:57-04:00",
+            "material_type_facet": "",
+            "kicker": "",
+            "des_facet": [
+                "Coronavirus (2019-nCoV)"
+            ],
+            "org_facet": [],
+            "per_facet": [],
+            "geo_facet": [],
+            "multimedia": [
+                {
+                    "url": "https://static01.nyt.com/images/2020/03/03/world/coronavirus-map-promo/coronavirus-map-promo-superJumbo-v737.png",
+                    "format": "superJumbo",
+                    "height": 1366,
+                    "width": 2048,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "",
+                    "copyright": "The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/03/03/world/coronavirus-map-promo/coronavirus-map-promo-thumbStandard-v743.png",
+                    "format": "Standard Thumbnail",
+                    "height": 75,
+                    "width": 75,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "",
+                    "copyright": "The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/03/03/world/coronavirus-map-promo/coronavirus-map-promo-thumbLarge-v743.png",
+                    "format": "thumbLarge",
+                    "height": 150,
+                    "width": 150,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "",
+                    "copyright": "The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/03/03/world/coronavirus-map-promo/coronavirus-map-promo-mediumThreeByTwo210-v743.png",
+                    "format": "mediumThreeByTwo210",
+                    "height": 140,
+                    "width": 210,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "",
+                    "copyright": "The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/03/03/world/coronavirus-map-promo/coronavirus-map-promo-articleInline-v737.png",
+                    "format": "Normal",
+                    "height": 127,
+                    "width": 190,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "",
+                    "copyright": "The New York Times"
+                }
+            ],
+            "short_url": "https://nyti.ms/2Sljsc7"
+        },
+        {
+            "section": "world",
+            "subsection": "canada",
+            "title": "Tight New Restrictions in Parts of Quebec as Cases Rise Again",
+            "abstract": "Canadians largely accepted the restrictions that came with the first wave. They might accept these too, or they might not.",
+            "url": "https://www.nytimes.com/2020/10/02/world/canada/quebec-coronavirus-restrictions.html",
+            "uri": "nyt://article/d7d60403-88cb-55e2-9267-1572b1b043e4",
+            "byline": "By Ian Austen",
+            "item_type": "Article",
+            "updated_date": "2020-10-02T18:18:52-04:00",
+            "created_date": "2020-10-02T18:18:52-04:00",
+            "published_date": "2020-10-02T18:18:52-04:00",
+            "material_type_facet": "",
+            "kicker": "CANADA LETTER",
+            "des_facet": [
+                "Coronavirus (2019-nCoV)",
+                "Civil Rights and Liberties"
+            ],
+            "org_facet": [],
+            "per_facet": [],
+            "geo_facet": [
+                "Quebec Province (Canada)"
+            ],
+            "multimedia": [
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/02/world/02canadaletter-top/merlin_177881214_ad63f2e4-cc22-4333-9f28-a37f84bb0f2b-superJumbo.jpg",
+                    "format": "superJumbo",
+                    "height": 1365,
+                    "width": 2048,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "Closing up the terrace at a pub in Montreal after the Quebec government ordered all restaurants, bars and casinos to close for 28 days, starting at midnight on Sept. 30.",
+                    "copyright": "Christinne Muschi/Reuters"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/02/world/02canadaletter-top/merlin_177881214_ad63f2e4-cc22-4333-9f28-a37f84bb0f2b-thumbStandard.jpg",
+                    "format": "Standard Thumbnail",
+                    "height": 75,
+                    "width": 75,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "Closing up the terrace at a pub in Montreal after the Quebec government ordered all restaurants, bars and casinos to close for 28 days, starting at midnight on Sept. 30.",
+                    "copyright": "Christinne Muschi/Reuters"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/02/world/02canadaletter-top/merlin_177881214_ad63f2e4-cc22-4333-9f28-a37f84bb0f2b-thumbLarge.jpg",
+                    "format": "thumbLarge",
+                    "height": 150,
+                    "width": 150,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "Closing up the terrace at a pub in Montreal after the Quebec government ordered all restaurants, bars and casinos to close for 28 days, starting at midnight on Sept. 30.",
+                    "copyright": "Christinne Muschi/Reuters"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/02/world/02canadaletter-top/merlin_177881214_ad63f2e4-cc22-4333-9f28-a37f84bb0f2b-mediumThreeByTwo210.jpg",
+                    "format": "mediumThreeByTwo210",
+                    "height": 140,
+                    "width": 210,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "Closing up the terrace at a pub in Montreal after the Quebec government ordered all restaurants, bars and casinos to close for 28 days, starting at midnight on Sept. 30.",
+                    "copyright": "Christinne Muschi/Reuters"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/02/world/02canadaletter-top/merlin_177881214_ad63f2e4-cc22-4333-9f28-a37f84bb0f2b-articleInline.jpg",
+                    "format": "Normal",
+                    "height": 127,
+                    "width": 190,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "Closing up the terrace at a pub in Montreal after the Quebec government ordered all restaurants, bars and casinos to close for 28 days, starting at midnight on Sept. 30.",
+                    "copyright": "Christinne Muschi/Reuters"
+                }
+            ],
+            "short_url": "https://nyti.ms/30vq4ZV"
+        },
+        {
+            "section": "world",
+            "subsection": "australia",
+            "title": "Australians Watching American Politics: ???!!!!***$%%#",
+            "abstract": "Bemused, outraged, sad? The emotions of an American ally tilt in many directions as the United States stumbles toward Election Day.",
+            "url": "https://www.nytimes.com/2020/10/02/world/australia/american-politics-trump-biden-coronavirus.html",
+            "uri": "nyt://article/ee61dc61-c6dd-5e27-9036-f75f5ed00bec",
+            "byline": "By Damien Cave",
+            "item_type": "Article",
+            "updated_date": "2020-10-02T17:15:27-04:00",
+            "created_date": "2020-10-02T17:15:27-04:00",
+            "published_date": "2020-10-02T17:15:27-04:00",
+            "material_type_facet": "",
+            "kicker": "letter 178",
+            "des_facet": [
+                "Trump Coronavirus Positive Result",
+                "Presidential Election of 2020"
+            ],
+            "org_facet": [],
+            "per_facet": [
+                "Biden, Joseph R Jr",
+                "Trump, Donald J"
+            ],
+            "geo_facet": [
+                "Australia"
+            ],
+            "multimedia": [
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/01/opinion/02ausletter178-0110debatableillo-copy/0110debatableillo-superJumbo.jpg",
+                    "format": "superJumbo",
+                    "height": 2048,
+                    "width": 2048,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "",
+                    "copyright": "Illustration for The New York Times; photographs by Doug Mills/The New York Times and Ruth Fremson/The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/01/opinion/02ausletter178-0110debatableillo-copy/0110debatableillo-thumbStandard.jpg",
+                    "format": "Standard Thumbnail",
+                    "height": 75,
+                    "width": 75,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "",
+                    "copyright": "Illustration for The New York Times; photographs by Doug Mills/The New York Times and Ruth Fremson/The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/01/opinion/02ausletter178-0110debatableillo-copy/0110debatableillo-thumbLarge.jpg",
+                    "format": "thumbLarge",
+                    "height": 150,
+                    "width": 150,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "",
+                    "copyright": "Illustration for The New York Times; photographs by Doug Mills/The New York Times and Ruth Fremson/The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/01/opinion/02ausletter178-0110debatableillo-copy/0110debatableillo-mediumThreeByTwo210.jpg",
+                    "format": "mediumThreeByTwo210",
+                    "height": 140,
+                    "width": 210,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "",
+                    "copyright": "Illustration for The New York Times; photographs by Doug Mills/The New York Times and Ruth Fremson/The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/01/opinion/02ausletter178-0110debatableillo-copy/0110debatableillo-articleInline.jpg",
+                    "format": "Normal",
+                    "height": 190,
+                    "width": 190,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "",
+                    "copyright": "Illustration for The New York Times; photographs by Doug Mills/The New York Times and Ruth Fremson/The New York Times"
+                }
+            ],
+            "short_url": "https://nyti.ms/2Gqg39f"
+        },
+        {
+            "section": "technology",
+            "subsection": "",
+            "title": "U.S. Appeals Injunction Against WeChat Ban",
+            "abstract": "Trump administration officials claim the Chinese-owned app presents a security risk to American users.",
+            "url": "https://www.nytimes.com/2020/10/02/technology/wechat-ban-court.html",
+            "uri": "nyt://article/64eef61c-ad48-5c15-80ef-27be9afbf405",
+            "byline": "By David McCabe",
+            "item_type": "Article",
+            "updated_date": "2020-10-03T15:56:20-04:00",
+            "created_date": "2020-10-02T13:57:48-04:00",
+            "published_date": "2020-10-02T13:57:48-04:00",
+            "material_type_facet": "",
+            "kicker": "",
+            "des_facet": [
+                "Executive Orders and Memorandums",
+                "Mobile Applications",
+                "Instant Messaging",
+                "Decisions and Verdicts",
+                "Computers and the Internet",
+                "United States Politics and Government",
+                "Blacklisting"
+            ],
+            "org_facet": [
+                "WeChat (Mobile App)",
+                "Tencent Holdings Ltd"
+            ],
+            "per_facet": [
+                "Trump, Donald J",
+                "Beeler, Laurel"
+            ],
+            "geo_facet": [
+                "China"
+            ],
+            "multimedia": [
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/03/business/00wechat-appeal-print/merlin_177251691_d347483f-4cf8-42df-88d4-282fbde40835-superJumbo.jpg",
+                    "format": "superJumbo",
+                    "height": 1363,
+                    "width": 2048,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "The Department of Commerce moved last month to block American companies like Google and Apple from hosting WeChat in their app stores.",
+                    "copyright": "Kevin Frayer/Getty Images"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/03/business/00wechat-appeal-print/00wechat-appeal-hfo-thumbStandard.jpg",
+                    "format": "Standard Thumbnail",
+                    "height": 75,
+                    "width": 75,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "The Department of Commerce moved last month to block American companies like Google and Apple from hosting WeChat in their app stores.",
+                    "copyright": "Kevin Frayer/Getty Images"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/03/business/00wechat-appeal-print/00wechat-appeal-hfo-thumbLarge.jpg",
+                    "format": "thumbLarge",
+                    "height": 150,
+                    "width": 150,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "The Department of Commerce moved last month to block American companies like Google and Apple from hosting WeChat in their app stores.",
+                    "copyright": "Kevin Frayer/Getty Images"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/03/business/00wechat-appeal-print/00wechat-appeal-hfo-mediumThreeByTwo210.jpg",
+                    "format": "mediumThreeByTwo210",
+                    "height": 140,
+                    "width": 210,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "The Department of Commerce moved last month to block American companies like Google and Apple from hosting WeChat in their app stores.",
+                    "copyright": "Kevin Frayer/Getty Images"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/03/business/00wechat-appeal-print/merlin_177251691_d347483f-4cf8-42df-88d4-282fbde40835-articleInline.jpg",
+                    "format": "Normal",
+                    "height": 126,
+                    "width": 190,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "The Department of Commerce moved last month to block American companies like Google and Apple from hosting WeChat in their app stores.",
+                    "copyright": "Kevin Frayer/Getty Images"
+                }
+            ],
+            "short_url": "https://nyti.ms/2SlzcMs"
+        },
+        {
+            "section": "world",
+            "subsection": "",
+            "title": "",
+            "abstract": "Positive tests inch up in New York City as Cuomo calls for fines for lax enforcement.",
+            "url": "https://www.nytimes.com/2020/10/02/world/02virus-briefing-deblasio.html",
+            "uri": "nyt://article/c9d00ee0-aaa0-5db4-8efc-1bc6725bda8e",
+            "byline": "",
+            "item_type": "Article",
+            "updated_date": "2020-10-02T22:58:07-04:00",
+            "created_date": "2020-10-02T13:40:48-04:00",
+            "published_date": "2020-10-02T13:40:48-04:00",
+            "material_type_facet": "",
+            "kicker": "",
+            "des_facet": [
+                "internal-essential"
+            ],
+            "org_facet": [],
+            "per_facet": [],
+            "geo_facet": [],
+            "multimedia": [
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/02/multimedia/02virus-briefing-deblasio2/merlin_172565478_ee1b3e67-47d7-4087-a0c9-9823ca305e9e-superJumbo.jpg",
+                    "format": "superJumbo",
+                    "height": 1398,
+                    "width": 2048,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "Mayor Bill de Blasio distributing masks in Flushing Meadows Park in Queens in May.",
+                    "copyright": "Juan Arredondo for The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/02/multimedia/02virus-briefing-deblasio2/02virus-briefing-deblasio2-thumbStandard.jpg",
+                    "format": "Standard Thumbnail",
+                    "height": 75,
+                    "width": 75,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "Mayor Bill de Blasio distributing masks in Flushing Meadows Park in Queens in May.",
+                    "copyright": "Juan Arredondo for The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/02/multimedia/02virus-briefing-deblasio2/02virus-briefing-deblasio2-thumbLarge.jpg",
+                    "format": "thumbLarge",
+                    "height": 150,
+                    "width": 150,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "Mayor Bill de Blasio distributing masks in Flushing Meadows Park in Queens in May.",
+                    "copyright": "Juan Arredondo for The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/02/multimedia/02virus-briefing-deblasio2/02virus-briefing-deblasio2-mediumThreeByTwo210.jpg",
+                    "format": "mediumThreeByTwo210",
+                    "height": 140,
+                    "width": 210,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "Mayor Bill de Blasio distributing masks in Flushing Meadows Park in Queens in May.",
+                    "copyright": "Juan Arredondo for The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/02/multimedia/02virus-briefing-deblasio2/merlin_172565478_ee1b3e67-47d7-4087-a0c9-9823ca305e9e-articleInline.jpg",
+                    "format": "Normal",
+                    "height": 130,
+                    "width": 190,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "Mayor Bill de Blasio distributing masks in Flushing Meadows Park in Queens in May.",
+                    "copyright": "Juan Arredondo for The New York Times"
+                }
+            ],
+            "short_url": "https://nyti.ms/34jICO3"
+        },
+        {
+            "section": "briefing",
+            "subsection": "",
+            "title": "The Trumps Test Positive",
+            "abstract": "And what else you need to know today.",
+            "url": "https://www.nytimes.com/2020/10/02/briefing/president-trump-coronavirus-your-friday-briefing.html",
+            "uri": "nyt://article/84ced6e4-59f4-5643-939e-4e9f9ecb7b33",
+            "byline": "By David Leonhardt",
+            "item_type": "Article",
+            "updated_date": "2020-10-02T06:50:15-04:00",
+            "created_date": "2020-10-02T06:47:39-04:00",
+            "published_date": "2020-10-02T06:47:39-04:00",
+            "material_type_facet": "",
+            "kicker": "",
+            "des_facet": [],
+            "org_facet": [],
+            "per_facet": [],
+            "geo_facet": [],
+            "multimedia": [
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/02/world/02AMBRIEFING-trumpvirus-copy/merlin_177796749_2c586d32-1356-452d-b447-46920937b6cf-superJumbo.jpg",
+                    "format": "superJumbo",
+                    "height": 1366,
+                    "width": 2048,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "President Trump and the first lady, Melania Trump, on Tuesday.",
+                    "copyright": "Tom Brenner for The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/02/world/02AMBRIEFING-trumpvirus-copy/02AMBRIEFING-trumpvirus-thumbStandard.jpg",
+                    "format": "Standard Thumbnail",
+                    "height": 75,
+                    "width": 75,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "President Trump and the first lady, Melania Trump, on Tuesday.",
+                    "copyright": "Tom Brenner for The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/02/world/02AMBRIEFING-trumpvirus-copy/02AMBRIEFING-trumpvirus-thumbLarge.jpg",
+                    "format": "thumbLarge",
+                    "height": 150,
+                    "width": 150,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "President Trump and the first lady, Melania Trump, on Tuesday.",
+                    "copyright": "Tom Brenner for The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/02/world/02AMBRIEFING-trumpvirus-copy/merlin_177796749_2c586d32-1356-452d-b447-46920937b6cf-mediumThreeByTwo210.jpg",
+                    "format": "mediumThreeByTwo210",
+                    "height": 140,
+                    "width": 210,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "President Trump and the first lady, Melania Trump, on Tuesday.",
+                    "copyright": "Tom Brenner for The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/02/world/02AMBRIEFING-trumpvirus-copy/merlin_177796749_2c586d32-1356-452d-b447-46920937b6cf-articleInline.jpg",
+                    "format": "Normal",
+                    "height": 127,
+                    "width": 190,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "President Trump and the first lady, Melania Trump, on Tuesday.",
+                    "copyright": "Tom Brenner for The New York Times"
+                }
+            ],
+            "short_url": "https://nyti.ms/3isFFzr"
+        },
+        {
+            "section": "world",
+            "subsection": "",
+            "title": "What happens if Trump becomes too ill to perform his duties?",
+            "abstract": "",
+            "url": "https://www.nytimes.com/2020/10/02/world/trump-illness-president-duties.html",
+            "uri": "nyt://article/ad04ea6f-3ed7-5fd1-8541-257802ff8ee6",
+            "byline": "By Megan Specia",
+            "item_type": "Article",
+            "updated_date": "2020-10-02T16:10:53-04:00",
+            "created_date": "2020-10-02T06:26:50-04:00",
+            "published_date": "2020-10-02T06:26:50-04:00",
+            "material_type_facet": "",
+            "kicker": "",
+            "des_facet": [
+                "internal-essential"
+            ],
+            "org_facet": [],
+            "per_facet": [],
+            "geo_facet": [],
+            "multimedia": [
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/02/world/02virus-briefing-succession/merlin_177148065_46309687-d86a-4553-9b23-59f506114341-superJumbo.jpg",
+                    "format": "superJumbo",
+                    "height": 1365,
+                    "width": 2048,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "Although there is a set presidential line of succession, the Constitution is unclear on determining whether a president can perform the duties of office.",
+                    "copyright": "Erin Scott for The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/02/world/02virus-briefing-succession/merlin_177148065_46309687-d86a-4553-9b23-59f506114341-thumbStandard.jpg",
+                    "format": "Standard Thumbnail",
+                    "height": 75,
+                    "width": 75,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "Although there is a set presidential line of succession, the Constitution is unclear on determining whether a president can perform the duties of office.",
+                    "copyright": "Erin Scott for The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/02/world/02virus-briefing-succession/merlin_177148065_46309687-d86a-4553-9b23-59f506114341-thumbLarge.jpg",
+                    "format": "thumbLarge",
+                    "height": 150,
+                    "width": 150,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "Although there is a set presidential line of succession, the Constitution is unclear on determining whether a president can perform the duties of office.",
+                    "copyright": "Erin Scott for The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/02/world/02virus-briefing-succession/merlin_177148065_46309687-d86a-4553-9b23-59f506114341-mediumThreeByTwo210.jpg",
+                    "format": "mediumThreeByTwo210",
+                    "height": 140,
+                    "width": 210,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "Although there is a set presidential line of succession, the Constitution is unclear on determining whether a president can perform the duties of office.",
+                    "copyright": "Erin Scott for The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/02/world/02virus-briefing-succession/merlin_177148065_46309687-d86a-4553-9b23-59f506114341-articleInline.jpg",
+                    "format": "Normal",
+                    "height": 127,
+                    "width": 190,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "Although there is a set presidential line of succession, the Constitution is unclear on determining whether a president can perform the duties of office.",
+                    "copyright": "Erin Scott for The New York Times"
+                }
+            ],
+            "short_url": "https://nyti.ms/2SqvIYJ"
+        },
+        {
+            "section": "world",
+            "subsection": "",
+            "title": "Leaders Who Caught Virus: Boris Johnson, Jair Bolsonaro and Now Trump",
+            "abstract": "Mr. Johnson, Britain’s prime minister, was hospitalized. Mr. Bolsonaro, Brazil’s president, appeared to have a mild case. Other top officials worldwide also have been infected.",
+            "url": "https://www.nytimes.com/2020/10/02/world/trump-covid-world-leaders.html",
+            "uri": "nyt://article/e50bfe6b-ef49-5a12-9b42-28fab9a45a21",
+            "byline": "By Kaly Soto and Elian Peltier",
+            "item_type": "Article",
+            "updated_date": "2020-10-02T23:06:37-04:00",
+            "created_date": "2020-10-02T06:13:51-04:00",
+            "published_date": "2020-10-02T06:13:51-04:00",
+            "material_type_facet": "",
+            "kicker": "",
+            "des_facet": [
+                "Coronavirus (2019-nCoV)"
+            ],
+            "org_facet": [],
+            "per_facet": [
+                "Johnson, Boris",
+                "Bolsonaro, Jair (1955- )",
+                "Hernandez, Juan Orlando"
+            ],
+            "geo_facet": [],
+            "multimedia": [
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/02/world/02virus-briefing-leaders01/merlin_177792192_ffd469fb-11c3-4308-9688-3f8600607f59-superJumbo.jpg",
+                    "format": "superJumbo",
+                    "height": 1365,
+                    "width": 2048,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "President Trump in Washington on Tuesday. His positive test result came early Friday.",
+                    "copyright": "Tom Brenner for The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/02/world/02virus-briefing-leaders01/02virus-briefing-leaders01-thumbStandard.jpg",
+                    "format": "Standard Thumbnail",
+                    "height": 75,
+                    "width": 75,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "President Trump in Washington on Tuesday. His positive test result came early Friday.",
+                    "copyright": "Tom Brenner for The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/02/world/02virus-briefing-leaders01/02virus-briefing-leaders01-thumbLarge.jpg",
+                    "format": "thumbLarge",
+                    "height": 150,
+                    "width": 150,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "President Trump in Washington on Tuesday. His positive test result came early Friday.",
+                    "copyright": "Tom Brenner for The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/02/world/02virus-briefing-leaders01/merlin_177792192_ffd469fb-11c3-4308-9688-3f8600607f59-mediumThreeByTwo210.jpg",
+                    "format": "mediumThreeByTwo210",
+                    "height": 140,
+                    "width": 210,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "President Trump in Washington on Tuesday. His positive test result came early Friday.",
+                    "copyright": "Tom Brenner for The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/02/world/02virus-briefing-leaders01/merlin_177792192_ffd469fb-11c3-4308-9688-3f8600607f59-articleInline.jpg",
+                    "format": "Normal",
+                    "height": 127,
+                    "width": 190,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "President Trump in Washington on Tuesday. His positive test result came early Friday.",
+                    "copyright": "Tom Brenner for The New York Times"
+                }
+            ],
+            "short_url": "https://nyti.ms/33kNX8s"
+        },
+        {
+            "section": "theater",
+            "subsection": "",
+            "title": "Six Months in the Life of a Locked-Down Theater",
+            "abstract": "Britain’s National Theater hopes to reopen in October after being closed for more than 200 days. But even with the shutters down, it’s been an eventful and emotional time for its staff.",
+            "url": "https://www.nytimes.com/2020/10/02/theater/uk-national-theater-coronavirus.html",
+            "uri": "nyt://article/28afc743-2c10-5329-b7da-6655ec373761",
+            "byline": "By Alex Marshall",
+            "item_type": "Article",
+            "updated_date": "2020-10-03T00:16:59-04:00",
+            "created_date": "2020-10-02T05:01:02-04:00",
+            "published_date": "2020-10-02T05:01:02-04:00",
+            "material_type_facet": "",
+            "kicker": "",
+            "des_facet": [
+                "Theater",
+                "Actors and Actresses"
+            ],
+            "org_facet": [
+                "Royal National Theater"
+            ],
+            "per_facet": [
+                "Norris, Rufus",
+                "Williams, Roy"
+            ],
+            "geo_facet": [
+                "Great Britain"
+            ],
+            "multimedia": [
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/04/arts/04national-theater19/04national-theater19-superJumbo.jpg",
+                    "format": "superJumbo",
+                    "height": 1411,
+                    "width": 2048,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "",
+                    "copyright": "Lauren Fleishman for The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/04/arts/04national-theater19/04national-theater19-thumbStandard.jpg",
+                    "format": "Standard Thumbnail",
+                    "height": 75,
+                    "width": 75,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "",
+                    "copyright": "Lauren Fleishman for The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/04/arts/04national-theater19/04national-theater19-thumbLarge.jpg",
+                    "format": "thumbLarge",
+                    "height": 150,
+                    "width": 150,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "",
+                    "copyright": "Lauren Fleishman for The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/04/arts/04national-theater19/04national-theater19-mediumThreeByTwo210.jpg",
+                    "format": "mediumThreeByTwo210",
+                    "height": 140,
+                    "width": 210,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "",
+                    "copyright": "Lauren Fleishman for The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/10/04/arts/04national-theater19/04national-theater19-articleInline.jpg",
+                    "format": "Normal",
+                    "height": 131,
+                    "width": 190,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "",
+                    "copyright": "Lauren Fleishman for The New York Times"
+                }
+            ],
+            "short_url": "https://nyti.ms/2GvjUli"
+        },
+        {
+            "section": "briefing",
+            "subsection": "",
+            "title": "News Quiz: Trump’s Taxes, the Presidential Debate, Nxivm",
+            "abstract": "Did you follow the headlines this week?",
+            "url": "https://www.nytimes.com/interactive/2020/10/02/briefing/news-quiz-trump-taxes-debate-nxivm.html",
+            "uri": "nyt://interactive/4405c13b-1b12-596b-9313-898647a79c8f",
+            "byline": "Compiled by Jessica Anderson and Anna Schaverien",
+            "item_type": "Interactive",
+            "updated_date": "2020-10-04T06:09:55-04:00",
+            "created_date": "2020-10-02T05:00:42-04:00",
+            "published_date": "2020-10-02T05:00:42-04:00",
+            "material_type_facet": "",
+            "kicker": "",
+            "des_facet": [
+                "Coronavirus (2019-nCoV)",
+                "Stanley Cup"
+            ],
+            "org_facet": [
+                "Nxivm"
+            ],
+            "per_facet": [
+                "Trump, Donald J"
+            ],
+            "geo_facet": [],
+            "multimedia": [
+                {
+                    "url": "https://static01.nyt.com/images/2020/09/27/multimedia/02newsquiz-trumpstaxes/thing-promo-superJumbo.jpg",
+                    "format": "superJumbo",
+                    "height": 1521,
+                    "width": 2048,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "",
+                    "copyright": "Doug Mills/The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/09/27/multimedia/02newsquiz-trumpstaxes/thing-promo-thumbStandard.jpg",
+                    "format": "Standard Thumbnail",
+                    "height": 75,
+                    "width": 75,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "",
+                    "copyright": "Doug Mills/The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/09/27/multimedia/02newsquiz-trumpstaxes/thing-promo-thumbLarge.jpg",
+                    "format": "thumbLarge",
+                    "height": 150,
+                    "width": 150,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "",
+                    "copyright": "Doug Mills/The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/09/27/multimedia/02newsquiz-trumpstaxes/thing-promo-mediumThreeByTwo210-v2.jpg",
+                    "format": "mediumThreeByTwo210",
+                    "height": 140,
+                    "width": 210,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "",
+                    "copyright": "Doug Mills/The New York Times"
+                },
+                {
+                    "url": "https://static01.nyt.com/images/2020/09/27/multimedia/02newsquiz-trumpstaxes/thing-promo-articleInline.jpg",
+                    "format": "Normal",
+                    "height": 141,
+                    "width": 190,
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "",
+                    "copyright": "Doug Mills/The New York Times"
+                }
+            ],
+            "short_url": "https://nyti.ms/2Gm0jV9"
+        }
+    ]
+}

@@ -6,11 +6,13 @@ import com.github.nakawai.newsreader.data.network.response.StoryResponseItem
 import com.github.nakawai.newsreader.data.toData
 import com.github.nakawai.newsreader.domain.datasource.NYTimesRemoteDataSource
 import com.github.nakawai.newsreader.domain.entities.Section
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
-import retrofit2.converter.jackson.JacksonConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 import timber.log.Timber
 
 /**
@@ -24,8 +26,12 @@ class NYTimesRemoteDataSourceImpl : NYTimesRemoteDataSource {
             .addNetworkInterceptor(StethoInterceptor())
             .build()
 
+        val moshi = Moshi.Builder()
+            .add(KotlinJsonAdapterFactory())
+            .build()
+
         val retrofit = Retrofit.Builder()
-            .addConverterFactory(JacksonConverterFactory.create())
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
             .baseUrl("https://api.nytimes.com/")
             .client(okHttpClient)
             .build()
@@ -33,15 +39,15 @@ class NYTimesRemoteDataSourceImpl : NYTimesRemoteDataSource {
         nyTimesApiService = retrofit.create(NYTimesApiService::class.java)
     }
 
-    override suspend fun fetchData(section: Section): List<StoryResponseItem> = withContext(Dispatchers.IO) {
+    override suspend fun fetchTopStories(section: Section): List<StoryResponseItem> = withContext(Dispatchers.IO) {
         val sectionKey = section.toData().value
         val response = nyTimesApiService.topStories(sectionKey, API_KEY)
 
         if (response.isSuccessful) {
-            Timber.d("Success - Data received: %s", sectionKey)
+            Timber.i("Success - Data received. section:${sectionKey} body:${response.body()}")
             return@withContext response.body()!!.results!!
         } else {
-            Timber.d("Failure: Data not loaded: %s", sectionKey)
+            Timber.i("Failure: Data not loaded: section:${sectionKey}")
             throw RuntimeException()
         }
     }

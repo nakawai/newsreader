@@ -1,30 +1,31 @@
 package com.github.nakawai.newsreader.data.network.response
 
-import com.fasterxml.jackson.annotation.JsonProperty
+import com.squareup.moshi.Json
+
 
 class MultimediaResponseItem {
-    @JsonProperty("url")
+    @Json(name = "url")
     var url: String? = null
 
-    @JsonProperty("format")
+    @Json(name = "format")
     var format: String? = null
 
-    @JsonProperty("height")
+    @Json(name = "height")
     var height = 0
 
-    @JsonProperty("width")
+    @Json(name = "width")
     var width = 0
 
-    @JsonProperty("type")
+    @Json(name = "type")
     var type: String? = null
 
-    @JsonProperty("subtype")
+    @Json(name = "subtype")
     var subtype: String? = null
 
-    @JsonProperty("caption")
+    @Json(name = "caption")
     var caption: String? = null
 
-    @JsonProperty("copyright")
+    @Json(name = "copyright")
     var copyright: String? = null
 
 }
