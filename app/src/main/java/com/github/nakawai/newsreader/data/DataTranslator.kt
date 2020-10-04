@@ -10,7 +10,7 @@ import com.github.nakawai.newsreader.domain.entities.Story
 import com.github.nakawai.newsreader.domain.entities.StoryUrl
 import io.realm.RealmList
 
-class Translator {
+class DataTranslator {
 
 
     companion object {
@@ -113,9 +113,9 @@ class Translator {
 data class SectionData(val value: String)
 
 fun StoryRealmObject.translate(): Story {
-    return Translator.translate(this)
+    return DataTranslator.translate(this)
 }
 
 fun Section.toData(): SectionData {
-    return Translator.translate(this)
+    return DataTranslator.translate(this)
 }
