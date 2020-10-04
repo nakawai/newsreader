@@ -3,7 +3,7 @@ package com.github.nakawai.newsreader.presentation
 import com.github.nakawai.newsreader.R
 import com.github.nakawai.newsreader.domain.entities.Section
 
-class UiTranslator {
+class PresentationTranslator {
     companion object {
         fun translate(section: Section): SectionUi {
             return when (section) {
@@ -48,5 +48,5 @@ class UiTranslator {
 data class SectionUi(val label: String, val iconResId: Int)
 
 fun Section.translate(): SectionUi {
-    return UiTranslator.translate(this)
+    return PresentationTranslator.translate(this)
 }
