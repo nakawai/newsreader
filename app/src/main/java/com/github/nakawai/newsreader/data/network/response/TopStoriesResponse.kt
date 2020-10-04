@@ -1,23 +1,23 @@
 package com.github.nakawai.newsreader.data.network.response
 
-import com.fasterxml.jackson.annotation.JsonProperty
+import com.squareup.moshi.Json
 
 class TopStoriesResponse {
-    @JsonProperty("status")
+    @Json(name = "status")
     var status: String? = null
 
-    @JsonProperty("copyright")
+    @Json(name = "copyright")
     var copyright: String? = null
 
-    @JsonProperty("section")
+    @Json(name = "section")
     var section: String? = null
 
-    @JsonProperty("last_updated")
+    @Json(name = "last_updated")
     var lastUpdated: String? = null
 
-    @JsonProperty("num_results")
+    @Json(name = "num_results")
     var numResults: Int? = null
 
-    @JsonProperty("results")
+    @Json(name = "results")
     var results: List<StoryResponseItem>? = null
 }

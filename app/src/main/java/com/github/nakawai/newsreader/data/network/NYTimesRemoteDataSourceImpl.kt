@@ -12,7 +12,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
-import retrofit2.converter.jackson.JacksonConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 import timber.log.Timber
 
 /**
@@ -27,7 +27,7 @@ class NYTimesRemoteDataSourceImpl : NYTimesRemoteDataSource {
             .build()
 
         val retrofit = Retrofit.Builder()
-            .addConverterFactory(JacksonConverterFactory.create())
+            .addConverterFactory(MoshiConverterFactory.create())
             .baseUrl("https://api.nytimes.com/")
             .client(okHttpClient)
             .build()

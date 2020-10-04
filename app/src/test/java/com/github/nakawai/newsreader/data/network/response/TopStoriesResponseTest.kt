@@ -1,7 +1,7 @@
 package com.github.nakawai.newsreader.data.network.response
 
-import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.common.truth.Truth.assertThat
+import com.squareup.moshi.Moshi
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -23,7 +23,7 @@ class TopStoriesResponseTest {
         val json = ClassLoader.getSystemResource("JSON/topstories_world.json").readText()
 
         // Actual
-        val actual = ObjectMapper().readValue(json, TopStoriesResponse::class.java)
+        val actual = Moshi.Builder().build().adapter(TopStoriesResponse::class.java).fromJson(json)!!
 
         // Assert
         assertThat(actual.status).isEqualTo("OK")

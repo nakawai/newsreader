@@ -1,59 +1,57 @@
 package com.github.nakawai.newsreader.data.network.response
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties
-import com.fasterxml.jackson.annotation.JsonProperty
+import com.squareup.moshi.Json
 import java.text.SimpleDateFormat
 import java.util.*
 
-@JsonIgnoreProperties(ignoreUnknown = true)
 class StoryResponseItem {
 
-    @JsonProperty("section")
+    @Json(name = "section")
     var section: String? = null
 
-    @JsonProperty("subsection")
+    @Json(name = "subsection")
     var subsection: String? = null
 
-    @JsonProperty("title")
+    @Json(name = "title")
     var title: String? = null
 
-    @JsonProperty("abstract")
+    @Json(name = "abstract")
     var storyAbstract: String? = null
 
-    @JsonProperty("url")
+    @Json(name = "url")
     var url: String? = null
 
-    @JsonProperty("byline")
+    @Json(name = "byline")
     var byline: String? = null
 
-    @JsonProperty("item_type")
+    @Json(name = "item_type")
     var itemType: String? = null
 
     /**
      * @see PATTERN
      */
-    @JsonProperty("updated_date")
+    @Json(name = "updated_date")
     var updatedDate: String? = null
 
     /**
      * @see PATTERN
      */
-    @JsonProperty("created_date")
+    @Json(name = "created_date")
     var createdDate: String? = null
 
     /**
      * @see PATTERN
      */
-    @JsonProperty("published_date")
+    @Json(name = "published_date")
     var publishedDate: String? = null
 
-    @JsonProperty("material_type_facet")
+    @Json(name = "material_type_facet")
     var materialTypeFacet: String? = null
 
-    @JsonProperty("kicker")
+    @Json(name = "kicker")
     var kicker: String? = null
 
-    @JsonProperty("multimedia")
+    @Json(name = "multimedia")
     var multimedia: List<MultimediaResponseItem>? = null
 
     companion object {
