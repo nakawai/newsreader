@@ -2,6 +2,7 @@ package com.github.nakawai.newsreader.data.network.response
 
 import com.google.common.truth.Truth.assertThat
 import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -23,10 +24,13 @@ class TopStoriesResponseTest {
         val json = ClassLoader.getSystemResource("JSON/topstories_world.json").readText()
 
         // Actual
-        val actual = Moshi.Builder().build().adapter(TopStoriesResponse::class.java).fromJson(json)!!
+        val actual = Moshi.Builder()
+            .add(KotlinJsonAdapterFactory())
+            .build().adapter(TopStoriesResponse::class.java).fromJson(json)!!
 
         // Assert
         assertThat(actual.status).isEqualTo("OK")
+        assertThat(actual.section).isEqualTo("World News")
         assertThat(actual.lastUpdated).isEqualTo("2020-10-03T12:30:38-04:00")
         assertThat(actual.numResults).isEqualTo(37)
         assertThat(actual.results).hasSize(37)
