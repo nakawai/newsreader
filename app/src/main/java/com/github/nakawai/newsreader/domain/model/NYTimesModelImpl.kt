@@ -8,6 +8,9 @@ import com.github.nakawai.newsreader.domain.entities.Section
 import com.github.nakawai.newsreader.domain.entities.Story
 import com.github.nakawai.newsreader.domain.entities.StoryUrl
 
+/**
+ * Model implementation class of MVVM
+ */
 class NYTimesModelImpl(private val local: NYTimesLocalDataSource, private val remote: NYTimesRemoteDataSource, private val appLocal: AppLocalDataSource) : NYTimesModel {
 
 
@@ -26,7 +29,6 @@ class NYTimesModelImpl(private val local: NYTimesLocalDataSource, private val re
 
         return local.readData(section)
     }
-
 
 
     /**
@@ -50,7 +52,6 @@ class NYTimesModelImpl(private val local: NYTimesLocalDataSource, private val re
     override fun loadSections(): List<Section> {
         return Section.values().toList()
     }
-
 
 
 }

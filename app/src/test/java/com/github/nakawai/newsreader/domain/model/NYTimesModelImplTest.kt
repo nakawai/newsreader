@@ -20,7 +20,7 @@ import org.junit.Test
  * @see <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-test/">kotlinx-coroutines-test</a>
  */
 @ExperimentalCoroutinesApi
-class NYTimesModelTest {
+class NYTimesModelImplTest {
 
     private val mainThreadSurrogate = newSingleThreadContext("UI Thread")
 
@@ -49,7 +49,7 @@ class NYTimesModelTest {
     }
 
     @Test
-    fun testLoadNewsFeed() {
+    fun `FetchTopStories should NOT be called when canCallApi and forceReload are false`() {
         runBlocking {
             // Arrange
             val model = NYTimesModelImpl(local, remote, appLocal)
