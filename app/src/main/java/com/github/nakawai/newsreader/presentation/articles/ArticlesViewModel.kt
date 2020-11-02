@@ -1,9 +1,9 @@
 package com.github.nakawai.newsreader.presentation.articles
 
 import androidx.lifecycle.*
-import com.github.nakawai.newsreader.domain.model.NYTimesModel
 import com.github.nakawai.newsreader.domain.entities.Section
 import com.github.nakawai.newsreader.domain.entities.Story
+import com.github.nakawai.newsreader.domain.model.NYTimesModel
 import kotlinx.coroutines.launch
 
 /**
@@ -14,6 +14,12 @@ class ArticlesViewModel(
 ) : ViewModel() {
     private val _stories = MediatorLiveData<List<Story>>()
     val stories: LiveData<List<Story>> = _stories
+
+    val articles: LiveData<List<ArticleUiModel>> = MediatorLiveData<List<ArticleUiModel>>().also { liveData ->
+        liveData.addSource(_stories) { stories ->
+            stories.map { ArticleUiModel(it, System.currentTimeMillis()) }
+        }
+    }
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
@@ -37,10 +43,10 @@ class ArticlesViewModel(
         viewModelScope.launch {
             runCatching {
                 model.loadNewsFeed(section, force)
-            }.onSuccess {
-                _stories.value = it
-            }.onFailure {
-                _error.value = it
+            }.onSuccess { stories ->
+                _stories.value = stories
+            }.onFailure { error ->
+                _error.value = error
             }
 
             _isLoading.value = false
