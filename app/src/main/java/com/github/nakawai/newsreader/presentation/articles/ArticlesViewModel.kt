@@ -13,11 +13,10 @@ class ArticlesViewModel(
     private val model: NYTimesModel
 ) : ViewModel() {
     private val _stories = MediatorLiveData<List<Story>>()
-    val stories: LiveData<List<Story>> = _stories
 
     val articles: LiveData<List<ArticleUiModel>> = MediatorLiveData<List<ArticleUiModel>>().also { liveData ->
         liveData.addSource(_stories) { stories ->
-            stories.map { ArticleUiModel(it, System.currentTimeMillis()) }
+            liveData.value = stories.map { ArticleUiModel(it, System.currentTimeMillis()) }
         }
     }
 

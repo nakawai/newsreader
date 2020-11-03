@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import com.github.nakawai.newsreader.R
 import com.github.nakawai.newsreader.databinding.ActivityArticlesBinding
 import com.github.nakawai.newsreader.domain.entities.Section
-import com.github.nakawai.newsreader.domain.entities.Story
+import com.github.nakawai.newsreader.domain.entities.StoryUrl
 import com.github.nakawai.newsreader.presentation.ErrorDialogFragment
 import com.github.nakawai.newsreader.presentation.details.DetailsActivity
 import com.github.nakawai.newsreader.presentation.translate
@@ -56,26 +56,26 @@ class ArticlesActivity : AppCompatActivity(), ArticleListAdapter.OnItemClickList
         viewModel.loadData(force = true)
     }
 
-    override fun onItemClick(story: Story) {
+    override fun onItemClick(story: StoryUrl) {
         val intent: Intent = DetailsActivity.getIntent(this, story)
         startActivity(intent)
     }
 
     private fun observeViewModel() {
-        viewModel.stories.observe(this, Observer {
+        viewModel.articles.observe(this, Observer { articles ->
             if (!initialized) {
                 initialized = true
                 return@Observer
             }
 
-            if (it.isEmpty()) {
+            if (articles.isEmpty()) {
                 binding.emptyView.visibility = View.VISIBLE
                 binding.refreshView.visibility = View.GONE
             } else {
                 binding.emptyView.visibility = View.GONE
                 binding.refreshView.visibility = View.VISIBLE
             }
-            adapter.submitList(it)
+            adapter.submitList(articles)
         })
 
         viewModel.isLoading.observe(this, Observer {

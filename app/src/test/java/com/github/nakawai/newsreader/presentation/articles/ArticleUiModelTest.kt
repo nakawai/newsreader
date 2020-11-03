@@ -45,7 +45,7 @@ class ArticleUiModelTest {
         val uiModel = ArticleUiModel(story, nowTimeMillis = "2020-01-01T00:01:00+09:00".toEpochMilli())
 
         // Assert
-        assertThat(uiModel.relativeDate).isEqualTo("1 minute ago")
+        assertThat(uiModel.relativeTimeSpanText).isEqualTo("1 minute ago")
     }
 }
 

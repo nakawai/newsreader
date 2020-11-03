@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.github.nakawai.newsreader.R
 import com.github.nakawai.newsreader.databinding.ActivityDetailsBinding
-import com.github.nakawai.newsreader.domain.entities.Story
+import com.github.nakawai.newsreader.domain.entities.StoryUrl
 import org.koin.android.viewmodel.ext.android.viewModel
 import java.text.SimpleDateFormat
 import java.util.*
@@ -65,9 +65,9 @@ class DetailsActivity : AppCompatActivity() {
 
     companion object {
         private const val KEY_STORY_URL = "KEY_STORY_URL"
-        fun getIntent(context: Context, story: Story): Intent {
+        fun getIntent(context: Context, storyUrl: StoryUrl): Intent {
             val intent = Intent(context, DetailsActivity::class.java)
-            intent.putExtra(KEY_STORY_URL, story.url)
+            intent.putExtra(KEY_STORY_URL, storyUrl)
             return intent
         }
     }
