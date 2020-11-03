@@ -7,16 +7,16 @@ import com.github.nakawai.newsreader.domain.model.NYTimesModel
 import kotlinx.coroutines.launch
 
 /**
- * Presenter class for controlling the Main Activity
+ * ViewModel class for controlling the Articles Activity
  */
 class ArticlesViewModel(
     private val model: NYTimesModel
 ) : ViewModel() {
     private val _stories = MediatorLiveData<List<Story>>()
 
-    val articles: LiveData<List<ArticleUiModel>> = MediatorLiveData<List<ArticleUiModel>>().also { liveData ->
-        liveData.addSource(_stories) { stories ->
-            liveData.value = stories.map { ArticleUiModel(it, System.currentTimeMillis()) }
+    val articles: LiveData<List<ArticleUiModel>> = MediatorLiveData<List<ArticleUiModel>>().apply {
+        addSource(_stories) { stories ->
+            value = stories.map { ArticleUiModel(it, System.currentTimeMillis()) }
         }
     }
 
