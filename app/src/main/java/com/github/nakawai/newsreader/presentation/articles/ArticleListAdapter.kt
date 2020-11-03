@@ -43,6 +43,7 @@ class ArticleListAdapter(private val listener: OnItemClickListener) : ListAdapte
         val uiModel = getItem(position)
         holder.binding.text.text = uiModel.title
         holder.binding.subTitle.text = uiModel.storyAbstract
+        holder.binding.relativeTimeSpan.text = uiModel.relativeTimeSpanText
 
         val context = holder.binding.root.context
         val readColor = ContextCompat.getColor(context, android.R.color.darker_gray)
