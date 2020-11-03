@@ -6,6 +6,9 @@ import com.github.nakawai.newsreader.domain.entities.Section
 import com.github.nakawai.newsreader.domain.entities.Story
 import com.github.nakawai.newsreader.domain.entities.StoryUrl
 
+/**
+ * Ui Model class for Article
+ */
 data class ArticleUiModel(
     val title: String,
     val storyAbstract: String,

@@ -29,7 +29,7 @@ class ArticleUiModelTest {
     }
 
     @Test
-    fun test() {
+    fun `ArticleUiModel can be created from Story`() {
         // Arrange
         val story = Story(
             title = "title",
