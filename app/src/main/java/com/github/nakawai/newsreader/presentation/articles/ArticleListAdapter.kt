@@ -10,14 +10,14 @@ import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.github.nakawai.newsreader.R
 import com.github.nakawai.newsreader.databinding.ListItemArticleBinding
-import com.github.nakawai.newsreader.domain.entities.Story
+import com.github.nakawai.newsreader.domain.entities.StoryUrl
 
 // ListView adapter class
-class ArticleListAdapter(private val listener: OnItemClickListener) : ListAdapter<Story, ArticleListAdapter.ViewHolder>(DIFF_CALLBACK) {
+class ArticleListAdapter(private val listener: OnItemClickListener) : ListAdapter<ArticleUiModel, ArticleListAdapter.ViewHolder>(DIFF_CALLBACK) {
 
 
     interface OnItemClickListener {
-        fun onItemClick(story: Story)
+        fun onItemClick(story: StoryUrl)
     }
 
     class ViewHolder(var binding: ListItemArticleBinding, val progressDrawable: CircularProgressDrawable) : RecyclerView.ViewHolder(binding.root)
@@ -31,7 +31,7 @@ class ArticleListAdapter(private val listener: OnItemClickListener) : ListAdapte
         val viewHolder = ViewHolder(binding, progressDrawable)
         binding.root.setOnClickListener {
             val item = getItem(viewHolder.adapterPosition)
-            listener.onItemClick(item)
+            listener.onItemClick(item.url)
         }
 
 
@@ -40,19 +40,20 @@ class ArticleListAdapter(private val listener: OnItemClickListener) : ListAdapte
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        val story = getItem(position)
-        holder.binding.text.text = story.title
-        holder.binding.subTitle.text = story.storyAbstract
+        val uiModel = getItem(position)
+        holder.binding.text.text = uiModel.title
+        holder.binding.subTitle.text = uiModel.storyAbstract
+        holder.binding.relativeTimeSpan.text = uiModel.relativeTimeSpanText
 
         val context = holder.binding.root.context
         val readColor = ContextCompat.getColor(context, android.R.color.darker_gray)
         val unreadColor = ContextCompat.getColor(context, android.R.color.primary_text_light)
-        holder.binding.text.setTextColor(if (story!!.isRead) readColor else unreadColor)
+        holder.binding.text.setTextColor(if (uiModel.isRead) readColor else unreadColor)
 
-        if (story.multimedia.isNotEmpty()) {
+        if (uiModel.multimedia.isNotEmpty()) {
 
             Glide.with(holder.binding.root)
-                .load(story.multimedia[0].url)
+                .load(uiModel.multimedia[0].url)
                 .placeholder(holder.progressDrawable)
                 .error(R.drawable.placeholder)
                 .centerCrop()
@@ -67,12 +68,12 @@ class ArticleListAdapter(private val listener: OnItemClickListener) : ListAdapte
     }
 }
 
-private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Story>() {
-    override fun areItemsTheSame(oldItem: Story, newItem: Story): Boolean {
+private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ArticleUiModel>() {
+    override fun areItemsTheSame(oldItem: ArticleUiModel, newItem: ArticleUiModel): Boolean {
         return oldItem.url == newItem.url
     }
 
-    override fun areContentsTheSame(oldItem: Story, newItem: Story): Boolean {
+    override fun areContentsTheSame(oldItem: ArticleUiModel, newItem: ArticleUiModel): Boolean {
         return oldItem == newItem
     }
 
