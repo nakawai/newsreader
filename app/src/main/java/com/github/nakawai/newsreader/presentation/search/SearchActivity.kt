@@ -3,6 +3,7 @@ package com.github.nakawai.newsreader.presentation.search
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import com.github.nakawai.newsreader.R
@@ -11,6 +12,8 @@ import com.google.android.material.snackbar.Snackbar
 import timber.log.Timber
 
 class SearchActivity : AppCompatActivity() {
+
+    val viewModel: SearchViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +36,12 @@ class SearchActivity : AppCompatActivity() {
         searchView.isIconified = false
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                return false
+                return if (query == null) {
+                    false
+                } else {
+                    viewModel.onQueryTextSubmit(query)
+                    true
+                }
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {

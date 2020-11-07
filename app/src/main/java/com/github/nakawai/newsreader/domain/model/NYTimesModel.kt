@@ -11,4 +11,5 @@ interface NYTimesModel {
     fun observeArticlesBySection(section: Section): LiveData<List<Story>>
     fun observeArticle(storyUrl: StoryUrl): LiveData<Story>
     fun loadSections(): List<Section>
+    suspend fun searchArticle(query: String)
 }

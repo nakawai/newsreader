@@ -2,7 +2,8 @@ package com.github.nakawai.newsreader.data.network
 
 
 import com.facebook.stetho.okhttp3.StethoInterceptor
-import com.github.nakawai.newsreader.data.network.response.StoryResponseItem
+import com.github.nakawai.newsreader.data.network.response.articlesearch.ArticleSearchDocsResponseItem
+import com.github.nakawai.newsreader.data.network.response.topstories.StoryResponseItem
 import com.github.nakawai.newsreader.data.toData
 import com.github.nakawai.newsreader.domain.datasource.NYTimesRemoteDataSource
 import com.github.nakawai.newsreader.domain.entities.Section
@@ -48,6 +49,16 @@ class NYTimesRemoteDataSourceImpl : NYTimesRemoteDataSource {
             return@withContext response.body()!!.results!!
         } else {
             Timber.i("Failure: Data not loaded: section:${sectionKey}")
+            throw RuntimeException()
+        }
+    }
+
+    override suspend fun searchArticle(query: String): List<ArticleSearchDocsResponseItem> = withContext(Dispatchers.IO) {
+        val response = nyTimesApiService.articleSearch(query, API_KEY)
+
+        if (response.isSuccessful) {
+            return@withContext response.body()!!.response!!.docs!!
+        } else {
             throw RuntimeException()
         }
     }

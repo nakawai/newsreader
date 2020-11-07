@@ -34,4 +34,19 @@ class NYTimesRemoteDataSourceImplAndroidTest {
 
         }
     }
+
+    @Test
+    fun testSearch() {
+        runBlocking {
+            // Arrange
+            val remote = NYTimesRemoteDataSourceImpl()
+
+            // Act
+            val articles = remote.searchArticle("election")
+
+            // Assert
+            assertThat(articles).isNotEmpty()
+
+        }
+    }
 }

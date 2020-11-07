@@ -1,4 +1,4 @@
-package com.github.nakawai.newsreader.data.network.response
+package com.github.nakawai.newsreader.data.network.response.topstories
 
 import com.squareup.moshi.Json
 import java.text.SimpleDateFormat

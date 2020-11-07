@@ -2,8 +2,8 @@ package com.github.nakawai.newsreader.data
 
 import com.github.nakawai.newsreader.data.db.MultimediaRealmObject
 import com.github.nakawai.newsreader.data.db.StoryRealmObject
-import com.github.nakawai.newsreader.data.network.response.MultimediaResponseItem
-import com.github.nakawai.newsreader.data.network.response.StoryResponseItem
+import com.github.nakawai.newsreader.data.network.response.topstories.MultimediaResponseItem
+import com.github.nakawai.newsreader.data.network.response.topstories.StoryResponseItem
 import com.github.nakawai.newsreader.domain.entities.Multimedia
 import com.github.nakawai.newsreader.domain.entities.Section
 import com.github.nakawai.newsreader.domain.entities.Story
