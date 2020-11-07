@@ -24,6 +24,6 @@ class ArticleSearchDocsResponseItem {
     @Json(name = "pub_date")
     var publishedDate: String? = null
 
-//    @Json(name = "multimedia")
-//    var multimedia: List<MultimediaResponseItem>? = null
+    @Json(name = "multimedia")
+    var multimedia: List<ArticleSearchMultimediaResponseItem>? = null
 }

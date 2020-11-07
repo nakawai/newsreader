@@ -3,17 +3,17 @@ package com.github.nakawai.newsreader.presentation.search
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import com.github.nakawai.newsreader.R
 import com.github.nakawai.newsreader.databinding.ActivitySearchBinding
 import com.google.android.material.snackbar.Snackbar
+import org.koin.android.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
 class SearchActivity : AppCompatActivity() {
 
-    val viewModel: SearchViewModel by viewModels()
+    val viewModel: SearchViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

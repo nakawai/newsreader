@@ -2,9 +2,15 @@ package com.github.nakawai.newsreader.presentation
 
 import com.github.nakawai.newsreader.R
 import com.github.nakawai.newsreader.domain.entities.Section
+import com.github.nakawai.newsreader.domain.entities.Story
+import com.github.nakawai.newsreader.presentation.search.SearchResultUiModel
 
 class PresentationTranslator {
     companion object {
+        fun translate(story: Story): SearchResultUiModel {
+            return SearchResultUiModel(story)
+        }
+
         fun translate(section: Section): SectionUi {
             return when (section) {
                 Section.HOME -> SectionUi("Home", R.drawable.ic_home_black_24dp)

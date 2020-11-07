@@ -5,9 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import com.github.nakawai.newsreader.databinding.FragmentSearchBinding
 import com.google.android.material.tabs.TabLayoutMediator
+import org.koin.android.viewmodel.ext.android.sharedViewModel
 
 class SearchFragment : Fragment() {
 
@@ -21,7 +21,7 @@ class SearchFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    private lateinit var viewModel: SearchViewModel
+    private val viewModel: SearchViewModel by sharedViewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,8 +40,6 @@ class SearchFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(SearchViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
     override fun onDestroyView() {
