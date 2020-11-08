@@ -60,7 +60,7 @@ class NYTimesRemoteDataSourceImpl : NYTimesRemoteDataSource {
         if (response.isSuccessful) {
             return@withContext response.body()!!.response!!.docs!!.map { DataTranslator.translate(it) }
         } else {
-            throw RuntimeException()
+            throw RuntimeException(response.errorBody()!!.string())
         }
     }
 

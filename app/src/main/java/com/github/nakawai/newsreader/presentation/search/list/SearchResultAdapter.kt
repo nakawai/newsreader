@@ -1,4 +1,4 @@
-package com.github.nakawai.newsreader.presentation.search
+package com.github.nakawai.newsreader.presentation.search.list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

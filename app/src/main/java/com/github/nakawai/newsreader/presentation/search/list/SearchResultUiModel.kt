@@ -1,4 +1,4 @@
-package com.github.nakawai.newsreader.presentation.search
+package com.github.nakawai.newsreader.presentation.search.list
 
 import com.github.nakawai.newsreader.domain.entities.Story
 import com.github.nakawai.newsreader.domain.entities.StoryUrl

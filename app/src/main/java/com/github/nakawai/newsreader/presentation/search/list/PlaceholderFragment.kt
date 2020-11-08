@@ -1,16 +1,17 @@
-package com.github.nakawai.newsreader.presentation.search
+package com.github.nakawai.newsreader.presentation.search.list
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.github.nakawai.newsreader.databinding.FragmentPlaceholderBinding
 import com.github.nakawai.newsreader.domain.entities.StoryUrl
+import com.github.nakawai.newsreader.presentation.search.SearchViewModel
 import org.koin.android.viewmodel.ext.android.sharedViewModel
+import org.koin.android.viewmodel.ext.android.viewModel
 
 /**
  * A placeholder fragment containing a simple view.
@@ -25,14 +26,7 @@ class PlaceholderFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val searchViewModel: SearchViewModel by sharedViewModel()
-    private lateinit var viewModel: PlaceholderViewModel
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(PlaceholderViewModel::class.java).apply {
-            setIndex(arguments?.getInt(ARG_SECTION_NUMBER) ?: 1)
-        }
-    }
+    private val viewModel: PlaceholderViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,12 +50,28 @@ class PlaceholderFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        viewModel.text.observe(viewLifecycleOwner, Observer<String> {
+        searchViewModel.isLoading.observe(viewLifecycleOwner, { isLoading ->
+            binding.progress.visibility = if (isLoading) View.VISIBLE else View.GONE
         })
 
-        searchViewModel.articles.observe(viewLifecycleOwner, { stories ->
-            adapter.submitList(stories)
-        })
+        when (requireArguments().getInt(ARG_SECTION_NUMBER)) {
+            0 -> {
+                searchViewModel.articles.observe(viewLifecycleOwner, { stories ->
+                    adapter.submitList(stories)
+                })
+            }
+            1 -> {
+                searchViewModel.articles2.observe(viewLifecycleOwner, { stories ->
+                    adapter.submitList(stories)
+                })
+            }
+            2 -> {
+                searchViewModel.articles3.observe(viewLifecycleOwner, { stories ->
+                    adapter.submitList(stories)
+                })
+            }
+        }
+
     }
 
     companion object {
@@ -78,9 +88,9 @@ class PlaceholderFragment : Fragment() {
         @JvmStatic
         fun newInstance(sectionNumber: Int): PlaceholderFragment {
             return PlaceholderFragment().apply {
-                arguments = Bundle().apply {
-                    putInt(ARG_SECTION_NUMBER, sectionNumber)
-                }
+                arguments = bundleOf(
+                    ARG_SECTION_NUMBER to sectionNumber
+                )
             }
         }
     }

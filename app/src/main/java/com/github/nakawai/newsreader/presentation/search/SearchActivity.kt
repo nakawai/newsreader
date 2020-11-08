@@ -3,8 +3,10 @@ package com.github.nakawai.newsreader.presentation.search
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
+import androidx.lifecycle.Observer
 import com.github.nakawai.newsreader.R
 import com.github.nakawai.newsreader.databinding.ActivitySearchBinding
 import com.google.android.material.snackbar.Snackbar
@@ -26,6 +28,14 @@ class SearchActivity : AppCompatActivity() {
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         }
+
+        viewModel.error.observe(this, Observer {
+            AlertDialog.Builder(this)
+                .setTitle("Error")
+                .setMessage(it.message)
+                .setPositiveButton(android.R.string.ok, null)
+                .show()
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

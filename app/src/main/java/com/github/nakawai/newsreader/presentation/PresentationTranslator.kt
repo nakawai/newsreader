@@ -3,7 +3,7 @@ package com.github.nakawai.newsreader.presentation
 import com.github.nakawai.newsreader.R
 import com.github.nakawai.newsreader.domain.entities.Section
 import com.github.nakawai.newsreader.domain.entities.Story
-import com.github.nakawai.newsreader.presentation.search.SearchResultUiModel
+import com.github.nakawai.newsreader.presentation.search.list.SearchResultUiModel
 
 class PresentationTranslator {
     companion object {

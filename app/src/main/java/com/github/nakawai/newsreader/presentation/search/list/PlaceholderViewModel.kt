@@ -1,4 +1,4 @@
-package com.github.nakawai.newsreader.presentation.search
+package com.github.nakawai.newsreader.presentation.search.list
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
