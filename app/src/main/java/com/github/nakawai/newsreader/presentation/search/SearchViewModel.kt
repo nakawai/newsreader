@@ -3,6 +3,7 @@ package com.github.nakawai.newsreader.presentation.search
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.github.nakawai.newsreader.domain.model.NYTimesModel
 import com.github.nakawai.newsreader.presentation.PresentationTranslator
 import com.github.nakawai.newsreader.presentation.search.list.SearchResultUiModel
@@ -30,9 +31,9 @@ class SearchViewModel(
     private var job: Job? = null
 
     fun onQueryTextSubmit(query: String) {
-        job?.cancel()
+        job?.cancelChildren()
 
-        job = GlobalScope.launch(Dispatchers.Main) {
+        job = viewModelScope.launch(Dispatchers.Main) {
             _isLoading.value = true
             val async1 = async {
                 runCatching {
