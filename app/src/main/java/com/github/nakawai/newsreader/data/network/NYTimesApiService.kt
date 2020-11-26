@@ -1,7 +1,7 @@
 package com.github.nakawai.newsreader.data.network
 
-import com.github.nakawai.newsreader.data.network.response.TopStoriesResponse
-import retrofit2.Call
+import com.github.nakawai.newsreader.data.network.response.articlesearch.ArticleSearchResponse
+import com.github.nakawai.newsreader.data.network.response.topstories.TopStoriesResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -18,4 +18,10 @@ interface NYTimesApiService {
         @Path("section") section: String,
         @Query(value = "api-key", encoded = true) apiKey: String
     ): Response<TopStoriesResponse>
+
+    @GET("svc/search/v2/articlesearch.json")
+    suspend fun articleSearch(
+        @Query("query") query: String,
+        @Query(value = "api-key", encoded = true) apiKey: String
+    ): Response<ArticleSearchResponse>
 }

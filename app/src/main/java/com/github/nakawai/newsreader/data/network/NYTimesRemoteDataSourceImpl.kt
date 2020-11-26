@@ -2,10 +2,12 @@ package com.github.nakawai.newsreader.data.network
 
 
 import com.facebook.stetho.okhttp3.StethoInterceptor
-import com.github.nakawai.newsreader.data.network.response.StoryResponseItem
+import com.github.nakawai.newsreader.data.DataTranslator
+import com.github.nakawai.newsreader.data.network.response.topstories.StoryResponseItem
 import com.github.nakawai.newsreader.data.toData
 import com.github.nakawai.newsreader.domain.datasource.NYTimesRemoteDataSource
 import com.github.nakawai.newsreader.domain.entities.Section
+import com.github.nakawai.newsreader.domain.entities.Story
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.Dispatchers
@@ -49,6 +51,16 @@ class NYTimesRemoteDataSourceImpl : NYTimesRemoteDataSource {
         } else {
             Timber.i("Failure: Data not loaded: section:${sectionKey}")
             throw RuntimeException()
+        }
+    }
+
+    override suspend fun searchArticle(query: String): List<Story> = withContext(Dispatchers.IO) {
+        val response = nyTimesApiService.articleSearch(query, API_KEY)
+
+        if (response.isSuccessful) {
+            return@withContext response.body()!!.response!!.docs!!.map { DataTranslator.translate(it) }
+        } else {
+            throw RuntimeException(response.errorBody()!!.string())
         }
     }
 

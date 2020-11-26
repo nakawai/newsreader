@@ -2,8 +2,9 @@ package com.github.nakawai.newsreader.data
 
 import com.github.nakawai.newsreader.data.db.MultimediaRealmObject
 import com.github.nakawai.newsreader.data.db.StoryRealmObject
-import com.github.nakawai.newsreader.data.network.response.MultimediaResponseItem
-import com.github.nakawai.newsreader.data.network.response.StoryResponseItem
+import com.github.nakawai.newsreader.data.network.response.articlesearch.ArticleSearchDocsResponseItem
+import com.github.nakawai.newsreader.data.network.response.topstories.MultimediaResponseItem
+import com.github.nakawai.newsreader.data.network.response.topstories.StoryResponseItem
 import com.github.nakawai.newsreader.domain.entities.Multimedia
 import com.github.nakawai.newsreader.domain.entities.Section
 import com.github.nakawai.newsreader.domain.entities.Story
@@ -29,6 +30,19 @@ class DataTranslator {
             )
         }
 
+        fun translate(responseItem: ArticleSearchDocsResponseItem): Story {
+            return Story(
+                title = responseItem.title.orEmpty(),
+                url = StoryUrl(responseItem.webUrl.orEmpty()),
+                storyAbstract = responseItem.articleAbstract.orEmpty(),
+                multimedia = responseItem.multimedia?.map { Multimedia(it.url.orEmpty()) } ?: emptyList(),
+                publishedDate = responseItem.publishedDate?.let { StoryResponseItem.DATE_FORMAT.parse(it) },
+                isRead = false,
+                section = Section.values().find { translate(it).value == responseItem.sectionName }
+                    ?: Section.HOME
+            )
+        }
+
         fun translate(response: StoryResponseItem): StoryRealmObject {
             val realmObject = StoryRealmObject()
             realmObject.section = response.section
@@ -40,7 +54,6 @@ class DataTranslator {
             realmObject.itemType = response.itemType
             realmObject.updatedDate = response.updatedDate
             realmObject.createdDate = response.createdDate
-
             realmObject.publishedDate = response.publishedDate?.let { StoryResponseItem.DATE_FORMAT.parse(it) }
             realmObject.sortTimeStamp = realmObject.publishedDate?.time ?: 0L
 

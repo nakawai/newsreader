@@ -13,6 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
         <activity
+            android:name=".presentation.search.SearchActivity"
+            android:label="@string/title_activity_search"
+            android:parentActivityName=".presentation.sections.SectionsActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".presentation.sections.SectionsActivity"
             android:label="@string/app_name"
             android:launchMode="singleTop"
@@ -25,8 +30,8 @@
         </activity>
         <activity
             android:name=".presentation.articles.ArticlesActivity"
-            android:parentActivityName=".presentation.sections.SectionsActivity"
-            android:launchMode="singleTop" />
+            android:launchMode="singleTop"
+            android:parentActivityName=".presentation.sections.SectionsActivity" />
         <activity
             android:name=".presentation.details.DetailsActivity"
             android:parentActivityName=".presentation.articles.ArticlesActivity" />

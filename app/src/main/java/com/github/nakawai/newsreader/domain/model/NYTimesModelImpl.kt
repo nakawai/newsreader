@@ -53,5 +53,9 @@ class NYTimesModelImpl(private val local: NYTimesLocalDataSource, private val re
         return Section.values().toList()
     }
 
+    override suspend fun searchArticle(query: String): List<Story> {
+        return remote.searchArticle(query)
+    }
+
 
 }

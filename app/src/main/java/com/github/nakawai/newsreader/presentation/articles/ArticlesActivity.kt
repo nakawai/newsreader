@@ -68,19 +68,15 @@ class ArticlesActivity : AppCompatActivity(), ArticleListAdapter.OnItemClickList
                 return@Observer
             }
 
-            if (articles.isEmpty()) {
-                binding.emptyView.visibility = View.VISIBLE
-                binding.refreshView.visibility = View.GONE
-            } else {
-                binding.emptyView.visibility = View.GONE
-                binding.refreshView.visibility = View.VISIBLE
-            }
+            binding.emptyView.visibility = if(articles.isEmpty()) View.VISIBLE  else View.GONE
+            binding.refreshView.visibility = if(articles.isNotEmpty()) View.VISIBLE  else View.GONE
+
             adapter.submitList(articles)
         })
 
-        viewModel.isLoading.observe(this, Observer {
-            binding.refreshView.isRefreshing = it
-            binding.emptyView.isRefreshing = it
+        viewModel.isLoading.observe(this, Observer { isLoading ->
+            binding.refreshView.isRefreshing = isLoading
+            binding.emptyView.isRefreshing = isLoading
         })
 
         viewModel.error.observe(this, Observer {

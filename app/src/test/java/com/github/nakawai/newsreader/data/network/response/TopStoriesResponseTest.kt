@@ -1,5 +1,6 @@
 package com.github.nakawai.newsreader.data.network.response
 
+import com.github.nakawai.newsreader.data.network.response.topstories.TopStoriesResponse
 import com.google.common.truth.Truth.assertThat
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory

@@ -2,13 +2,13 @@ package com.github.nakawai.newsreader.data.db
 
 import androidx.lifecycle.LiveData
 import com.github.nakawai.newsreader.data.DataTranslator
-import com.github.nakawai.newsreader.data.network.response.StoryResponseItem
+import com.github.nakawai.newsreader.data.network.response.topstories.StoryResponseItem
 import com.github.nakawai.newsreader.data.toData
 import com.github.nakawai.newsreader.data.translate
+import com.github.nakawai.newsreader.domain.datasource.NYTimesLocalDataSource
 import com.github.nakawai.newsreader.domain.entities.Section
 import com.github.nakawai.newsreader.domain.entities.Story
 import com.github.nakawai.newsreader.domain.entities.StoryUrl
-import com.github.nakawai.newsreader.domain.datasource.NYTimesLocalDataSource
 import io.realm.Realm
 import io.realm.RealmChangeListener
 import io.realm.RealmResults
