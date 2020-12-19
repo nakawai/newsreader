@@ -11,7 +11,12 @@ import com.github.nakawai.newsreader.domain.entities.StoryUrl
 /**
  * Model implementation class of MVVM
  */
-class NYTimesModelImpl(private val local: NYTimesLocalDataSource, private val remote: NYTimesRemoteDataSource, private val appLocal: AppLocalDataSource) : NYTimesModel {
+class NYTimesRepositoryImpl(
+    private val local: NYTimesLocalDataSource,
+    private val remote: NYTimesRemoteDataSource,
+    private val appLocal: AppLocalDataSource
+) :
+    NYTimesRepository {
 
 
     /**

@@ -1,0 +1,54 @@
+apply plugin: 'jacoco'
+
+jacoco {
+    toolVersion = "0.8.5"
+}
+
+task jacocoMerge(
+    type: JacocoMerge,
+    group: "coverage"
+) {
+    gradle.afterProject { project, _ ->
+        if (project.rootProject != project && project.plugins.hasPlugin('jacoco')) {
+            executionData(fileTree(dir: project.projectDir, includes: [
+                '**/*.exec',    //JUnit Test Result
+                '**/*.ec'])     //Espresso Test Result
+            )
+        }
+    }
+}
+
+task jacocoMergedReport(
+    type: JacocoReport,
+    dependsOn: [tasks.jacocoMerge],
+    group: "coverage"
+) {
+    getExecutionData().from = jacocoMerge.destinationFile
+
+    gradle.afterProject { project, _ ->
+        if (project.rootProject != project && project.plugins.hasPlugin('jacoco')) {
+            getSourceDirectories().from = "${projectDir}/src/main/java"
+            def targetVariantName = "debug"
+            def excludeFilter = ['**/R.class',
+                                 '**/R$*.class',
+                                 '**/BuildConfig.*',
+                                 '**/Manifest*.*',
+                                 'android/**/*.*',
+                                 'androidx/**/*.*',
+                                 '**/Lambda$*.class',
+                                 '**/Lambda.class',
+                                 '**/*Lambda.class',
+                                 '**/*Lambda*.class',
+                                 '**/*Lambda*.*'
+            ]
+            def javaDebugTree = fileTree(dir: "${buildDir}/intermediates/javac/${targetVariantName}/classes", excludes: excludeFilter)
+            def kotlinDebugTree = fileTree(dir: "${buildDir}/tmp/kotlin-classes/${targetVariantName}", excludes: excludeFilter)
+
+            getClassDirectories().from = files([javaDebugTree, kotlinDebugTree])
+        }
+    }
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+}

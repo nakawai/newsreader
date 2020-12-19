@@ -6,7 +6,6 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'realm-android'
 // Koin
 apply plugin: 'koin'
-apply plugin: 'jacoco'
 
 android {
     compileSdkVersion 29
@@ -83,24 +82,11 @@ android {
     }
 }
 
-jacoco {
-    toolVersion = "0.8.5"
-}
-
-task jacocoTestReport(type: JacocoReport, dependsOn: "testDebugUnitTest") {
-    reports {
-        xml.enabled = true
-        html.enabled = true
-    }
-    getSourceDirectories().from = "${projectDir}/src/main/java"
-    getClassDirectories().from = fileTree(dir: "${buildDir}/tmp/kotlin-classes/debug")
-    getExecutionData().from = "${buildDir}/jacoco/testDebugUnitTest.exec"
-}
-
 dependencies {
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation project(path: ':domain')
 
     // https://developer.android.com/studio/write/java8-support
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.0.10'
@@ -155,3 +141,5 @@ dependencies {
     androidTestImplementation "com.google.truth:truth:1.0.1"
     androidTestImplementation "org.koin:koin-test:$koin_version"
 }
+
+apply from: '../jacoco.gradle'
