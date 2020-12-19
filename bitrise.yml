@@ -3,10 +3,53 @@ format_version: '8'
 default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
 project_type: android
 trigger_map:
-    - pull_request_source_branch: "*"
-      workflow: deploy
+    -   push_branch: develop
+        workflow: deploy_to_bitrise
+    -   pull_request_source_branch: "*"
+        workflow: lint_and_test
 workflows:
-    deploy:
+    lint_and_test:
+        steps:
+            -   activate-ssh-key@4:
+                    run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+            -   git-clone@4: {}
+            -   cache-pull@2: {}
+            -   script@1:
+                    title: Do anything with Script step
+            -   install-missing-android-tools@2:
+                    inputs:
+                        -   gradlew_path: "$PROJECT_LOCATION/gradlew"
+            -   android-lint@0:
+                    inputs:
+                        -   project_location: "$PROJECT_LOCATION"
+                        -   module: "$MODULE"
+                        -   variant: "$VARIANT"
+            -   android-unit-test@1:
+                    inputs:
+                        -   project_location: "$PROJECT_LOCATION"
+                        -   module: "$MODULE"
+                        -   variant: "$VARIANT"
+            -   script@1:
+                    inputs:
+                        -   content: |-
+                                #!/usr/bin/env bash
+                                # fail if any commands fails
+                                set -e
+                                # debug log
+                                set -x
+
+                                # write your script here
+                                ./gradlew :app:jacocoTestReport
+
+                                # or run a script from your repository, like:
+                                # bash ./path/to/script.sh
+                                # not just bash, e.g.:
+                                # ruby ./path/to/script.rb
+            -   codecov@2:
+                    inputs:
+                        -   CODECOV_TOKEN: "$CODECOV_TOKEN"
+            -   cache-push@2: {}
+    deploy_to_bitrise:
         description: |
             ## How to get a signed APK
 
@@ -57,57 +100,31 @@ workflows:
                       - project_location: "$PROJECT_LOCATION"
                       - module: "$MODULE"
                       - variant: "$VARIANT"
-            - android-unit-test@1:
-                  inputs:
-                      - project_location: "$PROJECT_LOCATION"
-                      - module: "$MODULE"
-                      - variant: "$VARIANT"
-            - file-downloader@1:
-                  inputs:
-                      - destination: "$HOME/storeFiles/release.keystore"
-                      - source: "$BITRISEIO_ANDROID_KEYSTORE_URL"
-            - gradle-runner@1:
-                  inputs:
-                      - gradle_task: assembleRelease
-                      - gradlew_path: "./gradlew"
-            - deploy-to-bitrise-io@1: {}
-            - deploygate--upload-app-bitrise-step@1:
-                  inputs:
-                      - owner_name: nakawai
-                      - app_path: "$BITRISE_APK_PATH"
-                      - api_key: "$API_KEY_DEPLOY_GATE"
-            - cache-push@2: {}
-    primary:
-        steps:
-            - activate-ssh-key@4:
-                  run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
-            - git-clone@4: {}
-            - cache-pull@2: {}
-            - script@1:
-                  title: Do anything with Script step
-            - install-missing-android-tools@2:
-                  inputs:
-                      - gradlew_path: "$PROJECT_LOCATION/gradlew"
-            - android-lint@0:
-                  inputs:
-                      - project_location: "$PROJECT_LOCATION"
-                      - module: "$MODULE"
-                      - variant: "$VARIANT"
-            - android-unit-test@1:
-                  inputs:
-                      - project_location: "$PROJECT_LOCATION"
-                      - module: "$MODULE"
-                      - variant: "$VARIANT"
-            - deploy-to-bitrise-io@1: {}
-            - cache-push@2: {}
+            -   android-unit-test@1:
+                    inputs:
+                        -   project_location: "$PROJECT_LOCATION"
+                        -   module: "$MODULE"
+                        -   variant: "$VARIANT"
+            -   android-build@0:
+                    inputs:
+                        -   project_location: "$PROJECT_LOCATION"
+                        -   module: "$MODULE"
+                        -   variant: "$VARIANT"
+            -   sign-apk@1:
+                    run_if: '{{getenv "BITRISEIO_ANDROID_KEYSTORE_URL" | ne ""}}'
+            -   deploy-to-bitrise-io@1: {}
+            -   cache-push@2: {}
 app:
     envs:
-        - opts:
-              is_expand: false
-          PROJECT_LOCATION: "."
-        - opts:
-              is_expand: false
-          MODULE: app
-        - opts:
-              is_expand: false
-          VARIANT: release
+        -   opts:
+                is_expand: false
+            PROJECT_LOCATION: "."
+        -   opts:
+                is_expand: false
+            MODULE: app
+        -   opts:
+                is_expand: false
+            VARIANT: debug
+        -   opts:
+                is_expand: false
+            GRADLEW_PATH: "./gradlew"
