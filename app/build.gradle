@@ -6,6 +6,7 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'realm-android'
 // Koin
 apply plugin: 'koin'
+apply plugin: 'jacoco'
 
 android {
     compileSdkVersion 29
@@ -70,6 +71,30 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    testOptions {
+        unitTests.includeAndroidResources = true
+        unitTests.all {
+            jacoco {
+                // for Robolectric Coverage
+                includeNoLocationClasses = true
+            }
+        }
+    }
+}
+
+jacoco {
+    toolVersion = "0.8.5"
+}
+
+task jacocoTestReport(type: JacocoReport, dependsOn: "testDebugUnitTest") {
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+    getSourceDirectories().from = "${projectDir}/src/main/java"
+    getClassDirectories().from = fileTree(dir: "${buildDir}/tmp/kotlin-classes/debug")
+    getExecutionData().from = "${buildDir}/jacoco/testDebugUnitTest.exec"
 }
 
 dependencies {
