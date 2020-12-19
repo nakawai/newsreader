@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
  * ViewModel class for controlling the Articles Activity
  */
 class ArticlesViewModel(
-    private val model: NYTimesModel
+    private val model: com.github.nakawai.newsreader.domain.model.NYTimesModel
 ) : ViewModel() {
     private val _stories = MediatorLiveData<List<Story>>()
 

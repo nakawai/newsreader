@@ -19,7 +19,13 @@ val appModule = module {
     single<NYTimesRemoteDataSource> { NYTimesRemoteDataSourceImpl() }
     single<NYTimesLocalDataSource> { NYTimesLocalDataSourceImpl() }
     single<AppLocalDataSource> { AppLocalDataSourceImpl() }
-    single<NYTimesModel> { NYTimesModelImpl(get(), get(), get() ) }
+    single<com.github.nakawai.newsreader.domain.model.NYTimesModel> {
+        com.github.nakawai.newsreader.domain.model.NYTimesModelImpl(
+            get(),
+            get(),
+            get()
+        )
+    }
     viewModel { SectionsViewModel(get()) }
     viewModel { ArticlesViewModel(get()) }
     viewModel { DetailsViewModel(get()) }

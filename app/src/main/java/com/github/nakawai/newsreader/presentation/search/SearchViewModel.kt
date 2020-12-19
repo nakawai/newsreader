@@ -10,7 +10,7 @@ import com.github.nakawai.newsreader.presentation.search.list.SearchResultUiMode
 import kotlinx.coroutines.*
 
 class SearchViewModel(
-    private val model: NYTimesModel
+    private val model: com.github.nakawai.newsreader.domain.model.NYTimesModel
 ) : ViewModel() {
 
     private val _error = MutableLiveData<Throwable>()
