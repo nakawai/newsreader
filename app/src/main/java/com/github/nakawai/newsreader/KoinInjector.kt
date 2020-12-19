@@ -6,8 +6,8 @@ import com.github.nakawai.newsreader.data.network.NYTimesRemoteDataSourceImpl
 import com.github.nakawai.newsreader.domain.datasource.AppLocalDataSource
 import com.github.nakawai.newsreader.domain.datasource.NYTimesLocalDataSource
 import com.github.nakawai.newsreader.domain.datasource.NYTimesRemoteDataSource
-import com.github.nakawai.newsreader.domain.model.NYTimesModel
-import com.github.nakawai.newsreader.domain.model.NYTimesModelImpl
+import com.github.nakawai.newsreader.domain.model.NYTimesRepository
+import com.github.nakawai.newsreader.domain.model.NYTimesRepositoryImpl
 import com.github.nakawai.newsreader.presentation.articles.ArticlesViewModel
 import com.github.nakawai.newsreader.presentation.details.DetailsViewModel
 import com.github.nakawai.newsreader.presentation.search.SearchViewModel
@@ -19,8 +19,8 @@ val appModule = module {
     single<NYTimesRemoteDataSource> { NYTimesRemoteDataSourceImpl() }
     single<NYTimesLocalDataSource> { NYTimesLocalDataSourceImpl() }
     single<AppLocalDataSource> { AppLocalDataSourceImpl() }
-    single<com.github.nakawai.newsreader.domain.model.NYTimesModel> {
-        com.github.nakawai.newsreader.domain.model.NYTimesModelImpl(
+    single<NYTimesRepository> {
+        NYTimesRepositoryImpl(
             get(),
             get(),
             get()

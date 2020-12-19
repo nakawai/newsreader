@@ -4,13 +4,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.github.nakawai.newsreader.domain.model.NYTimesModel
+import com.github.nakawai.newsreader.domain.model.NYTimesRepository
 import com.github.nakawai.newsreader.presentation.PresentationTranslator
 import com.github.nakawai.newsreader.presentation.search.list.SearchResultUiModel
 import kotlinx.coroutines.*
 
 class SearchViewModel(
-    private val model: com.github.nakawai.newsreader.domain.model.NYTimesModel
+    private val model: NYTimesRepository
 ) : ViewModel() {
 
     private val _error = MutableLiveData<Throwable>()
