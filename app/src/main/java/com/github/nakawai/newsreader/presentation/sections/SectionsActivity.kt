@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -13,10 +14,11 @@ import com.github.nakawai.newsreader.databinding.ActivitySectionsBinding
 import com.github.nakawai.newsreader.domain.entities.Section
 import com.github.nakawai.newsreader.presentation.articles.ArticlesActivity
 import com.github.nakawai.newsreader.presentation.search.SearchActivity
-import org.koin.android.viewmodel.ext.android.viewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SectionsActivity : AppCompatActivity(), SectionListAdapter.OnItemClickListener {
-    private val viewModel: SectionsViewModel by viewModel()
+    private val viewModel: SectionsViewModel by viewModels()
     private lateinit var adapter: SectionListAdapter
     private lateinit var binding: ActivitySectionsBinding
 
