@@ -6,6 +6,8 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'realm-android'
 // Koin
 apply plugin: 'koin'
+// Hilt
+apply plugin: 'dagger.hilt.android.plugin'
 
 android {
     compileSdkVersion 29
@@ -121,6 +123,14 @@ dependencies {
     implementation "org.koin:koin-android:$koin_version"
     implementation "org.koin:koin-android-scope:$koin_version"
     implementation "org.koin:koin-android-viewmodel:$koin_version"
+
+    // Hilt
+    def hilt_version = '2.28-alpha'
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+    // Hilt Jetpack
+    implementation 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha02'
+    kapt 'androidx.hilt:hilt-compiler:1.0.0-alpha02'
 
     // Debug
     implementation 'com.jakewharton.timber:timber:4.7.1'

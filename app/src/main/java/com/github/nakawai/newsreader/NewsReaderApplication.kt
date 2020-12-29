@@ -2,6 +2,7 @@ package com.github.nakawai.newsreader
 
 import android.app.Application
 import com.facebook.stetho.Stetho
+import dagger.hilt.android.HiltAndroidApp
 import io.realm.Realm
 import io.realm.RealmConfiguration
 import org.koin.android.ext.koin.androidContext
@@ -9,6 +10,7 @@ import org.koin.core.context.startKoin
 import timber.log.Timber
 
 @Suppress("unused")
+@HiltAndroidApp
 class NewsReaderApplication : Application() {
     override fun onCreate() {
         super.onCreate()

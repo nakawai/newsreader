@@ -11,7 +11,6 @@ import com.github.nakawai.newsreader.domain.model.NYTimesRepositoryImpl
 import com.github.nakawai.newsreader.presentation.articles.ArticlesViewModel
 import com.github.nakawai.newsreader.presentation.details.DetailsViewModel
 import com.github.nakawai.newsreader.presentation.search.SearchViewModel
-import com.github.nakawai.newsreader.presentation.sections.SectionsViewModel
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -26,7 +25,7 @@ val appModule = module {
             get()
         )
     }
-    viewModel { SectionsViewModel(get()) }
+    //viewModel { SectionsViewModel(get()) }
     viewModel { ArticlesViewModel(get()) }
     viewModel { DetailsViewModel(get()) }
     viewModel { SearchViewModel(get()) }
