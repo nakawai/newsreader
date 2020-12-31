@@ -2,7 +2,7 @@ package com.github.nakawai.newsreader.presentation.articles
 
 import android.app.Application
 import android.os.Build
-import com.github.nakawai.newsreader.domain.entities.Multimedia
+import com.github.nakawai.newsreader.domain.entities.MultimediaUrl
 import com.github.nakawai.newsreader.domain.entities.Section
 import com.github.nakawai.newsreader.domain.entities.Story
 import com.github.nakawai.newsreader.domain.entities.StoryUrl
@@ -35,7 +35,7 @@ class ArticleUiModelTest {
             title = "title",
             storyAbstract = "storyAbstract",
             url = StoryUrl("url"),
-            multimedia = listOf(Multimedia("url")),
+            multimediaUrl = listOf(MultimediaUrl("url")),
             publishedDate = Date("2020-01-01T00:00:00+09:00".toEpochMilli()),
             isRead = false,
             section = Section.HOME

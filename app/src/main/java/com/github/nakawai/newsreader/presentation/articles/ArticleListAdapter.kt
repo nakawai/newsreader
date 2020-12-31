@@ -50,10 +50,10 @@ class ArticleListAdapter(private val listener: OnItemClickListener) : ListAdapte
         val unreadColor = ContextCompat.getColor(context, android.R.color.primary_text_light)
         holder.binding.text.setTextColor(if (uiModel.isRead) readColor else unreadColor)
 
-        if (uiModel.multimedia.isNotEmpty()) {
+        if (uiModel.multimediaUrl.isNotEmpty()) {
 
             Glide.with(holder.binding.root)
-                .load(uiModel.multimedia[0].url)
+                .load(uiModel.multimediaUrl[0].url)
                 .placeholder(holder.progressDrawable)
                 .error(R.drawable.placeholder)
                 .centerCrop()
