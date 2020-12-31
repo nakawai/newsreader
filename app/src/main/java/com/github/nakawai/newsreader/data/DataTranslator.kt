@@ -5,7 +5,7 @@ import com.github.nakawai.newsreader.data.db.StoryRealmObject
 import com.github.nakawai.newsreader.data.network.response.articlesearch.ArticleSearchDocsResponseItem
 import com.github.nakawai.newsreader.data.network.response.topstories.MultimediaResponseItem
 import com.github.nakawai.newsreader.data.network.response.topstories.StoryResponseItem
-import com.github.nakawai.newsreader.domain.entities.Multimedia
+import com.github.nakawai.newsreader.domain.entities.MultimediaUrl
 import com.github.nakawai.newsreader.domain.entities.Section
 import com.github.nakawai.newsreader.domain.entities.Story
 import com.github.nakawai.newsreader.domain.entities.StoryUrl
@@ -22,7 +22,7 @@ class DataTranslator {
                 title = realmObject.title.orEmpty(),
                 url = StoryUrl(realmObject.url.orEmpty()),
                 storyAbstract = realmObject.storyAbstract.orEmpty(),
-                multimedia = realmObject.multimedia?.map { Multimedia(it.url.orEmpty()) } ?: emptyList(),
+                multimediaUrl = realmObject.multimedia?.map { MultimediaUrl(it.url.orEmpty()) } ?: emptyList(),
                 publishedDate = realmObject.publishedDate,
                 isRead = realmObject.isRead,
                 section = Section.values().find { translate(it).value == realmObject.apiSection }
@@ -35,7 +35,7 @@ class DataTranslator {
                 title = responseItem.title.orEmpty(),
                 url = StoryUrl(responseItem.webUrl.orEmpty()),
                 storyAbstract = responseItem.articleAbstract.orEmpty(),
-                multimedia = responseItem.multimedia?.map { Multimedia(it.url.orEmpty()) } ?: emptyList(),
+                multimediaUrl = responseItem.multimedia?.map { MultimediaUrl(it.url.orEmpty()) } ?: emptyList(),
                 publishedDate = responseItem.publishedDate?.let { StoryResponseItem.DATE_FORMAT.parse(it) },
                 isRead = false,
                 section = Section.values().find { translate(it).value == responseItem.sectionName }

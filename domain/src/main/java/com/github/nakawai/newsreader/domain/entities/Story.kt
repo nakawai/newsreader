@@ -10,7 +10,7 @@ data class Story(
 
     val url: StoryUrl,
 
-    val multimedia: List<Multimedia>,
+    val multimediaUrl: List<MultimediaUrl>,
 
     val publishedDate: Date?,
 

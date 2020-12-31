@@ -1,6 +1,6 @@
 package com.github.nakawai.newsreader.domain.entities
 
 // TODO Add fields
-data class Multimedia(
+data class MultimediaUrl(
     val url: String
 )
