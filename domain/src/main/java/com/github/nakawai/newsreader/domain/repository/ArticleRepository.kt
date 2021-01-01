@@ -11,5 +11,5 @@ interface ArticleRepository {
     fun observeArticlesBySection(section: Section): LiveData<List<Article>>
     fun observeArticle(articleUrl: ArticleUrl): LiveData<Article>
     fun loadSections(): List<Section>
-    suspend fun searchArticles(query: String): List<Article>
+    suspend fun searchArticle(query: String): List<Article>
 }

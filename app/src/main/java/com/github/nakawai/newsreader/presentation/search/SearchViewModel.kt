@@ -37,19 +37,19 @@ class SearchViewModel(
             _isLoading.value = true
             val async1 = async {
                 runCatching {
-                    model.searchArticles(query)
+                    model.searchArticle(query)
                         .map { PresentationTranslator.translate(it) }
                 }
             }
             val async2 = async {
                 runCatching {
-                    model.searchArticles("election")
+                    model.searchArticle("election")
                         .map { PresentationTranslator.translate(it) }
                 }
             }
             val async3 = async {
                 runCatching {
-                    model.searchArticles("home")
+                    model.searchArticle("home")
                         .map { PresentationTranslator.translate(it) }
                 }
             }

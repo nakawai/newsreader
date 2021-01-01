@@ -57,7 +57,7 @@ class ArticleRepositoryImpl(
         return Section.values().toList()
     }
 
-    override suspend fun searchArticles(query: String): List<Article> {
+    override suspend fun searchArticle(query: String): List<Article> {
         return remote.searchArticle(query)
     }
 
