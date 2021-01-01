@@ -2,10 +2,10 @@ package com.github.nakawai.newsreader.presentation.articles
 
 import android.app.Application
 import android.os.Build
+import com.github.nakawai.newsreader.domain.entities.Article
+import com.github.nakawai.newsreader.domain.entities.ArticleUrl
 import com.github.nakawai.newsreader.domain.entities.MultimediaUrl
 import com.github.nakawai.newsreader.domain.entities.Section
-import com.github.nakawai.newsreader.domain.entities.Story
-import com.github.nakawai.newsreader.domain.entities.StoryUrl
 import com.google.common.truth.Truth.assertThat
 import org.junit.After
 import org.junit.Before
@@ -31,10 +31,10 @@ class ArticleUiModelTest {
     @Test
     fun `ArticleUiModel can be created from Story`() {
         // Arrange
-        val story = Story(
+        val story = Article(
             title = "title",
             storyAbstract = "storyAbstract",
-            url = StoryUrl("url"),
+            url = ArticleUrl("url"),
             multimediaUrl = listOf(MultimediaUrl("url")),
             publishedDate = Date("2020-01-01T00:00:00+09:00".toEpochMilli()),
             isRead = false,

@@ -1,14 +1,14 @@
 package com.github.nakawai.newsreader.presentation
 
 import com.github.nakawai.newsreader.R
+import com.github.nakawai.newsreader.domain.entities.Article
 import com.github.nakawai.newsreader.domain.entities.Section
-import com.github.nakawai.newsreader.domain.entities.Story
 import com.github.nakawai.newsreader.presentation.search.list.SearchResultUiModel
 
 class PresentationTranslator {
     companion object {
-        fun translate(story: Story): SearchResultUiModel {
-            return SearchResultUiModel(story)
+        fun translate(article: Article): SearchResultUiModel {
+            return SearchResultUiModel(article)
         }
 
         fun translate(section: Section): SectionUi {

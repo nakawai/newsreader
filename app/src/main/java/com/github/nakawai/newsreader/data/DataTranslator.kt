@@ -1,14 +1,14 @@
 package com.github.nakawai.newsreader.data
 
-import com.github.nakawai.newsreader.data.db.MultimediaRealmObject
-import com.github.nakawai.newsreader.data.db.StoryRealmObject
+import com.github.nakawai.newsreader.data.db.realm.MultimediaRealmObject
+import com.github.nakawai.newsreader.data.db.realm.StoryRealmObject
 import com.github.nakawai.newsreader.data.network.response.articlesearch.ArticleSearchDocsResponseItem
 import com.github.nakawai.newsreader.data.network.response.topstories.MultimediaResponseItem
 import com.github.nakawai.newsreader.data.network.response.topstories.StoryResponseItem
+import com.github.nakawai.newsreader.domain.entities.Article
+import com.github.nakawai.newsreader.domain.entities.ArticleUrl
 import com.github.nakawai.newsreader.domain.entities.MultimediaUrl
 import com.github.nakawai.newsreader.domain.entities.Section
-import com.github.nakawai.newsreader.domain.entities.Story
-import com.github.nakawai.newsreader.domain.entities.StoryUrl
 import io.realm.RealmList
 
 class DataTranslator {
@@ -17,10 +17,10 @@ class DataTranslator {
     companion object {
 
 
-        fun translate(realmObject: StoryRealmObject): Story {
-            return Story(
+        fun translate(realmObject: StoryRealmObject): Article {
+            return Article(
                 title = realmObject.title.orEmpty(),
-                url = StoryUrl(realmObject.url.orEmpty()),
+                url = ArticleUrl(realmObject.url.orEmpty()),
                 storyAbstract = realmObject.storyAbstract.orEmpty(),
                 multimediaUrl = realmObject.multimedia?.map { MultimediaUrl(it.url.orEmpty()) } ?: emptyList(),
                 publishedDate = realmObject.publishedDate,
@@ -30,10 +30,10 @@ class DataTranslator {
             )
         }
 
-        fun translate(responseItem: ArticleSearchDocsResponseItem): Story {
-            return Story(
+        fun translate(responseItem: ArticleSearchDocsResponseItem): Article {
+            return Article(
                 title = responseItem.title.orEmpty(),
-                url = StoryUrl(responseItem.webUrl.orEmpty()),
+                url = ArticleUrl(responseItem.webUrl.orEmpty()),
                 storyAbstract = responseItem.articleAbstract.orEmpty(),
                 multimediaUrl = responseItem.multimedia?.map { MultimediaUrl(it.url.orEmpty()) } ?: emptyList(),
                 publishedDate = responseItem.publishedDate?.let { StoryResponseItem.DATE_FORMAT.parse(it) },
@@ -125,7 +125,7 @@ class DataTranslator {
 
 data class SectionData(val value: String)
 
-fun StoryRealmObject.translate(): Story {
+fun StoryRealmObject.translate(): Article {
     return DataTranslator.translate(this)
 }
 

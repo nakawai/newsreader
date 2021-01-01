@@ -10,14 +10,14 @@ import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.github.nakawai.newsreader.R
 import com.github.nakawai.newsreader.databinding.ListItemArticleBinding
-import com.github.nakawai.newsreader.domain.entities.StoryUrl
+import com.github.nakawai.newsreader.domain.entities.ArticleUrl
 
 // ListView adapter class
 class ArticleListAdapter(private val listener: OnItemClickListener) : ListAdapter<ArticleUiModel, ArticleListAdapter.ViewHolder>(DIFF_CALLBACK) {
 
 
     interface OnItemClickListener {
-        fun onItemClick(story: StoryUrl)
+        fun onItemClick(story: ArticleUrl)
     }
 
     class ViewHolder(var binding: ListItemArticleBinding, val progressDrawable: CircularProgressDrawable) : RecyclerView.ViewHolder(binding.root)

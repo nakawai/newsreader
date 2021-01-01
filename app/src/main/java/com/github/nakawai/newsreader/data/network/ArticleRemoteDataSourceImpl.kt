@@ -5,10 +5,11 @@ import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.github.nakawai.newsreader.data.DataTranslator
 import com.github.nakawai.newsreader.data.network.response.topstories.StoryResponseItem
 import com.github.nakawai.newsreader.data.network.response.topstories.TopStoriesResponse
+import com.github.nakawai.newsreader.data.network.retrofit.NYTimesApiService
 import com.github.nakawai.newsreader.data.toData
-import com.github.nakawai.newsreader.domain.datasource.NYTimesRemoteDataSource
+import com.github.nakawai.newsreader.domain.datasource.ArticleRemoteDataSource
+import com.github.nakawai.newsreader.domain.entities.Article
 import com.github.nakawai.newsreader.domain.entities.Section
-import com.github.nakawai.newsreader.domain.entities.Story
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.Dispatchers
@@ -27,7 +28,7 @@ import kotlin.coroutines.suspendCoroutine
 /**
  * Class that handles network requests for the New York Times API
  */
-class NYTimesRemoteDataSourceImpl : NYTimesRemoteDataSource {
+class ArticleRemoteDataSourceImpl : ArticleRemoteDataSource {
     private val nyTimesApiService: NYTimesApiService
 
     init {
@@ -82,7 +83,7 @@ class NYTimesRemoteDataSourceImpl : NYTimesRemoteDataSource {
 
     }
 
-    override suspend fun searchArticle(query: String): List<Story> = withContext(Dispatchers.IO) {
+    override suspend fun searchArticle(query: String): List<Article> = withContext(Dispatchers.IO) {
         val response = nyTimesApiService.articleSearch(query, API_KEY)
 
         if (response.isSuccessful) {

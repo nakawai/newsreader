@@ -1,4 +1,4 @@
-package com.github.nakawai.newsreader.data.db
+package com.github.nakawai.newsreader.data.db.livedata
 
 import androidx.lifecycle.LiveData
 import io.realm.Realm
@@ -9,12 +9,12 @@ import io.realm.RealmResults
 /**
  * https://gist.github.com/cmelchior/3fe791f84db37fd3bcb3749d4188168a
  */
-abstract class LiveRealmData<T : RealmModel, U : Any>(private var realm: Realm) : LiveData<U>() {
+abstract class LiveRealmListData<T : RealmModel, U : Any>(private val realm: Realm) : LiveData<List<U>>() {
     private lateinit var results: RealmResults<T>
 
     //private lateinit var realm: Realm
     private val listener = RealmChangeListener<RealmResults<T>> { results ->
-        value = results.map { translate(it) }[0]
+        value = results.map { translate(it) }
     }
 
     override fun onActive() {
@@ -23,7 +23,7 @@ abstract class LiveRealmData<T : RealmModel, U : Any>(private var realm: Realm) 
         results = runQuery(realm)
         results.addChangeListener(listener)
 
-        value = results.map { translate(it) }[0]
+        value = results.map { translate(it) }
     }
 
     override fun onInactive() {

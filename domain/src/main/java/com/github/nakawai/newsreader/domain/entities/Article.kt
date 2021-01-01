@@ -2,13 +2,13 @@ package com.github.nakawai.newsreader.domain.entities
 
 import java.util.*
 
-data class Story(
+data class Article(
 
     val title: String,
 
     val storyAbstract: String,
 
-    val url: StoryUrl,
+    val url: ArticleUrl,
 
     val multimediaUrl: List<MultimediaUrl>,
 

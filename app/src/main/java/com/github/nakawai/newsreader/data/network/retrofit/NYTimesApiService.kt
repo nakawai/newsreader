@@ -1,4 +1,4 @@
-package com.github.nakawai.newsreader.data.network
+package com.github.nakawai.newsreader.data.network.retrofit
 
 import com.github.nakawai.newsreader.data.network.response.articlesearch.ArticleSearchResponse
 import com.github.nakawai.newsreader.data.network.response.topstories.TopStoriesResponse

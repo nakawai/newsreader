@@ -1,11 +1,11 @@
 package com.github.nakawai.newsreader.data.db
 
-import com.github.nakawai.newsreader.domain.datasource.AppLocalDataSource
+import com.github.nakawai.newsreader.domain.datasource.ConfigLocalDataSource
 import com.github.nakawai.newsreader.domain.entities.Section
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-class AppLocalDataSourceImpl : AppLocalDataSource {
+class ConfigLocalDataSourceImpl : ConfigLocalDataSource {
     private val lastNetworkRequestTimeMillis: MutableMap<Section, Long> = EnumMap(
         Section::class.java
     )

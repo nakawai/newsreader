@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.github.nakawai.newsreader.R
 import com.github.nakawai.newsreader.databinding.ActivityDetailsBinding
-import com.github.nakawai.newsreader.domain.entities.StoryUrl
+import com.github.nakawai.newsreader.domain.entities.ArticleUrl
 import org.koin.android.viewmodel.ext.android.viewModel
 import java.text.SimpleDateFormat
 import java.util.*
@@ -33,7 +33,7 @@ class DetailsActivity : AppCompatActivity() {
     }
 
     private fun observeViewModel() {
-        viewModel.story.observe(this, Observer { article ->
+        viewModel.article.observe(this, Observer { article ->
             binding.toolbar.title = article.title
             binding.detailsView.text = article.storyAbstract
             binding.dateView.text = article.publishedDate?.let { outputDateFormat.format(it) }
@@ -65,7 +65,7 @@ class DetailsActivity : AppCompatActivity() {
 
     companion object {
         private const val KEY_STORY_URL = "KEY_STORY_URL"
-        fun getIntent(context: Context, storyUrl: StoryUrl): Intent {
+        fun getIntent(context: Context, storyUrl: ArticleUrl): Intent {
             val intent = Intent(context, DetailsActivity::class.java)
             intent.putExtra(KEY_STORY_URL, storyUrl)
             return intent

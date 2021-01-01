@@ -7,4 +7,4 @@ import kotlinx.android.parcel.Parcelize
  * Value Object
  */
 @Parcelize
-data class StoryUrl(val value: String) : Parcelable
+data class ArticleUrl(val value: String) : Parcelable

@@ -10,7 +10,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class NYTimesRemoteDataSourceImplAndroidTest {
+class ArticleRemoteDataSourceImplAndroidTest {
 
     @Before
     fun setUp() {
@@ -24,7 +24,7 @@ class NYTimesRemoteDataSourceImplAndroidTest {
     fun testFetchData() {
         runBlocking {
             // Arrange
-            val remote = NYTimesRemoteDataSourceImpl()
+            val remote = ArticleRemoteDataSourceImpl()
 
             // Act
             val stories = remote.fetchTopStories(Section.HOME)
@@ -39,7 +39,7 @@ class NYTimesRemoteDataSourceImplAndroidTest {
     fun testSearch() {
         runBlocking {
             // Arrange
-            val remote = NYTimesRemoteDataSourceImpl()
+            val remote = ArticleRemoteDataSourceImpl()
 
             // Act
             val articles = remote.searchArticle("election")

@@ -9,8 +9,8 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.github.nakawai.newsreader.R
 import com.github.nakawai.newsreader.databinding.ActivityArticlesBinding
+import com.github.nakawai.newsreader.domain.entities.ArticleUrl
 import com.github.nakawai.newsreader.domain.entities.Section
-import com.github.nakawai.newsreader.domain.entities.StoryUrl
 import com.github.nakawai.newsreader.presentation.ErrorDialogFragment
 import com.github.nakawai.newsreader.presentation.details.DetailsActivity
 import com.github.nakawai.newsreader.presentation.translate
@@ -56,7 +56,7 @@ class ArticlesActivity : AppCompatActivity(), ArticleListAdapter.OnItemClickList
         viewModel.loadData(force = true)
     }
 
-    override fun onItemClick(story: StoryUrl) {
+    override fun onItemClick(story: ArticleUrl) {
         val intent: Intent = DetailsActivity.getIntent(this, story)
         startActivity(intent)
     }

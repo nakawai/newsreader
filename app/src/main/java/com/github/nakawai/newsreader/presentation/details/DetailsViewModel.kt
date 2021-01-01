@@ -1,9 +1,9 @@
 package com.github.nakawai.newsreader.presentation.details
 
 import androidx.lifecycle.*
-import com.github.nakawai.newsreader.domain.entities.Story
-import com.github.nakawai.newsreader.domain.entities.StoryUrl
-import com.github.nakawai.newsreader.domain.model.ArticleRepository
+import com.github.nakawai.newsreader.domain.entities.Article
+import com.github.nakawai.newsreader.domain.entities.ArticleUrl
+import com.github.nakawai.newsreader.domain.repository.ArticleRepository
 import kotlinx.coroutines.*
 
 /**
@@ -12,7 +12,7 @@ import kotlinx.coroutines.*
 class DetailsViewModel(
     private val repository: ArticleRepository
 ) : ViewModel() {
-    private var _storyUrl = MutableLiveData<StoryUrl>()
+    private var _storyUrl = MutableLiveData<ArticleUrl>()
 
     private var job: Job? = null
 
@@ -22,9 +22,9 @@ class DetailsViewModel(
     private val _story = Transformations.switchMap(_storyUrl) {
         repository.observeArticle(storyUrl = it)
     }
-    val story: LiveData<Story> = _story
+    val article: LiveData<Article> = _story
 
-    fun start(storyUrl: StoryUrl) {
+    fun start(storyUrl: ArticleUrl) {
         this._storyUrl.value = storyUrl
     }
 

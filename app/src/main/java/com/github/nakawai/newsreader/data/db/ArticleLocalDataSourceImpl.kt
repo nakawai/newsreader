@@ -2,13 +2,16 @@ package com.github.nakawai.newsreader.data.db
 
 import androidx.lifecycle.LiveData
 import com.github.nakawai.newsreader.data.DataTranslator
+import com.github.nakawai.newsreader.data.db.livedata.LiveRealmData
+import com.github.nakawai.newsreader.data.db.livedata.LiveRealmListData
+import com.github.nakawai.newsreader.data.db.realm.StoryRealmObject
 import com.github.nakawai.newsreader.data.network.response.topstories.StoryResponseItem
 import com.github.nakawai.newsreader.data.toData
 import com.github.nakawai.newsreader.data.translate
-import com.github.nakawai.newsreader.domain.datasource.NYTimesLocalDataSource
+import com.github.nakawai.newsreader.domain.datasource.ArticleLocalDataSource
+import com.github.nakawai.newsreader.domain.entities.Article
+import com.github.nakawai.newsreader.domain.entities.ArticleUrl
 import com.github.nakawai.newsreader.domain.entities.Section
-import com.github.nakawai.newsreader.domain.entities.Story
-import com.github.nakawai.newsreader.domain.entities.StoryUrl
 import io.realm.Realm
 import io.realm.RealmChangeListener
 import io.realm.RealmResults
@@ -20,11 +23,11 @@ import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
 // TODO close Realm instance
-class NYTimesLocalDataSourceImpl : NYTimesLocalDataSource {
+class ArticleLocalDataSourceImpl : ArticleLocalDataSource {
     private val realm = Realm.getDefaultInstance()
 
     // Converts data into a usable format and save it to Realm
-    override suspend fun saveData(section: Section, responseItems: List<StoryResponseItem>) {
+    override suspend fun saveTopStoriesBySection(section: Section, responseItems: List<StoryResponseItem>) {
         if (responseItems.isEmpty()) return
 
         suspendCancellableCoroutine<Unit> { continuation ->
@@ -60,14 +63,14 @@ class NYTimesLocalDataSourceImpl : NYTimesLocalDataSource {
 
     // Return the data in Realm. The query result will be automatically updated when the network requests
     // save data in Realm
-    override suspend fun readData(section: Section): List<Story> = suspendCoroutine { continuation ->
+    override suspend fun readTopStoriesBySection(section: Section): List<Article> = suspendCoroutine { continuation ->
         val results = realm.where(StoryRealmObject::class.java)
             .equalTo(StoryRealmObject.API_SECTION, section.toData().value)
             .sort(StoryRealmObject.PUBLISHED_DATE, Sort.DESCENDING)
             .findAllAsync()
 
         val listener = RealmChangeListener<RealmResults<StoryRealmObject>> {
-            val list = mutableListOf<Story>()
+            val list = mutableListOf<Article>()
             results.forEach { story ->
                 list.add(story.translate())
             }
@@ -81,8 +84,8 @@ class NYTimesLocalDataSourceImpl : NYTimesLocalDataSource {
 
     }
 
-    override fun observeArticles(section: Section): LiveData<List<Story>> {
-        return object : LiveRealmListData<StoryRealmObject, Story>(realm) {
+    override fun observeArticlesBySection(section: Section): LiveData<List<Article>> {
+        return object : LiveRealmListData<StoryRealmObject, Article>(realm) {
             override fun runQuery(realm: Realm): RealmResults<StoryRealmObject> {
                 return realm.where(StoryRealmObject::class.java)
                     .sort(StoryRealmObject.PUBLISHED_DATE, Sort.DESCENDING)
@@ -90,24 +93,24 @@ class NYTimesLocalDataSourceImpl : NYTimesLocalDataSource {
                     .findAllAsync()
             }
 
-            override fun translate(realmObject: StoryRealmObject): Story {
+            override fun translate(realmObject: StoryRealmObject): Article {
                 return realmObject.translate()
             }
         }
     }
 
 
-    override fun observeStory(storyUrl: StoryUrl): LiveData<Story> {
+    override fun observeArticle(articleUrl: ArticleUrl): LiveData<Article> {
 
-        return object : LiveRealmData<StoryRealmObject, Story>(realm) {
+        return object : LiveRealmData<StoryRealmObject, Article>(realm) {
             override fun runQuery(realm: Realm): RealmResults<StoryRealmObject> {
 
                 return realm.where(StoryRealmObject::class.java)
-                    .equalTo(StoryRealmObject.URL, storyUrl.value)
+                    .equalTo(StoryRealmObject.URL, articleUrl.value)
                     .findAllAsync()
             }
 
-            override fun translate(realmObject: StoryRealmObject): Story {
+            override fun translate(realmObject: StoryRealmObject): Article {
                 return realmObject.translate()
             }
 
@@ -115,17 +118,17 @@ class NYTimesLocalDataSourceImpl : NYTimesLocalDataSource {
 
     }
 
-    override fun updateStoryReadState(storyUrl: StoryUrl, read: Boolean) {
+    override fun updateArticleReadState(articleUrl: ArticleUrl, read: Boolean) {
 
         realm.executeTransactionAsync({ realm ->
             val persistedStory = realm.where(StoryRealmObject::class.java)
-                .equalTo(StoryRealmObject.URL, storyUrl.value)
+                .equalTo(StoryRealmObject.URL, articleUrl.value)
                 .findFirst()
 
             if (persistedStory != null) {
                 persistedStory.isRead = read
             } else {
-                Timber.e("Trying to update a story that no longer exists: %1\$s", storyUrl)
+                Timber.e("Trying to update a story that no longer exists: %1\$s", articleUrl)
             }
 
             //realm.close()

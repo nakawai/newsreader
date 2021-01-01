@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.github.nakawai.newsreader.domain.model.ArticleRepository
+import com.github.nakawai.newsreader.domain.repository.ArticleRepository
 import com.github.nakawai.newsreader.presentation.PresentationTranslator
 import com.github.nakawai.newsreader.presentation.search.list.SearchResultUiModel
 import kotlinx.coroutines.*

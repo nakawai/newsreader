@@ -8,7 +8,7 @@ import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import com.github.nakawai.newsreader.databinding.FragmentPlaceholderBinding
-import com.github.nakawai.newsreader.domain.entities.StoryUrl
+import com.github.nakawai.newsreader.domain.entities.ArticleUrl
 import com.github.nakawai.newsreader.presentation.search.SearchViewModel
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -43,7 +43,7 @@ class PlaceholderFragment : Fragment() {
         binding.recyclerView.adapter = adapter
     }
 
-    private fun onItemClick(url: StoryUrl) {
+    private fun onItemClick(url: ArticleUrl) {
         Toast.makeText(requireContext(), "url:${url.value}", Toast.LENGTH_SHORT).show()
     }
 

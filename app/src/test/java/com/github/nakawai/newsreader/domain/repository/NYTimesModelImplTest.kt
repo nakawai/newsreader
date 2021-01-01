@@ -1,8 +1,8 @@
-package com.github.nakawai.newsreader.domain.model
+package com.github.nakawai.newsreader.domain.repository
 
-import com.github.nakawai.newsreader.domain.datasource.AppLocalDataSource
-import com.github.nakawai.newsreader.domain.datasource.NYTimesLocalDataSource
-import com.github.nakawai.newsreader.domain.datasource.NYTimesRemoteDataSource
+import com.github.nakawai.newsreader.domain.datasource.ArticleLocalDataSource
+import com.github.nakawai.newsreader.domain.datasource.ArticleRemoteDataSource
+import com.github.nakawai.newsreader.domain.datasource.ConfigLocalDataSource
 import com.github.nakawai.newsreader.domain.entities.Section
 import io.mockk.*
 import io.mockk.impl.annotations.MockK
@@ -25,13 +25,13 @@ class NYTimesModelImplTest {
     private val mainThreadSurrogate = newSingleThreadContext("UI Thread")
 
     @MockK
-    private lateinit var local: NYTimesLocalDataSource
+    private lateinit var local: ArticleLocalDataSource
 
     @MockK
-    private lateinit var remote: NYTimesRemoteDataSource
+    private lateinit var remote: ArticleRemoteDataSource
 
     @MockK
-    private lateinit var appLocal: AppLocalDataSource
+    private lateinit var configLocal: ConfigLocalDataSource
 
     @Before
     fun setUp() {
@@ -39,7 +39,7 @@ class NYTimesModelImplTest {
 
         MockKAnnotations.init(this)
 
-        coEvery { local.readData(any())} returns emptyList()
+        coEvery { local.readTopStoriesBySection(any()) } returns emptyList()
     }
 
     @After
@@ -52,15 +52,15 @@ class NYTimesModelImplTest {
     fun `FetchTopStories should NOT be called when canCallApi and forceReload are false`() {
         runBlocking {
             // Arrange
-            val model = ArticleRepositoryImpl(local, remote, appLocal)
-            every { appLocal.canCallApi(any()) } returns false
+            val model = ArticleRepositoryImpl(local, remote, configLocal)
+            every { configLocal.canCallApi(any()) } returns false
 
             // Act
-            model.loadNewsFeed(Section.HOME, forceReload = false)
+            model.loadTopStoriesBySection(Section.HOME, forceReload = false)
 
             // Assert
             coVerify(exactly = 0) { remote.fetchTopStories(any()) }
-            coVerify(exactly = 1) { local.readData(Section.HOME) }
+            coVerify(exactly = 1) { local.readTopStoriesBySection(Section.HOME) }
 
             confirmVerified(local, remote)
 

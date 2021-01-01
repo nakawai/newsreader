@@ -1,7 +1,7 @@
 package com.github.nakawai.newsreader.presentation.search.list
 
-import com.github.nakawai.newsreader.domain.entities.Story
-import com.github.nakawai.newsreader.domain.entities.StoryUrl
+import com.github.nakawai.newsreader.domain.entities.Article
+import com.github.nakawai.newsreader.domain.entities.ArticleUrl
 
 /**
  * Ui Model class for Article
@@ -9,13 +9,13 @@ import com.github.nakawai.newsreader.domain.entities.StoryUrl
 data class SearchResultUiModel(
     val title: String,
     val storyAbstract: String,
-    val url: StoryUrl
+    val url: ArticleUrl
 ) {
 
-    constructor(story: Story) : this(
-        title = story.title,
-        storyAbstract = story.storyAbstract,
-        url = story.url
+    constructor(article: Article) : this(
+        title = article.title,
+        storyAbstract = article.storyAbstract,
+        url = article.url
 
     )
 }

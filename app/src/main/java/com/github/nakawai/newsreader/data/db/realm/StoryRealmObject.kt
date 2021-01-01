@@ -1,4 +1,4 @@
-package com.github.nakawai.newsreader.data.db
+package com.github.nakawai.newsreader.data.db.realm
 
 import io.realm.RealmList
 import io.realm.RealmObject
