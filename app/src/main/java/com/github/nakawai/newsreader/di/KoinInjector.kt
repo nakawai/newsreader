@@ -8,7 +8,7 @@ import com.github.nakawai.newsreader.domain.datasource.ArticleRemoteDataSource
 import com.github.nakawai.newsreader.domain.datasource.ConfigLocalDataSource
 import com.github.nakawai.newsreader.domain.repository.ArticleRepository
 import com.github.nakawai.newsreader.domain.repository.ArticleRepositoryImpl
-import com.github.nakawai.newsreader.presentation.articles.ArticlesViewModel
+import com.github.nakawai.newsreader.presentation.articles.TopStoriesViewModel
 import com.github.nakawai.newsreader.presentation.details.DetailsViewModel
 import com.github.nakawai.newsreader.presentation.search.SearchViewModel
 import org.koin.android.viewmodel.dsl.viewModel
@@ -26,7 +26,7 @@ val appModule = module {
         )
     }
     //viewModel { SectionsViewModel(get()) }
-    viewModel { ArticlesViewModel(get()) }
+    viewModel { TopStoriesViewModel(get()) }
     viewModel { DetailsViewModel(get()) }
     viewModel { SearchViewModel(get()) }
 }

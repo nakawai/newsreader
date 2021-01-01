@@ -9,15 +9,14 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.github.nakawai.newsreader.R
 import com.github.nakawai.newsreader.databinding.ActivityArticlesBinding
-import com.github.nakawai.newsreader.domain.entities.ArticleUrl
 import com.github.nakawai.newsreader.domain.entities.Section
 import com.github.nakawai.newsreader.presentation.ErrorDialogFragment
 import com.github.nakawai.newsreader.presentation.details.DetailsActivity
 import com.github.nakawai.newsreader.presentation.translate
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class ArticlesActivity : AppCompatActivity(), ArticleListAdapter.OnItemClickListener {
-    private val viewModel: ArticlesViewModel by viewModel()
+class TopStoriesActivity : AppCompatActivity() {
+    private val viewModel: TopStoriesViewModel by viewModel()
     private lateinit var adapter: ArticleListAdapter
     private lateinit var binding: ActivityArticlesBinding
 
@@ -34,7 +33,10 @@ class ArticlesActivity : AppCompatActivity(), ArticleListAdapter.OnItemClickList
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        adapter = ArticleListAdapter(this)
+        adapter = ArticleListAdapter(onItemClick = {
+            val intent: Intent = DetailsActivity.getIntent(this, it)
+            startActivity(intent)
+        })
 
         binding.listView.adapter = adapter
         binding.listView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
@@ -56,30 +58,25 @@ class ArticlesActivity : AppCompatActivity(), ArticleListAdapter.OnItemClickList
         viewModel.loadData(force = true)
     }
 
-    override fun onItemClick(story: ArticleUrl) {
-        val intent: Intent = DetailsActivity.getIntent(this, story)
-        startActivity(intent)
-    }
-
     private fun observeViewModel() {
-        viewModel.articles.observe(this, Observer { articles ->
+        viewModel.topStories.observe(this, Observer { articles ->
             if (!initialized) {
                 initialized = true
                 return@Observer
             }
 
-            binding.emptyView.visibility = if(articles.isEmpty()) View.VISIBLE  else View.GONE
-            binding.refreshView.visibility = if(articles.isNotEmpty()) View.VISIBLE  else View.GONE
+            binding.emptyView.visibility = if (articles.isEmpty()) View.VISIBLE else View.GONE
+            binding.refreshView.visibility = if (articles.isNotEmpty()) View.VISIBLE else View.GONE
 
             adapter.submitList(articles)
         })
 
-        viewModel.isLoading.observe(this, Observer { isLoading ->
+        viewModel.isLoading.observe(this, { isLoading ->
             binding.refreshView.isRefreshing = isLoading
             binding.emptyView.isRefreshing = isLoading
         })
 
-        viewModel.error.observe(this, Observer {
+        viewModel.error.observe(this, {
             ErrorDialogFragment.newInstance(getString(R.string.dialog_error_title), it.message.orEmpty())
                 .show(supportFragmentManager, ErrorDialogFragment.TAG)
         })
@@ -90,7 +87,7 @@ class ArticlesActivity : AppCompatActivity(), ArticleListAdapter.OnItemClickList
 
         fun start(activity: Activity, section: Section) {
             activity.startActivity(
-                Intent(activity, ArticlesActivity::class.java)
+                Intent(activity, TopStoriesActivity::class.java)
                     .putExtra(EXTRA_SECTION, section.toString())
             )
         }

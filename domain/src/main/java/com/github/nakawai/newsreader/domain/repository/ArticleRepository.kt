@@ -7,9 +7,9 @@ import com.github.nakawai.newsreader.domain.entities.Section
 
 interface ArticleRepository {
     suspend fun loadTopStoriesBySection(section: Section, forceReload: Boolean): List<Article>
-    fun updateStoryReadState(storyUrl: ArticleUrl, read: Boolean)
+    fun updateStoryReadState(articleUrl: ArticleUrl, read: Boolean)
     fun observeArticlesBySection(section: Section): LiveData<List<Article>>
-    fun observeArticle(storyUrl: ArticleUrl): LiveData<Article>
+    fun observeArticle(articleUrl: ArticleUrl): LiveData<Article>
     fun loadSections(): List<Section>
-    suspend fun searchArticle(query: String): List<Article>
+    suspend fun searchArticles(query: String): List<Article>
 }

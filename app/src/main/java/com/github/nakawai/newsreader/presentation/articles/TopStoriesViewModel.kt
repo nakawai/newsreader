@@ -3,18 +3,19 @@ package com.github.nakawai.newsreader.presentation.articles
 import androidx.lifecycle.*
 import com.github.nakawai.newsreader.domain.entities.Article
 import com.github.nakawai.newsreader.domain.entities.Section
+import com.github.nakawai.newsreader.domain.repository.ArticleRepository
 import kotlinx.coroutines.launch
 
 /**
  * ViewModel class for controlling the Articles Activity
  */
-class ArticlesViewModel(
-    private val model: com.github.nakawai.newsreader.domain.repository.ArticleRepository
+class TopStoriesViewModel(
+    private val repository: ArticleRepository
 ) : ViewModel() {
-    private val _stories = MediatorLiveData<List<Article>>()
+    private val _topStories = MediatorLiveData<List<Article>>()
 
-    val articles: LiveData<List<ArticleUiModel>> = MediatorLiveData<List<ArticleUiModel>>().apply {
-        addSource(_stories) { stories ->
+    val topStories: LiveData<List<ArticleUiModel>> = MediatorLiveData<List<ArticleUiModel>>().apply {
+        addSource(_topStories) { stories ->
             value = stories.map { ArticleUiModel(it, System.currentTimeMillis()) }
         }
     }
@@ -30,8 +31,8 @@ class ArticlesViewModel(
 
     fun start(section: Section) {
         this.section = section
-        _stories.addSource(model.observeArticlesBySection(section)) {
-            _stories.value = it
+        _topStories.addSource(repository.observeArticlesBySection(section)) {
+            _topStories.value = it
         }
     }
 
@@ -40,9 +41,9 @@ class ArticlesViewModel(
 
         viewModelScope.launch {
             runCatching {
-                model.loadTopStoriesBySection(section, force)
+                repository.loadTopStoriesBySection(section, force)
             }.onSuccess { stories ->
-                _stories.value = stories
+                _topStories.value = stories
             }.onFailure { error ->
                 _error.value = error
             }

@@ -38,26 +38,26 @@ class ArticleRepositoryImpl(
     /**
      * Updates a story.
      *
-     * @param storyUrl story to update
+     * @param articleUrl story to update
      * @param read `true` if the story has been read, `false` otherwise.
      */
-    override fun updateStoryReadState(storyUrl: ArticleUrl, read: Boolean) {
-        local.updateArticleReadState(storyUrl, read)
+    override fun updateStoryReadState(articleUrl: ArticleUrl, read: Boolean) {
+        local.updateArticleReadState(articleUrl, read)
     }
 
     override fun observeArticlesBySection(section: Section): LiveData<List<Article>> {
         return local.observeArticlesBySection(section)
     }
 
-    override fun observeArticle(storyUrl: ArticleUrl): LiveData<Article> {
-        return local.observeArticle(storyUrl)
+    override fun observeArticle(articleUrl: ArticleUrl): LiveData<Article> {
+        return local.observeArticle(articleUrl)
     }
 
     override fun loadSections(): List<Section> {
         return Section.values().toList()
     }
 
-    override suspend fun searchArticle(query: String): List<Article> {
+    override suspend fun searchArticles(query: String): List<Article> {
         return remote.searchArticle(query)
     }
 

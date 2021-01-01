@@ -12,7 +12,7 @@ import dagger.hilt.android.components.ActivityComponent
 
 @Module
 @InstallIn(ActivityComponent::class)
-object RepositoryModule {
+object NewsReaderDaggerModule {
 
     @Provides
     fun provideNYTimesRepository(): ArticleRepository {

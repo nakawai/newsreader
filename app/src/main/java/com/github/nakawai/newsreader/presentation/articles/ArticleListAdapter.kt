@@ -13,12 +13,9 @@ import com.github.nakawai.newsreader.databinding.ListItemArticleBinding
 import com.github.nakawai.newsreader.domain.entities.ArticleUrl
 
 // ListView adapter class
-class ArticleListAdapter(private val listener: OnItemClickListener) : ListAdapter<ArticleUiModel, ArticleListAdapter.ViewHolder>(DIFF_CALLBACK) {
+class ArticleListAdapter(private val onItemClick: (story: ArticleUrl) -> Unit) :
+    ListAdapter<ArticleUiModel, ArticleListAdapter.ViewHolder>(DIFF_CALLBACK) {
 
-
-    interface OnItemClickListener {
-        fun onItemClick(story: ArticleUrl)
-    }
 
     class ViewHolder(var binding: ListItemArticleBinding, val progressDrawable: CircularProgressDrawable) : RecyclerView.ViewHolder(binding.root)
 
@@ -31,7 +28,7 @@ class ArticleListAdapter(private val listener: OnItemClickListener) : ListAdapte
         val viewHolder = ViewHolder(binding, progressDrawable)
         binding.root.setOnClickListener {
             val item = getItem(viewHolder.adapterPosition)
-            listener.onItemClick(item.url)
+            onItemClick(item.url)
         }
 
 

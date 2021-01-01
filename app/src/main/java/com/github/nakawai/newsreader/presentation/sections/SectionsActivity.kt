@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.github.nakawai.newsreader.R
 import com.github.nakawai.newsreader.databinding.ActivitySectionsBinding
-import com.github.nakawai.newsreader.presentation.articles.ArticlesActivity
+import com.github.nakawai.newsreader.presentation.articles.TopStoriesActivity
 import com.github.nakawai.newsreader.presentation.search.SearchActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -29,7 +29,7 @@ class SectionsActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
 
         adapter = SectionListAdapter(onItemClick = { section ->
-            ArticlesActivity.start(this, section)
+            TopStoriesActivity.start(this, section)
         })
 
         binding.listView.adapter = adapter

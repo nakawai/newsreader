@@ -20,7 +20,7 @@ class DetailsViewModel(
     val isLoading: LiveData<Boolean> = _isLoading
 
     private val _story = Transformations.switchMap(_storyUrl) {
-        repository.observeArticle(storyUrl = it)
+        repository.observeArticle(articleUrl = it)
     }
     val article: LiveData<Article> = _story
 
