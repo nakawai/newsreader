@@ -2,6 +2,7 @@ package com.github.nakawai.newsreader
 
 import android.app.Application
 import com.facebook.stetho.Stetho
+import com.github.nakawai.newsreader.di.appModule
 import dagger.hilt.android.HiltAndroidApp
 import io.realm.Realm
 import io.realm.RealmConfiguration

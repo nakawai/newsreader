@@ -9,11 +9,8 @@ import com.github.nakawai.newsreader.databinding.ListItemSectionBinding
 import com.github.nakawai.newsreader.domain.entities.Section
 import com.github.nakawai.newsreader.presentation.translate
 
-class SectionListAdapter(private val listener: OnItemClickListener) : ListAdapter<Section, SectionListAdapter.ViewHolder>(DIFF_CALLBACK) {
+class SectionListAdapter(private val onItemClick: (section: Section) -> Unit) : ListAdapter<Section, SectionListAdapter.ViewHolder>(DIFF_CALLBACK) {
 
-    interface OnItemClickListener {
-        fun onItemClick(section: Section)
-    }
 
     class ViewHolder(var binding: ListItemSectionBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -23,7 +20,7 @@ class SectionListAdapter(private val listener: OnItemClickListener) : ListAdapte
         val viewHolder = ViewHolder(binding)
         binding.root.setOnClickListener {
             val item = getItem(viewHolder.adapterPosition)
-            listener.onItemClick(item)
+            onItemClick(item)
         }
         return viewHolder
     }

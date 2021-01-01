@@ -5,7 +5,7 @@ import com.github.nakawai.newsreader.domain.entities.Section
 import com.github.nakawai.newsreader.domain.entities.Story
 import com.github.nakawai.newsreader.domain.entities.StoryUrl
 
-interface NYTimesRepository {
+interface ArticleRepository {
     suspend fun loadNewsFeed(section: Section, forceReload: Boolean): List<Story>
     fun updateStoryReadState(storyUrl: StoryUrl, read: Boolean)
     fun observeArticlesBySection(section: Section): LiveData<List<Story>>

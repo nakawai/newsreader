@@ -3,21 +3,18 @@ package com.github.nakawai.newsreader.presentation.sections
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
-import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.github.nakawai.newsreader.R
 import com.github.nakawai.newsreader.databinding.ActivitySectionsBinding
-import com.github.nakawai.newsreader.domain.entities.Section
 import com.github.nakawai.newsreader.presentation.articles.ArticlesActivity
 import com.github.nakawai.newsreader.presentation.search.SearchActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SectionsActivity : AppCompatActivity(), SectionListAdapter.OnItemClickListener {
+class SectionsActivity : AppCompatActivity() {
     private val viewModel: SectionsViewModel by viewModels()
     private lateinit var adapter: SectionListAdapter
     private lateinit var binding: ActivitySectionsBinding
@@ -31,7 +28,9 @@ class SectionsActivity : AppCompatActivity(), SectionListAdapter.OnItemClickList
 
         setSupportActionBar(binding.toolbar)
 
-        adapter = SectionListAdapter(this)
+        adapter = SectionListAdapter(onItemClick = { section ->
+            ArticlesActivity.start(this, section)
+        })
 
         binding.listView.adapter = adapter
         binding.listView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
@@ -44,8 +43,7 @@ class SectionsActivity : AppCompatActivity(), SectionListAdapter.OnItemClickList
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        val inflater: MenuInflater = menuInflater
-        inflater.inflate(R.menu.menu_sections, menu)
+        menuInflater.inflate(R.menu.menu_sections, menu)
         return true
     }
 
@@ -62,15 +60,10 @@ class SectionsActivity : AppCompatActivity(), SectionListAdapter.OnItemClickList
     }
 
     private fun observeViewModel() {
-        viewModel.sections.observe(this, Observer {
+        viewModel.sections.observe(this, {
             adapter.submitList(it)
         })
 
-    }
-
-
-    override fun onItemClick(section: Section) {
-        ArticlesActivity.start(this, section)
     }
 
 }

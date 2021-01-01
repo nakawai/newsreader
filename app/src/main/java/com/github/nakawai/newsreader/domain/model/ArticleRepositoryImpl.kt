@@ -11,12 +11,12 @@ import com.github.nakawai.newsreader.domain.entities.StoryUrl
 /**
  * Model implementation class of MVVM
  */
-class NYTimesRepositoryImpl(
+class ArticleRepositoryImpl(
     private val local: NYTimesLocalDataSource,
     private val remote: NYTimesRemoteDataSource,
     private val appLocal: AppLocalDataSource
 ) :
-    NYTimesRepository {
+    ArticleRepository {
 
 
     /**

@@ -52,7 +52,7 @@ class NYTimesModelImplTest {
     fun `FetchTopStories should NOT be called when canCallApi and forceReload are false`() {
         runBlocking {
             // Arrange
-            val model = NYTimesRepositoryImpl(local, remote, appLocal)
+            val model = ArticleRepositoryImpl(local, remote, appLocal)
             every { appLocal.canCallApi(any()) } returns false
 
             // Act
