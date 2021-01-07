@@ -59,7 +59,7 @@ class TopStoriesActivity : AppCompatActivity() {
     }
 
     private fun observeViewModel() {
-        viewModel.topStories.observe(this, Observer { articles ->
+        viewModel.topStoryUiModels.observe(this, Observer { articles ->
             if (!initialized) {
                 initialized = true
                 return@Observer

@@ -13,12 +13,11 @@ import com.github.nakawai.newsreader.domain.entities.Section
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
+import retrofit2.*
 import retrofit2.converter.moshi.MoshiConverterFactory
 import timber.log.Timber
 import kotlin.coroutines.resume
@@ -51,6 +50,7 @@ class ArticleRemoteDataSourceImpl : ArticleRemoteDataSource {
 
     override suspend fun fetchTopStories(section: Section): List<StoryResponseItem> = withContext(Dispatchers.IO) {
         val sectionKey = section.toData().value
+
         val response = nyTimesApiService.topStories(sectionKey, API_KEY)
 
         if (response.isSuccessful) {
@@ -64,7 +64,12 @@ class ArticleRemoteDataSourceImpl : ArticleRemoteDataSource {
 
     override suspend fun fetchTopStoriesWithCall(section: Section): List<StoryResponseItem> = suspendCoroutine { continuation ->
         val sectionKey = section.toData().value
-        nyTimesApiService.callTopStories(sectionKey, API_KEY).enqueue(object : Callback<TopStoriesResponse> {
+        val callTopStories = nyTimesApiService.callTopStories(sectionKey, API_KEY)
+        GlobalScope.launch {
+            val response = callTopStories.await()
+        }
+
+        callTopStories.enqueue(object : Callback<TopStoriesResponse> {
             override fun onResponse(call: Call<TopStoriesResponse>, response: Response<TopStoriesResponse>) {
                 if (response.isSuccessful) {
                     Timber.i("Success - Data received. section:${sectionKey} body:${response.body()}")
@@ -73,12 +78,15 @@ class ArticleRemoteDataSourceImpl : ArticleRemoteDataSource {
                     Timber.i("Failure: Data not loaded: section:${sectionKey}")
                     continuation.resumeWithException(RuntimeException(""))
                 }
+
             }
 
             override fun onFailure(call: Call<TopStoriesResponse>, t: Throwable) {
                 continuation.resumeWithException(t)
             }
         })
+
+        callTopStories.cancel()
 
 
     }
