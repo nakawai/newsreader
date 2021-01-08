@@ -5,6 +5,7 @@ import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.github.nakawai.newsreader.data.DataTranslator
 import com.github.nakawai.newsreader.data.network.response.topstories.StoryResponseItem
 import com.github.nakawai.newsreader.data.network.response.topstories.TopStoriesResponse
+import com.github.nakawai.newsreader.data.network.response.topstories.translate
 import com.github.nakawai.newsreader.data.network.retrofit.NYTimesApiService
 import com.github.nakawai.newsreader.data.toData
 import com.github.nakawai.newsreader.domain.datasource.ArticleRemoteDataSource
@@ -48,14 +49,14 @@ class ArticleRemoteDataSourceImpl : ArticleRemoteDataSource {
         nyTimesApiService = retrofit.create(NYTimesApiService::class.java)
     }
 
-    override suspend fun fetchTopStories(section: Section): List<StoryResponseItem> = withContext(Dispatchers.IO) {
+    override suspend fun fetchTopStories(section: Section): List<Article> = withContext(Dispatchers.IO) {
         val sectionKey = section.toData().value
 
         val response = nyTimesApiService.topStories(sectionKey, API_KEY)
 
         if (response.isSuccessful) {
             Timber.i("Success - Data received. section:${sectionKey} body:${response.body()}")
-            return@withContext response.body()!!.results!!
+            return@withContext response.body()!!.results!!.map { it.translate() }
         } else {
             Timber.i("Failure: Data not loaded: section:${sectionKey}")
             throw RuntimeException()
