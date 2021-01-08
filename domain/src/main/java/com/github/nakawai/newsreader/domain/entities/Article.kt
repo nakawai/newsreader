@@ -10,11 +10,13 @@ data class Article(
 
     val url: ArticleUrl,
 
-    val multimediaUrl: List<MultimediaUrl>,
+    val multimediaUrlList: List<Multimedia>,
 
     val publishedDate: Date?,
 
+    @Deprecated("")
     val isRead: Boolean,
 
-    val section: Section
+    val section: Section,
+    val updatedDate: Date?
 )

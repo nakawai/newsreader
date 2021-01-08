@@ -5,7 +5,7 @@ import com.github.nakawai.newsreader.data.network.response.articlesearch.Article
 import com.github.nakawai.newsreader.data.network.response.topstories.StoryResponseItem
 import com.github.nakawai.newsreader.domain.entities.Article
 import com.github.nakawai.newsreader.domain.entities.ArticleUrl
-import com.github.nakawai.newsreader.domain.entities.MultimediaUrl
+import com.github.nakawai.newsreader.domain.entities.Multimedia
 import com.github.nakawai.newsreader.domain.entities.Section
 
 class DataTranslator {
@@ -17,26 +17,29 @@ class DataTranslator {
         fun translate(realmObject: StoryRealmObject): Article {
             return Article(
                 title = realmObject.title.orEmpty(),
-                url = ArticleUrl(realmObject.url.orEmpty()),
                 storyAbstract = realmObject.storyAbstract.orEmpty(),
-                multimediaUrl = realmObject.multimedia?.map { MultimediaUrl(it.url.orEmpty()) } ?: emptyList(),
+                url = ArticleUrl(realmObject.url.orEmpty()),
+                multimediaUrlList = realmObject.multimedia?.map { Multimedia(it.url.orEmpty()) } ?: emptyList(),
                 publishedDate = realmObject.publishedDate,
                 isRead = realmObject.isRead,
                 section = Section.values().find { translate(it).value == realmObject.apiSection }
-                    ?: throw IllegalArgumentException("invalid apiSection:${realmObject.apiSection}")
+                    ?: throw IllegalArgumentException("invalid apiSection:${realmObject.apiSection}"),
+                updatedDate = realmObject.updatedDate
             )
         }
 
         fun translate(responseItem: ArticleSearchDocsResponseItem): Article {
             return Article(
                 title = responseItem.title.orEmpty(),
-                url = ArticleUrl(responseItem.webUrl.orEmpty()),
                 storyAbstract = responseItem.articleAbstract.orEmpty(),
-                multimediaUrl = responseItem.multimedia?.map { MultimediaUrl(it.url.orEmpty()) } ?: emptyList(),
+                url = ArticleUrl(responseItem.webUrl.orEmpty()),
+                multimediaUrlList = responseItem.multimedia?.map { Multimedia(it.url.orEmpty()) } ?: emptyList(),
                 publishedDate = responseItem.publishedDate?.let { StoryResponseItem.DATE_FORMAT.parse(it) },
                 isRead = false,
                 section = Section.values().find { translate(it).value == responseItem.sectionName }
-                    ?: Section.HOME
+                    ?: Section.HOME,
+                // TODO
+                updatedDate = null
             )
         }
 

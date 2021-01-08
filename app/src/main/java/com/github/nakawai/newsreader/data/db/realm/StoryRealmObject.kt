@@ -23,7 +23,7 @@ open class StoryRealmObject : RealmObject() {
 
     var itemType: String? = null
 
-    var updatedDate: String? = null
+    var updatedDate: Date? = null
 
     var createdDate: String? = null
 

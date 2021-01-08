@@ -3,7 +3,7 @@ package com.github.nakawai.newsreader.presentation.articles
 import android.text.format.DateUtils
 import com.github.nakawai.newsreader.domain.entities.Article
 import com.github.nakawai.newsreader.domain.entities.ArticleUrl
-import com.github.nakawai.newsreader.domain.entities.MultimediaUrl
+import com.github.nakawai.newsreader.domain.entities.Multimedia
 import com.github.nakawai.newsreader.domain.entities.Section
 
 /**
@@ -13,7 +13,7 @@ data class ArticleUiModel(
     val title: String,
     val storyAbstract: String,
     val url: ArticleUrl,
-    val multimediaUrl: List<MultimediaUrl>,
+    val multimediaUrl: List<Multimedia>,
     val isRead: Boolean,
     val section: Section,
     val relativeTimeSpanText: String
@@ -22,7 +22,7 @@ data class ArticleUiModel(
         title = article.title,
         storyAbstract = article.storyAbstract,
         url = article.url,
-        multimediaUrl = article.multimediaUrl,
+        multimediaUrl = article.multimediaUrlList,
         isRead = article.isRead,
         section = article.section,
         relativeTimeSpanText = DateUtils.getRelativeTimeSpanString(

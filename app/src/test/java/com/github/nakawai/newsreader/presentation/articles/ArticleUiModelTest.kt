@@ -4,7 +4,7 @@ import android.app.Application
 import android.os.Build
 import com.github.nakawai.newsreader.domain.entities.Article
 import com.github.nakawai.newsreader.domain.entities.ArticleUrl
-import com.github.nakawai.newsreader.domain.entities.MultimediaUrl
+import com.github.nakawai.newsreader.domain.entities.Multimedia
 import com.github.nakawai.newsreader.domain.entities.Section
 import com.google.common.truth.Truth.assertThat
 import org.junit.After
@@ -35,10 +35,10 @@ class ArticleUiModelTest {
             title = "title",
             storyAbstract = "storyAbstract",
             url = ArticleUrl("url"),
-            multimediaUrl = listOf(MultimediaUrl("url")),
+            multimediaUrlList = listOf(Multimedia("url")),
             publishedDate = Date("2020-01-01T00:00:00+09:00".toEpochMilli()),
             isRead = false,
-            section = Section.HOME
+            section = Section.HOME,
         )
 
         // Act

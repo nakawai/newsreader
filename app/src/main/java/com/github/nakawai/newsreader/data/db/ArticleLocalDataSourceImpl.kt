@@ -4,8 +4,7 @@ import androidx.lifecycle.LiveData
 import com.github.nakawai.newsreader.data.db.livedata.LiveRealmData
 import com.github.nakawai.newsreader.data.db.livedata.LiveRealmListData
 import com.github.nakawai.newsreader.data.db.realm.StoryRealmObject
-import com.github.nakawai.newsreader.data.network.response.topstories.StoryResponseItem
-import com.github.nakawai.newsreader.data.network.response.topstories.StoryResponseItemTranslator
+import com.github.nakawai.newsreader.data.db.realm.translate
 import com.github.nakawai.newsreader.data.toData
 import com.github.nakawai.newsreader.data.translate
 import com.github.nakawai.newsreader.domain.datasource.ArticleLocalDataSource
@@ -27,29 +26,28 @@ class ArticleLocalDataSourceImpl : ArticleLocalDataSource {
     private val realm = Realm.getDefaultInstance()
 
     // Converts data into a usable format and save it to Realm
-    override suspend fun saveTopStoriesBySection(section: Section, responseItems: List<StoryResponseItem>) {
-        if (responseItems.isEmpty()) return
+    override suspend fun saveTopStoriesBySection(section: Section, articles: List<Article>) {
+        if (articles.isEmpty()) return
 
         suspendCancellableCoroutine<Unit> { continuation ->
 
             realm.executeTransactionAsync({ r: Realm ->
-                for (responseItem in responseItems) {
-                    // Find existing responseItem in Realm (if any)
+                for (article in articles) {
+                    // Find existing article in Realm (if any)
                     // If it exists, we need to merge the local state with the remote, because the local state
                     // contains more info than is available on the server.
                     val persistedStory =
                         r.where(StoryRealmObject::class.java)
-                            .equalTo(StoryRealmObject.URL, responseItem.url)
+                            .equalTo(StoryRealmObject.URL, article.url.value)
                             .findFirst()
 
                     if (persistedStory != null) {
-                        if (persistedStory.updatedDate != responseItem.updatedDate) {
+                        if (persistedStory.updatedDate != article.updatedDate) {
                             // TODO Update content
                         }
                     } else {
-                        val story = StoryResponseItemTranslator.translate(responseItem)
-                        story.apiSection = section.toData().value
-                        r.copyToRealmOrUpdate(story)
+
+                        r.copyToRealmOrUpdate(article.translate())
                     }
                 }
                 continuation.resume(Unit)
