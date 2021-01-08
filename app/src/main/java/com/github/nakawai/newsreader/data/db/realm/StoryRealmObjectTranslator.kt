@@ -7,29 +7,28 @@ import io.realm.RealmList
 
 object StoryRealmObjectTranslator {
 
-    fun translateToLocal(response: Article): StoryRealmObject {
-        val realmObject = StoryRealmObject()
-        realmObject.section = response.section.toData().value
-        //realmObject.subsection = response.subsection
-        realmObject.title = response.title
-        realmObject.storyAbstract = response.storyAbstract
-        realmObject.url = response.url.value
-        //realmObject.byline = response.byline
-        //realmObject.itemType = response.itemType
-        realmObject.updatedDate = response.updatedDate
-        //realmObject.createdDate = response.createdDate
-        realmObject.publishedDate = response.publishedDate
-        realmObject.sortTimeStamp = realmObject.publishedDate?.time ?: 0L
+    fun translate(article: Article): StoryRealmObject {
+        return StoryRealmObject().also { realmObject ->
+            realmObject.section = article.section.toData().value
+            //realmObject.subsection = response.subsection
+            realmObject.title = article.title
+            realmObject.storyAbstract = article.storyAbstract
+            realmObject.url = article.url.value
+            //realmObject.byline = response.byline
+            //realmObject.itemType = response.itemType
+            realmObject.updatedDate = article.updatedDate
+            //realmObject.createdDate = response.createdDate
+            realmObject.publishedDate = article.publishedDate
+            realmObject.sortTimeStamp = realmObject.publishedDate?.time ?: 0L
 
-        //realmObject.materialTypeFacet = response.materialTypeFacet
-        //realmObject.kicker = response.kicker
+            //realmObject.materialTypeFacet = response.materialTypeFacet
+            //realmObject.kicker = response.kicker
 
-        realmObject.multimedia = RealmList<MultimediaRealmObject>()
-        response.multimediaUrlList.forEach { multimedia ->
-            realmObject.multimedia?.add(translate(multimedia))
+            realmObject.multimedia = RealmList<MultimediaRealmObject>()
+            article.multimediaUrlList.forEach { multimedia ->
+                realmObject.multimedia?.add(translate(multimedia))
+            }
         }
-
-        return realmObject
     }
 
     private fun translate(responseItem: Multimedia): MultimediaRealmObject {
@@ -48,4 +47,4 @@ object StoryRealmObjectTranslator {
     }
 }
 
-fun Article.translate(): StoryRealmObject = StoryRealmObjectTranslator.translateToLocal(this)
+fun Article.translate(): StoryRealmObject = StoryRealmObjectTranslator.translate(this)
