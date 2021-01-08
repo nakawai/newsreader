@@ -1,11 +1,11 @@
 package com.github.nakawai.newsreader.data.db
 
 import androidx.lifecycle.LiveData
-import com.github.nakawai.newsreader.data.DataTranslator
 import com.github.nakawai.newsreader.data.db.livedata.LiveRealmData
 import com.github.nakawai.newsreader.data.db.livedata.LiveRealmListData
 import com.github.nakawai.newsreader.data.db.realm.StoryRealmObject
 import com.github.nakawai.newsreader.data.network.response.topstories.StoryResponseItem
+import com.github.nakawai.newsreader.data.network.response.topstories.StoryResponseItemTranslator
 import com.github.nakawai.newsreader.data.toData
 import com.github.nakawai.newsreader.data.translate
 import com.github.nakawai.newsreader.domain.datasource.ArticleLocalDataSource
@@ -47,7 +47,7 @@ class ArticleLocalDataSourceImpl : ArticleLocalDataSource {
                             // TODO Update content
                         }
                     } else {
-                        val story = DataTranslator.translate(responseItem)
+                        val story = StoryResponseItemTranslator.translate(responseItem)
                         story.apiSection = section.toData().value
                         r.copyToRealmOrUpdate(story)
                     }
