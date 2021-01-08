@@ -26,13 +26,13 @@ class ArticleLocalDataSourceImpl : ArticleLocalDataSource {
     private val realm = Realm.getDefaultInstance()
 
     // Converts data into a usable format and save it to Realm
-    override suspend fun saveTopStoriesBySection(section: Section, articles: List<Article>) {
-        if (articles.isEmpty()) return
+    override suspend fun saveTopStories(topStories: List<Article>) {
+        if (topStories.isEmpty()) return
 
         suspendCancellableCoroutine<Unit> { continuation ->
 
             realm.executeTransactionAsync({ r: Realm ->
-                for (article in articles) {
+                for (article in topStories) {
                     // Find existing article in Realm (if any)
                     // If it exists, we need to merge the local state with the remote, because the local state
                     // contains more info than is available on the server.

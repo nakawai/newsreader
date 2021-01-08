@@ -27,7 +27,7 @@ class ArticleRepositoryImpl(
         if (forceReload || config.canCallApi(section)) {
             val response = remote.fetchTopStories(section)
 
-            local.saveTopStoriesBySection(section, response)
+            local.saveTopStories(response)
             config.saveLastNetworkRequestTime(section)
         }
 

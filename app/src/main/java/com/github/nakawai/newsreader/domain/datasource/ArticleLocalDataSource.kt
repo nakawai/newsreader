@@ -6,7 +6,7 @@ import com.github.nakawai.newsreader.domain.entities.ArticleUrl
 import com.github.nakawai.newsreader.domain.entities.Section
 
 interface ArticleLocalDataSource {
-    suspend fun saveTopStoriesBySection(section: Section, articles: List<Article>)
+    suspend fun saveTopStories(articles: List<Article>)
     suspend fun readTopStoriesBySection(section: Section): List<Article>
     fun observeArticlesBySection(section: Section): LiveData<List<Article>>
     fun observeArticle(articleUrl: ArticleUrl): LiveData<Article>
