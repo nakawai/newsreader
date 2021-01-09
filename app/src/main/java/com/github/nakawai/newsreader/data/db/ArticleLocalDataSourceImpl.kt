@@ -5,8 +5,6 @@ import com.github.nakawai.newsreader.data.db.livedata.LiveRealmData
 import com.github.nakawai.newsreader.data.db.livedata.LiveRealmListData
 import com.github.nakawai.newsreader.data.db.realm.StoryRealmObject
 import com.github.nakawai.newsreader.data.db.realm.translate
-import com.github.nakawai.newsreader.data.toData
-import com.github.nakawai.newsreader.data.translate
 import com.github.nakawai.newsreader.domain.datasource.ArticleLocalDataSource
 import com.github.nakawai.newsreader.domain.entities.Article
 import com.github.nakawai.newsreader.domain.entities.ArticleUrl
@@ -63,7 +61,7 @@ class ArticleLocalDataSourceImpl : ArticleLocalDataSource {
     // save data in Realm
     override suspend fun readTopStoriesBySection(section: Section): List<Article> = suspendCoroutine { continuation ->
         val realmResults = realm.where(StoryRealmObject::class.java)
-            .equalTo(StoryRealmObject.API_SECTION, section.toData().value)
+            .equalTo(StoryRealmObject.API_SECTION, section.value)
             .sort(StoryRealmObject.PUBLISHED_DATE, Sort.DESCENDING)
             .findAllAsync()
 
@@ -85,7 +83,7 @@ class ArticleLocalDataSourceImpl : ArticleLocalDataSource {
             override fun runQuery(realm: Realm): RealmResults<StoryRealmObject> {
                 return realm.where(StoryRealmObject::class.java)
                     .sort(StoryRealmObject.PUBLISHED_DATE, Sort.DESCENDING)
-                    .equalTo(StoryRealmObject.API_SECTION, section.toData().value)
+                    .equalTo(StoryRealmObject.API_SECTION, section.value)
                     .findAllAsync()
             }
 

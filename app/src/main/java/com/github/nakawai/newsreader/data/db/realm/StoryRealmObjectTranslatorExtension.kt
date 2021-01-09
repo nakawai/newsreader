@@ -1,14 +1,15 @@
 package com.github.nakawai.newsreader.data.db.realm
 
-import com.github.nakawai.newsreader.data.toData
 import com.github.nakawai.newsreader.domain.entities.Article
+import com.github.nakawai.newsreader.domain.entities.ArticleUrl
 import com.github.nakawai.newsreader.domain.entities.Multimedia
+import com.github.nakawai.newsreader.domain.entities.Section
 import io.realm.RealmList
 
 fun Article.translate(): StoryRealmObject {
 
     return StoryRealmObject().also { realmObject ->
-        realmObject.section = this.section.toData().value
+        realmObject.section = this.section.value
         //realmObject.subsection = response.subsection
         realmObject.title = this.title
         realmObject.storyAbstract = this.storyAbstract
@@ -30,6 +31,21 @@ fun Article.translate(): StoryRealmObject {
     }
 }
 
+
+fun StoryRealmObject.translate(): Article {
+    return Article(
+        title = this.title.orEmpty(),
+        storyAbstract = this.storyAbstract.orEmpty(),
+        url = ArticleUrl(this.url.orEmpty()),
+        multimediaUrlList = this.multimedia?.map { Multimedia(it.url.orEmpty()) } ?: emptyList(),
+        publishedDate = this.publishedDate,
+        isRead = this.isRead,
+        section = translate(this.apiSection),
+
+        updatedDate = this.updatedDate
+    )
+}
+
 private fun translate(responseItem: Multimedia): MultimediaRealmObject {
     val multimedia = MultimediaRealmObject()
 
@@ -43,4 +59,9 @@ private fun translate(responseItem: Multimedia): MultimediaRealmObject {
 //        multimedia.copyright = responseItem.copyright
 
     return multimedia
+}
+
+private fun translate(sectionValue: String?): Section {
+    return Section.values().find { it.value == sectionValue }
+        ?: throw IllegalArgumentException("invalid apiSection:${sectionValue}")
 }

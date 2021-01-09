@@ -1,20 +1,18 @@
-package com.github.nakawai.newsreader.data.network.response.topstories
+package com.github.nakawai.newsreader.data.network.response.articlesearch
 
 import com.github.nakawai.newsreader.data.SectionData
+import com.github.nakawai.newsreader.data.network.response.topstories.StoryResponseItem
 import com.github.nakawai.newsreader.domain.entities.Article
 import com.github.nakawai.newsreader.domain.entities.ArticleUrl
 import com.github.nakawai.newsreader.domain.entities.Multimedia
 import com.github.nakawai.newsreader.domain.entities.Section
 
-
-fun StoryResponseItem.translate(): Article = Article(
+fun ArticleSearchDocsResponseItem.translate(): Article = Article(
     title = this.title.orEmpty(),
-    storyAbstract = this.storyAbstract.orEmpty(),
-    url = ArticleUrl(this.url.orEmpty()),
+    storyAbstract = this.articleAbstract.orEmpty(),
+    url = ArticleUrl(this.webUrl.orEmpty()),
     multimediaUrlList = this.multimedia?.map { Multimedia(it.url.orEmpty()) } ?: emptyList(),
     publishedDate = this.publishedDate?.let { StoryResponseItem.DATE_FORMAT.parse(it) },
-    updatedDate = this.updatedDate?.let { StoryResponseItem.DATE_FORMAT.parse(it) },
-    // FIXME remove property
     isRead = false,
     section = Section.values().find {
         when (it) {
@@ -51,7 +49,9 @@ fun StoryResponseItem.translate(): Article = Article(
             Section.MAGAZINE -> SectionData("magazine")
 
             Section.REAL_ESTATE -> SectionData("realestate")
-        }.value == this.section
+        }.value == this.sectionName
     }
-        ?: throw IllegalArgumentException("invalid apiSection:${this.section}"),
+        ?: Section.HOME,
+    // TODO
+    updatedDate = null
 )

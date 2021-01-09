@@ -2,12 +2,11 @@ package com.github.nakawai.newsreader.data.network
 
 
 import com.facebook.stetho.okhttp3.StethoInterceptor
-import com.github.nakawai.newsreader.data.DataTranslator
+import com.github.nakawai.newsreader.data.network.response.articlesearch.translate
 import com.github.nakawai.newsreader.data.network.response.topstories.StoryResponseItem
 import com.github.nakawai.newsreader.data.network.response.topstories.TopStoriesResponse
 import com.github.nakawai.newsreader.data.network.response.topstories.translate
 import com.github.nakawai.newsreader.data.network.retrofit.NYTimesApiService
-import com.github.nakawai.newsreader.data.toData
 import com.github.nakawai.newsreader.domain.datasource.ArticleRemoteDataSource
 import com.github.nakawai.newsreader.domain.entities.Article
 import com.github.nakawai.newsreader.domain.entities.Section
@@ -50,7 +49,7 @@ class ArticleRemoteDataSourceImpl : ArticleRemoteDataSource {
     }
 
     override suspend fun fetchTopStories(section: Section): List<Article> = withContext(Dispatchers.IO) {
-        val sectionKey = section.toData().value
+        val sectionKey = section.value
 
         val response = nyTimesApiService.topStories(sectionKey, API_KEY)
 
@@ -64,7 +63,7 @@ class ArticleRemoteDataSourceImpl : ArticleRemoteDataSource {
     }
 
     override suspend fun fetchTopStoriesWithCall(section: Section): List<StoryResponseItem> = suspendCoroutine { continuation ->
-        val sectionKey = section.toData().value
+        val sectionKey = section.value
         val callTopStories = nyTimesApiService.callTopStories(sectionKey, API_KEY)
         GlobalScope.launch {
             val response = callTopStories.await()
@@ -96,7 +95,7 @@ class ArticleRemoteDataSourceImpl : ArticleRemoteDataSource {
         val response = nyTimesApiService.articleSearch(query, API_KEY)
 
         if (response.isSuccessful) {
-            return@withContext response.body()!!.response!!.docs!!.map { DataTranslator.translate(it) }
+            return@withContext response.body()!!.response!!.docs!!.map { it.translate() }
         } else {
             throw RuntimeException(response.errorBody()!!.string())
         }
