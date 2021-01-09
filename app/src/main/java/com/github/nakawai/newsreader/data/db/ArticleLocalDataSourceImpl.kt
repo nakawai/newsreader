@@ -26,13 +26,13 @@ class ArticleLocalDataSourceImpl : ArticleLocalDataSource {
     private val realm = Realm.getDefaultInstance()
 
     // Converts data into a usable format and save it to Realm
-    override suspend fun saveTopStories(topStories: List<Article>) {
-        if (topStories.isEmpty()) return
+    override suspend fun saveTopStories(articles: List<Article>) {
+        if (articles.isEmpty()) return
 
         suspendCancellableCoroutine<Unit> { continuation ->
 
             realm.executeTransactionAsync({ r: Realm ->
-                for (article in topStories) {
+                for (article in articles) {
                     // Find existing article in Realm (if any)
                     // If it exists, we need to merge the local state with the remote, because the local state
                     // contains more info than is available on the server.
@@ -62,22 +62,20 @@ class ArticleLocalDataSourceImpl : ArticleLocalDataSource {
     // Return the data in Realm. The query result will be automatically updated when the network requests
     // save data in Realm
     override suspend fun readTopStoriesBySection(section: Section): List<Article> = suspendCoroutine { continuation ->
-        val results = realm.where(StoryRealmObject::class.java)
+        val realmResults = realm.where(StoryRealmObject::class.java)
             .equalTo(StoryRealmObject.API_SECTION, section.toData().value)
             .sort(StoryRealmObject.PUBLISHED_DATE, Sort.DESCENDING)
             .findAllAsync()
 
         val listener = RealmChangeListener<RealmResults<StoryRealmObject>> {
-            val list = mutableListOf<Article>()
-            results.forEach { story ->
-                list.add(story.translate())
-            }
 
-            results.removeAllChangeListeners()
-            continuation.resume(list)
+            realmResults.removeAllChangeListeners()
+            realmResults.map { it.translate() }.let { articles ->
+                continuation.resume(articles)
+            }
         }
 
-        results.addChangeListener(listener)
+        realmResults.addChangeListener(listener)
 
 
     }
