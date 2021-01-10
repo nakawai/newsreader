@@ -33,5 +33,13 @@ enum class Section(val value: String) {
 
     MAGAZINE("magazine"),
 
-    REAL_ESTATE("realestate")
+    REAL_ESTATE("realestate");
+
+    companion object {
+        fun fromRawValue(rawValue: String?): Section {
+            return values().find { it.value == rawValue }
+                ?: throw IllegalArgumentException("invalid apiSection:${rawValue}")
+        }
+    }
+
 }

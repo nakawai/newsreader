@@ -40,8 +40,7 @@ fun StoryRealmObject.translate(): Article {
         multimediaUrlList = this.multimedia?.map { Multimedia(it.url.orEmpty()) } ?: emptyList(),
         publishedDate = this.publishedDate,
         isRead = this.isRead,
-        section = translate(this.apiSection),
-
+        section = Section.fromRawValue(this.apiSection),
         updatedDate = this.updatedDate
     )
 }
@@ -59,9 +58,4 @@ private fun translate(responseItem: Multimedia): MultimediaRealmObject {
 //        multimedia.copyright = responseItem.copyright
 
     return multimedia
-}
-
-private fun translate(sectionValue: String?): Section {
-    return Section.values().find { it.value == sectionValue }
-        ?: throw IllegalArgumentException("invalid apiSection:${sectionValue}")
 }
