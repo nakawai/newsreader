@@ -12,8 +12,8 @@ import io.realm.RealmResults
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
-class HistoryLocalDataSourceImpl : HistoryLocalDataSource {
-    private val realm = Realm.getDefaultInstance()
+class HistoryLocalDataSourceImpl(private val realm: Realm) : HistoryLocalDataSource {
+
 
     override suspend fun addHistory(url: ArticleUrl) = suspendCoroutine<Unit> { continuation ->
         realm.executeTransactionAsync { r ->

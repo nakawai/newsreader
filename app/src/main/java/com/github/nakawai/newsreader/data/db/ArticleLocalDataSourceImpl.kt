@@ -20,8 +20,8 @@ import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
 // TODO close Realm instance
-class ArticleLocalDataSourceImpl : ArticleLocalDataSource {
-    private val realm = Realm.getDefaultInstance()
+class ArticleLocalDataSourceImpl(private val realm: Realm) : ArticleLocalDataSource {
+
 
     // Converts data into a usable format and save it to Realm
     override suspend fun saveTopStories(articles: List<Article>) {

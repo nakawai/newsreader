@@ -1,5 +1,6 @@
 package com.github.nakawai.newsreader.presentation.search
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,7 +10,7 @@ import com.github.nakawai.newsreader.presentation.PresentationTranslator
 import com.github.nakawai.newsreader.presentation.search.list.SearchResultUiModel
 import kotlinx.coroutines.*
 
-class SearchViewModel(
+class SearchViewModel @ViewModelInject constructor(
     private val repository: ArticleRepository
 ) : ViewModel() {
 

@@ -10,9 +10,11 @@ import com.github.nakawai.newsreader.R
 import com.github.nakawai.newsreader.databinding.ActivitySearchBinding
 import com.github.nakawai.newsreader.presentation.ErrorDialogFragment
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 import org.koin.android.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
+@AndroidEntryPoint
 class SearchActivity : AppCompatActivity() {
 
     val viewModel: SearchViewModel by viewModel()

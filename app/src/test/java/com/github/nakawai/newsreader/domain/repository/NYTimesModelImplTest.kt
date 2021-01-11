@@ -56,7 +56,7 @@ class NYTimesModelImplTest {
             every { configLocal.canCallApi(any()) } returns false
 
             // Act
-            model.loadTopStoriesBySection(Section.HOME, forceReload = false)
+            model.loadTopStoriesBySection(Section.HOME)
 
             // Assert
             coVerify(exactly = 0) { remote.fetchTopStories(any()) }

@@ -57,7 +57,7 @@ class TopStoriesActivity : AppCompatActivity() {
     }
 
     private fun onRefresh() {
-        viewModel.loadData(force = true)
+        viewModel.refresh()
     }
 
     private fun observeViewModel() {

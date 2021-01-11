@@ -7,8 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.github.nakawai.newsreader.databinding.FragmentSearchBinding
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 
+@AndroidEntryPoint
 class SearchFragment : Fragment() {
 
     companion object {

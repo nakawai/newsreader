@@ -13,11 +13,12 @@ import com.github.nakawai.newsreader.domain.entities.Section
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
-import retrofit2.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import timber.log.Timber
 import kotlin.coroutines.resume
@@ -65,9 +66,6 @@ class ArticleRemoteDataSourceImpl : ArticleRemoteDataSource {
     override suspend fun fetchTopStoriesWithCall(section: Section): List<StoryResponseItem> = suspendCoroutine { continuation ->
         val sectionKey = section.value
         val callTopStories = nyTimesApiService.callTopStories(sectionKey, API_KEY)
-        GlobalScope.launch {
-            val response = callTopStories.await()
-        }
 
         callTopStories.enqueue(object : Callback<TopStoriesResponse> {
             override fun onResponse(call: Call<TopStoriesResponse>, response: Response<TopStoriesResponse>) {

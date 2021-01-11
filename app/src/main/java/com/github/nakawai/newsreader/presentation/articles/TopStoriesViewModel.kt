@@ -35,13 +35,13 @@ class TopStoriesViewModel @ViewModelInject constructor(
         _section.value = section
     }
 
-    fun loadData(force: Boolean) {
+    fun refresh() {
         val section = _section.value ?: return
         _isLoading.value = true
 
         viewModelScope.launch {
             runCatching {
-                repository.loadTopStoriesBySection(section, force)
+                repository.updateTopStoriesBySection(section)
             }.onSuccess {
                 // NOP
             }.onFailure { error ->

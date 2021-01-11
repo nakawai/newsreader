@@ -34,6 +34,19 @@ class ArticleRepositoryImpl(
         return local.readTopStoriesBySection(section)
     }
 
+    /**
+     * Loads the news feed as well as all future updates.
+     */
+    override suspend fun updateTopStoriesBySection(section: Section) {
+        // Start loading data from the network if needed
+        // It will put all data into Realm
+
+        val response = remote.fetchTopStories(section)
+
+        local.saveTopStories(response)
+        config.saveLastNetworkRequestTime(section)
+    }
+
 
     /**
      * Updates a story.

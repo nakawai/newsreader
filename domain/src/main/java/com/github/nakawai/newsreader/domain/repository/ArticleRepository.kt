@@ -14,4 +14,5 @@ interface ArticleRepository {
     fun observeArticle(articleUrl: ArticleUrl): LiveData<Article>
     fun loadSections(): List<Section>
     suspend fun searchArticle(query: String): List<Article>
+    suspend fun updateTopStoriesBySection(section: Section)
 }
