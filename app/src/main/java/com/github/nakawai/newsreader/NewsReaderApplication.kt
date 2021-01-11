@@ -2,12 +2,10 @@ package com.github.nakawai.newsreader
 
 import android.app.Application
 import com.facebook.stetho.Stetho
-import com.github.nakawai.newsreader.di.appModule
 import dagger.hilt.android.HiltAndroidApp
 import io.realm.Realm
 import io.realm.RealmConfiguration
-import org.koin.android.ext.koin.androidContext
-import org.koin.core.context.startKoin
+
 import timber.log.Timber
 
 @Suppress("unused")
@@ -27,11 +25,6 @@ class NewsReaderApplication : Application() {
 
         // Timber
         Timber.plant(Timber.DebugTree())
-
-        startKoin {
-            androidContext(this@NewsReaderApplication)
-            modules(appModule)
-        }
 
     }
 }
