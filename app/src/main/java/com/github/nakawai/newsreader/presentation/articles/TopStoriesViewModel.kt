@@ -1,22 +1,27 @@
 package com.github.nakawai.newsreader.presentation.articles
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.github.nakawai.newsreader.domain.entities.Section
 import com.github.nakawai.newsreader.domain.repository.ArticleRepository
+import com.github.nakawai.newsreader.domain.repository.HistoryRepository
 import kotlinx.coroutines.launch
 
 /**
  * ViewModel class for controlling the Articles Activity
  */
-class TopStoriesViewModel(
-    private val repository: ArticleRepository
+class TopStoriesViewModel @ViewModelInject constructor(
+    private val repository: ArticleRepository,
+    private val historyRepository: HistoryRepository
 ) : ViewModel() {
     private val _section = MutableLiveData<Section>()
 
     private val _topStories = _section.switchMap { repository.observeArticlesBySection(it) }
 
+    private val _histories = historyRepository.observeHistories()
+
     val topStoryUiModels: LiveData<List<ArticleUiModel>> = _topStories.map { topStories ->
-        topStories.map { ArticleUiModel(it, System.currentTimeMillis()) }
+        topStories.map { topStory -> ArticleUiModel(topStory, System.currentTimeMillis(), _histories.value?.find { it.url == topStory.url } != null) }
     }
 
     private val _isLoading = MutableLiveData<Boolean>()

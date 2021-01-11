@@ -33,10 +33,10 @@ class DetailsActivity : AppCompatActivity() {
     }
 
     private fun observeViewModel() {
-        viewModel.article.observe(this, Observer { article ->
+        viewModel.articleUiModel.observe(this, Observer { article ->
             binding.toolbar.title = article.title
             binding.detailsView.text = article.storyAbstract
-            binding.dateView.text = article.publishedDate?.let { outputDateFormat.format(it) }
+            binding.dateView.text = article.relativeTimeSpanText
 
             if (article.isRead) {
                 binding.readView.setText(R.string.read)
@@ -47,7 +47,7 @@ class DetailsActivity : AppCompatActivity() {
             }
         })
 
-        viewModel.isLoading.observe(this, Observer { isLoading ->
+        viewModel.isLoading.observe(this, { isLoading ->
             binding.loaderView.visibility = if (isLoading) View.VISIBLE else View.GONE
         })
     }

@@ -18,12 +18,12 @@ data class ArticleUiModel(
     val section: Section,
     val relativeTimeSpanText: String
 ) {
-    constructor(article: Article, nowTimeMillis: Long) : this(
+    constructor(article: Article, nowTimeMillis: Long, isRead: Boolean) : this(
         title = article.title,
         storyAbstract = article.storyAbstract,
         url = article.url,
         multimediaUrl = article.multimediaUrlList,
-        isRead = article.isRead,
+        isRead = isRead,
         section = article.section,
         relativeTimeSpanText = DateUtils.getRelativeTimeSpanString(
             article.publishedDate!!.time, nowTimeMillis, DateUtils.MINUTE_IN_MILLIS

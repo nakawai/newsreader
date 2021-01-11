@@ -5,6 +5,8 @@ import com.github.nakawai.newsreader.data.db.ConfigLocalDataSourceImpl
 import com.github.nakawai.newsreader.data.network.ArticleRemoteDataSourceImpl
 import com.github.nakawai.newsreader.domain.repository.ArticleRepository
 import com.github.nakawai.newsreader.domain.repository.ArticleRepositoryImpl
+import com.github.nakawai.newsreader.domain.repository.HistoryRepository
+import com.github.nakawai.newsreader.domain.repository.HistoryRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,11 +17,17 @@ import dagger.hilt.android.components.ActivityComponent
 object NewsReaderDaggerModule {
 
     @Provides
-    fun provideNYTimesRepository(): ArticleRepository {
+    fun provideArticleRepository(): ArticleRepository {
         return ArticleRepositoryImpl(
             ArticleLocalDataSourceImpl(),
             ArticleRemoteDataSourceImpl(),
             ConfigLocalDataSourceImpl()
         )
     }
+
+    @Provides
+    fun provideHistoryRepository(): HistoryRepository {
+        return HistoryRepositoryImpl()
+    }
+
 }
