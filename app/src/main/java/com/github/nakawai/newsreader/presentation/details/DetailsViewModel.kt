@@ -6,10 +6,7 @@ import com.github.nakawai.newsreader.domain.entities.ArticleUrl
 import com.github.nakawai.newsreader.domain.repository.ArticleRepository
 import com.github.nakawai.newsreader.domain.repository.HistoryLocalDataSource
 import com.github.nakawai.newsreader.presentation.articles.ArticleUiModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.cancelChildren
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 /**
  * Presenter class for controlling the Main Activity
@@ -47,9 +44,10 @@ class DetailsViewModel @ViewModelInject constructor(
     }
 
     fun onResume() {
-        // Mark story as read if screen is visible for 2 seconds
         job = viewModelScope.launch(Dispatchers.Main) {
             _storyUrl.value?.let {
+                // Mark story as read if screen is visible for 2 seconds
+                delay(2000)
                 //repository.updateStoryReadState(it, read = true)
                 historyLocalDataSource.addHistory(it)
             }
