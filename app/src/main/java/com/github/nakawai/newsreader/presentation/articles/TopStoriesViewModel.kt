@@ -4,7 +4,7 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.github.nakawai.newsreader.domain.entities.Section
 import com.github.nakawai.newsreader.domain.repository.ArticleRepository
-import com.github.nakawai.newsreader.domain.repository.HistoryRepository
+import com.github.nakawai.newsreader.domain.repository.HistoryLocalDataSource
 import kotlinx.coroutines.launch
 
 /**
@@ -12,13 +12,13 @@ import kotlinx.coroutines.launch
  */
 class TopStoriesViewModel @ViewModelInject constructor(
     private val repository: ArticleRepository,
-    private val historyRepository: HistoryRepository
+    private val historyLocalDataSource: HistoryLocalDataSource
 ) : ViewModel() {
     private val _section = MutableLiveData<Section>()
 
     private val _topStories = _section.switchMap { repository.observeArticlesBySection(it) }
 
-    private val _histories = historyRepository.observeHistories()
+    private val _histories = historyLocalDataSource.observeHistories()
 
     val topStoryUiModels: LiveData<List<ArticleUiModel>> = _topStories.map { topStories ->
         topStories.map { topStory -> ArticleUiModel(topStory, System.currentTimeMillis(), _histories.value?.find { it.url == topStory.url } != null) }

@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import com.github.nakawai.newsreader.domain.entities.ArticleUrl
 import com.github.nakawai.newsreader.domain.entities.History
 
-interface HistoryRepository {
+interface HistoryLocalDataSource {
     suspend fun addHistory(url: ArticleUrl)
     fun observeHistories(): LiveData<List<History>>
 }

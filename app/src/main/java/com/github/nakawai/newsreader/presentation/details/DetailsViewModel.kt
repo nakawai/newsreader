@@ -3,7 +3,7 @@ package com.github.nakawai.newsreader.presentation.details
 import androidx.lifecycle.*
 import com.github.nakawai.newsreader.domain.entities.ArticleUrl
 import com.github.nakawai.newsreader.domain.repository.ArticleRepository
-import com.github.nakawai.newsreader.domain.repository.HistoryRepository
+import com.github.nakawai.newsreader.domain.repository.HistoryLocalDataSource
 import com.github.nakawai.newsreader.presentation.articles.ArticleUiModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
  */
 class DetailsViewModel(
     private val repository: ArticleRepository,
-    private val historyRepository: HistoryRepository
+    private val historyLocalDataSource: HistoryLocalDataSource
 ) : ViewModel() {
     private var _storyUrl = MutableLiveData<ArticleUrl>()
 
@@ -28,7 +28,7 @@ class DetailsViewModel(
         repository.observeArticle(articleUrl = it)
     }
 
-    private val _histories = historyRepository.observeHistories()
+    private val _histories = historyLocalDataSource.observeHistories()
 
     val articleUiModel: LiveData<ArticleUiModel> = MediatorLiveData<ArticleUiModel>().also { uiModel ->
         uiModel.addSource(_article) { article ->
@@ -50,7 +50,7 @@ class DetailsViewModel(
         job = viewModelScope.launch(Dispatchers.Main) {
             _storyUrl.value?.let {
                 //repository.updateStoryReadState(it, read = true)
-                historyRepository.addHistory(it)
+                historyLocalDataSource.addHistory(it)
             }
 
         }
