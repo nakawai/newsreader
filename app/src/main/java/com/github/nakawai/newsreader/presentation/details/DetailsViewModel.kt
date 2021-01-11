@@ -1,5 +1,6 @@
 package com.github.nakawai.newsreader.presentation.details
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.github.nakawai.newsreader.domain.entities.ArticleUrl
 import com.github.nakawai.newsreader.domain.repository.ArticleRepository
@@ -13,7 +14,7 @@ import kotlinx.coroutines.launch
 /**
  * Presenter class for controlling the Main Activity
  */
-class DetailsViewModel(
+class DetailsViewModel @ViewModelInject constructor(
     private val repository: ArticleRepository,
     private val historyLocalDataSource: HistoryLocalDataSource
 ) : ViewModel() {

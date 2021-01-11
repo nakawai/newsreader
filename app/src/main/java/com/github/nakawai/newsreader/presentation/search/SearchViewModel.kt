@@ -10,7 +10,7 @@ import com.github.nakawai.newsreader.presentation.search.list.SearchResultUiMode
 import kotlinx.coroutines.*
 
 class SearchViewModel(
-    private val model: ArticleRepository
+    private val repository: ArticleRepository
 ) : ViewModel() {
 
     private val _error = MutableLiveData<Throwable>()
@@ -37,19 +37,19 @@ class SearchViewModel(
             _isLoading.value = true
             val async1 = async {
                 runCatching {
-                    model.searchArticle(query)
+                    repository.searchArticle(query)
                         .map { PresentationTranslator.translate(it) }
                 }
             }
             val async2 = async {
                 runCatching {
-                    model.searchArticle("election")
+                    repository.searchArticle("election")
                         .map { PresentationTranslator.translate(it) }
                 }
             }
             val async3 = async {
                 runCatching {
-                    model.searchArticle("home")
+                    repository.searchArticle("home")
                         .map { PresentationTranslator.translate(it) }
                 }
             }

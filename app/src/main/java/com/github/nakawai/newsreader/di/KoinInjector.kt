@@ -23,8 +23,6 @@ val appModule = module {
             get()
         )
     }
-    //viewModel { SectionsViewModel(get()) }
-    //viewModel { TopStoriesViewModel(get()) }
-    //viewModel { DetailsViewModel(get()) }
+
     viewModel { SearchViewModel(get()) }
 }

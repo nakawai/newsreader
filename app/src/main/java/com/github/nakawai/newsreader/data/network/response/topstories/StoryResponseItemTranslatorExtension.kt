@@ -6,7 +6,7 @@ import com.github.nakawai.newsreader.domain.entities.Multimedia
 import com.github.nakawai.newsreader.domain.entities.Section
 
 
-fun StoryResponseItem.translate(): Article = Article(
+fun StoryResponseItem.translate(section: Section): Article = Article(
     title = this.title.orEmpty(),
     storyAbstract = this.storyAbstract.orEmpty(),
     url = ArticleUrl(this.url.orEmpty()),
@@ -15,5 +15,5 @@ fun StoryResponseItem.translate(): Article = Article(
     updatedDate = this.updatedDate?.let { StoryResponseItem.DATE_FORMAT.parse(it) },
     // FIXME remove property
     isRead = false,
-    section = Section.fromRawValue(this.section)
+    section = section
 )

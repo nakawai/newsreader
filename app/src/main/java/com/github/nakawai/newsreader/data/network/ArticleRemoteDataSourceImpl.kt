@@ -55,7 +55,7 @@ class ArticleRemoteDataSourceImpl : ArticleRemoteDataSource {
 
         if (response.isSuccessful) {
             Timber.i("Success - Data received. section:${sectionKey} body:${response.body()}")
-            return@withContext response.body()!!.results!!.map { it.translate() }
+            return@withContext response.body()!!.results!!.map { it.translate(section) }
         } else {
             Timber.i("Failure: Data not loaded: section:${sectionKey}")
             throw RuntimeException()

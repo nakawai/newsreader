@@ -34,19 +34,19 @@ class ArticleLocalDataSourceImpl : ArticleLocalDataSource {
                     // Find existing article in Realm (if any)
                     // If it exists, we need to merge the local state with the remote, because the local state
                     // contains more info than is available on the server.
-                    val persistedStory =
-                        r.where(StoryRealmObject::class.java)
-                            .equalTo(StoryRealmObject.URL, article.url.value)
-                            .findFirst()
+//                    val persistedStory =
+//                        r.where(StoryRealmObject::class.java)
+//                            .equalTo(StoryRealmObject.URL, article.url.value)
+//                            .findFirst()
+//
+//                    if (persistedStory != null) {
+//                        if (persistedStory.updatedDate != article.updatedDate) {
+//                            // TODO Update content
+//                        }
+//                    } else {
 
-                    if (persistedStory != null) {
-                        if (persistedStory.updatedDate != article.updatedDate) {
-                            // TODO Update content
-                        }
-                    } else {
-
-                        r.copyToRealmOrUpdate(article.translate())
-                    }
+                    r.copyToRealmOrUpdate(article.translate())
+//                    }
                 }
                 continuation.resume(Unit)
             }) { throwable: Throwable ->
@@ -61,7 +61,7 @@ class ArticleLocalDataSourceImpl : ArticleLocalDataSource {
     // save data in Realm
     override suspend fun readTopStoriesBySection(section: Section): List<Article> = suspendCoroutine { continuation ->
         val realmResults = realm.where(StoryRealmObject::class.java)
-            .equalTo(StoryRealmObject.API_SECTION, section.value)
+            .equalTo(StoryRealmObject.SECTION, section.value)
             .sort(StoryRealmObject.PUBLISHED_DATE, Sort.DESCENDING)
             .findAllAsync()
 
@@ -83,7 +83,7 @@ class ArticleLocalDataSourceImpl : ArticleLocalDataSource {
             override fun runQuery(realm: Realm): RealmResults<StoryRealmObject> {
                 return realm.where(StoryRealmObject::class.java)
                     .sort(StoryRealmObject.PUBLISHED_DATE, Sort.DESCENDING)
-                    .equalTo(StoryRealmObject.API_SECTION, section.value)
+                    .equalTo(StoryRealmObject.SECTION, section.value)
                     .findAllAsync()
             }
 

@@ -40,7 +40,7 @@ fun StoryRealmObject.translate(): Article {
         multimediaUrlList = this.multimedia?.map { Multimedia(it.url.orEmpty()) } ?: emptyList(),
         publishedDate = this.publishedDate,
         isRead = this.isRead,
-        section = Section.fromRawValue(this.apiSection),
+        section = Section.fromRawValue(this.section),
         updatedDate = this.updatedDate
     )
 }
