@@ -1,4 +1,4 @@
-package com.github.nakawai.newsreader.domain.repository
+package com.github.nakawai.newsreader.data.db
 
 import androidx.lifecycle.LiveData
 import com.github.nakawai.newsreader.data.db.livedata.LiveRealmListData
@@ -6,6 +6,7 @@ import com.github.nakawai.newsreader.data.db.realm.HistoryRealmObject
 import com.github.nakawai.newsreader.data.db.realm.translate
 import com.github.nakawai.newsreader.domain.entities.ArticleUrl
 import com.github.nakawai.newsreader.domain.entities.History
+import com.github.nakawai.newsreader.domain.repository.HistoryLocalDataSource
 import io.realm.Realm
 import io.realm.RealmResults
 import kotlin.coroutines.resume
