@@ -2,7 +2,7 @@ package com.github.nakawai.newsreader.di
 
 import com.github.nakawai.newsreader.data.db.ArticleLocalDataSourceImpl
 import com.github.nakawai.newsreader.data.db.ConfigLocalDataSourceImpl
-import com.github.nakawai.newsreader.data.db.HistoryLocalDataSourceImpl
+import com.github.nakawai.newsreader.data.db.HistoryLocalDataSourceRealmImpl
 import com.github.nakawai.newsreader.data.network.ArticleRemoteDataSourceImpl
 import com.github.nakawai.newsreader.domain.datasource.ArticleLocalDataSource
 import com.github.nakawai.newsreader.domain.repository.ArticleRepository
@@ -34,7 +34,7 @@ object NewsReaderDaggerModule {
 
     @Provides
     fun provideHistoryRepository(realm: Realm): HistoryLocalDataSource {
-        return HistoryLocalDataSourceImpl(realm)
+        return HistoryLocalDataSourceRealmImpl(realm)
     }
 
     @Provides
