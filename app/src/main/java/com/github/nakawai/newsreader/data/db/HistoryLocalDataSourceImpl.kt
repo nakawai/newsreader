@@ -8,18 +8,17 @@ import com.github.nakawai.newsreader.data.db.room.translate
 import com.github.nakawai.newsreader.domain.entities.ArticleUrl
 import com.github.nakawai.newsreader.domain.entities.History
 import com.github.nakawai.newsreader.domain.repository.HistoryLocalDataSource
-import kotlin.coroutines.resume
-import kotlin.coroutines.suspendCoroutine
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class HistoryLocalDataSourceImpl(private val db: AppDatabase) : HistoryLocalDataSource {
-
-
-    override suspend fun addHistory(url: ArticleUrl) = suspendCoroutine<Unit> { continuation ->
+    override suspend fun addHistory(url: ArticleUrl) = withContext(Dispatchers.IO) {
         db.historyDao().insertAll(HistoryRoomEntity(url = url.value))
-        continuation.resume(Unit)
     }
 
     override fun observeHistories(): LiveData<List<History>> {
-        return db.historyDao().observeHistories().map { it.map { roomEntity -> roomEntity.translate() } }
+        return db.historyDao().observeHistories().map { roomEntities ->
+            roomEntities.map { it.translate() }
+        }
     }
 }

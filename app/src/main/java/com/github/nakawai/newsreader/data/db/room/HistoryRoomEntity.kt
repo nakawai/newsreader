@@ -3,7 +3,7 @@ package com.github.nakawai.newsreader.data.db.room
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Index
-import io.realm.annotations.PrimaryKey
+import androidx.room.PrimaryKey
 
 @Entity(
     tableName = "histories",
@@ -12,7 +12,7 @@ import io.realm.annotations.PrimaryKey
 data class HistoryRoomEntity(
     @PrimaryKey
     @ColumnInfo(name = COLUMN_URL)
-    var url: String? = null
+    var url: String
 ) {
     companion object {
         const val COLUMN_URL = "url"

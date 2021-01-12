@@ -12,7 +12,6 @@ fun ArticleSearchDocsResponseItem.translate(): Article = Article(
     url = ArticleUrl(this.webUrl.orEmpty()),
     multimediaUrlList = this.multimedia?.map { Multimedia(it.url.orEmpty()) } ?: emptyList(),
     publishedDate = this.publishedDate?.let { StoryResponseItem.DATE_FORMAT.parse(it) },
-    isRead = false,
     section = Section.fromRawValue(this.sectionName),
     // TODO
     updatedDate = null

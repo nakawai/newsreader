@@ -37,14 +37,13 @@ class ArticleUiModelTest {
             url = ArticleUrl("url"),
             multimediaUrlList = listOf(Multimedia("url")),
             publishedDate = Date("2020-01-01T00:00:00+09:00".toEpochMilli()),
-            isRead = false,
             section = Section.HOME,
             updatedDate = null
 
         )
 
         // Act
-        val uiModel = ArticleUiModel(story, nowTimeMillis = "2020-01-01T00:01:00+09:00".toEpochMilli())
+        val uiModel = ArticleUiModel(story, nowTimeMillis = "2020-01-01T00:01:00+09:00".toEpochMilli(), isRead = false)
 
         // Assert
         assertThat(uiModel.relativeTimeSpanText).isEqualTo("1 minute ago")

@@ -14,9 +14,6 @@ data class Article(
 
     val publishedDate: Date?,
 
-    @Deprecated("")
-    val isRead: Boolean,
-
     val section: Section,
     val updatedDate: Date?
 )

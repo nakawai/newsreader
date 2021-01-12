@@ -14,6 +14,5 @@ fun StoryResponseItem.translate(section: Section): Article = Article(
     publishedDate = this.publishedDate?.let { StoryResponseItem.DATE_FORMAT.parse(it) },
     updatedDate = this.updatedDate?.let { StoryResponseItem.DATE_FORMAT.parse(it) },
     // FIXME remove property
-    isRead = false,
     section = section
 )
