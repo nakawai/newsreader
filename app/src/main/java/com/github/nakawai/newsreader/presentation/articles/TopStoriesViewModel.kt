@@ -8,6 +8,7 @@ import com.github.nakawai.newsreader.domain.entities.Section
 import com.github.nakawai.newsreader.domain.repository.ArticleRepository
 import com.github.nakawai.newsreader.domain.repository.HistoryLocalDataSource
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 /**
  * ViewModel class for controlling the Articles Activity
@@ -24,10 +25,12 @@ class TopStoriesViewModel @ViewModelInject constructor(
 
     val topStoryUiModels: LiveData<List<ArticleUiModel>> = MediatorLiveData<List<ArticleUiModel>>().also { mediator ->
         mediator.addSource(_topStories) { articles ->
+            Timber.d("onChange articles")
             mediator.value = buildUiModels(articles, _histories.value.orEmpty())
         }
 
         mediator.addSource(_histories) { histories ->
+            Timber.d("onChange histories")
             mediator.value = buildUiModels(_topStories.value.orEmpty(), histories)
         }
     }

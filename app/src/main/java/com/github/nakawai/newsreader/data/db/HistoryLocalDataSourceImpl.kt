@@ -10,6 +10,7 @@ import com.github.nakawai.newsreader.domain.entities.History
 import com.github.nakawai.newsreader.domain.repository.HistoryLocalDataSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import timber.log.Timber
 
 class HistoryLocalDataSourceImpl(private val db: AppDatabase) : HistoryLocalDataSource {
     override suspend fun addHistory(url: ArticleUrl) = withContext(Dispatchers.IO) {
@@ -18,6 +19,7 @@ class HistoryLocalDataSourceImpl(private val db: AppDatabase) : HistoryLocalData
 
     override fun observeHistories(): LiveData<List<History>> {
         return db.historyDao().observeHistories().map { roomEntities ->
+            Timber.d("onChange map histories")
             roomEntities.map { it.translate() }
         }
     }
