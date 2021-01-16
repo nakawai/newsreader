@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import com.github.nakawai.newsreader.data.db.livedata.LiveRealmListData
 import com.github.nakawai.newsreader.data.db.realm.HistoryRealmObject
 import com.github.nakawai.newsreader.data.db.realm.translate
+import com.github.nakawai.newsreader.data.db.room.HistoryRoomEntity
 import com.github.nakawai.newsreader.domain.entities.ArticleUrl
 import com.github.nakawai.newsreader.domain.entities.History
 import com.github.nakawai.newsreader.domain.repository.HistoryLocalDataSource
@@ -33,5 +34,9 @@ class HistoryLocalDataSourceRealmImpl(private val realm: Realm) : HistoryLocalDa
                 return realmObject.translate()
             }
         }
+    }
+
+    override fun observeHistoryEntities(): LiveData<List<HistoryRoomEntity>> {
+        TODO("Not yet implemented")
     }
 }

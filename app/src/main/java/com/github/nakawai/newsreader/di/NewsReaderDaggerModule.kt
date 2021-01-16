@@ -2,6 +2,7 @@ package com.github.nakawai.newsreader.di
 
 import android.content.Context
 import androidx.room.Room
+import com.github.nakawai.newsreader.NewsReaderApplication
 import com.github.nakawai.newsreader.data.db.ArticleLocalDataSourceImpl
 import com.github.nakawai.newsreader.data.db.ConfigLocalDataSourceImpl
 import com.github.nakawai.newsreader.data.db.HistoryLocalDataSourceImpl
@@ -17,6 +18,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.realm.Realm
+import javax.inject.Singleton
 
 @Module
 @InstallIn(ActivityComponent::class)
@@ -37,11 +39,18 @@ object NewsReaderDaggerModule {
     }
 
     @Provides
+    @ApplicationContext
+    fun provideApplicationContext(app: NewsReaderApplication): Context {
+        return app.applicationContext
+    }
+
+    @Provides
     fun provideAppDataBase(@ApplicationContext context: Context): AppDatabase {
         return Room.databaseBuilder(context, AppDatabase::class.java, "newsreader.db").build()
     }
 
     @Provides
+    @Singleton
     fun provideHistoryRepository(db: AppDatabase): HistoryLocalDataSource {
         return HistoryLocalDataSourceImpl(db)
     }

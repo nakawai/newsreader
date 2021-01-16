@@ -7,4 +7,5 @@ import com.github.nakawai.newsreader.domain.entities.History
 interface HistoryLocalDataSource {
     suspend fun addHistory(url: ArticleUrl)
     fun observeHistories(): LiveData<List<History>>
+    fun observeHistoryEntities(): LiveData<List<com.github.nakawai.newsreader.data.db.room.HistoryRoomEntity>>
 }

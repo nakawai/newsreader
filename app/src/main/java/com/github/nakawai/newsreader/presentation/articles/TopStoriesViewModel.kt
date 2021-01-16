@@ -2,6 +2,7 @@ package com.github.nakawai.newsreader.presentation.articles
 
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
+import com.github.nakawai.newsreader.data.db.room.translate
 import com.github.nakawai.newsreader.domain.entities.Article
 import com.github.nakawai.newsreader.domain.entities.History
 import com.github.nakawai.newsreader.domain.entities.Section
@@ -21,17 +22,17 @@ class TopStoriesViewModel @ViewModelInject constructor(
 
     private val _topStories = _section.switchMap { repository.observeArticlesBySection(it) }
 
-    private val _histories = historyLocalDataSource.observeHistories()
+    private val _histories = historyLocalDataSource.observeHistoryEntities()
 
     val topStoryUiModels: LiveData<List<ArticleUiModel>> = MediatorLiveData<List<ArticleUiModel>>().also { mediator ->
         mediator.addSource(_topStories) { articles ->
             Timber.d("onChange articles")
-            mediator.value = buildUiModels(articles, _histories.value.orEmpty())
+            mediator.value = buildUiModels(articles, _histories.value.orEmpty().map { it.translate() })
         }
 
-        mediator.addSource(_histories) { histories ->
+        mediator.addSource(historyLocalDataSource.observeHistoryEntities()) { histories ->
             Timber.d("onChange histories")
-            mediator.value = buildUiModels(_topStories.value.orEmpty(), histories)
+            mediator.value = buildUiModels(_topStories.value.orEmpty(), histories.map { it.translate() })
         }
     }
 

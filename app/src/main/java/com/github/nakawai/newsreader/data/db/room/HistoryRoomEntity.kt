@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
+import java.time.OffsetDateTime
 
 @Entity(
     tableName = "histories",
@@ -12,7 +13,11 @@ import androidx.room.PrimaryKey
 data class HistoryRoomEntity(
     @PrimaryKey
     @ColumnInfo(name = COLUMN_URL)
-    var url: String
+    var url: String,
+
+    @ColumnInfo(name = "dateTime")
+    var dateTime: OffsetDateTime
+
 ) {
     companion object {
         const val COLUMN_URL = "url"
