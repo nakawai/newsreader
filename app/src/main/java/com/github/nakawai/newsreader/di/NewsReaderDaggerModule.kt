@@ -14,15 +14,17 @@ import com.github.nakawai.newsreader.domain.repository.HistoryLocalDataSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ActivityComponent
+import dagger.hilt.android.components.ApplicationComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.realm.Realm
+import javax.inject.Singleton
 
 @Module
-@InstallIn(ActivityComponent::class)
+@InstallIn(ApplicationComponent::class)
 object NewsReaderDaggerModule {
 
     @Provides
+    @Singleton
     fun provideArticleRepository(articleLocalDataSource: ArticleLocalDataSource): ArticleRepository {
         return ArticleRepositoryImpl(
             articleLocalDataSource,
@@ -32,21 +34,25 @@ object NewsReaderDaggerModule {
     }
 
     @Provides
+    @Singleton
     fun provideArticleLocalDataSource(realm: Realm): ArticleLocalDataSource {
         return ArticleLocalDataSourceImpl(realm)
     }
 
     @Provides
+    @Singleton
     fun provideAppDataBase(@ApplicationContext context: Context): AppDatabase {
         return Room.databaseBuilder(context, AppDatabase::class.java, "newsreader.db").build()
     }
 
     @Provides
+    @Singleton
     fun provideHistoryRepository(db: AppDatabase): HistoryLocalDataSource {
         return HistoryLocalDataSourceImpl(db)
     }
 
     @Provides
+    @Singleton
     fun provideRealm(): Realm {
         return Realm.getDefaultInstance()
     }
