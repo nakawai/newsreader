@@ -1,16 +1,17 @@
 package com.github.nakawai.newsreader.presentation.search
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.github.nakawai.newsreader.domain.model.NYTimesRepository
+import com.github.nakawai.newsreader.domain.repository.ArticleRepository
 import com.github.nakawai.newsreader.presentation.PresentationTranslator
 import com.github.nakawai.newsreader.presentation.search.list.SearchResultUiModel
 import kotlinx.coroutines.*
 
-class SearchViewModel(
-    private val model: NYTimesRepository
+class SearchViewModel @ViewModelInject constructor(
+    private val repository: ArticleRepository
 ) : ViewModel() {
 
     private val _error = MutableLiveData<Throwable>()
@@ -37,19 +38,19 @@ class SearchViewModel(
             _isLoading.value = true
             val async1 = async {
                 runCatching {
-                    model.searchArticle(query)
+                    repository.searchArticle(query)
                         .map { PresentationTranslator.translate(it) }
                 }
             }
             val async2 = async {
                 runCatching {
-                    model.searchArticle("election")
+                    repository.searchArticle("election")
                         .map { PresentationTranslator.translate(it) }
                 }
             }
             val async3 = async {
                 runCatching {
-                    model.searchArticle("home")
+                    repository.searchArticle("home")
                         .map { PresentationTranslator.translate(it) }
                 }
             }

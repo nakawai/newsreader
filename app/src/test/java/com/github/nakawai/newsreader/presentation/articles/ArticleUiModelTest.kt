@@ -2,10 +2,10 @@ package com.github.nakawai.newsreader.presentation.articles
 
 import android.app.Application
 import android.os.Build
+import com.github.nakawai.newsreader.domain.entities.Article
+import com.github.nakawai.newsreader.domain.entities.ArticleUrl
 import com.github.nakawai.newsreader.domain.entities.Multimedia
 import com.github.nakawai.newsreader.domain.entities.Section
-import com.github.nakawai.newsreader.domain.entities.Story
-import com.github.nakawai.newsreader.domain.entities.StoryUrl
 import com.google.common.truth.Truth.assertThat
 import org.junit.After
 import org.junit.Before
@@ -31,18 +31,19 @@ class ArticleUiModelTest {
     @Test
     fun `ArticleUiModel can be created from Story`() {
         // Arrange
-        val story = Story(
+        val story = Article(
             title = "title",
             storyAbstract = "storyAbstract",
-            url = StoryUrl("url"),
-            multimedia = listOf(Multimedia("url")),
+            url = ArticleUrl("url"),
+            multimediaUrlList = listOf(Multimedia("url")),
             publishedDate = Date("2020-01-01T00:00:00+09:00".toEpochMilli()),
-            isRead = false,
-            section = Section.HOME
+            section = Section.HOME,
+            updatedDate = null
+
         )
 
         // Act
-        val uiModel = ArticleUiModel(story, nowTimeMillis = "2020-01-01T00:01:00+09:00".toEpochMilli())
+        val uiModel = ArticleUiModel(story, nowTimeMillis = "2020-01-01T00:01:00+09:00".toEpochMilli(), isRead = false)
 
         // Assert
         assertThat(uiModel.relativeTimeSpanText).isEqualTo("1 minute ago")

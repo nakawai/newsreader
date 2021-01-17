@@ -7,10 +7,10 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.github.nakawai.newsreader.databinding.ListItemSearchResultBinding
-import com.github.nakawai.newsreader.domain.entities.StoryUrl
+import com.github.nakawai.newsreader.domain.entities.ArticleUrl
 
 // ListView adapter class
-class SearchResultAdapter(private val onItemClick: (StoryUrl) -> Unit) :
+class SearchResultAdapter(private val onItemClick: (ArticleUrl) -> Unit) :
     ListAdapter<SearchResultUiModel, SearchResultAdapter.ViewHolder>(DIFF_CALLBACK) {
 
     class ViewHolder(var binding: ListItemSearchResultBinding, val progressDrawable: CircularProgressDrawable) : RecyclerView.ViewHolder(binding.root)

@@ -27,7 +27,7 @@
         android:paddingTop="0dp"
         android:paddingBottom="0dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:context=".presentation.articles.ArticlesActivity">
+        tools:context=".presentation.articles.TopStoriesActivity">
 
 
         <androidx.recyclerview.widget.RecyclerView

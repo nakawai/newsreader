@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".presentation.articles.ArticlesActivity">
+    tools:context=".presentation.articles.TopStoriesActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -27,7 +27,7 @@
         android:paddingTop="0dp"
         android:paddingBottom="0dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:context=".presentation.articles.ArticlesActivity">
+        tools:context=".presentation.articles.TopStoriesActivity">
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/refresh_view"

@@ -7,15 +7,17 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import com.github.nakawai.newsreader.databinding.FragmentPlaceholderBinding
-import com.github.nakawai.newsreader.domain.entities.StoryUrl
+import com.github.nakawai.newsreader.domain.entities.ArticleUrl
 import com.github.nakawai.newsreader.presentation.search.SearchViewModel
-import org.koin.android.viewmodel.ext.android.sharedViewModel
-import org.koin.android.viewmodel.ext.android.viewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * A placeholder fragment containing a simple view.
  */
+@AndroidEntryPoint
 class PlaceholderFragment : Fragment() {
 
     private lateinit var adapter: SearchResultAdapter
@@ -25,8 +27,8 @@ class PlaceholderFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    private val searchViewModel: SearchViewModel by sharedViewModel()
-    private val viewModel: PlaceholderViewModel by viewModel()
+    private val searchViewModel: SearchViewModel by activityViewModels()
+    private val viewModel: PlaceholderViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,7 +45,7 @@ class PlaceholderFragment : Fragment() {
         binding.recyclerView.adapter = adapter
     }
 
-    private fun onItemClick(url: StoryUrl) {
+    private fun onItemClick(url: ArticleUrl) {
         Toast.makeText(requireContext(), "url:${url.value}", Toast.LENGTH_SHORT).show()
     }
 

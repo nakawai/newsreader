@@ -4,19 +4,21 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.github.nakawai.newsreader.R
 import com.github.nakawai.newsreader.databinding.ActivityDetailsBinding
-import com.github.nakawai.newsreader.domain.entities.StoryUrl
-import org.koin.android.viewmodel.ext.android.viewModel
+import com.github.nakawai.newsreader.domain.entities.ArticleUrl
+import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.*
 
+@AndroidEntryPoint
 class DetailsActivity : AppCompatActivity() {
     private val outputDateFormat = SimpleDateFormat("MM-dd-yyyy", Locale.US)
 
-    private val viewModel: DetailsViewModel by viewModel()
+    private val viewModel: DetailsViewModel by viewModels()
     private lateinit var binding: ActivityDetailsBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,10 +35,10 @@ class DetailsActivity : AppCompatActivity() {
     }
 
     private fun observeViewModel() {
-        viewModel.story.observe(this, Observer { article ->
+        viewModel.articleUiModel.observe(this, Observer { article ->
             binding.toolbar.title = article.title
             binding.detailsView.text = article.storyAbstract
-            binding.dateView.text = article.publishedDate?.let { outputDateFormat.format(it) }
+            binding.dateView.text = article.relativeTimeSpanText
 
             if (article.isRead) {
                 binding.readView.setText(R.string.read)
@@ -47,7 +49,7 @@ class DetailsActivity : AppCompatActivity() {
             }
         })
 
-        viewModel.isLoading.observe(this, Observer { isLoading ->
+        viewModel.isLoading.observe(this, { isLoading ->
             binding.loaderView.visibility = if (isLoading) View.VISIBLE else View.GONE
         })
     }
@@ -65,7 +67,7 @@ class DetailsActivity : AppCompatActivity() {
 
     companion object {
         private const val KEY_STORY_URL = "KEY_STORY_URL"
-        fun getIntent(context: Context, storyUrl: StoryUrl): Intent {
+        fun getIntent(context: Context, storyUrl: ArticleUrl): Intent {
             val intent = Intent(context, DetailsActivity::class.java)
             intent.putExtra(KEY_STORY_URL, storyUrl)
             return intent

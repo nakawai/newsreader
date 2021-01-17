@@ -10,15 +10,12 @@ import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.github.nakawai.newsreader.R
 import com.github.nakawai.newsreader.databinding.ListItemArticleBinding
-import com.github.nakawai.newsreader.domain.entities.StoryUrl
+import com.github.nakawai.newsreader.domain.entities.ArticleUrl
 
 // ListView adapter class
-class ArticleListAdapter(private val listener: OnItemClickListener) : ListAdapter<ArticleUiModel, ArticleListAdapter.ViewHolder>(DIFF_CALLBACK) {
+class ArticleListAdapter(private val onItemClick: (story: ArticleUrl) -> Unit) :
+    ListAdapter<ArticleUiModel, ArticleListAdapter.ViewHolder>(DIFF_CALLBACK) {
 
-
-    interface OnItemClickListener {
-        fun onItemClick(story: StoryUrl)
-    }
 
     class ViewHolder(var binding: ListItemArticleBinding, val progressDrawable: CircularProgressDrawable) : RecyclerView.ViewHolder(binding.root)
 
@@ -31,7 +28,7 @@ class ArticleListAdapter(private val listener: OnItemClickListener) : ListAdapte
         val viewHolder = ViewHolder(binding, progressDrawable)
         binding.root.setOnClickListener {
             val item = getItem(viewHolder.adapterPosition)
-            listener.onItemClick(item.url)
+            onItemClick(item.url)
         }
 
 
@@ -50,10 +47,10 @@ class ArticleListAdapter(private val listener: OnItemClickListener) : ListAdapte
         val unreadColor = ContextCompat.getColor(context, android.R.color.primary_text_light)
         holder.binding.text.setTextColor(if (uiModel.isRead) readColor else unreadColor)
 
-        if (uiModel.multimedia.isNotEmpty()) {
+        if (uiModel.multimediaUrl.isNotEmpty()) {
 
             Glide.with(holder.binding.root)
-                .load(uiModel.multimedia[0].url)
+                .load(uiModel.multimediaUrl[0].url)
                 .placeholder(holder.progressDrawable)
                 .error(R.drawable.placeholder)
                 .centerCrop()

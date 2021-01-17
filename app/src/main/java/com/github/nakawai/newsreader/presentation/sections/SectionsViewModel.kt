@@ -7,10 +7,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.github.nakawai.newsreader.domain.entities.Section
-import com.github.nakawai.newsreader.domain.model.NYTimesRepository
+import com.github.nakawai.newsreader.domain.repository.ArticleRepository
 
 class SectionsViewModel @ViewModelInject constructor(
-    private val model: NYTimesRepository,
+    private val repository: ArticleRepository,
     @Assisted private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
@@ -18,6 +18,6 @@ class SectionsViewModel @ViewModelInject constructor(
     val sections: LiveData<List<Section>> = _sections
 
     fun start() {
-        _sections.value = model.loadSections()
+        _sections.value = repository.loadSections()
     }
 }

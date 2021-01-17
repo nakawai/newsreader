@@ -29,12 +29,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".presentation.articles.ArticlesActivity"
+            android:name=".presentation.articles.TopStoriesActivity"
             android:launchMode="singleTop"
             android:parentActivityName=".presentation.sections.SectionsActivity" />
         <activity
             android:name=".presentation.details.DetailsActivity"
-            android:parentActivityName=".presentation.articles.ArticlesActivity" />
+            android:parentActivityName=".presentation.articles.TopStoriesActivity" />
     </application>
 
 </manifest>
