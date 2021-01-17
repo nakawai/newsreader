@@ -6,7 +6,7 @@ import com.github.nakawai.newsreader.domain.entities.ArticleUrl
 import com.github.nakawai.newsreader.domain.entities.Section
 
 interface ArticleRepository {
-    suspend fun loadTopStoriesBySection(section: Section, forceReload: Boolean): List<Article>
+    suspend fun loadTopStoriesBySection(section: Section, forceReload: Boolean = false): List<Article>
 
     @Deprecated("deprecated", ReplaceWith("HistoryRepository#addHistory"))
     fun updateStoryReadState(articleUrl: ArticleUrl, read: Boolean)

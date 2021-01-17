@@ -20,7 +20,7 @@ import org.junit.Test
  * @see <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-test/">kotlinx-coroutines-test</a>
  */
 @ExperimentalCoroutinesApi
-class NYTimesModelImplTest {
+class ArticleRepositoryImplTest {
 
     private val mainThreadSurrogate = newSingleThreadContext("UI Thread")
 
@@ -52,11 +52,11 @@ class NYTimesModelImplTest {
     fun `FetchTopStories should NOT be called when canCallApi and forceReload are false`() {
         runBlocking {
             // Arrange
-            val model = ArticleRepositoryImpl(local, remote, configLocal)
+            val repository = ArticleRepositoryImpl(local, remote, configLocal)
             every { configLocal.canCallApi(any()) } returns false
 
             // Act
-            model.loadTopStoriesBySection(Section.HOME)
+            repository.loadTopStoriesBySection(Section.HOME)
 
             // Assert
             coVerify(exactly = 0) { remote.fetchTopStories(any()) }
