@@ -18,6 +18,9 @@ coverage:
                 # Choose a minimum coverage ratio that the commit must meet to be considered a success.
                 target: auto
                 threshold: 0%
+            domain:
+                target: 90%
+                threshold: 0%
             patch:
                 # basic settings
                 # Choose a minimum coverage ratio that the commit must meet to be considered a success.
