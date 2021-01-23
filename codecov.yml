@@ -1,12 +1,32 @@
 codecov:
+    # Should Codecov wait for all other statuses to pass before sending its status.
     require_ci_to_pass: yes
 
 coverage:
+    # What precision do you want the coverage value to be
     precision: 2
+    # Which direction to you want to round the coverage value
     round: down
+    # The value range where you want the value to be green
     range: "70...100"
 
+
+    status:
+        project:
+            default:
+                # basic settings
+                # Choose a minimum coverage ratio that the commit must meet to be considered a success.
+                target: auto
+                threshold: 0%
+            patch:
+                # basic settings
+                # Choose a minimum coverage ratio that the commit must meet to be considered a success.
+                target: auto
+                threshold: 0%
+
+
 parsers:
+    # Controls how Codecov parses branch coverage in gcov reports. The coverage much exist in the uploaded report for us to parse it.
     gcov:
         branch_detection:
             conditional: yes
@@ -14,7 +34,12 @@ parsers:
             method: no
             macro: no
 
+# To disable the comment, simply set the comment to false in your codecov.yml, as shown below.
+# comment: false
 comment:
+    # Customize your comment layout by choosing the order and types of components to include. Below is an example of a layout for reach, diff, flags, files.
     layout: "reach,diff,flags,files,footer"
+    # Choose the way Codecov submits comments in your pull requests.
     behavior: default
+    # You may desire to change when the comment is posted, if any changes are discovered in coverage.
     require_changes: no
