@@ -4,5 +4,5 @@ import com.github.nakawai.newsreader.domain.entities.ArticleUrl
 import com.github.nakawai.newsreader.domain.entities.History
 
 fun HistoryRoomEntity.translate(): History {
-    return History(ArticleUrl(this.url ?: throw IllegalStateException()))
+    return History(ArticleUrl(this.url))
 }
