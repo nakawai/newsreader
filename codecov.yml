@@ -18,9 +18,16 @@ coverage:
                 # Choose a minimum coverage ratio that the commit must meet to be considered a success.
                 target: auto
                 threshold: 0%
-            domain:
+            domain_cov:
                 target: 90%
                 threshold: 0%
+                flags:
+                    - domain_flag
+            app_cov:
+                target: 90%
+                threshold: 0%
+                flags:
+                    - app_flag
             patch:
                 # basic settings
                 # Choose a minimum coverage ratio that the commit must meet to be considered a success.
@@ -46,3 +53,12 @@ comment:
     behavior: default
     # You may desire to change when the comment is posted, if any changes are discovered in coverage.
     require_changes: no
+
+flags:
+    domain_flag:
+        paths:
+            - domain
+    app_flag:
+        paths:
+            - app
+    -
