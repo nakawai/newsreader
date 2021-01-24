@@ -13,26 +13,13 @@ coverage:
 
     status:
         project:
-            default:
-                # basic settings
-                # Choose a minimum coverage ratio that the commit must meet to be considered a success.
-                target: auto
-                threshold: 0%
+            default: off
             domain_cov:
-                target: 90%
-                threshold: 0%
                 flags:
                     - domain_flag
             app_cov:
-                target: 90%
-                threshold: 0%
                 flags:
                     - app_flag
-            patch:
-                # basic settings
-                # Choose a minimum coverage ratio that the commit must meet to be considered a success.
-                target: auto
-                threshold: 0%
 
 
 parsers:
@@ -57,8 +44,8 @@ comment:
 flags:
     domain_flag:
         paths:
-            - domain/*
+            - domain/
     app_flag:
         paths:
-            - app/*
+            - app/
     -
