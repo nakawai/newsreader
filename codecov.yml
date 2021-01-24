@@ -16,11 +16,11 @@ coverage:
             default: off
             domain_cov:
                 flags:
-                    - domain_flag
+                    - domain_cov
             app_cov:
                 target: 89%
                 flags:
-                    - app_flag
+                    - app_cov
 
 
 parsers:
@@ -43,10 +43,10 @@ comment:
     require_changes: no
 
 flags:
-    domain_flag:
+    domain_cov:
         paths:
             - domain/
-    app_flag:
+    app_cov:
         paths:
             - app/
-    -
+        -
