@@ -18,6 +18,7 @@ coverage:
                 flags:
                     - domain_flag
             app_cov:
+                target: 89%
                 flags:
                     - app_flag
 
