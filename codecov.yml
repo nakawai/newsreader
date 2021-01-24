@@ -49,4 +49,3 @@ flags:
     app_cov:
         paths:
             - app/
-        -
