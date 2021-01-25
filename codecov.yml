@@ -45,7 +45,7 @@ comment:
 flags:
     domain_cov:
         paths:
-            - domain/
+            - domain/*
     app_cov:
         paths:
-            - app/
+            - app/*
