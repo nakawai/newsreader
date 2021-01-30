@@ -1,6 +1,7 @@
 package com.github.nakawai.newsreader.data.network
 
 
+import androidx.annotation.VisibleForTesting
 import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.github.nakawai.newsreader.data.network.response.articlesearch.translate
 import com.github.nakawai.newsreader.data.network.response.topstories.StoryResponseItem
@@ -15,10 +16,7 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
+import retrofit2.*
 import retrofit2.converter.moshi.MoshiConverterFactory
 import timber.log.Timber
 import kotlin.coroutines.resume
@@ -29,11 +27,23 @@ import kotlin.coroutines.suspendCoroutine
  * Class that handles network requests for the New York Times API
  */
 class ArticleRemoteDataSourceImpl : ArticleRemoteDataSource {
-    private val nyTimesApiService: NYTimesApiService
+    @VisibleForTesting
+    val nyTimesApiService: NYTimesApiService
 
     init {
         val okHttpClient = OkHttpClient.Builder()
             .addNetworkInterceptor(StethoInterceptor())
+            .addNetworkInterceptor { chain ->
+                var request = chain.request()
+                val tag = request.tag(Invocation::class.java)
+                if (tag != null && tag.method().getAnnotation(NYTimesApi::class.java) != null) {
+                    request = request.newBuilder().url(
+                        request.url().newBuilder().addQueryParameter("api-key", API_KEY).build()
+                    ).build()
+                }
+
+                chain.proceed(request)
+            }
             .build()
 
         val moshi = Moshi.Builder()
@@ -52,7 +62,7 @@ class ArticleRemoteDataSourceImpl : ArticleRemoteDataSource {
     override suspend fun fetchTopStories(section: Section): List<Article> = withContext(Dispatchers.IO) {
         val sectionKey = section.value
 
-        val response = nyTimesApiService.topStories(sectionKey, API_KEY)
+        val response = nyTimesApiService.topStories(sectionKey)
 
         if (response.isSuccessful) {
             Timber.i("Success - Data received. section:${sectionKey} body:${response.body()}")
@@ -105,3 +115,5 @@ class ArticleRemoteDataSourceImpl : ArticleRemoteDataSource {
 
 
 }
+
+annotation class NYTimesApi
