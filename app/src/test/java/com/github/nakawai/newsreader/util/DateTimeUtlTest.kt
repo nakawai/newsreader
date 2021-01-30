@@ -6,7 +6,6 @@ import org.junit.Before
 import org.junit.Test
 import java.time.ZoneId
 import java.time.ZoneOffset
-import java.util.*
 
 class DateTimeUtlTest {
 
@@ -68,26 +67,6 @@ class DateTimeUtlTest {
         assertThat(actual.year).isEqualTo(2020)
         assertThat(actual.monthValue).isEqualTo(10)
         assertThat(actual.dayOfMonth).isEqualTo(3)
-    }
-
-    @Test
-    fun hoge() {
-
-        // Act
-        val tokyo = TimeZone.getTimeZone("Asia/Tokyo")
-        val utc = TimeZone.getTimeZone("UTC")
-
-
-        val c1 = Calendar.getInstance(tokyo).also {
-            it.set(2020, 1, 1, 0, 0, 0)
-        }
-
-        val c2 = Calendar.getInstance(utc).also {
-            it.set(2020, 1, 1, 0, 0, 0)
-        }
-        // Assert
-        assertThat(c1.time.time).isEqualTo(c2.time.time)
-
     }
 
 }
