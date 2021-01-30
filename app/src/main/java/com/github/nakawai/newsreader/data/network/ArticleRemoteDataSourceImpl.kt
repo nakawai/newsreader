@@ -75,7 +75,7 @@ class ArticleRemoteDataSourceImpl : ArticleRemoteDataSource {
 
     override suspend fun fetchTopStoriesWithCall(section: Section): List<StoryResponseItem> = suspendCoroutine { continuation ->
         val sectionKey = section.value
-        val callTopStories = nyTimesApiService.callTopStories(sectionKey, API_KEY)
+        val callTopStories = nyTimesApiService.callTopStories(sectionKey)
 
         callTopStories.enqueue(object : Callback<TopStoriesResponse> {
             override fun onResponse(call: Call<TopStoriesResponse>, response: Response<TopStoriesResponse>) {
@@ -100,7 +100,7 @@ class ArticleRemoteDataSourceImpl : ArticleRemoteDataSource {
     }
 
     override suspend fun searchArticle(query: String): List<Article> = withContext(Dispatchers.IO) {
-        val response = nyTimesApiService.articleSearch(query, API_KEY)
+        val response = nyTimesApiService.articleSearch(query)
 
         if (response.isSuccessful) {
             return@withContext response.body()!!.response!!.docs!!.map { it.translate() }
