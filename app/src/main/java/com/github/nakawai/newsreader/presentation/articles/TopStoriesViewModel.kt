@@ -7,7 +7,7 @@ import com.github.nakawai.newsreader.domain.entities.Article
 import com.github.nakawai.newsreader.domain.entities.History
 import com.github.nakawai.newsreader.domain.entities.Section
 import com.github.nakawai.newsreader.domain.repository.ArticleRepository
-import com.github.nakawai.newsreader.domain.repository.HistoryLocalDataSource
+import com.github.nakawai.newsreader.domain.repository.HistoryRepository
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
@@ -15,14 +15,14 @@ import timber.log.Timber
  * ViewModel class for controlling the Articles Activity
  */
 class TopStoriesViewModel @ViewModelInject constructor(
-    private val repository: ArticleRepository,
-    private val historyLocalDataSource: HistoryLocalDataSource
+    private val articleRepository: ArticleRepository,
+    private val historyRepository: HistoryRepository
 ) : ViewModel() {
     private val _section = MutableLiveData<Section>()
 
-    private val _topStories = _section.switchMap { repository.observeArticlesBySection(it) }
+    private val _topStories = _section.switchMap { articleRepository.observeArticlesBySection(it) }
 
-    private val _histories = historyLocalDataSource.observeHistoryEntities()
+    private val _histories = historyRepository.observeHistoryEntities()
 
     val topStoryUiModels: LiveData<List<ArticleUiModel>> = MediatorLiveData<List<ArticleUiModel>>().also { mediator ->
         mediator.addSource(_topStories) { articles ->
@@ -30,7 +30,7 @@ class TopStoriesViewModel @ViewModelInject constructor(
             mediator.value = buildUiModels(articles, _histories.value.orEmpty().map { it.translate() })
         }
 
-        mediator.addSource(historyLocalDataSource.observeHistoryEntities()) { histories ->
+        mediator.addSource(historyRepository.observeHistoryEntities()) { histories ->
             Timber.d("onChange histories")
             mediator.value = buildUiModels(_topStories.value.orEmpty(), histories.map { it.translate() })
         }
@@ -59,7 +59,7 @@ class TopStoriesViewModel @ViewModelInject constructor(
 
         viewModelScope.launch {
             runCatching {
-                repository.updateTopStoriesBySection(section)
+                articleRepository.updateTopStoriesBySection(section)
             }.onSuccess {
                 // NOP
             }.onFailure { error ->

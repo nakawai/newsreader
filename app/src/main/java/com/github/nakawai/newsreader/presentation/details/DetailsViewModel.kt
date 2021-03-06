@@ -4,7 +4,7 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.github.nakawai.newsreader.domain.entities.ArticleUrl
 import com.github.nakawai.newsreader.domain.repository.ArticleRepository
-import com.github.nakawai.newsreader.domain.repository.HistoryLocalDataSource
+import com.github.nakawai.newsreader.domain.repository.HistoryRepository
 import com.github.nakawai.newsreader.presentation.articles.ArticleUiModel
 import kotlinx.coroutines.*
 
@@ -13,7 +13,7 @@ import kotlinx.coroutines.*
  */
 class DetailsViewModel @ViewModelInject constructor(
     private val repository: ArticleRepository,
-    private val historyLocalDataSource: HistoryLocalDataSource
+    private val historyRepository: HistoryRepository
 ) : ViewModel() {
     private var _storyUrl = MutableLiveData<ArticleUrl>()
 
@@ -26,7 +26,7 @@ class DetailsViewModel @ViewModelInject constructor(
         repository.observeArticle(articleUrl = it)
     }
 
-    private val _histories = historyLocalDataSource.observeHistories()
+    private val _histories = historyRepository.observeHistories()
 
     val articleUiModel: LiveData<ArticleUiModel> = MediatorLiveData<ArticleUiModel>().also { uiModel ->
         uiModel.addSource(_article) { article ->
@@ -49,7 +49,7 @@ class DetailsViewModel @ViewModelInject constructor(
                 // Mark story as read if screen is visible for 2 seconds
                 delay(2000)
                 //repository.updateStoryReadState(it, read = true)
-                historyLocalDataSource.addHistory(it)
+                historyRepository.addHistory(it)
             }
 
         }

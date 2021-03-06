@@ -8,13 +8,13 @@ import com.github.nakawai.newsreader.data.db.room.HistoryRoomEntity
 import com.github.nakawai.newsreader.data.db.room.translate
 import com.github.nakawai.newsreader.domain.entities.ArticleUrl
 import com.github.nakawai.newsreader.domain.entities.History
-import com.github.nakawai.newsreader.domain.repository.HistoryLocalDataSource
+import com.github.nakawai.newsreader.domain.repository.HistoryRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import timber.log.Timber
 import java.time.OffsetDateTime
 
-class HistoryLocalDataSourceImpl(private val db: AppDatabase) : HistoryLocalDataSource {
+class HistoryRepositoryImpl(private val db: AppDatabase) : HistoryRepository {
     override suspend fun addHistory(url: ArticleUrl) = withContext(Dispatchers.IO) {
         db.historyDao().insertAll(HistoryRoomEntity(url = url.value, OffsetDateTime.now()))
     }
