@@ -65,7 +65,7 @@ class TopStoriesViewModelTest {
         val viewModel = TopStoriesViewModel(articleRepository, historyRepository)
 
         // Act
-        viewModel.start(Section.HOME)
+        viewModel.loadArticles(Section.HOME)
         mutableLiveData.value = listOf(mockk(relaxed = true))
 
         // Assert

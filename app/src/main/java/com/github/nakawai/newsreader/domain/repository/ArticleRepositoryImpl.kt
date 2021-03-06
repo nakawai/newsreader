@@ -37,14 +37,15 @@ class ArticleRepositoryImpl(
     /**
      * Loads the news feed as well as all future updates.
      */
-    override suspend fun updateTopStoriesBySection(section: Section) {
+    override suspend fun loadTopStoriesBySectionIfNeed(section: Section, forceReload: Boolean) {
         // Start loading data from the network if needed
         // It will put all data into Realm
+        if (forceReload || config.canCallApi(section)) {
+            val response = remote.fetchTopStories(section)
 
-        val response = remote.fetchTopStories(section)
-
-        local.saveTopStories(response)
-        config.saveLastNetworkRequestTime(section)
+            local.saveTopStories(response)
+            config.saveLastNetworkRequestTime(section)
+        }
     }
 
 

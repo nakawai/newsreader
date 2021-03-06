@@ -17,9 +17,21 @@ class TopStoriesViewModel @ViewModelInject constructor(
     private val articleRepository: ArticleRepository,
     private val historyRepository: HistoryRepository
 ) : ViewModel() {
-    private val _section = MutableLiveData<Section>()
+    private lateinit var section: Section
 
-    private val _topStories = _section.switchMap { articleRepository.observeArticlesBySection(it) }
+
+    private val _forceReload = MutableLiveData(false)
+
+    private val _topStories = _forceReload.switchMap { forceReload ->
+
+        viewModelScope.launch {
+            _isLoading.value = true
+            articleRepository.loadTopStoriesBySectionIfNeed(section, forceReload)
+            _isLoading.value = false
+        }
+
+        articleRepository.observeArticlesBySection(section)
+    }
 
     private val _histories = historyRepository.observeHistories()
 
@@ -48,25 +60,14 @@ class TopStoriesViewModel @ViewModelInject constructor(
     private val _error = MutableLiveData<Throwable>()
     val error: LiveData<Throwable> = _error
 
-    fun start(section: Section) {
-        _section.value = section
+    fun loadArticles(section: Section) {
+        this.section = section
+        _forceReload.value = false
+
     }
 
     fun refresh() {
-        val section = _section.value ?: return
-        _isLoading.value = true
-
-        viewModelScope.launch {
-            runCatching {
-                articleRepository.updateTopStoriesBySection(section)
-            }.onSuccess {
-                // NOP
-            }.onFailure { error ->
-                _error.value = error
-            }
-
-            _isLoading.value = false
-        }
+        _forceReload.value = true
     }
 
 }

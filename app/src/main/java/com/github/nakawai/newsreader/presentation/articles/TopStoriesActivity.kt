@@ -51,7 +51,7 @@ class TopStoriesActivity : AppCompatActivity() {
 
         observeViewModel()
 
-        viewModel.start(section)
+        viewModel.loadArticles(section)
         //viewModel.loadData(force = false)
 
     }
