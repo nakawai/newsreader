@@ -14,7 +14,7 @@ import com.github.nakawai.newsreader.domain.entities.ArticleUrl
 
 // ListView adapter class
 class ArticleListAdapter(private val onItemClick: (story: ArticleUrl) -> Unit) :
-    ListAdapter<ArticleUiModel, ArticleListAdapter.ViewHolder>(DIFF_CALLBACK) {
+    ListAdapter<ArticleUiModel, ArticleListAdapter.ViewHolder>(DiffCallback) {
 
 
     class ViewHolder(var binding: ListItemArticleBinding, val progressDrawable: CircularProgressDrawable) : RecyclerView.ViewHolder(binding.root)
@@ -63,15 +63,17 @@ class ArticleListAdapter(private val onItemClick: (story: ArticleUrl) -> Unit) :
         }
 
     }
+
+    private object DiffCallback : DiffUtil.ItemCallback<ArticleUiModel>() {
+        override fun areItemsTheSame(oldItem: ArticleUiModel, newItem: ArticleUiModel): Boolean {
+            return oldItem.url == newItem.url
+        }
+
+        override fun areContentsTheSame(oldItem: ArticleUiModel, newItem: ArticleUiModel): Boolean {
+            return oldItem == newItem
+        }
+
+    }
 }
 
-private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ArticleUiModel>() {
-    override fun areItemsTheSame(oldItem: ArticleUiModel, newItem: ArticleUiModel): Boolean {
-        return oldItem.url == newItem.url
-    }
 
-    override fun areContentsTheSame(oldItem: ArticleUiModel, newItem: ArticleUiModel): Boolean {
-        return oldItem == newItem
-    }
-
-}
