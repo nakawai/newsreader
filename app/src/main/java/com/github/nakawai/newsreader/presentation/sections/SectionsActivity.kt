@@ -1,6 +1,5 @@
 package com.github.nakawai.newsreader.presentation.sections
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -9,8 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.github.nakawai.newsreader.R
 import com.github.nakawai.newsreader.databinding.ActivitySectionsBinding
+import com.github.nakawai.newsreader.presentation.ItemListDialogFragment
 import com.github.nakawai.newsreader.presentation.articles.TopStoriesActivity
-import com.github.nakawai.newsreader.presentation.search.SearchActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -50,7 +49,8 @@ class SectionsActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId) {
             R.id.menu_item_search -> {
-                startActivity(Intent(this, SearchActivity::class.java))
+                //startActivity(Intent(this, SearchActivity::class.java))
+                ItemListDialogFragment.newInstance(5).show(supportFragmentManager, "hoge")
                 true
             }
             else -> {
