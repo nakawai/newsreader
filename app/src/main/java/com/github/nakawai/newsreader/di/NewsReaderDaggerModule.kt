@@ -4,13 +4,13 @@ import android.content.Context
 import androidx.room.Room
 import com.github.nakawai.newsreader.data.db.ArticleLocalDataSourceImpl
 import com.github.nakawai.newsreader.data.db.ConfigLocalDataSourceImpl
-import com.github.nakawai.newsreader.data.db.HistoryLocalDataSourceImpl
+import com.github.nakawai.newsreader.data.db.HistoryRepositoryImpl
 import com.github.nakawai.newsreader.data.db.room.AppDatabase
 import com.github.nakawai.newsreader.data.network.ArticleRemoteDataSourceImpl
 import com.github.nakawai.newsreader.domain.datasource.ArticleLocalDataSource
 import com.github.nakawai.newsreader.domain.repository.ArticleRepository
 import com.github.nakawai.newsreader.domain.repository.ArticleRepositoryImpl
-import com.github.nakawai.newsreader.domain.repository.HistoryLocalDataSource
+import com.github.nakawai.newsreader.domain.repository.HistoryRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -47,8 +47,8 @@ object NewsReaderDaggerModule {
 
     @Provides
     @Singleton
-    fun provideHistoryRepository(db: AppDatabase): HistoryLocalDataSource {
-        return HistoryLocalDataSourceImpl(db)
+    fun provideHistoryRepository(db: AppDatabase): HistoryRepository {
+        return HistoryRepositoryImpl(db)
     }
 
     @Provides
