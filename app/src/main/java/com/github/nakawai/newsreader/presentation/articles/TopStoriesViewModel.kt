@@ -1,29 +1,29 @@
 package com.github.nakawai.newsreader.presentation.articles
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.github.nakawai.newsreader.domain.entities.Article
 import com.github.nakawai.newsreader.domain.entities.History
 import com.github.nakawai.newsreader.domain.entities.Section
 import com.github.nakawai.newsreader.domain.repository.ArticleRepository
 import com.github.nakawai.newsreader.domain.repository.HistoryRepository
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedFactory
+import dagger.assisted.AssistedInject
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
-import timber.log.Timber
 
 /**
  * ViewModel class for controlling the Articles Activity
  */
-class TopStoriesViewModel @ViewModelInject constructor(
+class TopStoriesViewModel @AssistedInject constructor(
     private val articleRepository: ArticleRepository,
-    private val historyRepository: HistoryRepository
+    historyRepository: HistoryRepository,
+    @Assisted private val section: Section
 ) : ViewModel() {
-    private lateinit var section: Section
-
-
     private val _forceReload = MutableLiveData(false)
 
     private val _topStories = _forceReload.switchMap { forceReload ->
-
         viewModelScope.launch {
             _isLoading.value = true
             articleRepository.loadTopStoriesBySectionIfNeed(section, forceReload)
@@ -31,20 +31,13 @@ class TopStoriesViewModel @ViewModelInject constructor(
         }
 
         articleRepository.observeArticlesBySection(section)
-    }
+    }.asFlow()
 
-    private val _histories = historyRepository.observeHistories().asLiveData()
+    private val _histories = historyRepository.observeHistories()
 
-    val topStoryUiModels: LiveData<List<ArticleUiModel>> = MediatorLiveData<List<ArticleUiModel>>().also { mediator ->
-        mediator.addSource(_topStories) { articles ->
-            Timber.d("onChange articles")
-            mediator.value = buildUiModels(articles, _histories.value.orEmpty().map { it })
-        }
 
-        mediator.addSource(historyRepository.observeHistories().asLiveData()) { histories ->
-            Timber.d("onChange histories")
-            mediator.value = buildUiModels(_topStories.value.orEmpty(), histories.map { it })
-        }
+    val topStoryUiModels: Flow<List<ArticleUiModel>> = combine(_topStories, _histories) { topStories, histories ->
+        buildUiModels(topStories, histories)
     }
 
     private fun buildUiModels(articles: List<Article>, history: List<History>): List<ArticleUiModel> {
@@ -60,14 +53,29 @@ class TopStoriesViewModel @ViewModelInject constructor(
     private val _error = MutableLiveData<Throwable>()
     val error: LiveData<Throwable> = _error
 
-    fun loadArticles(section: Section) {
-        this.section = section
+    fun loadArticles() {
         _forceReload.value = false
-
     }
 
     fun refresh() {
         _forceReload.value = true
     }
 
+    companion object {
+        fun provideFactory(
+            assistedFactory: TopStoriesViewModelAssistedFactory,
+            section: Section
+        ): ViewModelProvider.Factory = object : ViewModelProvider.Factory {
+            @Suppress("UNCHECKED_CAST")
+            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+                return assistedFactory.create(section) as T
+            }
+        }
+    }
+
+}
+
+@AssistedFactory
+interface TopStoriesViewModelAssistedFactory {
+    fun create(section: Section): TopStoriesViewModel
 }
