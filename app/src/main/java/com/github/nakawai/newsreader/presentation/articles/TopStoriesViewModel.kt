@@ -33,7 +33,7 @@ class TopStoriesViewModel @ViewModelInject constructor(
         articleRepository.observeArticlesBySection(section)
     }
 
-    private val _histories = historyRepository.observeHistories()
+    private val _histories = historyRepository.observeHistories().asLiveData()
 
     val topStoryUiModels: LiveData<List<ArticleUiModel>> = MediatorLiveData<List<ArticleUiModel>>().also { mediator ->
         mediator.addSource(_topStories) { articles ->
@@ -41,7 +41,7 @@ class TopStoriesViewModel @ViewModelInject constructor(
             mediator.value = buildUiModels(articles, _histories.value.orEmpty().map { it })
         }
 
-        mediator.addSource(historyRepository.observeHistories()) { histories ->
+        mediator.addSource(historyRepository.observeHistories().asLiveData()) { histories ->
             Timber.d("onChange histories")
             mediator.value = buildUiModels(_topStories.value.orEmpty(), histories.map { it })
         }

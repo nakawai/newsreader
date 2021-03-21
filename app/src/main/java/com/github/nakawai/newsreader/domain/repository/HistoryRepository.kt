@@ -1,11 +1,10 @@
 package com.github.nakawai.newsreader.domain.repository
 
-import androidx.lifecycle.LiveData
 import com.github.nakawai.newsreader.domain.entities.ArticleUrl
 import com.github.nakawai.newsreader.domain.entities.History
+import kotlinx.coroutines.flow.Flow
 
 interface HistoryRepository {
     suspend fun addHistory(url: ArticleUrl)
-    fun observeHistories(): LiveData<List<History>>
-    fun observeHistoryEntities(): LiveData<List<com.github.nakawai.newsreader.data.db.room.HistoryRoomEntity>>
+    fun observeHistories(): Flow<List<History>>
 }

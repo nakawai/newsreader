@@ -1,10 +1,10 @@
 package com.github.nakawai.newsreader.data.db.room
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface HistoryDao {
@@ -12,5 +12,5 @@ interface HistoryDao {
     fun insertAll(vararg histories: HistoryRoomEntity)
 
     @Query("SELECT * FROM histories")
-    fun observeHistories(): LiveData<List<HistoryRoomEntity>>
+    fun observeHistories(): Flow<List<HistoryRoomEntity>>
 }
