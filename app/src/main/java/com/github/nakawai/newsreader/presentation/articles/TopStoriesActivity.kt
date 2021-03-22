@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.github.nakawai.newsreader.R
 import com.github.nakawai.newsreader.databinding.ActivityArticlesBinding
@@ -15,10 +15,18 @@ import com.github.nakawai.newsreader.presentation.ErrorDialogFragment
 import com.github.nakawai.newsreader.presentation.details.DetailsActivity
 import com.github.nakawai.newsreader.presentation.translate
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class TopStoriesActivity : AppCompatActivity() {
-    private val viewModel: TopStoriesViewModel by viewModels()
+    @Inject
+    lateinit var assistedFactory: TopStoriesViewModelAssistedFactory
+
+    private val viewModel: TopStoriesViewModel by viewModels {
+        TopStoriesViewModel.provideFactory(assistedFactory, Section.valueOf(intent.extras!!.getString(EXTRA_SECTION)!!))
+    }
     private lateinit var adapter: ArticleListAdapter
     private lateinit var binding: ActivityArticlesBinding
 
@@ -51,7 +59,7 @@ class TopStoriesActivity : AppCompatActivity() {
 
         observeViewModel()
 
-        viewModel.loadArticles(section)
+        viewModel.loadArticles()
         //viewModel.loadData(force = false)
 
     }
@@ -61,17 +69,18 @@ class TopStoriesActivity : AppCompatActivity() {
     }
 
     private fun observeViewModel() {
-        viewModel.topStoryUiModels.observe(this, Observer { articles ->
+
+        viewModel.topStoryUiModels.onEach { articles ->
             if (!initialized) {
                 initialized = true
-                return@Observer
+                return@onEach
             }
 
             binding.emptyView.visibility = if (articles.isEmpty()) View.VISIBLE else View.GONE
             binding.refreshView.visibility = if (articles.isNotEmpty()) View.VISIBLE else View.GONE
 
             adapter.submitList(articles)
-        })
+        }.launchIn(lifecycleScope)
 
         viewModel.isLoading.observe(this, { isLoading ->
             binding.refreshView.isRefreshing = isLoading

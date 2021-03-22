@@ -7,6 +7,8 @@ import com.github.nakawai.newsreader.domain.repository.ArticleRepository
 import com.github.nakawai.newsreader.domain.repository.HistoryRepository
 import com.github.nakawai.newsreader.presentation.articles.ArticleUiModel
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.combine
 
 /**
  * Presenter class for controlling the Main Activity
@@ -24,18 +26,16 @@ class DetailsViewModel @ViewModelInject constructor(
 
     private val _article = Transformations.switchMap(_storyUrl) {
         repository.observeArticle(articleUrl = it)
-    }
+    }.asFlow()
 
     private val _histories = historyRepository.observeHistories()
 
-    val articleUiModel: LiveData<ArticleUiModel> = MediatorLiveData<ArticleUiModel>().also { uiModel ->
-        uiModel.addSource(_article) { article ->
-            uiModel.value = ArticleUiModel(article, System.currentTimeMillis(), _histories.value?.find { it.url == article.url } != null)
-        }
-        uiModel.addSource(_histories) { histories ->
-            val article = _article.value ?: return@addSource
-            uiModel.value = ArticleUiModel(article, System.currentTimeMillis(), histories.find { it.url == article.url } != null)
-        }
+    val articleUiModel: Flow<ArticleUiModel> = combine(_article, _histories) { article, histories ->
+        ArticleUiModel(
+            article = article,
+            nowTimeMillis = System.currentTimeMillis(),
+            isRead = histories.find { it.url == article.url } != null
+        )
     }
 
 

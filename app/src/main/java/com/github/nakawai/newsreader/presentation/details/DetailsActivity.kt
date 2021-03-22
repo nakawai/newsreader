@@ -6,11 +6,13 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import com.github.nakawai.newsreader.R
 import com.github.nakawai.newsreader.databinding.ActivityDetailsBinding
 import com.github.nakawai.newsreader.domain.entities.ArticleUrl
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -35,7 +37,7 @@ class DetailsActivity : AppCompatActivity() {
     }
 
     private fun observeViewModel() {
-        viewModel.articleUiModel.observe(this, Observer { article ->
+        viewModel.articleUiModel.onEach { article ->
             binding.toolbar.title = article.title
             binding.detailsView.text = article.storyAbstract
             binding.dateView.text = article.relativeTimeSpanText
@@ -47,7 +49,7 @@ class DetailsActivity : AppCompatActivity() {
                 binding.readView.text = ""
                 binding.readView.animate().alpha(0f)
             }
-        })
+        }.launchIn(lifecycleScope)
 
         viewModel.isLoading.observe(this, { isLoading ->
             binding.loaderView.visibility = if (isLoading) View.VISIBLE else View.GONE
