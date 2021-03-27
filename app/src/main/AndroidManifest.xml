@@ -25,19 +25,14 @@
         <activity
             android:name=".presentation.search.SearchActivity"
             android:label="@string/title_activity_search"
-            android:parentActivityName=".presentation.sections.SectionsActivity"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".presentation.sections.SectionsActivity"
-            android:label="@string/app_name"
-            android:launchMode="singleTop"
-            android:theme="@style/AppTheme.NoActionBar">
 
-        </activity>
+
         <activity
             android:name=".presentation.articles.TopStoriesActivity"
             android:launchMode="singleTop"
-            android:parentActivityName=".presentation.sections.SectionsActivity" />
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".presentation.details.DetailsActivity"
             android:parentActivityName=".presentation.articles.TopStoriesActivity" />
