@@ -36,13 +36,7 @@ android {
             keyPassword 'android'
 
         }
-        release {
-            def HOME = System.getenv()["HOME"]
-            storeFile file("${HOME}/storeFiles/release.keystore")
-            storePassword System.getenv("BITRISEIO_ANDROID_KEYSTORE_PASSWORD")
-            keyAlias System.getenv("BITRISEIO_ANDROID_KEYSTORE_ALIAS")
-            keyPassword System.getenv("BITRISEIO_ANDROID_KEYSTORE_PRIVATE_KEY_PASSWORD")
-        }
+
     }
     buildTypes {
         debug {
@@ -51,7 +45,6 @@ android {
 
         release {
             minifyEnabled true
-            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
